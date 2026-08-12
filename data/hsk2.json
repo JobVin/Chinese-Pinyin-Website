@@ -1,12 +1,1300 @@
 [
   {
-    "character": "吧",
+    "character": "二",
     "pinyin": [
-      "ba",
-      "ba5"
+      "èr",
+      "er",
+      "er4"
     ],
-    "displayPinyin": "ba",
-    "meaning": "suggestion particle"
+    "displayPinyin": "èr",
+    "meaning": "two"
+  },
+  {
+    "character": "饭店",
+    "pinyin": [
+      "fàndiàn",
+      "fandian",
+      "fan4dian4"
+    ],
+    "displayPinyin": "fàndiàn",
+    "meaning": "restaurant / hotel"
+  },
+  {
+    "character": "飞机",
+    "pinyin": [
+      "fēijī",
+      "feiji",
+      "fei1ji1"
+    ],
+    "displayPinyin": "fēijī",
+    "meaning": "airplane"
+  },
+  {
+    "character": "分钟",
+    "pinyin": [
+      "fēnzhōng",
+      "fenzhong",
+      "fen1zhong1"
+    ],
+    "displayPinyin": "fēnzhōng",
+    "meaning": "minute"
+  },
+  {
+    "character": "高兴",
+    "pinyin": [
+      "gāoxìng",
+      "gaoxing",
+      "gao1xing4"
+    ],
+    "displayPinyin": "gāoxìng",
+    "meaning": "happy / glad"
+  },
+  {
+    "character": "个",
+    "pinyin": [
+      "gè",
+      "ge",
+      "ge4"
+    ],
+    "displayPinyin": "gè",
+    "meaning": "general measure word"
+  },
+  {
+    "character": "工作",
+    "pinyin": [
+      "gōngzuò",
+      "gongzuo",
+      "gong1zuo4"
+    ],
+    "displayPinyin": "gōngzuò",
+    "meaning": "work / job"
+  },
+  {
+    "character": "汉语",
+    "pinyin": [
+      "hànyǔ",
+      "hanyu",
+      "han4yu3"
+    ],
+    "displayPinyin": "hànyǔ",
+    "meaning": "Chinese language"
+  },
+  {
+    "character": "好",
+    "pinyin": [
+      "hǎo",
+      "hao",
+      "hao3"
+    ],
+    "displayPinyin": "hǎo",
+    "meaning": "good / fine"
+  },
+  {
+    "character": "号",
+    "pinyin": [
+      "hào",
+      "hao",
+      "hao4"
+    ],
+    "displayPinyin": "hào",
+    "meaning": "number / date"
+  },
+  {
+    "character": "喝",
+    "pinyin": [
+      "hē",
+      "he",
+      "he1"
+    ],
+    "displayPinyin": "hē",
+    "meaning": "to drink"
+  },
+  {
+    "character": "和",
+    "pinyin": [
+      "hé",
+      "he",
+      "he2"
+    ],
+    "displayPinyin": "hé",
+    "meaning": "and / with"
+  },
+  {
+    "character": "很",
+    "pinyin": [
+      "hěn",
+      "hen",
+      "hen3"
+    ],
+    "displayPinyin": "hěn",
+    "meaning": "very"
+  },
+  {
+    "character": "后面",
+    "pinyin": [
+      "hòumiàn",
+      "houmian",
+      "hou4mian4"
+    ],
+    "displayPinyin": "hòumiàn",
+    "meaning": "behind / back"
+  },
+  {
+    "character": "回",
+    "pinyin": [
+      "huí",
+      "hui",
+      "hui2"
+    ],
+    "displayPinyin": "huí",
+    "meaning": "return / go back"
+  },
+  {
+    "character": "会",
+    "pinyin": [
+      "huì",
+      "hui",
+      "hui4"
+    ],
+    "displayPinyin": "huì",
+    "meaning": "can / know how to"
+  },
+  {
+    "character": "几",
+    "pinyin": [
+      "jǐ",
+      "ji",
+      "ji3"
+    ],
+    "displayPinyin": "jǐ",
+    "meaning": "how many / a few"
+  },
+  {
+    "character": "家",
+    "pinyin": [
+      "jiā",
+      "jia",
+      "jia1"
+    ],
+    "displayPinyin": "jiā",
+    "meaning": "home / family"
+  },
+  {
+    "character": "叫",
+    "pinyin": [
+      "jiào",
+      "jiao",
+      "jiao4"
+    ],
+    "displayPinyin": "jiào",
+    "meaning": "to be called"
+  },
+  {
+    "character": "今天",
+    "pinyin": [
+      "jīntiān",
+      "jintian",
+      "jin1tian1"
+    ],
+    "displayPinyin": "jīntiān",
+    "meaning": "today"
+  },
+  {
+    "character": "九",
+    "pinyin": [
+      "jiǔ",
+      "jiu",
+      "jiu9"
+    ],
+    "displayPinyin": "jiǔ",
+    "meaning": "nine"
+  },
+  {
+    "character": "开",
+    "pinyin": [
+      "kāi",
+      "kai",
+      "kai1"
+    ],
+    "displayPinyin": "kāi",
+    "meaning": "open / drive"
+  },
+  {
+    "character": "看",
+    "pinyin": [
+      "kàn",
+      "kan",
+      "kan4"
+    ],
+    "displayPinyin": "kàn",
+    "meaning": "look / watch / read"
+  },
+  {
+    "character": "看见",
+    "pinyin": [
+      "kànjiàn",
+      "kanjian",
+      "kan4jian4"
+    ],
+    "displayPinyin": "kànjiàn",
+    "meaning": "see / catch sight of"
+  },
+  {
+    "character": "块",
+    "pinyin": [
+      "kuài",
+      "kuai",
+      "kuai4"
+    ],
+    "displayPinyin": "kuài",
+    "meaning": "piece / yuan"
+  },
+  {
+    "character": "来",
+    "pinyin": [
+      "lái",
+      "lai",
+      "lai2"
+    ],
+    "displayPinyin": "lái",
+    "meaning": "to come"
+  },
+  {
+    "character": "老师",
+    "pinyin": [
+      "lǎoshī",
+      "laoshi",
+      "lao3shi1"
+    ],
+    "displayPinyin": "lǎoshī",
+    "meaning": "teacher"
+  },
+  {
+    "character": "了",
+    "pinyin": [
+      "le",
+      "le5"
+    ],
+    "displayPinyin": "le",
+    "meaning": "modal particle"
+  },
+  {
+    "character": "冷",
+    "pinyin": [
+      "lěng",
+      "leng",
+      "leng3"
+    ],
+    "displayPinyin": "lěng",
+    "meaning": "cold"
+  },
+  {
+    "character": "里",
+    "pinyin": [
+      "lǐ",
+      "li",
+      "li3"
+    ],
+    "displayPinyin": "lǐ",
+    "meaning": "inside / in"
+  },
+  {
+    "character": "零",
+    "pinyin": [
+      "líng",
+      "ling",
+      "ling2"
+    ],
+    "displayPinyin": "líng",
+    "meaning": "zero"
+  },
+  {
+    "character": "六",
+    "pinyin": [
+      "liù",
+      "liu",
+      "liu4"
+    ],
+    "displayPinyin": "liù",
+    "meaning": "six"
+  },
+  {
+    "character": "妈妈",
+    "pinyin": [
+      "māma",
+      "mama",
+      "ma1ma"
+    ],
+    "displayPinyin": "māma",
+    "meaning": "mother / mom"
+  },
+  {
+    "character": "吗",
+    "pinyin": [
+      "ma",
+      "ma5"
+    ],
+    "displayPinyin": "ma",
+    "meaning": "question particle"
+  },
+  {
+    "character": "买",
+    "pinyin": [
+      "mǎi",
+      "mai",
+      "mai3"
+    ],
+    "displayPinyin": "mǎi",
+    "meaning": "to buy"
+  },
+  {
+    "character": "猫",
+    "pinyin": [
+      "māo",
+      "mao",
+      "mao1"
+    ],
+    "displayPinyin": "māo",
+    "meaning": "cat"
+  },
+  {
+    "character": "没关系",
+    "pinyin": [
+      "méi guānxi",
+      "mei guanxi",
+      "mei2 guan1xi"
+    ],
+    "displayPinyin": "méi guānxi",
+    "meaning": "it doesn't matter"
+  },
+  {
+    "character": "没有",
+    "pinyin": [
+      "méiyǒu",
+      "meiyou",
+      "mei2you3"
+    ],
+    "displayPinyin": "méiyǒu",
+    "meaning": "don't have / not have"
+  },
+  {
+    "character": "米饭",
+    "pinyin": [
+      "mǐfàn",
+      "mifan",
+      "mi3fan4"
+    ],
+    "displayPinyin": "mǐfàn",
+    "meaning": "cooked rice"
+  },
+  {
+    "character": "明天",
+    "pinyin": [
+      "míngtiān",
+      "mingtian",
+      "ming2tian1"
+    ],
+    "displayPinyin": "míngtiān",
+    "meaning": "tomorrow"
+  },
+  {
+    "character": "名字",
+    "pinyin": [
+      "míngzi",
+      "mingzi",
+      "ming2zi5"
+    ],
+    "displayPinyin": "míngzi",
+    "meaning": "name"
+  },
+  {
+    "character": "哪",
+    "pinyin": [
+      "nǎ",
+      "na",
+      "na3"
+    ],
+    "displayPinyin": "nǎ",
+    "meaning": "which"
+  },
+  {
+    "character": "哪儿",
+    "pinyin": [
+      "nǎr",
+      "nar",
+      "na3r"
+    ],
+    "displayPinyin": "nǎr",
+    "meaning": "where"
+  },
+  {
+    "character": "那",
+    "pinyin": [
+      "nà",
+      "na",
+      "na4"
+    ],
+    "displayPinyin": "nà",
+    "meaning": "that"
+  },
+  {
+    "character": "那儿",
+    "pinyin": [
+      "nàr",
+      "nar",
+      "na4r"
+    ],
+    "displayPinyin": "nàr",
+    "meaning": "there"
+  },
+  {
+    "character": "呢",
+    "pinyin": [
+      "ne",
+      "ne5"
+    ],
+    "displayPinyin": "ne",
+    "meaning": "question particle"
+  },
+  {
+    "character": "能",
+    "pinyin": [
+      "néng",
+      "neng",
+      "neng2"
+    ],
+    "displayPinyin": "néng",
+    "meaning": "can / be able to"
+  },
+  {
+    "character": "你",
+    "pinyin": [
+      "nǐ",
+      "ni",
+      "ni3"
+    ],
+    "displayPinyin": "nǐ",
+    "meaning": "you (singular)"
+  },
+  {
+    "character": "年",
+    "pinyin": [
+      "nián",
+      "nian",
+      "nian2"
+    ],
+    "displayPinyin": "nián",
+    "meaning": "year"
+  },
+  {
+    "character": "女儿",
+    "pinyin": [
+      "nǚ'ér",
+      "nver",
+      "nv3er2"
+    ],
+    "displayPinyin": "nǚ'ér",
+    "meaning": "daughter"
+  },
+  {
+    "character": "朋友",
+    "pinyin": [
+      "péngyou",
+      "pengyou",
+      "peng2you5"
+    ],
+    "displayPinyin": "péngyou",
+    "meaning": "friend"
+  },
+  {
+    "character": "漂亮",
+    "pinyin": [
+      "piàoliang",
+      "piaoliang",
+      "piao4liang5"
+    ],
+    "displayPinyin": "piàoliang",
+    "meaning": "pretty / beautiful"
+  },
+  {
+    "character": "苹果",
+    "pinyin": [
+      "píngguǒ",
+      "pingguo",
+      "ping2guo3"
+    ],
+    "displayPinyin": "píngguǒ",
+    "meaning": "apple"
+  },
+  {
+    "character": "七",
+    "pinyin": [
+      "qī",
+      "qi",
+      "qi1"
+    ],
+    "displayPinyin": "qī",
+    "meaning": "seven"
+  },
+  {
+    "character": "钱",
+    "pinyin": [
+      "qián",
+      "qian",
+      "qian2"
+    ],
+    "displayPinyin": "qián",
+    "meaning": "money"
+  },
+  {
+    "character": "前面",
+    "pinyin": [
+      "qiánmiàn",
+      "qianmian",
+      "qian4mian4"
+    ],
+    "displayPinyin": "qiánmiàn",
+    "meaning": "front / ahead"
+  },
+  {
+    "character": "请",
+    "pinyin": [
+      "qǐng",
+      "qing",
+      "qing3"
+    ],
+    "displayPinyin": "qǐng",
+    "meaning": "please / invite"
+  },
+  {
+    "character": "去",
+    "pinyin": [
+      "qù",
+      "qu",
+      "qu4"
+    ],
+    "displayPinyin": "qù",
+    "meaning": "to go"
+  },
+  {
+    "character": "热",
+    "pinyin": [
+      "rè",
+      "re",
+      "re4"
+    ],
+    "displayPinyin": "rè",
+    "meaning": "hot"
+  },
+  {
+    "character": "人",
+    "pinyin": [
+      "rén",
+      "ren",
+      "ren2"
+    ],
+    "displayPinyin": "rén",
+    "meaning": "person / people"
+  },
+  {
+    "character": "认识",
+    "pinyin": [
+      "rènshi",
+      "renshi",
+      "ren4shi5"
+    ],
+    "displayPinyin": "rènshi",
+    "meaning": "know / recognize"
+  },
+  {
+    "character": "三",
+    "pinyin": [
+      "sān",
+      "san",
+      "san1"
+    ],
+    "displayPinyin": "sān",
+    "meaning": "three"
+  },
+  {
+    "character": "商店",
+    "pinyin": [
+      "shāngdiàn",
+      "shangdian",
+      "shang1dian4"
+    ],
+    "displayPinyin": "shāngdiàn",
+    "meaning": "shop / store"
+  },
+  {
+    "character": "上",
+    "pinyin": [
+      "shàng",
+      "shang",
+      "shang4"
+    ],
+    "displayPinyin": "shàng",
+    "meaning": "above / up / on"
+  },
+  {
+    "character": "上午",
+    "pinyin": [
+      "shàngwǔ",
+      "shangwu",
+      "shang4wu3"
+    ],
+    "displayPinyin": "shàngwǔ",
+    "meaning": "morning"
+  },
+  {
+    "character": "少",
+    "pinyin": [
+      "shǎo",
+      "shao",
+      "shao3"
+    ],
+    "displayPinyin": "shǎo",
+    "meaning": "few / little"
+  },
+  {
+    "character": "谁",
+    "pinyin": [
+      "shéi",
+      "shei",
+      "shei2"
+    ],
+    "displayPinyin": "shéi",
+    "meaning": "who / whom"
+  },
+  {
+    "character": "什么",
+    "pinyin": [
+      "shénme",
+      "shenme",
+      "shen2me5"
+    ],
+    "displayPinyin": "shénme",
+    "meaning": "what"
+  },
+  {
+    "character": "十",
+    "pinyin": [
+      "shí",
+      "shi",
+      "shi2"
+    ],
+    "displayPinyin": "shí",
+    "meaning": "ten"
+  },
+  {
+    "character": "时候",
+    "pinyin": [
+      "shíhou",
+      "shihou",
+      "shi2hou5"
+    ],
+    "displayPinyin": "shíhou",
+    "meaning": "time / moment"
+  },
+  {
+    "character": "是",
+    "pinyin": [
+      "shì",
+      "shi",
+      "shi4"
+    ],
+    "displayPinyin": "shì",
+    "meaning": "to be (is/am/are)"
+  },
+  {
+    "character": "书",
+    "pinyin": [
+      "shū",
+      "shu",
+      "shu1"
+    ],
+    "displayPinyin": "shū",
+    "meaning": "book"
+  },
+  {
+    "character": "水",
+    "pinyin": [
+      "shuǐ",
+      "shui",
+      "shui3"
+    ],
+    "displayPinyin": "shuǐ",
+    "meaning": "water"
+  },
+  {
+    "character": "水果",
+    "pinyin": [
+      "shuǐguǒ",
+      "shuiguo",
+      "shui3guo3"
+    ],
+    "displayPinyin": "shuǐguǒ",
+    "meaning": "fruit"
+  },
+  {
+    "character": "睡觉",
+    "pinyin": [
+      "shuìjiào",
+      "shuijiao",
+      "shui4jiao4"
+    ],
+    "displayPinyin": "shuìjiào",
+    "meaning": "to sleep"
+  },
+  {
+    "character": "说话",
+    "pinyin": [
+      "shuōhuà",
+      "shuohua",
+      "shuo1hua4"
+    ],
+    "displayPinyin": "shuōhuà",
+    "meaning": "to speak / talk"
+  },
+  {
+    "character": "四",
+    "pinyin": [
+      "sì",
+      "si",
+      "si4"
+    ],
+    "displayPinyin": "sì",
+    "meaning": "four"
+  },
+  {
+    "character": "岁",
+    "pinyin": [
+      "suì",
+      "sui",
+      "sui4"
+    ],
+    "displayPinyin": "suì",
+    "meaning": "years old"
+  },
+  {
+    "character": "他",
+    "pinyin": [
+      "tā",
+      "ta",
+      "ta1"
+    ],
+    "displayPinyin": "tā",
+    "meaning": "he / him"
+  },
+  {
+    "character": "她",
+    "pinyin": [
+      "tā",
+      "ta",
+      "ta1"
+    ],
+    "displayPinyin": "tā",
+    "meaning": "she / her"
+  },
+  {
+    "character": "太",
+    "pinyin": [
+      "tài",
+      "tai",
+      "tai4"
+    ],
+    "displayPinyin": "tài",
+    "meaning": "too / excessively"
+  },
+  {
+    "character": "天气",
+    "pinyin": [
+      "tiānqì",
+      "tianqi",
+      "tian1qi4"
+    ],
+    "displayPinyin": "tiānqì",
+    "meaning": "weather"
+  },
+  {
+    "character": "听",
+    "pinyin": [
+      "tīng",
+      "ting",
+      "ting1"
+    ],
+    "displayPinyin": "tīng",
+    "meaning": "listen / hear"
+  },
+  {
+    "character": "同学",
+    "pinyin": [
+      "tóngxué",
+      "tongxue",
+      "tong2xue2"
+    ],
+    "displayPinyin": "tóngxué",
+    "meaning": "classmate"
+  },
+  {
+    "character": "喂",
+    "pinyin": [
+      "wèi",
+      "wei",
+      "wei4"
+    ],
+    "displayPinyin": "wèi",
+    "meaning": "hello (phone)"
+  },
+  {
+    "character": "我",
+    "pinyin": [
+      "wǒ",
+      "wo",
+      "wo3"
+    ],
+    "displayPinyin": "wǒ",
+    "meaning": "I / me"
+  },
+  {
+    "character": "我们",
+    "pinyin": [
+      "wǒmen",
+      "women",
+      "wo3men5"
+    ],
+    "displayPinyin": "wǒmen",
+    "meaning": "we / us"
+  },
+  {
+    "character": "五",
+    "pinyin": [
+      "wǔ",
+      "wu",
+      "wu3"
+    ],
+    "displayPinyin": "wǔ",
+    "meaning": "five"
+  },
+  {
+    "character": "喜欢",
+    "pinyin": [
+      "xǐhuan",
+      "xihuan",
+      "xi3huan5"
+    ],
+    "displayPinyin": "xǐhuan",
+    "meaning": "to like"
+  },
+  {
+    "character": "下",
+    "pinyin": [
+      "xià",
+      "xia",
+      "xia4"
+    ],
+    "displayPinyin": "xià",
+    "meaning": "below / down / under"
+  },
+  {
+    "character": "下午",
+    "pinyin": [
+      "xiàwǔ",
+      "xiawu",
+      "xia4wu3"
+    ],
+    "displayPinyin": "xiàwǔ",
+    "meaning": "afternoon"
+  },
+  {
+    "character": "下雨",
+    "pinyin": [
+      "xiàyǔ",
+      "xiayu",
+      "xia4yu3"
+    ],
+    "displayPinyin": "xiàyǔ",
+    "meaning": "to rain"
+  },
+  {
+    "character": "先生",
+    "pinyin": [
+      "xiānshang",
+      "xiansheng",
+      "xian1sheng5"
+    ],
+    "displayPinyin": "xiānshang",
+    "meaning": "Mr. / sir"
+  },
+  {
+    "character": "现在",
+    "pinyin": [
+      "xiànzài",
+      "xianzai",
+      "xian4zai4"
+    ],
+    "displayPinyin": "xiànzài",
+    "meaning": "now"
+  },
+  {
+    "character": "想",
+    "pinyin": [
+      "xiǎng",
+      "xiang",
+      "xiang3"
+    ],
+    "displayPinyin": "xiǎng",
+    "meaning": "think / want to"
+  },
+  {
+    "character": "小",
+    "pinyin": [
+      "xiǎo",
+      "xiao",
+      "xiao3"
+    ],
+    "displayPinyin": "xiǎo",
+    "meaning": "small / little"
+  },
+  {
+    "character": "小姐",
+    "pinyin": [
+      "xiǎojiě",
+      "xiaojie",
+      "xiao3jie3"
+    ],
+    "displayPinyin": "xiǎojiě",
+    "meaning": "Miss / young lady"
+  },
+  {
+    "character": "些",
+    "pinyin": [
+      "xiē",
+      "xie",
+      "xie1"
+    ],
+    "displayPinyin": "xiē",
+    "meaning": "some / a few"
+  },
+  {
+    "character": "写",
+    "pinyin": [
+      "xiě",
+      "xie",
+      "xie3"
+    ],
+    "displayPinyin": "xiě",
+    "meaning": "to write"
+  },
+  {
+    "character": "谢谢",
+    "pinyin": [
+      "xièxie",
+      "xiexie",
+      "xie4xie5"
+    ],
+    "displayPinyin": "xièxie",
+    "meaning": "thank you"
+  },
+  {
+    "character": "星期",
+    "pinyin": [
+      "xīngqī",
+      "xingqi",
+      "xing1qi1"
+    ],
+    "displayPinyin": "xīngqī",
+    "meaning": "week"
+  },
+  {
+    "character": "学生",
+    "pinyin": [
+      "xuésheng",
+      "xuesheng",
+      "xue2sheng5"
+    ],
+    "displayPinyin": "xuésheng",
+    "meaning": "student"
+  },
+  {
+    "character": "学习",
+    "pinyin": [
+      "xuéxí",
+      "xuexi",
+      "xue2xi2"
+    ],
+    "displayPinyin": "xuéxí",
+    "meaning": "to study / learn"
+  },
+  {
+    "character": "学校",
+    "pinyin": [
+      "xuéxiào",
+      "xuexiao",
+      "xue2xiao4"
+    ],
+    "displayPinyin": "xuéxiào",
+    "meaning": "school"
+  },
+  {
+    "character": "一",
+    "pinyin": [
+      "yī",
+      "yi",
+      "yi1"
+    ],
+    "displayPinyin": "yī",
+    "meaning": "one"
+  },
+  {
+    "character": "一点儿",
+    "pinyin": [
+      "yìdiǎnr",
+      "yidianr",
+      "yi4dian3r"
+    ],
+    "displayPinyin": "yìdiǎnr",
+    "meaning": "a little bit"
+  },
+  {
+    "character": "衣服",
+    "pinyin": [
+      "yīfu",
+      "yifu",
+      "yi1fu5"
+    ],
+    "displayPinyin": "yīfu",
+    "meaning": "clothes"
+  },
+  {
+    "character": "医生",
+    "pinyin": [
+      "yīshēng",
+      "yisheng",
+      "yi1sheng1"
+    ],
+    "displayPinyin": "yīshēng",
+    "meaning": "doctor"
+  },
+  {
+    "character": "医院",
+    "pinyin": [
+      "yīyuàn",
+      "yiyuan",
+      "yi1yuan4"
+    ],
+    "displayPinyin": "yīyuàn",
+    "meaning": "hospital"
+  },
+  {
+    "character": "椅子",
+    "pinyin": [
+      "yǐzi",
+      "yizi",
+      "yi3zi5"
+    ],
+    "displayPinyin": "yǐzi",
+    "meaning": "chair"
+  },
+  {
+    "character": "有",
+    "pinyin": [
+      "yǒu",
+      "you",
+      "you3"
+    ],
+    "displayPinyin": "yǒu",
+    "meaning": "have / possess"
+  },
+  {
+    "character": "月",
+    "pinyin": [
+      "yuè",
+      "yue",
+      "yue4"
+    ],
+    "displayPinyin": "yuè",
+    "meaning": "month / moon"
+  },
+  {
+    "character": "再见",
+    "pinyin": [
+      "zàijiàn",
+      "zaijian",
+      "zai4jian4"
+    ],
+    "displayPinyin": "zàijiàn",
+    "meaning": "goodbye"
+  },
+  {
+    "character": "在",
+    "pinyin": [
+      "zài",
+      "zai",
+      "zai4"
+    ],
+    "displayPinyin": "zài",
+    "meaning": "at / in / located"
+  },
+  {
+    "character": "中国",
+    "pinyin": [
+      "zhōngguó",
+      "zhongguo",
+      "zhong1guo2"
+    ],
+    "displayPinyin": "zhōngguó",
+    "meaning": "China"
+  },
+  {
+    "character": "中午",
+    "pinyin": [
+      "zhōngwǔ",
+      "zhongwu",
+      "zhong1wu3"
+    ],
+    "displayPinyin": "zhōngwǔ",
+    "meaning": "noon"
+  },
+  {
+    "character": "住",
+    "pinyin": [
+      "zhù",
+      "zhu",
+      "zhu4"
+    ],
+    "displayPinyin": "zhù",
+    "meaning": "to live / reside"
+  },
+  {
+    "character": "桌子",
+    "pinyin": [
+      "zhuōzi",
+      "zhuozi",
+      "zhuo1zi5"
+    ],
+    "displayPinyin": "zhuōzi",
+    "meaning": "table / desk"
+  },
+  {
+    "character": "字",
+    "pinyin": [
+      "zì",
+      "zi",
+      "zi4"
+    ],
+    "displayPinyin": "zì",
+    "meaning": "character / word"
+  },
+  {
+    "character": "昨天",
+    "pinyin": [
+      "zuótiān",
+      "zuotian",
+      "zuo2tian1"
+    ],
+    "displayPinyin": "zuótiān",
+    "meaning": "yesterday"
+  },
+  {
+    "character": "坐",
+    "pinyin": [
+      "zuò",
+      "zuo",
+      "zuo4"
+    ],
+    "displayPinyin": "zuò",
+    "meaning": "to sit"
+  },
+  {
+    "character": "做",
+    "pinyin": [
+      "zuò",
+      "zuo",
+      "zuo4"
+    ],
+    "displayPinyin": "zuò",
+    "meaning": "to do / make"
+  },
+  {
+    "character": "爱国",
+    "pinyin": [
+      "àiguó",
+      "aiguo",
+      "ai4guo2"
+    ],
+    "displayPinyin": "àiguó",
+    "meaning": "patriotic"
+  },
+  {
+    "character": "爱心",
+    "pinyin": [
+      "àixīn",
+      "aixin",
+      "ai4xin1"
+    ],
+    "displayPinyin": "àixīn",
+    "meaning": "compassion"
+  },
+  {
+    "character": "安排",
+    "pinyin": [
+      "ānpái",
+      "anpai",
+      "an1pai2"
+    ],
+    "displayPinyin": "ānpái",
+    "meaning": "arrange"
+  },
+  {
+    "character": "安全",
+    "pinyin": [
+      "ānquán",
+      "anquan",
+      "an1quan2"
+    ],
+    "displayPinyin": "ānquán",
+    "meaning": "safe"
+  },
+  {
+    "character": "按时",
+    "pinyin": [
+      "ànshí",
+      "anshi",
+      "an4shi2"
+    ],
+    "displayPinyin": "ànshí",
+    "meaning": "on time"
+  },
+  {
+    "character": "按照",
+    "pinyin": [
+      "ànzhào",
+      "anzhao",
+      "an4zhao4"
+    ],
+    "displayPinyin": "ànzhào",
+    "meaning": "according to"
+  },
+  {
+    "character": "暗",
+    "pinyin": [
+      "àn",
+      "an",
+      "an4"
+    ],
+    "displayPinyin": "àn",
+    "meaning": "dark"
+  },
+  {
+    "character": "把",
+    "pinyin": [
+      "bǎ",
+      "ba",
+      "ba3"
+    ],
+    "displayPinyin": "bǎ",
+    "meaning": "handle"
   },
   {
     "character": "白",
@@ -29,1511 +1317,14 @@
     "meaning": "hundred"
   },
   {
-    "character": "帮助",
+    "character": "摆",
     "pinyin": [
-      "bāngzhù",
-      "bangzhu",
-      "bang1zhu4"
+      "bǎi",
+      "bai",
+      "bai3"
     ],
-    "displayPinyin": "bāngzhù",
-    "meaning": "to help"
-  },
-  {
-    "character": "报纸",
-    "pinyin": [
-      "bàozhǐ",
-      "baozhi",
-      "bao4zhi3"
-    ],
-    "displayPinyin": "bàozhǐ",
-    "meaning": "newspaper"
-  },
-  {
-    "character": "比",
-    "pinyin": [
-      "bǐ",
-      "bi",
-      "bi3"
-    ],
-    "displayPinyin": "bǐ",
-    "meaning": "to compare / than"
-  },
-  {
-    "character": "别",
-    "pinyin": [
-      "bié",
-      "bie",
-      "bie2"
-    ],
-    "displayPinyin": "bié",
-    "meaning": "don't"
-  },
-  {
-    "character": "长",
-    "pinyin": [
-      "cháng",
-      "chang",
-      "chang2"
-    ],
-    "displayPinyin": "cháng",
-    "meaning": "long"
-  },
-  {
-    "character": "唱歌",
-    "pinyin": [
-      "chànggē",
-      "changge",
-      "chang4ge1"
-    ],
-    "displayPinyin": "chànggē",
-    "meaning": "to sing"
-  },
-  {
-    "character": "出",
-    "pinyin": [
-      "chū",
-      "chu",
-      "chu1"
-    ],
-    "displayPinyin": "chū",
-    "meaning": "go out / exit"
-  },
-  {
-    "character": "穿",
-    "pinyin": [
-      "chuān",
-      "chuan",
-      "chuan1"
-    ],
-    "displayPinyin": "chuān",
-    "meaning": "wear / put on"
-  },
-  {
-    "character": "次",
-    "pinyin": [
-      "cì",
-      "ci",
-      "ci4"
-    ],
-    "displayPinyin": "cì",
-    "meaning": "time / frequency"
-  },
-  {
-    "character": "从",
-    "pinyin": [
-      "cóng",
-      "cong",
-      "cong2"
-    ],
-    "displayPinyin": "cóng",
-    "meaning": "from"
-  },
-  {
-    "character": "错",
-    "pinyin": [
-      "cuò",
-      "cuo",
-      "cuo4"
-    ],
-    "displayPinyin": "cuò",
-    "meaning": "wrong / mistake"
-  },
-  {
-    "character": "打篮球",
-    "pinyin": [
-      "dǎ lánqiú",
-      "da lanqiu",
-      "da3 lan2qiu2"
-    ],
-    "displayPinyin": "dǎ lánqiú",
-    "meaning": "play basketball"
-  },
-  {
-    "character": "大家",
-    "pinyin": [
-      "dàjiā",
-      "dajia",
-      "da4jia1"
-    ],
-    "displayPinyin": "dàjiā",
-    "meaning": "everyone"
-  },
-  {
-    "character": "到",
-    "pinyin": [
-      "dào",
-      "dao",
-      "dao4"
-    ],
-    "displayPinyin": "dào",
-    "meaning": "arrive / reach"
-  },
-  {
-    "character": "得",
-    "pinyin": [
-      "de",
-      "de5"
-    ],
-    "displayPinyin": "de",
-    "meaning": "structural particle"
-  },
-  {
-    "character": "等",
-    "pinyin": [
-      "děng",
-      "deng",
-      "deng3"
-    ],
-    "displayPinyin": "děng",
-    "meaning": "wait"
-  },
-  {
-    "character": "弟弟",
-    "pinyin": [
-      "dìdi",
-      "didi",
-      "di4di5"
-    ],
-    "displayPinyin": "dìdi",
-    "meaning": "younger brother"
-  },
-  {
-    "character": "第一",
-    "pinyin": [
-      "dì-yī",
-      "di-yi",
-      "di4-yi1"
-    ],
-    "displayPinyin": "dì-yī",
-    "meaning": "first / number 1"
-  },
-  {
-    "character": "懂",
-    "pinyin": [
-      "dǒng",
-      "dong",
-      "dong3"
-    ],
-    "displayPinyin": "dǒng",
-    "meaning": "understand"
-  },
-  {
-    "character": "对",
-    "pinyin": [
-      "duì",
-      "dui",
-      "dui4"
-    ],
-    "displayPinyin": "duì",
-    "meaning": "correct / right"
-  },
-  {
-    "character": "房间",
-    "pinyin": [
-      "fángjiān",
-      "fangjian",
-      "fang2jian1"
-    ],
-    "displayPinyin": "fángjiān",
-    "meaning": "room"
-  },
-  {
-    "character": "非常",
-    "pinyin": [
-      "fēicháng",
-      "feichang",
-      "fei1chang2"
-    ],
-    "displayPinyin": "fēicháng",
-    "meaning": "very / extremely"
-  },
-  {
-    "character": "服务员",
-    "pinyin": [
-      "fúwùyuán",
-      "fuwuyuan",
-      "fu2wu4yuan2"
-    ],
-    "displayPinyin": "fúwùyuán",
-    "meaning": "waiter / server"
-  },
-  {
-    "character": "高",
-    "pinyin": [
-      "gāo",
-      "gao",
-      "gao1"
-    ],
-    "displayPinyin": "gāo",
-    "meaning": "tall / high"
-  },
-  {
-    "character": "告诉",
-    "pinyin": [
-      "gàosu",
-      "gaosu",
-      "gao4su5"
-    ],
-    "displayPinyin": "gàosu",
-    "meaning": "tell / inform"
-  },
-  {
-    "character": "哥哥",
-    "pinyin": [
-      "gēge",
-      "gege",
-      "ge1ge5"
-    ],
-    "displayPinyin": "gēge",
-    "meaning": "older brother"
-  },
-  {
-    "character": "给",
-    "pinyin": [
-      "gěi",
-      "gei",
-      "gei3"
-    ],
-    "displayPinyin": "gěi",
-    "meaning": "give"
-  },
-  {
-    "character": "公共汽车",
-    "pinyin": [
-      "gōnggòng qìchē",
-      "gonggong qiche",
-      "gong1gong4 qi4che1"
-    ],
-    "displayPinyin": "gōnggòng qìchē",
-    "meaning": "bus"
-  },
-  {
-    "character": "公司",
-    "pinyin": [
-      "gōngsī",
-      "gongsi",
-      "gong1si1"
-    ],
-    "displayPinyin": "gōngsī",
-    "meaning": "company"
-  },
-  {
-    "character": "狗",
-    "pinyin": [
-      "gǒu",
-      "gou",
-      "gou3"
-    ],
-    "displayPinyin": "gǒu",
-    "meaning": "dog"
-  },
-  {
-    "character": "贵",
-    "pinyin": [
-      "guì",
-      "gui",
-      "gui4"
-    ],
-    "displayPinyin": "guì",
-    "meaning": "expensive / noble"
-  },
-  {
-    "character": "过",
-    "pinyin": [
-      "guò",
-      "guo",
-      "guo4"
-    ],
-    "displayPinyin": "guò",
-    "meaning": "pass / spend"
-  },
-  {
-    "character": "还",
-    "pinyin": [
-      "hái",
-      "hai",
-      "hai2"
-    ],
-    "displayPinyin": "hái",
-    "meaning": "still / also"
-  },
-  {
-    "character": "孩子",
-    "pinyin": [
-      "háizi",
-      "haizi",
-      "hai2zi5"
-    ],
-    "displayPinyin": "háizi",
-    "meaning": "child / kids"
-  },
-  {
-    "character": "黑",
-    "pinyin": [
-      "hēi",
-      "hei",
-      "hei1"
-    ],
-    "displayPinyin": "hēi",
-    "meaning": "black / dark"
-  },
-  {
-    "character": "红",
-    "pinyin": [
-      "hóng",
-      "hong",
-      "hong2"
-    ],
-    "displayPinyin": "hóng",
-    "meaning": "red"
-  },
-  {
-    "character": "欢迎",
-    "pinyin": [
-      "huānyíng",
-      "huanying",
-      "huan1ying2"
-    ],
-    "displayPinyin": "huānyíng",
-    "meaning": "welcome"
-  },
-  {
-    "character": "回答",
-    "pinyin": [
-      "huídá",
-      "huida",
-      "hui2da2"
-    ],
-    "displayPinyin": "huídá",
-    "meaning": "answer / reply"
-  },
-  {
-    "character": "火车站",
-    "pinyin": [
-      "huǒchēzhàn",
-      "huochezhan",
-      "huo3che1zhan4"
-    ],
-    "displayPinyin": "huǒchēzhàn",
-    "meaning": "train station"
-  },
-  {
-    "character": "机场",
-    "pinyin": [
-      "jīchǎng",
-      "jichang",
-      "ji1chang3"
-    ],
-    "displayPinyin": "jīchǎng",
-    "meaning": "airport"
-  },
-  {
-    "character": "鸡蛋",
-    "pinyin": [
-      "jīdàn",
-      "jidan",
-      "ji1dan4"
-    ],
-    "displayPinyin": "jīdàn",
-    "meaning": "egg"
-  },
-  {
-    "character": "件",
-    "pinyin": [
-      "jiàn",
-      "jian",
-      "jian4"
-    ],
-    "displayPinyin": "jiàn",
-    "meaning": "measure word for clothes"
-  },
-  {
-    "character": "教室",
-    "pinyin": [
-      "jiàoshì",
-      "jiaoshi",
-      "jiao4shi4"
-    ],
-    "displayPinyin": "jiàoshì",
-    "meaning": "classroom"
-  },
-  {
-    "character": "姐姐",
-    "pinyin": [
-      "jiějie",
-      "jiejie",
-      "jie3jie5"
-    ],
-    "displayPinyin": "jiějie",
-    "meaning": "older sister"
-  },
-  {
-    "character": "介绍",
-    "pinyin": [
-      "jièshào",
-      "jieshao",
-      "jie4shao4"
-    ],
-    "displayPinyin": "jièshào",
-    "meaning": "introduce"
-  },
-  {
-    "character": "进",
-    "pinyin": [
-      "jìn",
-      "jin",
-      "jin4"
-    ],
-    "displayPinyin": "jìn",
-    "meaning": "enter / in"
-  },
-  {
-    "character": "近",
-    "pinyin": [
-      "jìn",
-      "jin",
-      "jin4"
-    ],
-    "displayPinyin": "jìn",
-    "meaning": "near / close"
-  },
-  {
-    "character": "就",
-    "pinyin": [
-      "jiù",
-      "jiu",
-      "jiu4"
-    ],
-    "displayPinyin": "jiù",
-    "meaning": "then / precisely"
-  },
-  {
-    "character": "觉得",
-    "pinyin": [
-      "juéde",
-      "juede",
-      "jue2de5"
-    ],
-    "displayPinyin": "juéde",
-    "meaning": "feel / think"
-  },
-  {
-    "character": "咖啡",
-    "pinyin": [
-      "kāfēi",
-      "kafei",
-      "ka1fei1"
-    ],
-    "displayPinyin": "kāfēi",
-    "meaning": "coffee"
-  },
-  {
-    "character": "开始",
-    "pinyin": [
-      "kāishǐ",
-      "kaishi",
-      "kai1shi3"
-    ],
-    "displayPinyin": "kāishǐ",
-    "meaning": "start / begin"
-  },
-  {
-    "character": "考试",
-    "pinyin": [
-      "kǎoshì",
-      "kaoshi",
-      "kao3shi4"
-    ],
-    "displayPinyin": "kǎoshì",
-    "meaning": "exam / test"
-  },
-  {
-    "character": "可能",
-    "pinyin": [
-      "kěnéng",
-      "keneng",
-      "ke3neng2"
-    ],
-    "displayPinyin": "kěnéng",
-    "meaning": "maybe / possible"
-  },
-  {
-    "character": "可以",
-    "pinyin": [
-      "kěyǐ",
-      "keyi",
-      "ke3yi3"
-    ],
-    "displayPinyin": "kěyǐ",
-    "meaning": "can / may"
-  },
-  {
-    "character": "课",
-    "pinyin": [
-      "kè",
-      "ke",
-      "ke4"
-    ],
-    "displayPinyin": "kè",
-    "meaning": "lesson / class"
-  },
-  {
-    "character": "快",
-    "pinyin": [
-      "kuài",
-      "kuai",
-      "kuai4"
-    ],
-    "displayPinyin": "kuài",
-    "meaning": "fast / quick"
-  },
-  {
-    "character": "快乐",
-    "pinyin": [
-      "kuàilè",
-      "kuaile",
-      "kuai4le4"
-    ],
-    "displayPinyin": "kuàilè",
-    "meaning": "happy"
-  },
-  {
-    "character": "累",
-    "pinyin": [
-      "lèi",
-      "lei",
-      "lei4"
-    ],
-    "displayPinyin": "lèi",
-    "meaning": "tired"
-  },
-  {
-    "character": "离",
-    "pinyin": [
-      "lí",
-      "li",
-      "li2"
-    ],
-    "displayPinyin": "lí",
-    "meaning": "away from"
-  },
-  {
-    "character": "两",
-    "pinyin": [
-      "liǎng",
-      "liang",
-      "liang3"
-    ],
-    "displayPinyin": "liǎng",
-    "meaning": "two (amount)"
-  },
-  {
-    "character": "路",
-    "pinyin": [
-      "lù",
-      "lu",
-      "lu4"
-    ],
-    "displayPinyin": "lù",
-    "meaning": "road / path"
-  },
-  {
-    "character": "旅游",
-    "pinyin": [
-      "lǚyóu",
-      "lvyou",
-      "lv3you2"
-    ],
-    "displayPinyin": "lǚyóu",
-    "meaning": "travel / tour"
-  },
-  {
-    "character": "卖",
-    "pinyin": [
-      "mài",
-      "mai",
-      "mai4"
-    ],
-    "displayPinyin": "mài",
-    "meaning": "sell"
-  },
-  {
-    "character": "慢",
-    "pinyin": [
-      "màn",
-      "man",
-      "man4"
-    ],
-    "displayPinyin": "màn",
-    "meaning": "slow"
-  },
-  {
-    "character": "忙",
-    "pinyin": [
-      "máng",
-      "mang",
-      "mang2"
-    ],
-    "displayPinyin": "máng",
-    "meaning": "busy"
-  },
-  {
-    "character": "每",
-    "pinyin": [
-      "měi",
-      "mei",
-      "mei3"
-    ],
-    "displayPinyin": "měi",
-    "meaning": "every / each"
-  },
-  {
-    "character": "妹妹",
-    "pinyin": [
-      "mèimei",
-      "meimei",
-      "mei4mei5"
-    ],
-    "displayPinyin": "mèimei",
-    "meaning": "younger sister"
-  },
-  {
-    "character": "门",
-    "pinyin": [
-      "mén",
-      "men",
-      "men2"
-    ],
-    "displayPinyin": "mén",
-    "meaning": "door / gate"
-  },
-  {
-    "character": "男",
-    "pinyin": [
-      "nán",
-      "nan",
-      "nan2"
-    ],
-    "displayPinyin": "nán",
-    "meaning": "male / man"
-  },
-  {
-    "character": "您",
-    "pinyin": [
-      "nín",
-      "nin",
-      "nin2"
-    ],
-    "displayPinyin": "nín",
-    "meaning": "you (polite)"
-  },
-  {
-    "character": "牛奶",
-    "pinyin": [
-      "niúnǎi",
-      "niunai",
-      "niu2nai3"
-    ],
-    "displayPinyin": "niúnǎi",
-    "meaning": "milk"
-  },
-  {
-    "character": "女",
-    "pinyin": [
-      "nǚ",
-      "nv",
-      "nv3"
-    ],
-    "displayPinyin": "nǚ",
-    "meaning": "female / woman"
-  },
-  {
-    "character": "旁边",
-    "pinyin": [
-      "pángbiān",
-      "pangbian",
-      "pang2bian1"
-    ],
-    "displayPinyin": "pángbiān",
-    "meaning": "side / beside"
-  },
-  {
-    "character": "跑步",
-    "pinyin": [
-      "pǎobù",
-      "paobu",
-      "pao3bu4"
-    ],
-    "displayPinyin": "pǎobù",
-    "meaning": "run / jog"
-  },
-  {
-    "character": "便宜",
-    "pinyin": [
-      "piányi",
-      "pianyi",
-      "pian2yi5"
-    ],
-    "displayPinyin": "piányi",
-    "meaning": "cheap"
-  },
-  {
-    "character": "票",
-    "pinyin": [
-      "piào",
-      "piao",
-      "piao4"
-    ],
-    "displayPinyin": "piào",
-    "meaning": "ticket"
-  },
-  {
-    "character": "妻子",
-    "pinyin": [
-      "qīzi",
-      "qizi",
-      "qi1zi5"
-    ],
-    "displayPinyin": "qīzi",
-    "meaning": "wife"
-  },
-  {
-    "character": "起床",
-    "pinyin": [
-      "qǐchuáng",
-      "qichuang",
-      "qi3chuang2"
-    ],
-    "displayPinyin": "qǐchuáng",
-    "meaning": "get up"
-  },
-  {
-    "character": "千",
-    "pinyin": [
-      "qiān",
-      "qian",
-      "qian1"
-    ],
-    "displayPinyin": "qiān",
-    "meaning": "thousand"
-  },
-  {
-    "character": "铅笔",
-    "pinyin": [
-      "qiānbǐ",
-      "qianbi",
-      "qian1bi3"
-    ],
-    "displayPinyin": "qiānbǐ",
-    "meaning": "pencil"
-  },
-  {
-    "character": "晴",
-    "pinyin": [
-      "qíng",
-      "qing",
-      "qing2"
-    ],
-    "displayPinyin": "qíng",
-    "meaning": "sunny / clear"
-  },
-  {
-    "character": "让",
-    "pinyin": [
-      "ràng",
-      "rang",
-      "rang4"
-    ],
-    "displayPinyin": "ràng",
-    "meaning": "let / allow"
-  },
-  {
-    "character": "日",
-    "pinyin": [
-      "rì",
-      "ri",
-      "ri4"
-    ],
-    "displayPinyin": "rì",
-    "meaning": "day / sun"
-  },
-  {
-    "character": "上班",
-    "pinyin": [
-      "shàngbān",
-      "shangban",
-      "shang4ban1"
-    ],
-    "displayPinyin": "shàngbān",
-    "meaning": "go to work"
-  },
-  {
-    "character": "身体",
-    "pinyin": [
-      "shēntǐ",
-      "shenti",
-      "shen1ti3"
-    ],
-    "displayPinyin": "shēntǐ",
-    "meaning": "body / health"
-  },
-  {
-    "character": "生病",
-    "pinyin": [
-      "shēngbìng",
-      "shengbing",
-      "sheng1bing4"
-    ],
-    "displayPinyin": "shēngbìng",
-    "meaning": "fall sick"
-  },
-  {
-    "character": "生日",
-    "pinyin": [
-      "shēngrì",
-      "shengri",
-      "sheng1ri4"
-    ],
-    "displayPinyin": "shēngrì",
-    "meaning": "birthday"
-  },
-  {
-    "character": "时间",
-    "pinyin": [
-      "shíjiān",
-      "shijian",
-      "shi2jian1"
-    ],
-    "displayPinyin": "shíjiān",
-    "meaning": "time"
-  },
-  {
-    "character": "事情",
-    "pinyin": [
-      "shìqing",
-      "shiqing",
-      "shi4qing5"
-    ],
-    "displayPinyin": "shìqing",
-    "meaning": "matter / thing"
-  },
-  {
-    "character": "手表",
-    "pinyin": [
-      "shǒubiǎo",
-      "shoubiao",
-      "shou3biao3"
-    ],
-    "displayPinyin": "shǒubiǎo",
-    "meaning": "wrist watch"
-  },
-  {
-    "character": "手机",
-    "pinyin": [
-      "shǒujī",
-      "shouji",
-      "shou3ji1"
-    ],
-    "displayPinyin": "shǒujī",
-    "meaning": "cell phone"
-  },
-  {
-    "character": "送",
-    "pinyin": [
-      "sòng",
-      "song",
-      "song4"
-    ],
-    "displayPinyin": "sòng",
-    "meaning": "send / deliver"
-  },
-  {
-    "character": "虽然",
-    "pinyin": [
-      "suīrán",
-      "suiran",
-      "sui1ran2"
-    ],
-    "displayPinyin": "suīrán",
-    "meaning": "although"
-  },
-  {
-    "character": "但是",
-    "pinyin": [
-      "dànshì",
-      "danshi",
-      "dan4shi4"
-    ],
-    "displayPinyin": "dànshì",
-    "meaning": "but / however"
-  },
-  {
-    "character": "它",
-    "pinyin": [
-      "tā",
-      "ta",
-      "ta1"
-    ],
-    "displayPinyin": "tā",
-    "meaning": "it"
-  },
-  {
-    "character": "踢足球",
-    "pinyin": [
-      "tī zúqiú",
-      "ti zuqiu",
-      "ti1 zu2qiu2"
-    ],
-    "displayPinyin": "tī zúqiú",
-    "meaning": "play soccer"
-  },
-  {
-    "character": "题",
-    "pinyin": [
-      "tí",
-      "ti",
-      "ti2"
-    ],
-    "displayPinyin": "tí",
-    "meaning": "question / topic"
-  },
-  {
-    "character": "跳舞",
-    "pinyin": [
-      "tiàowǔ",
-      "tiaowu",
-      "tiao4wu3"
-    ],
-    "displayPinyin": "tiàowǔ",
-    "meaning": "dance"
-  },
-  {
-    "character": "外",
-    "pinyin": [
-      "wài",
-      "wai",
-      "wai4"
-    ],
-    "displayPinyin": "wài",
-    "meaning": "outside"
-  },
-  {
-    "character": "完",
-    "pinyin": [
-      "wán",
-      "wan",
-      "wan2"
-    ],
-    "displayPinyin": "wán",
-    "meaning": "finish / complete"
-  },
-  {
-    "character": "玩",
-    "pinyin": [
-      "wán",
-      "wan",
-      "wan2"
-    ],
-    "displayPinyin": "wán",
-    "meaning": "play / have fun"
-  },
-  {
-    "character": "晚上",
-    "pinyin": [
-      "wǎnshang",
-      "wanshang",
-      "wan3shang5"
-    ],
-    "displayPinyin": "wǎnshang",
-    "meaning": "evening / night"
-  },
-  {
-    "character": "往",
-    "pinyin": [
-      "wǎng",
-      "wang",
-      "wang3"
-    ],
-    "displayPinyin": "wǎng",
-    "meaning": "towards / to"
-  },
-  {
-    "character": "为什么",
-    "pinyin": [
-      "wèishénme",
-      "weishenme",
-      "wei4shen2me5"
-    ],
-    "displayPinyin": "wèishénme",
-    "meaning": "why"
-  },
-  {
-    "character": "问",
-    "pinyin": [
-      "wèn",
-      "wen",
-      "wen4"
-    ],
-    "displayPinyin": "wèn",
-    "meaning": "ask"
-  },
-  {
-    "character": "洗",
-    "pinyin": [
-      "xǐ",
-      "xi",
-      "xi3"
-    ],
-    "displayPinyin": "xǐ",
-    "meaning": "wash"
-  },
-  {
-    "character": "西瓜",
-    "pinyin": [
-      "xīguā",
-      "xigua",
-      "xi1gua1"
-    ],
-    "displayPinyin": "xīguā",
-    "meaning": "watermelon"
-  },
-  {
-    "character": "希望",
-    "pinyin": [
-      "xīwàng",
-      "xiwang",
-      "xi1wang4"
-    ],
-    "displayPinyin": "xīwàng",
-    "meaning": "hope / wish"
-  },
-  {
-    "character": "笑",
-    "pinyin": [
-      "xiào",
-      "xiao",
-      "xiao4"
-    ],
-    "displayPinyin": "xiào",
-    "meaning": "smile / laugh"
-  },
-  {
-    "character": "新",
-    "pinyin": [
-      "xīn",
-      "xin",
-      "xin1"
-    ],
-    "displayPinyin": "xīn",
-    "meaning": "new"
-  },
-  {
-    "character": "姓",
-    "pinyin": [
-      "xìng",
-      "xing",
-      "xing4"
-    ],
-    "displayPinyin": "xìng",
-    "meaning": "surname"
-  },
-  {
-    "character": "休息",
-    "pinyin": [
-      "xiūxi",
-      "xiuxi",
-      "xiu1xi5"
-    ],
-    "displayPinyin": "xiūxi",
-    "meaning": "rest"
-  },
-  {
-    "character": "雪",
-    "pinyin": [
-      "xuě",
-      "xue",
-      "xue3"
-    ],
-    "displayPinyin": "xuě",
-    "meaning": "snow"
-  },
-  {
-    "character": "颜色",
-    "pinyin": [
-      "yánsè",
-      "yanse",
-      "yan2se4"
-    ],
-    "displayPinyin": "yánsè",
-    "meaning": "color"
-  },
-  {
-    "character": "眼睛",
-    "pinyin": [
-      "yǎnjing",
-      "yanjing",
-      "yan3jing5"
-    ],
-    "displayPinyin": "yǎnjing",
-    "meaning": "eye"
-  },
-  {
-    "character": "羊肉",
-    "pinyin": [
-      "yángròu",
-      "yangrou",
-      "yang2rou4"
-    ],
-    "displayPinyin": "yángròu",
-    "meaning": "mutton / lamb"
-  },
-  {
-    "character": "药",
-    "pinyin": [
-      "yào",
-      "yao",
-      "yao4"
-    ],
-    "displayPinyin": "yào",
-    "meaning": "medicine"
-  },
-  {
-    "character": "要",
-    "pinyin": [
-      "yào",
-      "yao",
-      "yao4"
-    ],
-    "displayPinyin": "yào",
-    "meaning": "want / need / will"
-  },
-  {
-    "character": "也",
-    "pinyin": [
-      "yě",
-      "ye",
-      "ye3"
-    ],
-    "displayPinyin": "yě",
-    "meaning": "also / too"
-  },
-  {
-    "character": "一起",
-    "pinyin": [
-      "yìqǐ",
-      "yiqi",
-      "yi4qi3"
-    ],
-    "displayPinyin": "yìqǐ",
-    "meaning": "together"
-  },
-  {
-    "character": "一下",
-    "pinyin": [
-      "yíxià",
-      "yixia",
-      "yi2xia4"
-    ],
-    "displayPinyin": "yíxià",
-    "meaning": "a bit / once"
-  },
-  {
-    "character": "意思",
-    "pinyin": [
-      "yìsi",
-      "yisi",
-      "yi4si5"
-    ],
-    "displayPinyin": "yìsi",
-    "meaning": "meaning"
-  },
-  {
-    "character": "阴",
-    "pinyin": [
-      "yīn",
-      "yin",
-      "yin1"
-    ],
-    "displayPinyin": "yīn",
-    "meaning": "cloudy / overcast"
-  },
-  {
-    "character": "因为",
-    "pinyin": [
-      "yīnwèi",
-      "yinwei",
-      "yin1wei4"
-    ],
-    "displayPinyin": "yīnwèi",
-    "meaning": "because"
-  },
-  {
-    "character": "所以",
-    "pinyin": [
-      "suǒyǐ",
-      "suoyi",
-      "suo3yi3"
-    ],
-    "displayPinyin": "suǒyǐ",
-    "meaning": "so / therefore"
-  },
-  {
-    "character": "游泳",
-    "pinyin": [
-      "yóuyǒng",
-      "youyong",
-      "you2yong3"
-    ],
-    "displayPinyin": "yóuyǒng",
-    "meaning": "swim"
-  },
-  {
-    "character": "右边",
-    "pinyin": [
-      "yòubian",
-      "youbian",
-      "you4bian5"
-    ],
-    "displayPinyin": "yòubian",
-    "meaning": "right side"
-  },
-  {
-    "character": "鱼",
-    "pinyin": [
-      "yú",
-      "yu",
-      "yu2"
-    ],
-    "displayPinyin": "yú",
-    "meaning": "fish"
-  },
-  {
-    "character": "元",
-    "pinyin": [
-      "yuán",
-      "yuan",
-      "yuan2"
-    ],
-    "displayPinyin": "yuán",
-    "meaning": "yuan (currency)"
-  },
-  {
-    "character": "远",
-    "pinyin": [
-      "yuǎn",
-      "yuan",
-      "yuan3"
-    ],
-    "displayPinyin": "yuǎn",
-    "meaning": "far / distant"
-  },
-  {
-    "character": "运动",
-    "pinyin": [
-      "yùndòng",
-      "yundong",
-      "yun4dong4"
-    ],
-    "displayPinyin": "yùndòng",
-    "meaning": "sports / exercise"
-  },
-  {
-    "character": "再",
-    "pinyin": [
-      "zài",
-      "zai",
-      "zai4"
-    ],
-    "displayPinyin": "zài",
-    "meaning": "again"
-  },
-  {
-    "character": "早上",
-    "pinyin": [
-      "zǎoshang",
-      "zaoshang",
-      "zao3shang5"
-    ],
-    "displayPinyin": "zǎoshang",
-    "meaning": "morning"
-  },
-  {
-    "character": "丈夫",
-    "pinyin": [
-      "zhàngfu",
-      "zhangfu",
-      "zhang4fu5"
-    ],
-    "displayPinyin": "zhàngfu",
-    "meaning": "husband"
-  },
-  {
-    "character": "找",
-    "pinyin": [
-      "zhǎo",
-      "zhao",
-      "zhao3"
-    ],
-    "displayPinyin": "zhǎo",
-    "meaning": "look for / find"
-  },
-  {
-    "character": "着",
-    "pinyin": [
-      "zhe",
-      "zhe5"
-    ],
-    "displayPinyin": "zhe",
-    "meaning": "action aspect particle"
-  },
-  {
-    "character": "真",
-    "pinyin": [
-      "zhēn",
-      "zhen",
-      "zhen1"
-    ],
-    "displayPinyin": "zhēn",
-    "meaning": "real / true / really"
-  },
-  {
-    "character": "正在",
-    "pinyin": [
-      "zhèngzài",
-      "zhengzai",
-      "zheng4zai4"
-    ],
-    "displayPinyin": "zhèngzài",
-    "meaning": "in process of"
-  },
-  {
-    "character": "知道",
-    "pinyin": [
-      "zhīdào",
-      "zhidao",
-      "zhi1dao4"
-    ],
-    "displayPinyin": "zhīdào",
-    "meaning": "know"
-  },
-  {
-    "character": "准备",
-    "pinyin": [
-      "zhǔnbèi",
-      "zhunbei",
-      "zhun3bei4"
-    ],
-    "displayPinyin": "zhǔnbèi",
-    "meaning": "prepare"
-  },
-  {
-    "character": "自行车",
-    "pinyin": [
-      "zìxíngchē",
-      "zixingche",
-      "zi4xing2che1"
-    ],
-    "displayPinyin": "zìxíngchē",
-    "meaning": "bicycle"
-  },
-  {
-    "character": "走",
-    "pinyin": [
-      "zǒu",
-      "zou",
-      "zou3"
-    ],
-    "displayPinyin": "zǒu",
-    "meaning": "walk / leave"
-  },
-  {
-    "character": "最",
-    "pinyin": [
-      "zuì",
-      "zui",
-      "zui4"
-    ],
-    "displayPinyin": "zuì",
-    "meaning": "most"
-  },
-  {
-    "character": "左边",
-    "pinyin": [
-      "zuǒbian",
-      "zuobian",
-      "zuo3bian5"
-    ],
-    "displayPinyin": "zuǒbian",
-    "meaning": "left side"
-  },
-  {
-    "character": "阿姨",
-    "pinyin": [
-      "āyí",
-      "ayi",
-      "a1yi2"
-    ],
-    "displayPinyin": "āyí",
-    "meaning": "auntie"
-  },
-  {
-    "character": "啊",
-    "pinyin": [
-      "a",
-      "a5"
-    ],
-    "displayPinyin": "a",
-    "meaning": "exclamation particle"
-  },
-  {
-    "character": "矮",
-    "pinyin": [
-      "ǎi",
-      "ai",
-      "ai3"
-    ],
-    "displayPinyin": "ǎi",
-    "meaning": "short (height)"
-  },
-  {
-    "character": "爱好",
-    "pinyin": [
-      "àihào",
-      "aihao",
-      "ai4hao4"
-    ],
-    "displayPinyin": "àihào",
-    "meaning": "hobby"
-  },
-  {
-    "character": "安静",
-    "pinyin": [
-      "ānjìng",
-      "anjing",
-      "an1jing4"
-    ],
-    "displayPinyin": "ānjìng",
-    "meaning": "quiet"
-  },
-  {
-    "character": "把",
-    "pinyin": [
-      "bǎ",
-      "ba",
-      "ba3"
-    ],
-    "displayPinyin": "bǎ",
-    "meaning": "disposal marker / handle"
-  },
-  {
-    "character": "班",
-    "pinyin": [
-      "bān",
-      "ban",
-      "ban1"
-    ],
-    "displayPinyin": "bān",
-    "meaning": "class / shift"
+    "displayPinyin": "bǎi",
+    "meaning": "arrange"
   },
   {
     "character": "搬",
@@ -1546,6 +1337,26 @@
     "meaning": "move"
   },
   {
+    "character": "板",
+    "pinyin": [
+      "bǎn",
+      "ban",
+      "ban3"
+    ],
+    "displayPinyin": "bǎn",
+    "meaning": "board"
+  },
+  {
+    "character": "办",
+    "pinyin": [
+      "bàn",
+      "ban",
+      "ban4"
+    ],
+    "displayPinyin": "bàn",
+    "meaning": "handle"
+  },
+  {
     "character": "办法",
     "pinyin": [
       "bànfǎ",
@@ -1553,7 +1364,7 @@
       "ban4fa3"
     ],
     "displayPinyin": "bànfǎ",
-    "meaning": "method"
+    "meaning": "way"
   },
   {
     "character": "办公室",
@@ -1583,7 +1394,17 @@
       "bang1mang2"
     ],
     "displayPinyin": "bāngmáng",
-    "meaning": "help out"
+    "meaning": "help"
+  },
+  {
+    "character": "帮助",
+    "pinyin": [
+      "bāngzhù",
+      "bangzhu",
+      "bang1zhu4"
+    ],
+    "displayPinyin": "bāngzhù",
+    "meaning": "assist"
   },
   {
     "character": "包",
@@ -1596,6 +1417,36 @@
     "meaning": "bag"
   },
   {
+    "character": "包裹",
+    "pinyin": [
+      "bāoguǒ",
+      "baoguo",
+      "bao1guo3"
+    ],
+    "displayPinyin": "bāoguǒ",
+    "meaning": "parcel"
+  },
+  {
+    "character": "包含",
+    "pinyin": [
+      "bāohán",
+      "baohan",
+      "bao1han2"
+    ],
+    "displayPinyin": "bāohán",
+    "meaning": "contain"
+  },
+  {
+    "character": "包括",
+    "pinyin": [
+      "bāokuò",
+      "baokuo",
+      "bao1kuo4"
+    ],
+    "displayPinyin": "bāokuò",
+    "meaning": "include"
+  },
+  {
     "character": "饱",
     "pinyin": [
       "bǎo",
@@ -1606,6 +1457,106 @@
     "meaning": "full"
   },
   {
+    "character": "保护",
+    "pinyin": [
+      "bǎohù",
+      "baohu",
+      "bao3hu4"
+    ],
+    "displayPinyin": "bǎohù",
+    "meaning": "protect"
+  },
+  {
+    "character": "保证",
+    "pinyin": [
+      "bǎozhèng",
+      "baozheng",
+      "bao3zheng4"
+    ],
+    "displayPinyin": "bǎozhèng",
+    "meaning": "guarantee"
+  },
+  {
+    "character": "抱",
+    "pinyin": [
+      "bào",
+      "bao",
+      "bao4"
+    ],
+    "displayPinyin": "bào",
+    "meaning": "hug"
+  },
+  {
+    "character": "抱歉",
+    "pinyin": [
+      "bàoqiàn",
+      "baoqian",
+      "bao4qian4"
+    ],
+    "displayPinyin": "bàoqiàn",
+    "meaning": "apologize"
+  },
+  {
+    "character": "报道",
+    "pinyin": [
+      "bàodào",
+      "baodao",
+      "bao4dao4"
+    ],
+    "displayPinyin": "bàodào",
+    "meaning": "report"
+  },
+  {
+    "character": "报名",
+    "pinyin": [
+      "bàomíng",
+      "baoming",
+      "bao4ming2"
+    ],
+    "displayPinyin": "bàomíng",
+    "meaning": "sign up"
+  },
+  {
+    "character": "报纸",
+    "pinyin": [
+      "bàozhǐ",
+      "baozhi",
+      "bao4zhi3"
+    ],
+    "displayPinyin": "bàozhǐ",
+    "meaning": "newspaper"
+  },
+  {
+    "character": "杯",
+    "pinyin": [
+      "bēi",
+      "bei",
+      "bei1"
+    ],
+    "displayPinyin": "bēi",
+    "meaning": "cup"
+  },
+  {
+    "character": "悲伤",
+    "pinyin": [
+      "bēishāng",
+      "beishang",
+      "bei1shang1"
+    ],
+    "displayPinyin": "bēishāng",
+    "meaning": "sadness"
+  },
+  {
+    "character": "北",
+    "pinyin": [
+      "běi",
+      "bei",
+      "bei3"
+    ],
+    "displayPinyin": "běi",
+    "meaning": "north"
+  },
+  {
     "character": "北方",
     "pinyin": [
       "běifāng",
@@ -1613,27 +1564,87 @@
       "bei3fang1"
     ],
     "displayPinyin": "běifāng",
-    "meaning": "north region"
+    "meaning": "northern region"
   },
   {
-    "character": "被",
+    "character": "倍",
     "pinyin": [
       "bèi",
       "bei",
       "bei4"
     ],
     "displayPinyin": "bèi",
-    "meaning": "passive marker"
+    "meaning": "times"
   },
   {
-    "character": "鼻子",
+    "character": "备",
     "pinyin": [
-      "bízi",
-      "bizi",
-      "bi2zi5"
+      "bèi",
+      "bei",
+      "bei4"
     ],
-    "displayPinyin": "bízi",
-    "meaning": "nose"
+    "displayPinyin": "bèi",
+    "meaning": "prepare"
+  },
+  {
+    "character": "背景",
+    "pinyin": [
+      "bèijǐng",
+      "beijing",
+      "bei4jing3"
+    ],
+    "displayPinyin": "bèijǐng",
+    "meaning": "background"
+  },
+  {
+    "character": "被子",
+    "pinyin": [
+      "bèizi",
+      "beizi",
+      "bei4zi5"
+    ],
+    "displayPinyin": "bèizi",
+    "meaning": "quilt"
+  },
+  {
+    "character": "本领",
+    "pinyin": [
+      "běnlǐng",
+      "benling",
+      "ben3ling3"
+    ],
+    "displayPinyin": "běnlǐng",
+    "meaning": "skill"
+  },
+  {
+    "character": "本质",
+    "pinyin": [
+      "běnzhì",
+      "benzhi",
+      "ben3zhi4"
+    ],
+    "displayPinyin": "běnzhì",
+    "meaning": "nature"
+  },
+  {
+    "character": "笨",
+    "pinyin": [
+      "bèn",
+      "ben",
+      "ben4"
+    ],
+    "displayPinyin": "bèn",
+    "meaning": "clumsy"
+  },
+  {
+    "character": "比",
+    "pinyin": [
+      "bǐ",
+      "bi",
+      "bi3"
+    ],
+    "displayPinyin": "bǐ",
+    "meaning": "compare"
   },
   {
     "character": "比较",
@@ -1646,6 +1657,16 @@
     "meaning": "relatively"
   },
   {
+    "character": "比例",
+    "pinyin": [
+      "bǐlì",
+      "bili",
+      "bi3li4"
+    ],
+    "displayPinyin": "bǐlì",
+    "meaning": "ratio"
+  },
+  {
     "character": "比赛",
     "pinyin": [
       "bǐsài",
@@ -1656,34 +1677,124 @@
     "meaning": "competition"
   },
   {
-    "character": "笔记本",
+    "character": "必然",
     "pinyin": [
-      "bǐjìběn",
-      "bijiben",
-      "bi3ji4ben3"
+      "bìrán",
+      "biran",
+      "bi4ran2"
     ],
-    "displayPinyin": "bǐjìběn",
-    "meaning": "notebook"
+    "displayPinyin": "bìrán",
+    "meaning": "inevitable"
   },
   {
-    "character": "必须",
+    "character": "必要",
     "pinyin": [
-      "bìxū",
-      "bixu",
-      "bi4xu1"
+      "bìyào",
+      "biyao",
+      "bi4yao4"
     ],
-    "displayPinyin": "bìxū",
-    "meaning": "must"
+    "displayPinyin": "bìyào",
+    "meaning": "necessary"
   },
   {
-    "character": "变化",
+    "character": "毕业",
     "pinyin": [
-      "biànhuà",
-      "bianhua",
-      "bian4hua4"
+      "bìyè",
+      "biye",
+      "bi4ye4"
     ],
-    "displayPinyin": "biànhuà",
-    "meaning": "change"
+    "displayPinyin": "bìyè",
+    "meaning": "graduate"
+  },
+  {
+    "character": "遍",
+    "pinyin": [
+      "biàn",
+      "bian",
+      "bian4"
+    ],
+    "displayPinyin": "biàn",
+    "meaning": "time"
+  },
+  {
+    "character": "标准",
+    "pinyin": [
+      "biāozhǔn",
+      "biaozhun",
+      "biao1zhun3"
+    ],
+    "displayPinyin": "biāozhǔn",
+    "meaning": "standard"
+  },
+  {
+    "character": "表格",
+    "pinyin": [
+      "biǎogé",
+      "biaoge",
+      "biao3ge2"
+    ],
+    "displayPinyin": "biǎogé",
+    "meaning": "form"
+  },
+  {
+    "character": "表面",
+    "pinyin": [
+      "biǎomiàn",
+      "biaomian",
+      "biao3mian4"
+    ],
+    "displayPinyin": "biǎomiàn",
+    "meaning": "surface"
+  },
+  {
+    "character": "表明",
+    "pinyin": [
+      "biǎomíng",
+      "biaoming",
+      "biao3ming2"
+    ],
+    "displayPinyin": "biǎomíng",
+    "meaning": "indicate"
+  },
+  {
+    "character": "表现",
+    "pinyin": [
+      "biǎoxiàn",
+      "biaoxian",
+      "biao3xian4"
+    ],
+    "displayPinyin": "biǎoxiàn",
+    "meaning": "show"
+  },
+  {
+    "character": "表演",
+    "pinyin": [
+      "biǎoyǎn",
+      "biaoyan",
+      "biao3yan3"
+    ],
+    "displayPinyin": "biǎoyǎn",
+    "meaning": "perform"
+  },
+  {
+    "character": "表扬",
+    "pinyin": [
+      "biǎoyáng",
+      "biaoyang",
+      "biao3yang2"
+    ],
+    "displayPinyin": "biǎoyáng",
+    "meaning": "praise"
+  },
+  {
+    "character": "别",
+    "pinyin": [
+      "bié",
+      "bie",
+      "bie2"
+    ],
+    "displayPinyin": "bié",
+    "meaning": "don't"
   },
   {
     "character": "别人",
@@ -1696,6 +1807,16 @@
     "meaning": "others"
   },
   {
+    "character": "冰",
+    "pinyin": [
+      "bīng",
+      "bing",
+      "bing1"
+    ],
+    "displayPinyin": "bīng",
+    "meaning": "ice"
+  },
+  {
     "character": "冰箱",
     "pinyin": [
       "bīngxiāng",
@@ -1706,34 +1827,294 @@
     "meaning": "refrigerator"
   },
   {
-    "character": "菜单",
+    "character": "饼干",
     "pinyin": [
-      "càidān",
-      "caidan",
-      "cai4dan1"
+      "bǐnggān",
+      "binggan",
+      "bing3gan1"
     ],
-    "displayPinyin": "càidān",
-    "meaning": "menu"
+    "displayPinyin": "bǐnggān",
+    "meaning": "cookie"
   },
   {
-    "character": "参加",
+    "character": "病毒",
     "pinyin": [
-      "cānjiā",
-      "canjia",
-      "can1jia1"
+      "bìngdú",
+      "bingdu",
+      "bing4du2"
     ],
-    "displayPinyin": "cānjiā",
+    "displayPinyin": "bìngdú",
+    "meaning": "virus"
+  },
+  {
+    "character": "播放",
+    "pinyin": [
+      "bōfàng",
+      "bofang",
+      "bo1fang4"
+    ],
+    "displayPinyin": "bōfàng",
+    "meaning": "broadcast"
+  },
+  {
+    "character": "博士",
+    "pinyin": [
+      "bóshì",
+      "boshi",
+      "bo2shi4"
+    ],
+    "displayPinyin": "bóshì",
+    "meaning": "PhD"
+  },
+  {
+    "character": "博物馆",
+    "pinyin": [
+      "bówùguǎn",
+      "bowuguan",
+      "bo2wu4guan3"
+    ],
+    "displayPinyin": "bówùguǎn",
+    "meaning": "museum"
+  },
+  {
+    "character": "补充",
+    "pinyin": [
+      "bǔchōng",
+      "buchong",
+      "bu3chong1"
+    ],
+    "displayPinyin": "bǔchōng",
+    "meaning": "supplement"
+  },
+  {
+    "character": "不安",
+    "pinyin": [
+      "bù'ān",
+      "bu'an",
+      "bu4'an1"
+    ],
+    "displayPinyin": "bù'ān",
+    "meaning": "uneasy"
+  },
+  {
+    "character": "不得不",
+    "pinyin": [
+      "bùdébù",
+      "budebu",
+      "bu4de2bu4"
+    ],
+    "displayPinyin": "bùdébù",
+    "meaning": "have to"
+  },
+  {
+    "character": "不断",
+    "pinyin": [
+      "búduàn",
+      "buduan",
+      "bu2duan4"
+    ],
+    "displayPinyin": "búduàn",
+    "meaning": "continuously"
+  },
+  {
+    "character": "不过",
+    "pinyin": [
+      "búguò",
+      "buguo",
+      "bu2guo4"
+    ],
+    "displayPinyin": "búguò",
+    "meaning": "however"
+  },
+  {
+    "character": "部门",
+    "pinyin": [
+      "bùmén",
+      "bumen",
+      "bu4men2"
+    ],
+    "displayPinyin": "bùmén",
+    "meaning": "department"
+  },
+  {
+    "character": "步伐",
+    "pinyin": [
+      "bùfá",
+      "bufa",
+      "bu4fa2"
+    ],
+    "displayPinyin": "bùfá",
+    "meaning": "pace"
+  },
+  {
+    "character": "步骤",
+    "pinyin": [
+      "bùzhòu",
+      "buzhou",
+      "bu4zhou4"
+    ],
+    "displayPinyin": "bùzhòu",
+    "meaning": "procedure"
+  },
+  {
+    "character": "擦",
+    "pinyin": [
+      "cā",
+      "ca",
+      "ca1"
+    ],
+    "displayPinyin": "cā",
+    "meaning": "wipe"
+  },
+  {
+    "character": "猜",
+    "pinyin": [
+      "cāi",
+      "cai",
+      "cai1"
+    ],
+    "displayPinyin": "cāi",
+    "meaning": "guess"
+  },
+  {
+    "character": "材料",
+    "pinyin": [
+      "cáiliào",
+      "cailiao",
+      "cai2liao4"
+    ],
+    "displayPinyin": "cáiliào",
+    "meaning": "material"
+  },
+  {
+    "character": "财富",
+    "pinyin": [
+      "cáifù",
+      "caifu",
+      "cai2fu4"
+    ],
+    "displayPinyin": "cáifù",
+    "meaning": "wealth"
+  },
+  {
+    "character": "采取",
+    "pinyin": [
+      "cǎiqǔ",
+      "caiqu",
+      "cai3qu3"
+    ],
+    "displayPinyin": "cǎiqǔ",
+    "meaning": "adopt"
+  },
+  {
+    "character": "彩虹",
+    "pinyin": [
+      "cǎihóng",
+      "caihong",
+      "cai3hong2"
+    ],
+    "displayPinyin": "cǎihóng",
+    "meaning": "rainbow"
+  },
+  {
+    "character": "参考",
+    "pinyin": [
+      "cānkǎo",
+      "cankao",
+      "can1kao3"
+    ],
+    "displayPinyin": "cānkǎo",
+    "meaning": "reference"
+  },
+  {
+    "character": "参与",
+    "pinyin": [
+      "cānyù",
+      "canyu",
+      "can1yu4"
+    ],
+    "displayPinyin": "cānyù",
     "meaning": "participate"
   },
   {
-    "character": "草",
+    "character": "餐厅",
     "pinyin": [
-      "cǎo",
-      "cao",
-      "cao3"
+      "cāntīng",
+      "canting",
+      "can1ting1"
     ],
-    "displayPinyin": "cǎo",
-    "meaning": "grass"
+    "displayPinyin": "cāntīng",
+    "meaning": "restaurant"
+  },
+  {
+    "character": "残疾",
+    "pinyin": [
+      "cánjí",
+      "canji",
+      "can2ji2"
+    ],
+    "displayPinyin": "cánjí",
+    "meaning": "disability"
+  },
+  {
+    "character": "惭愧",
+    "pinyin": [
+      "cánkuì",
+      "cankui",
+      "can2kui4"
+    ],
+    "displayPinyin": "cánkuì",
+    "meaning": "ashamed"
+  },
+  {
+    "character": "操场",
+    "pinyin": [
+      "cāochǎng",
+      "caochang",
+      "cao1chang3"
+    ],
+    "displayPinyin": "cāochǎng",
+    "meaning": "playground"
+  },
+  {
+    "character": "操心",
+    "pinyin": [
+      "cāoxīn",
+      "caoxin",
+      "cao1xin1"
+    ],
+    "displayPinyin": "cāoxīn",
+    "meaning": "worry"
+  },
+  {
+    "character": "册",
+    "pinyin": [
+      "cè",
+      "ce",
+      "ce4"
+    ],
+    "displayPinyin": "cè",
+    "meaning": "volume"
+  },
+  {
+    "character": "测验",
+    "pinyin": [
+      "cèyàn",
+      "ceyan",
+      "ce4yan4"
+    ],
+    "displayPinyin": "cèyàn",
+    "meaning": "quiz"
+  },
+  {
+    "character": "策略",
+    "pinyin": [
+      "cèlüè",
+      "celue",
+      "ce4lue4"
+    ],
+    "displayPinyin": "cèlüè",
+    "meaning": "strategy"
   },
   {
     "character": "层",
@@ -1743,27 +2124,147 @@
       "ceng2"
     ],
     "displayPinyin": "céng",
-    "meaning": "floor / layer"
+    "meaning": "layer"
   },
   {
-    "character": "差",
+    "character": "差异",
     "pinyin": [
-      "chà",
-      "cha",
-      "cha4"
+      "chāyì",
+      "chayi",
+      "cha1yi4"
     ],
-    "displayPinyin": "chà",
-    "meaning": "differ / poor"
+    "displayPinyin": "chāyì",
+    "meaning": "difference"
   },
   {
-    "character": "超市",
+    "character": "长",
     "pinyin": [
-      "chāoshì",
+      "cháng",
+      "chang",
+      "chang2"
+    ],
+    "displayPinyin": "cháng",
+    "meaning": "long"
+  },
+  {
+    "character": "长城",
+    "pinyin": [
+      "chángchéng",
+      "changcheng",
+      "chang2cheng2"
+    ],
+    "displayPinyin": "chángchéng",
+    "meaning": "Great Wall"
+  },
+  {
+    "character": "长江",
+    "pinyin": [
+      "chángjiāng",
+      "changjiang",
+      "chang2jiang1"
+    ],
+    "displayPinyin": "chángjiāng",
+    "meaning": "Yangtze River"
+  },
+  {
+    "character": "尝试",
+    "pinyin": [
+      "chángshì",
+      "changshi",
+      "chang2shi4"
+    ],
+    "displayPinyin": "chángshì",
+    "meaning": "try"
+  },
+  {
+    "character": "场合",
+    "pinyin": [
+      "chǎnghé",
+      "changhe",
+      "chang3he2"
+    ],
+    "displayPinyin": "chǎnghé",
+    "meaning": "occasion"
+  },
+  {
+    "character": "场所",
+    "pinyin": [
+      "chǎngsuǒ",
+      "changsuo",
+      "chang3suo3"
+    ],
+    "displayPinyin": "chǎngsuǒ",
+    "meaning": "place"
+  },
+  {
+    "character": "唱歌",
+    "pinyin": [
+      "chànggē",
+      "changge",
+      "chang4ge1"
+    ],
+    "displayPinyin": "chànggē",
+    "meaning": "sing"
+  },
+  {
+    "character": "抄",
+    "pinyin": [
+      "chāo",
+      "chao",
+      "chao1"
+    ],
+    "displayPinyin": "chāo",
+    "meaning": "copy"
+  },
+  {
+    "character": "超过",
+    "pinyin": [
+      "chāoguò",
+      "chaoguo",
+      "chao1guo4"
+    ],
+    "displayPinyin": "chāoguò",
+    "meaning": "exceed"
+  },
+  {
+    "character": "朝",
+    "pinyin": [
+      "cháo",
+      "chao",
+      "chao2"
+    ],
+    "displayPinyin": "cháo",
+    "meaning": "towards"
+  },
+  {
+    "character": "潮湿",
+    "pinyin": [
+      "cháoshī",
       "chaoshi",
-      "chao1shi4"
+      "chao2shi1"
     ],
-    "displayPinyin": "chāoshì",
-    "meaning": "supermarket"
+    "displayPinyin": "cháoshī",
+    "meaning": "damp"
+  },
+  {
+    "character": "吵",
+    "pinyin": [
+      "chǎo",
+      "chao",
+      "chao3"
+    ],
+    "displayPinyin": "chǎo",
+    "meaning": "noisy"
+  },
+  {
+    "character": "吵架",
+    "pinyin": [
+      "chǎojià",
+      "chaojia",
+      "chao3jia4"
+    ],
+    "displayPinyin": "chǎojià",
+    "meaning": "quarrel"
   },
   {
     "character": "衬衫",
@@ -1776,6 +2277,46 @@
     "meaning": "shirt"
   },
   {
+    "character": "称",
+    "pinyin": [
+      "chēng",
+      "cheng",
+      "cheng1"
+    ],
+    "displayPinyin": "chēng",
+    "meaning": "call"
+  },
+  {
+    "character": "成",
+    "pinyin": [
+      "chéng",
+      "cheng",
+      "cheng2"
+    ],
+    "displayPinyin": "chéng",
+    "meaning": "become"
+  },
+  {
+    "character": "成功",
+    "pinyin": [
+      "chénggōng",
+      "chenggong",
+      "cheng2gong1"
+    ],
+    "displayPinyin": "chénggōng",
+    "meaning": "success"
+  },
+  {
+    "character": "成果",
+    "pinyin": [
+      "chéngguǒ",
+      "chengguo",
+      "cheng2guo3"
+    ],
+    "displayPinyin": "chéngguǒ",
+    "meaning": "achievement"
+  },
+  {
     "character": "成绩",
     "pinyin": [
       "chéngjì",
@@ -1783,7 +2324,57 @@
       "cheng2ji4"
     ],
     "displayPinyin": "chéngjì",
-    "meaning": "grade / score"
+    "meaning": "result"
+  },
+  {
+    "character": "成熟",
+    "pinyin": [
+      "chéngshú",
+      "chengshu",
+      "cheng2shu2"
+    ],
+    "displayPinyin": "chéngshú",
+    "meaning": "ripe / mature"
+  },
+  {
+    "character": "诚实",
+    "pinyin": [
+      "chéngshí",
+      "chengshi",
+      "cheng2shi2"
+    ],
+    "displayPinyin": "chéngshí",
+    "meaning": "honest"
+  },
+  {
+    "character": "承担",
+    "pinyin": [
+      "chéngdān",
+      "chengdan",
+      "cheng2dan1"
+    ],
+    "displayPinyin": "chéngdān",
+    "meaning": "undertake"
+  },
+  {
+    "character": "承认",
+    "pinyin": [
+      "chéngrèn",
+      "chengren",
+      "cheng2ren4"
+    ],
+    "displayPinyin": "chéngrèn",
+    "meaning": "admit"
+  },
+  {
+    "character": "承受",
+    "pinyin": [
+      "chéngshòu",
+      "chengshou",
+      "cheng2shou4"
+    ],
+    "displayPinyin": "chéngshòu",
+    "meaning": "endure"
   },
   {
     "character": "城市",
@@ -1796,6 +2387,16 @@
     "meaning": "city"
   },
   {
+    "character": "吃惊",
+    "pinyin": [
+      "chījīng",
+      "chijing",
+      "chi1jing1"
+    ],
+    "displayPinyin": "chījīng",
+    "meaning": "astonished"
+  },
+  {
     "character": "迟到",
     "pinyin": [
       "chídào",
@@ -1803,1076 +2404,596 @@
       "chi2dao4"
     ],
     "displayPinyin": "chídào",
-    "meaning": "be late"
+    "meaning": "late"
   },
   {
-    "character": "出现",
+    "character": "持续",
     "pinyin": [
-      "chūxiàn",
-      "chuxian",
-      "chu1xian4"
+      "chíxù",
+      "chixu",
+      "chi2xu4"
     ],
-    "displayPinyin": "chūxiàn",
-    "meaning": "appear"
+    "displayPinyin": "chíxù",
+    "meaning": "continue"
   },
   {
-    "character": "厨房",
+    "character": "池塘",
     "pinyin": [
-      "chúfáng",
-      "chufang",
-      "chu2fang2"
+      "chítáng",
+      "chitang",
+      "chi2tang2"
     ],
-    "displayPinyin": "chúfáng",
-    "meaning": "kitchen"
+    "displayPinyin": "chítáng",
+    "meaning": "pond"
   },
   {
-    "character": "词典",
+    "character": "尺子",
     "pinyin": [
-      "cídiǎn",
-      "cidian",
-      "ci2dian3"
+      "chǐzi",
+      "chizi",
+      "chi3zi5"
     ],
-    "displayPinyin": "cídiǎn",
-    "meaning": "dictionary"
+    "displayPinyin": "chǐzi",
+    "meaning": "ruler"
   },
   {
-    "character": "聪明",
+    "character": "翅膀",
     "pinyin": [
-      "cōngming",
-      "congming",
-      "cong1ming5"
+      "chìbǎng",
+      "chibang",
+      "chi4bang3"
     ],
-    "displayPinyin": "cōngming",
-    "meaning": "clever"
+    "displayPinyin": "chìbǎng",
+    "meaning": "wing"
   },
   {
-    "character": "打算",
+    "character": "充电器",
     "pinyin": [
-      "dǎsuàn",
-      "dasuan",
-      "da3suan4"
+      "chōngdiànqì",
+      "chongdianqi",
+      "chong1dian4qi4"
     ],
-    "displayPinyin": "dǎsuàn",
-    "meaning": "plan"
+    "displayPinyin": "chōngdiànqì",
+    "meaning": "charger"
   },
   {
-    "character": "带",
+    "character": "充分",
+    "pinyin": [
+      "chōngfèn",
+      "chongfen",
+      "chong1fen4"
+    ],
+    "displayPinyin": "chōngfèn",
+    "meaning": "ample"
+  },
+  {
+    "character": "充满",
+    "pinyin": [
+      "chōngmǎn",
+      "chongman",
+      "chong1man3"
+    ],
+    "displayPinyin": "chōngmǎn",
+    "meaning": "filled with"
+  },
+  {
+    "character": "冲",
+    "pinyin": [
+      "chōng",
+      "chong",
+      "chong1"
+    ],
+    "displayPinyin": "chōng",
+    "meaning": "rush"
+  },
+  {
+    "character": "重",
+    "pinyin": [
+      "zhòng",
+      "zhong",
+      "zhong4"
+    ],
+    "displayPinyin": "zhòng",
+    "meaning": "heavy"
+  },
+  {
+    "character": "宠物",
+    "pinyin": [
+      "chǒngwù",
+      "chongwu",
+      "chong3wu4"
+    ],
+    "displayPinyin": "chǒngwù",
+    "meaning": "pet"
+  },
+  {
+    "character": "抽屉",
+    "pinyin": [
+      "chōuti",
+      "chouti",
+      "chou1ti5"
+    ],
+    "displayPinyin": "chōuti",
+    "meaning": "drawer"
+  },
+  {
+    "character": "抽象",
+    "pinyin": [
+      "chōuxiàng",
+      "chouxiang",
+      "chou1xiang4"
+    ],
+    "displayPinyin": "chōuxiàng",
+    "meaning": "abstract"
+  },
+  {
+    "character": "丑",
+    "pinyin": [
+      "chǒu",
+      "chou",
+      "chou3"
+    ],
+    "displayPinyin": "chǒu",
+    "meaning": "ugly"
+  },
+  {
+    "character": "臭",
+    "pinyin": [
+      "chòu",
+      "chou",
+      "chou4"
+    ],
+    "displayPinyin": "chòu",
+    "meaning": "smelly"
+  },
+  {
+    "character": "出版",
+    "pinyin": [
+      "chūbǎn",
+      "chuban",
+      "chu1ban3"
+    ],
+    "displayPinyin": "chūbǎn",
+    "meaning": "publish"
+  },
+  {
+    "character": "出口",
+    "pinyin": [
+      "chūkǒu",
+      "chukou",
+      "chu1kou3"
+    ],
+    "displayPinyin": "chūkǒu",
+    "meaning": "exit"
+  },
+  {
+    "character": "出色",
+    "pinyin": [
+      "chūsè",
+      "chuse",
+      "chu1se4"
+    ],
+    "displayPinyin": "chūsè",
+    "meaning": "outstanding"
+  },
+  {
+    "character": "出席",
+    "pinyin": [
+      "chūxí",
+      "chuxi",
+      "chu1xi2"
+    ],
+    "displayPinyin": "chūxí",
+    "meaning": "attend"
+  },
+  {
+    "character": "初级",
+    "pinyin": [
+      "chūjí",
+      "chuji",
+      "chu1ji2"
+    ],
+    "displayPinyin": "chūjí",
+    "meaning": "elementary"
+  },
+  {
+    "character": "除非",
+    "pinyin": [
+      "chúfēi",
+      "chufei",
+      "chu2fei1"
+    ],
+    "displayPinyin": "chúfēi",
+    "meaning": "unless"
+  },
+  {
+    "character": "除夕",
+    "pinyin": [
+      "chúxī",
+      "chuxi",
+      "chu2xi1"
+    ],
+    "displayPinyin": "chúxī",
+    "meaning": "New Year Eve"
+  },
+  {
+    "character": "处理",
+    "pinyin": [
+      "chǔlǐ",
+      "chuli",
+      "chu3li3"
+    ],
+    "displayPinyin": "chǔlǐ",
+    "meaning": "process"
+  },
+  {
+    "character": "传播",
+    "pinyin": [
+      "chuánbō",
+      "chuanbo",
+      "chuan2bo1"
+    ],
+    "displayPinyin": "chuánbō",
+    "meaning": "disseminate"
+  },
+  {
+    "character": "传染",
+    "pinyin": [
+      "chuánrǎn",
+      "chuanran",
+      "chuan2ran3"
+    ],
+    "displayPinyin": "chuánrǎn",
+    "meaning": "contagious"
+  },
+  {
+    "character": "传说",
+    "pinyin": [
+      "chuánshuō",
+      "chuanshuo",
+      "chuan2shuo1"
+    ],
+    "displayPinyin": "chuánshuō",
+    "meaning": "legend"
+  },
+  {
+    "character": "传统",
+    "pinyin": [
+      "chuántǒng",
+      "chuantong",
+      "chuan2tong3"
+    ],
+    "displayPinyin": "chuántǒng",
+    "meaning": "tradition"
+  },
+  {
+    "character": "窗户",
+    "pinyin": [
+      "chuānghu",
+      "chuanghu",
+      "chuang1hu5"
+    ],
+    "displayPinyin": "chuānghu",
+    "meaning": "window"
+  },
+  {
+    "character": "床",
+    "pinyin": [
+      "chuáng",
+      "chuang",
+      "chuang2"
+    ],
+    "displayPinyin": "chuáng",
+    "meaning": "bed"
+  },
+  {
+    "character": "创立",
+    "pinyin": [
+      "chuànglì",
+      "chuangli",
+      "chuang4li4"
+    ],
+    "displayPinyin": "chuànglì",
+    "meaning": "create"
+  },
+  {
+    "character": "创新",
+    "pinyin": [
+      "chuàngxīn",
+      "chuangxin",
+      "chuang4xin1"
+    ],
+    "displayPinyin": "chuàngxīn",
+    "meaning": "innovation"
+  },
+  {
+    "character": "吹",
+    "pinyin": [
+      "chuī",
+      "chui",
+      "chui1"
+    ],
+    "displayPinyin": "chuī",
+    "meaning": "blow"
+  },
+  {
+    "character": "磁带",
+    "pinyin": [
+      "cídài",
+      "cidai",
+      "ci2dai4"
+    ],
+    "displayPinyin": "cídài",
+    "meaning": "cassette tape"
+  },
+  {
+    "character": "辞职",
+    "pinyin": [
+      "cízhí",
+      "cizhi",
+      "ci2zhi2"
+    ],
+    "displayPinyin": "cízhí",
+    "meaning": "resignation"
+  },
+  {
+    "character": "此外",
+    "pinyin": [
+      "cǐwài",
+      "ciwai",
+      "ci3wai4"
+    ],
+    "displayPinyin": "cǐwài",
+    "meaning": "furthermore"
+  },
+  {
+    "character": "次",
+    "pinyin": [
+      "cì",
+      "ci",
+      "ci4"
+    ],
+    "displayPinyin": "cì",
+    "meaning": "time"
+  },
+  {
+    "character": "刺激",
+    "pinyin": [
+      "cìjī",
+      "ciji",
+      "ci4ji1"
+    ],
+    "displayPinyin": "cìjī",
+    "meaning": "stimulate"
+  },
+  {
+    "character": "匆忙",
+    "pinyin": [
+      "cōngmáng",
+      "congmang",
+      "cong1mang2"
+    ],
+    "displayPinyin": "cōngmáng",
+    "meaning": "hurried"
+  },
+  {
+    "character": "从",
+    "pinyin": [
+      "cóng",
+      "cong",
+      "cong2"
+    ],
+    "displayPinyin": "cóng",
+    "meaning": "from"
+  },
+  {
+    "character": "从前",
+    "pinyin": [
+      "cóngqián",
+      "congqian",
+      "cong2qian2"
+    ],
+    "displayPinyin": "cóngqián",
+    "meaning": "before"
+  },
+  {
+    "character": "从事",
+    "pinyin": [
+      "cóngshì",
+      "congshi",
+      "cong2shi4"
+    ],
+    "displayPinyin": "cóngshì",
+    "meaning": "undertake"
+  },
+  {
+    "character": "粗心",
+    "pinyin": [
+      "cūxīn",
+      "cuxin",
+      "cu1xin1"
+    ],
+    "displayPinyin": "cūxīn",
+    "meaning": "careless"
+  },
+  {
+    "character": "促进",
+    "pinyin": [
+      "cùjìn",
+      "cujin",
+      "cu4jin4"
+    ],
+    "displayPinyin": "cùjìn",
+    "meaning": "promote"
+  },
+  {
+    "character": "促使",
+    "pinyin": [
+      "cùshǐ",
+      "cushi",
+      "cu4shi3"
+    ],
+    "displayPinyin": "cùshǐ",
+    "meaning": "induce"
+  },
+  {
+    "character": "醋",
+    "pinyin": [
+      "cù",
+      "cu",
+      "cu4"
+    ],
+    "displayPinyin": "cù",
+    "meaning": "vinegar"
+  },
+  {
+    "character": "催",
+    "pinyin": [
+      "cuī",
+      "cui",
+      "cui1"
+    ],
+    "displayPinyin": "cuī",
+    "meaning": "press / urge"
+  },
+  {
+    "character": "存在",
+    "pinyin": [
+      "cúnzài",
+      "cunzai",
+      "cun2zai4"
+    ],
+    "displayPinyin": "cúnzài",
+    "meaning": "exist"
+  },
+  {
+    "character": "措施",
+    "pinyin": [
+      "cuòshī",
+      "cuoshi",
+      "cuo4shi1"
+    ],
+    "displayPinyin": "cuòshī",
+    "meaning": "measure"
+  },
+  {
+    "character": "答应",
+    "pinyin": [
+      "dāying",
+      "daying",
+      "da1ying5"
+    ],
+    "displayPinyin": "dāying",
+    "meaning": "agree"
+  },
+  {
+    "character": "达到",
+    "pinyin": [
+      "dádào",
+      "dadao",
+      "da2dao4"
+    ],
+    "displayPinyin": "dádào",
+    "meaning": "reach"
+  },
+  {
+    "character": "打工",
+    "pinyin": [
+      "dǎgōng",
+      "dagong",
+      "da3gong1"
+    ],
+    "displayPinyin": "dǎgōng",
+    "meaning": "part-time job"
+  },
+  {
+    "character": "打扫",
+    "pinyin": [
+      "dǎsǎo",
+      "dasao",
+      "da3sao3"
+    ],
+    "displayPinyin": "dǎsǎo",
+    "meaning": "clean"
+  },
+  {
+    "character": "打针",
+    "pinyin": [
+      "dǎzhēn",
+      "dazhen",
+      "da3zhen1"
+    ],
+    "displayPinyin": "dǎzhēn",
+    "meaning": "injection"
+  },
+  {
+    "character": "大方",
+    "pinyin": [
+      "dàfang",
+      "dafang",
+      "da4fang5"
+    ],
+    "displayPinyin": "dàfang",
+    "meaning": "generous"
+  },
+  {
+    "character": "大使馆",
+    "pinyin": [
+      "dàshǐguǎn",
+      "dashiguan",
+      "da4shi3guan3"
+    ],
+    "displayPinyin": "dàshǐguǎn",
+    "meaning": "embassy"
+  },
+  {
+    "character": "大约",
+    "pinyin": [
+      "dàyuē",
+      "dayue",
+      "da4yue1"
+    ],
+    "displayPinyin": "dàyuē",
+    "meaning": "approximately"
+  },
+  {
+    "character": "代",
     "pinyin": [
       "dài",
       "dai",
       "dai4"
     ],
     "displayPinyin": "dài",
-    "meaning": "bring"
+    "meaning": "generation"
   },
   {
-    "character": "担心",
+    "character": "代表",
     "pinyin": [
-      "dānxīn",
-      "danxin",
-      "dan1xin1"
+      "dàibiǎo",
+      "daibiao",
+      "da4biao3"
     ],
-    "displayPinyin": "dānxīn",
-    "meaning": "worry"
+    "displayPinyin": "dàibiǎo",
+    "meaning": "representative"
   },
   {
-    "character": "蛋糕",
+    "character": "代替",
     "pinyin": [
-      "dàngāo",
-      "dangao",
-      "dan4gao1"
+      "dàitì",
+      "daiti",
+      "da4ti4"
     ],
-    "displayPinyin": "dàngāo",
-    "meaning": "cake"
+    "displayPinyin": "dàitì",
+    "meaning": "substitute"
   },
   {
-    "character": "当然",
+    "character": "大夫",
     "pinyin": [
-      "dāngrán",
-      "dangran",
-      "dang1ran2"
+      "dàifu",
+      "daifu",
+      "dai4fu5"
     ],
-    "displayPinyin": "dāngrán",
-    "meaning": "of course"
-  },
-  {
-    "character": "灯",
-    "pinyin": [
-      "dēng",
-      "deng",
-      "deng1"
-    ],
-    "displayPinyin": "dēng",
-    "meaning": "lamp"
-  },
-  {
-    "character": "地方",
-    "pinyin": [
-      "dìfang",
-      "difang",
-      "di4fang5"
-    ],
-    "displayPinyin": "dìfang",
-    "meaning": "place"
-  },
-  {
-    "character": "地铁",
-    "pinyin": [
-      "dìtiě",
-      "ditie",
-      "di4tie3"
-    ],
-    "displayPinyin": "dìtiě",
-    "meaning": "subway"
-  },
-  {
-    "character": "地图",
-    "pinyin": [
-      "dìtú",
-      "ditu",
-      "di4tu2"
-    ],
-    "displayPinyin": "dìtú",
-    "meaning": "map"
-  },
-  {
-    "character": "电梯",
-    "pinyin": [
-      "diàntī",
-      "dianti",
-      "dian4ti1"
-    ],
-    "displayPinyin": "diàntī",
-    "meaning": "elevator"
-  },
-  {
-    "character": "电子邮件",
-    "pinyin": [
-      "diànzǐ yóujiàn",
-      "dianzi youjian",
-      "dian4zi3 you2jian4"
-    ],
-    "displayPinyin": "diànzǐ yóujiàn",
-    "meaning": "email"
-  },
-  {
-    "character": "东",
-    "pinyin": [
-      "dōng",
-      "dong",
-      "dong1"
-    ],
-    "displayPinyin": "dōng",
-    "meaning": "east"
-  },
-  {
-    "character": "冬",
-    "pinyin": [
-      "dōng",
-      "dong",
-      "dong1"
-    ],
-    "displayPinyin": "dōng",
-    "meaning": "winter"
-  },
-  {
-    "character": "动物",
-    "pinyin": [
-      "dòngwù",
-      "dongwu",
-      "dong4wu4"
-    ],
-    "displayPinyin": "dòngwù",
-    "meaning": "animal"
-  },
-  {
-    "character": "短",
-    "pinyin": [
-      "duǎn",
-      "duan",
-      "duan3"
-    ],
-    "displayPinyin": "duǎn",
-    "meaning": "short"
-  },
-  {
-    "character": "段",
-    "pinyin": [
-      "duàn",
-      "duan",
-      "duan4"
-    ],
-    "displayPinyin": "duàn",
-    "meaning": "section"
-  },
-  {
-    "character": "锻炼",
-    "pinyin": [
-      "duànliàn",
-      "duanlian",
-      "duan4lian4"
-    ],
-    "displayPinyin": "duànliàn",
-    "meaning": "exercise"
-  },
-  {
-    "character": "多么",
-    "pinyin": [
-      "duōme",
-      "duome",
-      "duo1me5"
-    ],
-    "displayPinyin": "duōme",
-    "meaning": "how (intense)"
-  },
-  {
-    "character": "饿",
-    "pinyin": [
-      "è",
-      "e",
-      "e4"
-    ],
-    "displayPinyin": "è",
-    "meaning": "hungry"
-  },
-  {
-    "character": "耳朵",
-    "pinyin": [
-      "ěrduo",
-      "erduo",
-      "er3duo5"
-    ],
-    "displayPinyin": "ěrduo",
-    "meaning": "ear"
-  },
-  {
-    "character": "发烧",
-    "pinyin": [
-      "fāshāo",
-      "fashao",
-      "fa1shao1"
-    ],
-    "displayPinyin": "fāshāo",
-    "meaning": "fever"
-  },
-  {
-    "character": "发现",
-    "pinyin": [
-      "fāxiàn",
-      "faxian",
-      "fa1xian4"
-    ],
-    "displayPinyin": "fāxiàn",
-    "meaning": "discover"
-  },
-  {
-    "character": "方便",
-    "pinyin": [
-      "fāngbiàn",
-      "fangbian",
-      "fang1bian4"
-    ],
-    "displayPinyin": "fāngbiàn",
-    "meaning": "convenient"
-  },
-  {
-    "character": "放",
-    "pinyin": [
-      "fàng",
-      "fang",
-      "fang4"
-    ],
-    "displayPinyin": "fàng",
-    "meaning": "put / place"
-  },
-  {
-    "character": "放心",
-    "pinyin": [
-      "fàngxīn",
-      "fangxin",
-      "fang4xin1"
-    ],
-    "displayPinyin": "fàngxīn",
-    "meaning": "rest assured"
-  },
-  {
-    "character": "分",
-    "pinyin": [
-      "fēn",
-      "fen",
-      "fen1"
-    ],
-    "displayPinyin": "fēn",
-    "meaning": "minute / divide"
-  },
-  {
-    "character": "复习",
-    "pinyin": [
-      "fùxí",
-      "fuxi",
-      "fu4xi2"
-    ],
-    "displayPinyin": "fùxí",
-    "meaning": "review"
-  },
-  {
-    "character": "干净",
-    "pinyin": [
-      "gānjìng",
-      "ganjing",
-      "gan1jing4"
-    ],
-    "displayPinyin": "gānjìng",
-    "meaning": "clean"
-  },
-  {
-    "character": "感冒",
-    "pinyin": [
-      "gǎnmào",
-      "ganmao",
-      "gan3mao4"
-    ],
-    "displayPinyin": "gǎnmào",
-    "meaning": "catch cold"
-  },
-  {
-    "character": "感兴趣",
-    "pinyin": [
-      "gǎn xìngqù",
-      "gan xingqu",
-      "gan3 xing4qu4"
-    ],
-    "displayPinyin": "gǎn xìngqù",
-    "meaning": "be interested"
-  },
-  {
-    "character": "刚才",
-    "pinyin": [
-      "gāngcái",
-      "gangcai",
-      "gang1cai2"
-    ],
-    "displayPinyin": "gāngcái",
-    "meaning": "just now"
-  },
-  {
-    "character": "根据",
-    "pinyin": [
-      "gēnjù",
-      "genju",
-      "gen1ju4"
-    ],
-    "displayPinyin": "gēnjù",
-    "meaning": "according to"
-  },
-  {
-    "character": "跟",
-    "pinyin": [
-      "gēn",
-      "gen",
-      "gen1"
-    ],
-    "displayPinyin": "gēn",
-    "meaning": "with"
-  },
-  {
-    "character": "公园",
-    "pinyin": [
-      "gōngyuán",
-      "gongyuan",
-      "gong1yuan2"
-    ],
-    "displayPinyin": "gōngyuán",
-    "meaning": "park"
-  },
-  {
-    "character": "故事",
-    "pinyin": [
-      "gùshi",
-      "gushi",
-      "gu4shi5"
-    ],
-    "displayPinyin": "gùshi",
-    "meaning": "story"
-  },
-  {
-    "character": "刮风",
-    "pinyin": [
-      "guāfēng",
-      "guafeng",
-      "gua1feng1"
-    ],
-    "displayPinyin": "guāfēng",
-    "meaning": "windy"
-  },
-  {
-    "character": "关",
-    "pinyin": [
-      "guān",
-      "guan",
-      "guan1"
-    ],
-    "displayPinyin": "guān",
-    "meaning": "close / turn off"
-  },
-  {
-    "character": "关系",
-    "pinyin": [
-      "guānxi",
-      "guanxi",
-      "guan1xi5"
-    ],
-    "displayPinyin": "guānxi",
-    "meaning": "relationship"
-  },
-  {
-    "character": "关心",
-    "pinyin": [
-      "guānxīn",
-      "guanxin",
-      "guan1xin1"
-    ],
-    "displayPinyin": "guānxīn",
-    "meaning": "care for"
-  },
-  {
-    "character": "关于",
-    "pinyin": [
-      "guānyú",
-      "guanyu",
-      "guan1yu2"
-    ],
-    "displayPinyin": "guānyú",
-    "meaning": "about"
-  },
-  {
-    "character": "国家",
-    "pinyin": [
-      "guójiā",
-      "guojia",
-      "guo2jia1"
-    ],
-    "displayPinyin": "guójiā",
-    "meaning": "country"
-  },
-  {
-    "character": "过去",
-    "pinyin": [
-      "guòqù",
-      "guoqu",
-      "guo4qu4"
-    ],
-    "displayPinyin": "guòqù",
-    "meaning": "past"
-  },
-  {
-    "character": "还是",
-    "pinyin": [
-      "háishi",
-      "haishi",
-      "hai2shi5"
-    ],
-    "displayPinyin": "háishi",
-    "meaning": "or / still"
-  },
-  {
-    "character": "害怕",
-    "pinyin": [
-      "hàipà",
-      "haipa",
-      "hai4pa4"
-    ],
-    "displayPinyin": "hàipà",
-    "meaning": "fear / afraid"
-  },
-  {
-    "character": "黑板",
-    "pinyin": [
-      "hēibǎn",
-      "heiban",
-      "hei1ban3"
-    ],
-    "displayPinyin": "hēibǎn",
-    "meaning": "blackboard"
-  },
-  {
-    "character": "护照",
-    "pinyin": [
-      "hùzhào",
-      "huzhao",
-      "hu4zhao4"
-    ],
-    "displayPinyin": "hùzhào",
-    "meaning": "passport"
-  },
-  {
-    "character": "花",
-    "pinyin": [
-      "huā",
-      "hua",
-      "hua1"
-    ],
-    "displayPinyin": "huā",
-    "meaning": "flower / spend"
-  },
-  {
-    "character": "画",
-    "pinyin": [
-      "huà",
-      "hua",
-      "hua4"
-    ],
-    "displayPinyin": "huà",
-    "meaning": "paint / draw"
-  },
-  {
-    "character": "坏",
-    "pinyin": [
-      "huài",
-      "huai",
-      "huai4"
-    ],
-    "displayPinyin": "huài",
-    "meaning": "bad / broken"
-  },
-  {
-    "character": "环境",
-    "pinyin": [
-      "huánjìng",
-      "huanjing",
-      "huan2jing4"
-    ],
-    "displayPinyin": "huánjìng",
-    "meaning": "environment"
-  },
-  {
-    "character": "换",
-    "pinyin": [
-      "huàn",
-      "huan",
-      "huan4"
-    ],
-    "displayPinyin": "huàn",
-    "meaning": "change / exchange"
-  },
-  {
-    "character": "黄",
-    "pinyin": [
-      "huáng",
-      "huang",
-      "huang2"
-    ],
-    "displayPinyin": "huáng",
-    "meaning": "yellow"
-  },
-  {
-    "character": "会议",
-    "pinyin": [
-      "huìyì",
-      "huiyi",
-      "hui4yi4"
-    ],
-    "displayPinyin": "huìyì",
-    "meaning": "meeting"
-  },
-  {
-    "character": "或者",
-    "pinyin": [
-      "huòzhě",
-      "huozhe",
-      "huo4zhe3"
-    ],
-    "displayPinyin": "huòzhě",
-    "meaning": "or"
-  },
-  {
-    "character": "几乎",
-    "pinyin": [
-      "jīhū",
-      "jihu",
-      "ji1hu1"
-    ],
-    "displayPinyin": "jīhū",
-    "meaning": "almost"
-  },
-  {
-    "character": "机会",
-    "pinyin": [
-      "jīhuì",
-      "jihui",
-      "ji1hui4"
-    ],
-    "displayPinyin": "jīhuì",
-    "meaning": "opportunity"
-  },
-  {
-    "character": "极",
-    "pinyin": [
-      "jí",
-      "ji",
-      "ji2"
-    ],
-    "displayPinyin": "jí",
-    "meaning": "extremely"
-  },
-  {
-    "character": "记得",
-    "pinyin": [
-      "jìde",
-      "jide",
-      "ji4de5"
-    ],
-    "displayPinyin": "jìde",
-    "meaning": "remember"
-  },
-  {
-    "character": "季节",
-    "pinyin": [
-      "jìjié",
-      "jijie",
-      "ji4jie2"
-    ],
-    "displayPinyin": "jìjié",
-    "meaning": "season"
-  },
-  {
-    "character": "检查",
-    "pinyin": [
-      "jiǎnchá",
-      "jiancha",
-      "jian3cha2"
-    ],
-    "displayPinyin": "jiǎnchá",
-    "meaning": "check / inspect"
-  },
-  {
-    "character": "简单",
-    "pinyin": [
-      "jiǎndān",
-      "jiandan",
-      "jian3dan1"
-    ],
-    "displayPinyin": "jiǎndān",
-    "meaning": "simple"
-  },
-  {
-    "character": "健康",
-    "pinyin": [
-      "jiànkāng",
-      "jiankang",
-      "jian4kang1"
-    ],
-    "displayPinyin": "jiànkāng",
-    "meaning": "healthy"
-  },
-  {
-    "character": "见面",
-    "pinyin": [
-      "jiànmiàn",
-      "jianmian",
-      "jian4mian4"
-    ],
-    "displayPinyin": "jiànmiàn",
-    "meaning": "meet"
-  },
-  {
-    "character": "讲",
-    "pinyin": [
-      "jiǎng",
-      "jiang",
-      "jiang3"
-    ],
-    "displayPinyin": "jiǎng",
-    "meaning": "speak / explain"
-  },
-  {
-    "character": "教",
-    "pinyin": [
-      "jiāo",
-      "jiao",
-      "jiao1"
-    ],
-    "displayPinyin": "jiāo",
-    "meaning": "teach"
-  },
-  {
-    "character": "角",
-    "pinyin": [
-      "jiǎo",
-      "jiao",
-      "jiao3"
-    ],
-    "displayPinyin": "jiǎo",
-    "meaning": "corner / dime"
-  },
-  {
-    "character": "脚",
-    "pinyin": [
-      "jiǎo",
-      "jiao",
-      "jiao3"
-    ],
-    "displayPinyin": "jiǎo",
-    "meaning": "foot"
-  },
-  {
-    "character": "接",
-    "pinyin": [
-      "jiē",
-      "jie",
-      "jie1"
-    ],
-    "displayPinyin": "jiē",
-    "meaning": "meet / receive"
-  },
-  {
-    "character": "街道",
-    "pinyin": [
-      "jiēdào",
-      "jiedao",
-      "jie1dao4"
-    ],
-    "displayPinyin": "jiēdào",
-    "meaning": "street"
-  },
-  {
-    "character": "节目",
-    "pinyin": [
-      "jiémù",
-      "jiemu",
-      "jie2mu4"
-    ],
-    "displayPinyin": "jiémù",
-    "meaning": "show / program"
-  },
-  {
-    "character": "节日",
-    "pinyin": [
-      "jiérì",
-      "jieri",
-      "jie2ri4"
-    ],
-    "displayPinyin": "jiérì",
-    "meaning": "holiday"
-  },
-  {
-    "character": "结婚",
-    "pinyin": [
-      "jiéhūn",
-      "jiehun",
-      "jie2hun1"
-    ],
-    "displayPinyin": "jiéhūn",
-    "meaning": "marry"
-  },
-  {
-    "character": "结束",
-    "pinyin": [
-      "jiéshù",
-      "jieshu",
-      "jie2shu4"
-    ],
-    "displayPinyin": "jiéshù",
-    "meaning": "finish / end"
-  },
-  {
-    "character": "解决",
-    "pinyin": [
-      "jiějué",
-      "jiejue",
-      "jie3jue2"
-    ],
-    "displayPinyin": "jiějué",
-    "meaning": "solve"
-  },
-  {
-    "character": "借",
-    "pinyin": [
-      "jiè",
-      "jie",
-      "jie4"
-    ],
-    "displayPinyin": "jiè",
-    "meaning": "borrow / lend"
-  },
-  {
-    "character": "经常",
-    "pinyin": [
-      "jīngcháng",
-      "jingchang",
-      "jing1chang2"
-    ],
-    "displayPinyin": "jīngcháng",
-    "meaning": "often"
-  },
-  {
-    "character": "经过",
-    "pinyin": [
-      "jīngguò",
-      "jingguo",
-      "jing1guo4"
-    ],
-    "displayPinyin": "jīngguò",
-    "meaning": "pass through"
-  },
-  {
-    "character": "经理",
-    "pinyin": [
-      "jīnglǐ",
-      "jingli",
-      "jing1li3"
-    ],
-    "displayPinyin": "jīnglǐ",
-    "meaning": "manager"
-  },
-  {
-    "character": "久",
-    "pinyin": [
-      "jiǔ",
-      "jiu",
-      "jiu3"
-    ],
-    "displayPinyin": "jiǔ",
-    "meaning": "long time"
-  },
-  {
-    "character": "旧",
-    "pinyin": [
-      "jiù",
-      "jiu",
-      "jiu4"
-    ],
-    "displayPinyin": "jiù",
-    "meaning": "old / used"
-  },
-  {
-    "character": "句子",
-    "pinyin": [
-      "jùzi",
-      "juzi",
-      "ju4zi5"
-    ],
-    "displayPinyin": "jùzi",
-    "meaning": "sentence"
-  },
-  {
-    "character": "决定",
-    "pinyin": [
-      "juédìng",
-      "jueding",
-      "jue2ding4"
-    ],
-    "displayPinyin": "juédìng",
-    "meaning": "decide"
-  },
-  {
-    "character": "渴",
-    "pinyin": [
-      "kě",
-      "ke",
-      "ke3"
-    ],
-    "displayPinyin": "kě",
-    "meaning": "thirsty"
-  },
-  {
-    "character": "可爱",
-    "pinyin": [
-      "kě'ài",
-      "keai",
-      "ke3ai4"
-    ],
-    "displayPinyin": "kě'ài",
-    "meaning": "cute"
-  },
-  {
-    "character": "刻",
-    "pinyin": [
-      "kè",
-      "ke",
-      "ke4"
-    ],
-    "displayPinyin": "kè",
-    "meaning": "quarter hour"
-  },
-  {
-    "character": "客人",
-    "pinyin": [
-      "kèrén",
-      "keren",
-      "ke4ren2"
-    ],
-    "displayPinyin": "kèrén",
-    "meaning": "guest"
-  },
-  {
-    "character": "空调",
-    "pinyin": [
-      "kōngtiáo",
-      "kongtiao",
-      "kong1tiao2"
-    ],
-    "displayPinyin": "kōngtiáo",
-    "meaning": "air conditioner"
-  },
-  {
-    "character": "口",
-    "pinyin": [
-      "kǒu",
-      "kou",
-      "kou3"
-    ],
-    "displayPinyin": "kǒu",
-    "meaning": "mouth"
-  },
-  {
-    "character": "哭",
-    "pinyin": [
-      "kū",
-      "ku",
-      "ku1"
-    ],
-    "displayPinyin": "kū",
-    "meaning": "cry"
-  },
-  {
-    "character": "裤子",
-    "pinyin": [
-      "kùzi",
-      "kuzi",
-      "ku4zi5"
-    ],
-    "displayPinyin": "kùzi",
-    "meaning": "pants"
-  },
-  {
-    "character": "蓝",
-    "pinyin": [
-      "lán",
-      "lan",
-      "lan2"
-    ],
-    "displayPinyin": "lán",
-    "meaning": "blue"
-  },
-  {
-    "character": "难",
-    "pinyin": [
-      "nán",
-      "nan",
-      "nan2"
-    ],
-    "displayPinyin": "nán",
-    "meaning": "difficult"
-  },
-  {
-    "character": "难过",
-    "pinyin": [
-      "nánguò",
-      "nanguo",
-      "nan2guo4"
-    ],
-    "displayPinyin": "nánguò",
-    "meaning": "sad"
-  },
-  {
-    "character": "年级",
-    "pinyin": [
-      "niánjí",
-      "nianji",
-      "nian2ji2"
-    ],
-    "displayPinyin": "niánjí",
-    "meaning": "grade"
-  },
-  {
-    "character": "年轻",
-    "pinyin": [
-      "niánqīng",
-      "nianqing",
-      "nian2qing1"
-    ],
-    "displayPinyin": "niánqīng",
-    "meaning": "young"
-  },
-  {
-    "character": "鸟",
-    "pinyin": [
-      "niǎo",
-      "niao",
-      "niao3"
-    ],
-    "displayPinyin": "niǎo",
-    "meaning": "bird"
-  },
-  {
-    "character": "努力",
-    "pinyin": [
-      "nǔlì",
-      "nuli",
-      "nu3li4"
-    ],
-    "displayPinyin": "nǔlì",
-    "meaning": "hardworking"
-  },
-  {
-    "character": "爬山",
-    "pinyin": [
-      "páshān",
-      "pashan",
-      "pa2shan1"
-    ],
-    "displayPinyin": "páshān",
-    "meaning": "climb mountain"
-  },
-  {
-    "character": "盘子",
-    "pinyin": [
-      "pánzi",
-      "panzi",
-      "pan2zi5"
-    ],
-    "displayPinyin": "pánzi",
-    "meaning": "plate"
-  },
-  {
-    "character": "胖",
-    "pinyin": [
-      "pàng",
-      "pang",
-      "pang4"
-    ],
-    "displayPinyin": "pàng",
-    "meaning": "fat"
-  },
-  {
-    "character": "皮鞋",
-    "pinyin": [
-      "píxié",
-      "pixie",
-      "pi2xie2"
-    ],
-    "displayPinyin": "píxié",
-    "meaning": "leather shoes"
-  },
-  {
-    "character": "啤酒",
-    "pinyin": [
-      "píjiǔ",
-      "pijiu",
-      "pi2jiu3"
-    ],
-    "displayPinyin": "píjiǔ",
-    "meaning": "beer"
-  },
-  {
-    "character": "普通话",
-    "pinyin": [
-      "pǔtōnghuà",
-      "putonghua",
-      "pu3tong1hua4"
-    ],
-    "displayPinyin": "pǔtōnghuà",
-    "meaning": "Mandarin"
+    "displayPinyin": "dàifu",
+    "meaning": "doctor"
   }
 ]

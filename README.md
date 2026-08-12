@@ -23,9 +23,9 @@ An interactive, web application designed for active recall practice of Mandarin 
 | :--- | :--- | :--- |
 | **Character Strokes** | [`data/strokes.json`](data/strokes.json) | 10 Basic Strokes |
 | **Essential Radicals** | [`data/radicals.json`](data/radicals.json) | 16 Building Block Radicals |
-| **HSK Level 1** | [`data/hsk1.json`](data/hsk1.json) | 152 Vocabulary Words |
-| **HSK Level 2** | [`data/hsk2.json`](data/hsk2.json) | 146 Vocabulary Words |
-| **HSK Level 3** | [`data/hsk3.json`](data/hsk3.json) | 147 Vocabulary Words |
+| **HSK Level 1** | [`data/hsk1.json`](data/hsk1.json) | 300 Vocabulary Words (20 Levels) |
+| **HSK Level 2** | [`data/hsk2.json`](data/hsk2.json) | 300 Vocabulary Words (20 Levels) |
+| **HSK Level 3** | [`data/hsk3.json`](data/hsk3.json) | 300 Vocabulary Words (20 Levels) |
 
 ---
 

@@ -772,30 +772,119 @@ body {
   border-top: 1px solid #e2e8f0;
 }
 
-/* RESPONSIVE DESIGN */
+/* RESPONSIVE DESIGN & MEDIA QUERIES */
+
+/* Tablet & Mobile Layout Adaptations */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 14px 0;
+  }
+
+  .hub-header {
+    margin: 24px 0 20px;
+  }
+
+  .hub-title {
+    font-size: 24px;
+  }
+
+  .hub-subtitle {
+    font-size: 14px;
+  }
+
+  .stacked-track-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .stacked-action-btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 10px 16px;
+  }
+
+  .stage-modal-card {
+    padding: 20px 16px;
+  }
+}
+
+/* Mobile Devices (< 640px) */
 @media (max-width: 640px) {
   .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
     gap: 10px;
     justify-content: center;
   }
+
   .tofugu-card {
-    width: 105px;
-    height: 145px;
-    padding: 10px 8px;
+    width: 100%;
+    min-height: 140px;
+    padding: 10px 6px;
   }
+
   .card-hanzi {
-    font-size: 32px;
+    font-size: 30px;
   }
+
   .card-input {
     height: 36px;
     font-size: 13px;
+    padding: 4px 6px;
   }
+
   .hub-settings {
     flex-direction: column;
     align-items: center;
   }
+
   .stage-grid {
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    max-height: 320px;
+  }
+
+  .quiz-action-bar {
+    flex-direction: column;
+    padding: 10px 14px max(10px, env(safe-area-inset-bottom));
+    gap: 10px;
+  }
+
+  .quiz-btn-group {
+    width: 100%;
+  }
+
+  .quiz-btn-group button {
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+    min-height: 42px;
+  }
+
+  .results-summary-card {
+    padding: 20px 14px;
+  }
+
+  .results-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .results-actions button {
+    width: 100%;
+  }
+}
+
+/* Extra Small Screens (< 380px - Small Phones) */
+@media (max-width: 380px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-hanzi {
+    font-size: 26px;
   }
 }
 

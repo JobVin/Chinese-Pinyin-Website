@@ -68,12 +68,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // PINYIN NORMALIZATION & MATCHING UTILITIES
 
   /**
-   * Fail-proof validation of user input against a card's pinyin array.
-   * Uses Array.prototype.some() to check exact tone, plain pinyin, or numbered pinyin variants.
+   * Strict validation of user input against a card's pinyin array.
+   * Requires tone marks (e.g. pǔtōnghuà) or tone numbers (e.g. pu3tong1hua4).
+   * Plain pinyin without tones is rejected.
    * 
    * @param {string} userInput - Text entered by the user.
    * @param {string[]} cardPinyinArray - Array of valid pinyin variants for the card.
-   * @returns {boolean} True if user input matches any variant in the array.
+   * @returns {boolean} True if user input contains tones and matches a valid variant.
    */
   function validateUserAnswer(userInput, cardPinyinArray) {
     if (!userInput || !Array.isArray(cardPinyinArray) || cardPinyinArray.length === 0) {
@@ -82,8 +83,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const cleanedInput = userInput.trim().toLowerCase();
 
+    // Check if user input contains tone diacritics or tone numbers (1-5)
+    const hasTone = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ1-5]/.test(cleanedInput);
+    if (!hasTone) {
+      return false; // Reject plain pinyin without tones
+    }
+
     return cardPinyinArray.some(pinyinVariant => {
-      return String(pinyinVariant).trim().toLowerCase() === cleanedInput;
+      const variantStr = String(pinyinVariant).trim().toLowerCase();
+      const variantHasTone = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ1-5]/.test(variantStr);
+      return variantHasTone && variantStr === cleanedInput;
     });
   }
 

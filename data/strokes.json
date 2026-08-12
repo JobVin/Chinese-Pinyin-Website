@@ -3,90 +3,313 @@
     "character": "一",
     "pinyin": [
       "héng",
-      "heng"
+      "heng",
+      "heng1"
     ],
     "displayPinyin": "héng",
-    "meaning": "Horizontal stroke (left to right)"
+    "meaning": "Horizontal (横)"
   },
   {
     "character": "丨",
     "pinyin": [
       "shù",
-      "shu"
+      "shu",
+      "shu4"
     ],
     "displayPinyin": "shù",
-    "meaning": "Vertical stroke (top to bottom)"
+    "meaning": "Vertical (竖)"
   },
   {
     "character": "丿",
     "pinyin": [
       "piě",
-      "pie"
+      "pie",
+      "pie3"
     ],
     "displayPinyin": "piě",
-    "meaning": "Left-falling stroke"
+    "meaning": "Left-falling (撇)"
   },
   {
     "character": "乀",
     "pinyin": [
       "nà",
-      "na"
+      "na",
+      "na4"
     ],
     "displayPinyin": "nà",
-    "meaning": "Right-falling stroke"
+    "meaning": "Right-falling (捺)"
   },
   {
     "character": "丶",
     "pinyin": [
       "diǎn",
-      "dian"
+      "dian",
+      "dian3"
     ],
     "displayPinyin": "diǎn",
-    "meaning": "Dot stroke"
+    "meaning": "Dot (点)"
+  },
+  {
+    "character": "㇀",
+    "pinyin": [
+      "tí",
+      "ti",
+      "ti2"
+    ],
+    "displayPinyin": "tí",
+    "meaning": "Rising (提)"
+  },
+  {
+    "character": "㇇",
+    "pinyin": [
+      "héng piě",
+      "heng pie",
+      "hengpie",
+      "heng1pie3"
+    ],
+    "displayPinyin": "héng piě",
+    "meaning": "Horizontal Left-falling (横撇)"
+  },
+  {
+    "character": "𠃍",
+    "pinyin": [
+      "héng zhé",
+      "heng zhe",
+      "hengzhe",
+      "heng1zhe2"
+    ],
+    "displayPinyin": "héng zhé",
+    "meaning": "Horizontal Turn (横折)"
+  },
+  {
+    "character": "㇍",
+    "pinyin": [
+      "héng zhé wān",
+      "heng zhe wan",
+      "hengzhewan",
+      "heng1zhe2wan1"
+    ],
+    "displayPinyin": "héng zhé wān",
+    "meaning": "Horizontal Turn Curve (横折弯)"
+  },
+  {
+    "character": "𠃌",
+    "pinyin": [
+      "héng zhé gōu",
+      "heng zhe gou",
+      "hengzhegou",
+      "heng1zhe2gou1"
+    ],
+    "displayPinyin": "héng zhé gōu",
+    "meaning": "Horizontal Turn Hook (横折钩)"
   },
   {
     "character": "乛",
     "pinyin": [
-      "héngzhé",
-      "hengzhe"
+      "héng gōu",
+      "heng gou",
+      "henggou",
+      "heng1gou1"
     ],
-    "displayPinyin": "héngzhé",
-    "meaning": "Horizontal turn stroke"
+    "displayPinyin": "héng gōu",
+    "meaning": "Horizontal Hook (横钩)"
+  },
+  {
+    "character": "㇈",
+    "pinyin": [
+      "héng zhé wān gōu",
+      "heng zhe wan gou",
+      "hengzhewangou",
+      "heng1zhe2wan1gou1"
+    ],
+    "displayPinyin": "héng zhé wān gōu",
+    "meaning": "Horizontal Turn Curve Hook (横折弯钩)"
+  },
+  {
+    "character": "⺄",
+    "pinyin": [
+      "héng xié gōu",
+      "heng xie gou",
+      "hengxiegou",
+      "heng1xie2gou1"
+    ],
+    "displayPinyin": "héng xié gōu",
+    "meaning": "Horizontal Slant Hook (横斜钩)"
+  },
+  {
+    "character": "㇊",
+    "pinyin": [
+      "héng zhé zhé zhé gōu",
+      "heng zhe zhe zhe gou",
+      "hengzhezhezhegou",
+      "heng1zhe2zhe2zhe2gou1"
+    ],
+    "displayPinyin": "héng zhé zhé zhé gōu",
+    "meaning": "Horizontal Triple-Turn Hook (横折折折钩)"
+  },
+  {
+    "character": "𠄎",
+    "pinyin": [
+      "héng zhé zhé piě",
+      "heng zhe zhe pie",
+      "hengzhezhepie",
+      "heng1zhe2zhe2pie3"
+    ],
+    "displayPinyin": "héng zhé zhé piě",
+    "meaning": "Horizontal Double-Turn Left-falling (横折折撇)"
+  },
+  {
+    "character": "𠃋",
+    "pinyin": [
+      "héng zhé tí",
+      "heng zhe ti",
+      "hengzheti",
+      "heng1zhe2ti2"
+    ],
+    "displayPinyin": "héng zhé tí",
+    "meaning": "Horizontal Turn Rising (横折提)"
+  },
+  {
+    "character": "㇋",
+    "pinyin": [
+      "héng piě wān gōu",
+      "heng pie wan gou",
+      "hengpiewangou",
+      "heng1pie3wan1gou1"
+    ],
+    "displayPinyin": "héng piě wān gōu",
+    "meaning": "Horizontal Left-falling Curve Hook (横撇弯钩)"
   },
   {
     "character": "亅",
     "pinyin": [
-      "shùgōu",
-      "shugou"
+      "shù gōu",
+      "shu gou",
+      "shugou",
+      "shu4gou1"
     ],
-    "displayPinyin": "shùgōu",
-    "meaning": "Vertical hook stroke"
+    "displayPinyin": "shù gōu",
+    "meaning": "Vertical Hook (竖钩)"
   },
   {
-    "character": "提",
+    "character": "㇑",
     "pinyin": [
-      "tí",
-      "ti"
+      "shù tí",
+      "shu ti",
+      "shuti",
+      "shu4ti2"
     ],
-    "displayPinyin": "tí",
-    "meaning": "Rising stroke (bottom-left to top-right)"
+    "displayPinyin": "shù tí",
+    "meaning": "Vertical Rising (竖提)"
+  },
+  {
+    "character": "𠃊",
+    "pinyin": [
+      "shù zhé",
+      "shu zhe",
+      "shuzhe",
+      "shu4zhe2"
+    ],
+    "displayPinyin": "shù zhé",
+    "meaning": "Vertical Turn (竖折)"
   },
   {
     "character": "乚",
     "pinyin": [
-      "shùwān",
-      "shuwan"
+      "shù wān",
+      "shu wan",
+      "shuwan",
+      "shu4wan1"
     ],
-    "displayPinyin": "shùwān",
-    "meaning": "Vertical curve stroke"
+    "displayPinyin": "shù wān",
+    "meaning": "Vertical Curve (竖弯)"
   },
   {
-    "character": "𠄌",
+    "character": "㇟",
     "pinyin": [
-      "shùzhé",
-      "shuzhe"
+      "shù wān gōu",
+      "shu wan gou",
+      "shuwangou",
+      "shu4wan1gou1"
     ],
-    "displayPinyin": "shùzhé",
-    "meaning": "Vertical fold stroke"
+    "displayPinyin": "shù wān gōu",
+    "meaning": "Vertical Curve Hook (竖弯钩)"
+  },
+  {
+    "character": "㇉",
+    "pinyin": [
+      "shù zhé zhé gōu",
+      "shu zhe zhe gou",
+      "shuzhezhegou",
+      "shu4zhe2zhe2gou1"
+    ],
+    "displayPinyin": "shù zhé zhé gōu",
+    "meaning": "Vertical Double-Turn Hook (竖折折钩)"
+  },
+  {
+    "character": "ㄣ",
+    "pinyin": [
+      "shù zhé piě",
+      "shu zhe pie",
+      "shuzhepie",
+      "shu4zhe2pie3"
+    ],
+    "displayPinyin": "shù zhé piě",
+    "meaning": "Vertical Turn Left-falling (竖折撇)"
+  },
+  {
+    "character": "㇁",
+    "pinyin": [
+      "wān gōu",
+      "wan gou",
+      "wangou",
+      "wan1gou1"
+    ],
+    "displayPinyin": "wān gōu",
+    "meaning": "Curved Hook (弯钩)"
+  },
+  {
+    "character": "㇂",
+    "pinyin": [
+      "xié gōu",
+      "xie gou",
+      "xiegou",
+      "xie2gou1"
+    ],
+    "displayPinyin": "xié gōu",
+    "meaning": "Slanting Hook (斜钩)"
+  },
+  {
+    "character": "㇃",
+    "pinyin": [
+      "wò gōu",
+      "wo gou",
+      "wogou",
+      "wo4gou1"
+    ],
+    "displayPinyin": "wò gōu",
+    "meaning": "Lying Hook (卧钩)"
+  },
+  {
+    "character": "𠃋",
+    "pinyin": [
+      "piě zhé",
+      "pie zhe",
+      "piezhe",
+      "pie3zhe2"
+    ],
+    "displayPinyin": "piě zhé",
+    "meaning": "Left-falling Turn (撇折)"
+  },
+  {
+    "character": "𡿨",
+    "pinyin": [
+      "piě diǎn",
+      "pie dian",
+      "piedian",
+      "pie3dian3"
+    ],
+    "displayPinyin": "piě diǎn",
+    "meaning": "Left-falling Dot (撇点)"
   }
 ]

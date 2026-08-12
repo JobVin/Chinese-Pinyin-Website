@@ -1,0 +1,92 @@
+[
+  {
+    "character": "一",
+    "pinyin": [
+      "héng",
+      "heng"
+    ],
+    "displayPinyin": "héng",
+    "meaning": "Horizontal stroke (left to right)"
+  },
+  {
+    "character": "丨",
+    "pinyin": [
+      "shù",
+      "shu"
+    ],
+    "displayPinyin": "shù",
+    "meaning": "Vertical stroke (top to bottom)"
+  },
+  {
+    "character": "丿",
+    "pinyin": [
+      "piě",
+      "pie"
+    ],
+    "displayPinyin": "piě",
+    "meaning": "Left-falling stroke"
+  },
+  {
+    "character": "乀",
+    "pinyin": [
+      "nà",
+      "na"
+    ],
+    "displayPinyin": "nà",
+    "meaning": "Right-falling stroke"
+  },
+  {
+    "character": "丶",
+    "pinyin": [
+      "diǎn",
+      "dian"
+    ],
+    "displayPinyin": "diǎn",
+    "meaning": "Dot stroke"
+  },
+  {
+    "character": "乛",
+    "pinyin": [
+      "héngzhé",
+      "hengzhe"
+    ],
+    "displayPinyin": "héngzhé",
+    "meaning": "Horizontal turn stroke"
+  },
+  {
+    "character": "亅",
+    "pinyin": [
+      "shùgōu",
+      "shugou"
+    ],
+    "displayPinyin": "shùgōu",
+    "meaning": "Vertical hook stroke"
+  },
+  {
+    "character": "提",
+    "pinyin": [
+      "tí",
+      "ti"
+    ],
+    "displayPinyin": "tí",
+    "meaning": "Rising stroke (bottom-left to top-right)"
+  },
+  {
+    "character": "乚",
+    "pinyin": [
+      "shùwān",
+      "shuwan"
+    ],
+    "displayPinyin": "shùwān",
+    "meaning": "Vertical curve stroke"
+  },
+  {
+    "character": "𠄌",
+    "pinyin": [
+      "shùzhé",
+      "shuzhe"
+    ],
+    "displayPinyin": "shùzhé",
+    "meaning": "Vertical fold stroke"
+  }
+]

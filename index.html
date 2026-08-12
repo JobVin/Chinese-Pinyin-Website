@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mandarin Hanzi Practice Hub | 汉字练习</title>
+  <meta name="description" content="Identify and match Mandarin Chinese characters with Pinyin in a clean, Tofugu-inspired interactive card quiz.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- AUTO-COLLAPSIBLE NAVBAR (Reveals on Hover) -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container" id="nav-container">
+      <a href="#" class="brand" id="brand-link">
+        <div class="brand-icon">汉</div>
+        <span class="brand-title">Hanzi Practice Hub</span>
+      </a>
+      <button class="btn-nav-home" id="btn-home" style="display: none;">
+        ← Back to Practice Hub
+      </button>
+    </div>
+    <div class="navbar-peek-handle">
+      <span class="peek-text">▾ Hover for Menu ▾</span>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- VIEW 1: HOME PAGE / PRACTICE HUB -->
+    <section id="hub-view" class="view-section active">
+      <div class="hub-header">
+        <h1 class="hub-title">Select Your Practice Track</h1>
+        <p class="hub-subtitle">Master Mandarin Chinese characters, radicals, and strokes step-by-step.</p>
+      </div>
+
+      <!-- STACKED PROGRESSION MENU -->
+      <div class="stacked-menu-container">
+        
+        <!-- SECTION 1: FOUNDATIONS -->
+        <div class="menu-section-header">
+          <span class="section-badge">Part 1</span>
+          <h2 class="section-title">Character Foundations</h2>
+          <p class="section-subtitle">Master basic strokes and essential radicals before building full characters.</p>
+        </div>
+
+        <div class="stacked-tracks-list">
+          
+          <!-- STEP 1: STROKES -->
+          <div class="stacked-track-card" data-track="strokes">
+            <div class="step-indicator">STEP 1</div>
+            <div class="stacked-symbol">一 丨 丿</div>
+            <div class="stacked-info">
+              <div class="stacked-header">
+                <h3 class="stacked-title">Character Strokes</h3>
+                <span class="track-badge">Fundamentals</span>
+              </div>
+              <p class="stacked-desc">Learn and identify standard Chinese stroke names (héng, shù, piě).</p>
+            </div>
+            <div class="stacked-action-btn">Start Strokes Quiz →</div>
+          </div>
+
+          <!-- STEP 2: RADICALS -->
+          <div class="stacked-track-card" data-track="radicals">
+            <div class="step-indicator">STEP 2</div>
+            <div class="stacked-symbol">亻 氵 木</div>
+            <div class="stacked-info">
+              <div class="stacked-header">
+                <h3 class="stacked-title">Essential Radicals</h3>
+                <span class="track-badge">Building Blocks</span>
+              </div>
+              <p class="stacked-desc">Practice recognizing common radicals (person, water, tree, etc.).</p>
+            </div>
+            <div class="stacked-action-btn">Start Radicals Quiz →</div>
+          </div>
+
+        </div>
+
+        <!-- SECTION 2: HSK VOCABULARY PROGRESSION -->
+        <div class="menu-section-header" style="margin-top: 40px;">
+          <span class="section-badge">Part 2</span>
+          <h2 class="section-title">HSK Vocabulary Levels</h2>
+          <p class="section-subtitle">Progress step-by-step through standardized HSK vocabulary levels.</p>
+        </div>
+
+        <div class="stacked-tracks-list">
+
+          <!-- STEP 3: HSK 1 -->
+          <div class="stacked-track-card" data-track="hsk1">
+            <div class="step-indicator">STEP 3</div>
+            <div class="stacked-symbol">爱 喝 水</div>
+            <div class="stacked-info">
+              <div class="stacked-header">
+                <h3 class="stacked-title">HSK 1 Characters</h3>
+                <span class="track-badge">Beginner</span>
+              </div>
+              <p class="stacked-desc">150 core beginner words split into 10 stress-free levels (15 words each).</p>
+            </div>
+            <div class="stacked-action-btn">Select Level →</div>
+          </div>
+
+          <!-- STEP 4: HSK 2 -->
+          <div class="stacked-track-card" data-track="hsk2">
+            <div class="step-indicator">STEP 4</div>
+            <div class="stacked-symbol">帮助 报纸</div>
+            <div class="stacked-info">
+              <div class="stacked-header">
+                <h3 class="stacked-title">HSK 2 Characters</h3>
+                <span class="track-badge">Elementary</span>
+              </div>
+              <p class="stacked-desc">150 elementary vocabulary words split into 10 stress-free levels (15 words each).</p>
+            </div>
+            <div class="stacked-action-btn">Select Level →</div>
+          </div>
+
+          <!-- STEP 5: HSK 3 -->
+          <div class="stacked-track-card" data-track="hsk3">
+            <div class="step-indicator">STEP 5</div>
+            <div class="stacked-symbol">阿姨 爱好</div>
+            <div class="stacked-info">
+              <div class="stacked-header">
+                <h3 class="stacked-title">HSK 3 Characters</h3>
+                <span class="track-badge">Intermediate</span>
+              </div>
+              <p class="stacked-desc">150 intermediate vocabulary words split into 10 stress-free levels (15 words each).</p>
+            </div>
+            <div class="stacked-action-btn">Select Level →</div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- VIEW 2: QUIZ PAGE -->
+    <section id="quiz-view" class="view-section">
+      
+      <!-- INSTRUCTION BANNER -->
+      <div class="quiz-banner" id="quiz-banner">
+        <div class="quiz-banner-header">
+          <div class="quiz-banner-title-group">
+            <h2 class="quiz-title" id="quiz-header-title">HSK 1 Character Quiz</h2>
+            <span class="quiz-badge" id="quiz-header-count">0 / 50 Cards</span>
+          </div>
+          <button class="btn-banner-toggle" id="btn-toggle-instructions" title="Toggle Tips">
+            <span id="instruction-toggle-label">Hide Tips ▲</span>
+          </button>
+        </div>
+        <ul class="instructions-list" id="instructions-list">
+          <li>Type your answer in <strong>Pinyin</strong> in the text box under each character (e.g., <code>nihao</code>, <code>ni3hao3</code>, or <code>nǐhǎo</code>).</li>
+          <li>Press <strong>ENTER</strong> or <strong>TAB</strong> to move automatically to the next card.</li>
+          <li>When finished, click the <strong>"Submit Quiz"</strong> button at the bottom to evaluate your score!</li>
+        </ul>
+      </div>
+
+      <!-- IME WARNING NOTICE -->
+      <div class="ime-alert" id="ime-alert">
+        <span><strong>Tip:</strong> Chinese characters detected in your answer! Please type Pinyin letters (e.g. <code>nihao</code>) rather than selecting Hanzi from your IME keyboard.</span>
+      </div>
+
+      <!-- CARD GRID CONTAINER -->
+      <div class="card-grid" id="card-grid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- INLINE RESULTS BANNER AT BOTTOM -->
+      <div class="results-banner" id="results-banner" style="display: none;">
+        <div class="results-summary-card">
+          <div class="results-header-info">
+            <div class="results-text-group">
+              <h2 class="results-heading" id="results-heading">Quiz Completed!</h2>
+              <p class="results-details" id="results-details">You got 40 out of 50 correct!</p>
+            </div>
+            <div class="results-score-badge" id="results-score">80%</div>
+          </div>
+
+          <div class="results-actions">
+            <button class="btn-primary" id="btn-retry-missed" style="display: none;">Retry Missed Cards</button>
+            <button class="btn-secondary" id="btn-restart-quiz">Start New Batch</button>
+            <button class="btn-secondary" id="btn-results-hub">Back to Practice Hub</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTOM ACTION BAR -->
+      <div class="quiz-action-bar" id="quiz-action-bar">
+        <div class="quiz-progress-text" id="quiz-progress-summary">Filled: 0 / 50</div>
+        <div class="quiz-btn-group">
+          <button class="btn-secondary" id="btn-quit">Quit Quiz</button>
+          <button class="btn-primary" id="btn-submit">Submit Quiz</button>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- HSK SUB-LEVEL STAGE PICKER MODAL -->
+  <div class="modal-overlay" id="stage-modal">
+    <div class="modal-card stage-modal-card">
+      <h2 class="modal-title" id="stage-modal-title">HSK 1 - Select Level</h2>
+      <p class="stage-modal-subtitle">Choose a 15-character chunk to practice without overload.</p>
+      
+      <div class="stage-grid" id="stage-grid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <div class="modal-actions" style="margin-top: 20px;">
+        <button class="btn-secondary" id="btn-close-stage-modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIT CONFIRMATION MODAL -->
+  <div class="modal-overlay" id="quit-modal">
+    <div class="modal-card quit-modal-card">
+      <h2 class="modal-title">Quit Practice Quiz?</h2>
+      <p class="stage-modal-subtitle">Are you sure you want to exit? Your progress in this batch will be lost.</p>
+
+      <div class="modal-actions-row">
+        <button class="btn-secondary" id="btn-cancel-quit">Keep Practicing</button>
+        <button class="btn-danger" id="btn-confirm-quit">Yes, Quit Quiz</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

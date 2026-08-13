@@ -14,10 +14,26 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // DOM ELEMENTS
+  const navbar = document.getElementById('navbar');
+  const navbarPeekHandle = document.querySelector('.navbar-peek-handle');
   const hubView = document.getElementById('hub-view');
   const quizView = document.getElementById('quiz-view');
   const btnHome = document.getElementById('btn-home');
   const brandLink = document.getElementById('brand-link');
+
+  // MOBILE NAVBAR TAP TOGGLE
+  if (navbarPeekHandle && navbar) {
+    navbarPeekHandle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navbar.classList.toggle('nav-open');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!navbar.contains(e.target)) {
+        navbar.classList.remove('nav-open');
+      }
+    });
+  }
   
   const batchButtons = document.querySelectorAll('#batch-options .btn-pill');
   const trackCards = document.querySelectorAll('.track-card, .stacked-track-card');
@@ -83,40 +99,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const cleanedInput = userInput.trim().toLowerCase();
 
-    // Check if user input contains tone diacritics or tone numbers (1-5)
-    const hasTone = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ1-5]/.test(cleanedInput);
-    if (!hasTone) {
-      return false; // Reject plain pinyin without tones
-    }
-
     return cardPinyinArray.some(pinyinVariant => {
       const variantStr = String(pinyinVariant).trim().toLowerCase();
-      const variantHasTone = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ1-5]/.test(variantStr);
-      return variantHasTone && variantStr === cleanedInput;
+      if (variantStr !== cleanedInput) return false;
+
+      const inputHasTone = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ1-5]/.test(cleanedInput);
+      const isNeutralToneVariant = !/[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ1-4]/.test(variantStr);
+
+      return inputHasTone || isNeutralToneVariant;
     });
   }
 
   // Expose globally for module/component access and terminal testing
   window.validateUserAnswer = validateUserAnswer;
-
-  function removeToneMarks(str) {
-    if (!str) return '';
-    return str
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/ü/g, 'v')
-      .replace(/v3/g, 'v')
-      .toLowerCase();
-  }
-
-  function cleanString(str) {
-    if (!str) return '';
-    return str
-      .toLowerCase()
-      .trim()
-      .replace(/\s+/g, '')
-      .replace(/[1-5]/g, '');
-  }
 
   function checkPinyinMatch(userInput, cardData) {
     if (!userInput || !cardData) return false;

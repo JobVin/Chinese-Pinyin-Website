@@ -21,11 +21,13 @@ An interactive, web application designed for active recall practice of Mandarin 
 
 | Practice Track | Data File | Items / Vocabulary |
 | :--- | :--- | :--- |
-| **Character Strokes** | [`data/strokes.json`](data/strokes.json) | 10 Basic Strokes |
+| **Character Strokes** | [`data/strokes.json`](data/strokes.json) | 29 Standard Stroke Symbols |
 | **Essential Radicals** | [`data/radicals.json`](data/radicals.json) | 16 Building Block Radicals |
-| **HSK Level 1** | [`data/hsk1.json`](data/hsk1.json) | 300 Vocabulary Words (20 Levels) |
-| **HSK Level 2** | [`data/hsk2.json`](data/hsk2.json) | 300 Vocabulary Words (20 Levels) |
-| **HSK Level 3** | [`data/hsk3.json`](data/hsk3.json) | 300 Vocabulary Words (20 Levels) |
+| **HSK Level 1** | [`data/hsk1.json`](data/hsk1.json) | 150 Vocabulary Words (10 Levels) |
+| **HSK Level 2** | [`data/hsk2.json`](data/hsk2.json) | 147 Vocabulary Words (10 Levels) |
+| **HSK Level 3** | [`data/hsk3.json`](data/hsk3.json) | 298 Vocabulary Words (20 Levels) |
+
+> *HSK vocabulary data is sourced from [drkameleon/complete-hsk-vocabulary](https://github.com/drkameleon/complete-hsk-vocabulary) (MIT Licensed), using the Old HSK 2.0 level split.*
 
 ---
 
@@ -40,8 +42,8 @@ An interactive, web application designed for active recall practice of Mandarin 
 │   ├── hsk2.json
 │   └── hsk3.json
 ├── scripts/               # Maintenance and utility scripts
-│   ├── export_hsk.js      # Utility script to re-export datasets to JSON
-│   └── test_validation.js # Validation simulation test runner
+│   ├── build_hsk_datasets.js # Dataset builder for HSK 1, 2 & 3
+│   └── test_validation.js # Validation test runner for all datasets
 ├── app.js                 # Application router, async fetcher & matching logic
 ├── index.html             # Main application template
 └── styles.css             # Custom application design & layout

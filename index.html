@@ -19,6 +19,9 @@
       <button class="btn-nav-home" id="btn-home" style="display: none;">
         ← Back to Practice Hub
       </button>
+      <button class="btn-nav-home btn-nav-learning" id="btn-learning-hub">
+        📖 Learning Hub
+      </button>
     </div>
     <div class="navbar-peek-handle">
       <span class="peek-text">▾ Tap / Hover for Menu ▾</span>
@@ -132,7 +135,148 @@
       </div>
     </section>
 
-    <!-- VIEW 2: QUIZ PAGE -->
+    <!-- VIEW 2: LEARNING HUB -->
+    <section id="learning-hub-view" class="view-section learning-hub-theme">
+      <div class="hub-header">
+        <h1 class="hub-title teal-title">Learning Hub</h1>
+        <p class="hub-subtitle">Study Chinese character foundations and vocabulary at your own pace before taking quizzes.</p>
+      </div>
+
+      <!-- STACKED PROGRESSION MENU -->
+      <div class="stacked-menu-container">
+        
+        <!-- SECTION 1: FOUNDATIONS -->
+        <div class="menu-section-header">
+          <span class="section-badge teal-badge">Part 1</span>
+          <h2 class="section-title">Character Foundations</h2>
+          <p class="section-subtitle">Master basic strokes and essential radicals before building full characters.</p>
+        </div>
+
+        <div class="stacked-tracks-list">
+          
+          <!-- STEP 1: STROKES -->
+          <div class="stacked-track-card teal-track-card" data-track="strokes">
+            <div class="step-indicator teal-indicator">STEP 1</div>
+            <div class="stacked-symbol">一 丨 丿</div>
+            <div class="stacked-info">
+              <div class="stacked-header">
+                <h3 class="stacked-title">Character Strokes</h3>
+                <span class="track-badge teal-badge">Fundamentals</span>
+              </div>
+              <p class="stacked-desc">Study 29 standard Chinese stroke symbols with pronunciations and meanings.</p>
+            </div>
+            <div class="stacked-action-btn teal-action-btn">Study Strokes →</div>
+          </div>
+
+          <!-- STEP 2: RADICALS -->
+          <div class="stacked-track-card teal-track-card" data-track="radicals">
+            <div class="step-indicator teal-indicator">STEP 2</div>
+            <div class="stacked-symbol">亻 氵 木</div>
+            <div class="stacked-info">
+              <div class="stacked-header">
+                <h3 class="stacked-title">Essential Radicals</h3>
+                <span class="track-badge teal-badge">Building Blocks</span>
+              </div>
+              <p class="stacked-desc">Study 16 essential radicals and their meanings.</p>
+            </div>
+            <div class="stacked-action-btn teal-action-btn">Study Radicals →</div>
+          </div>
+
+        </div>
+
+        <!-- SECTION 2: HSK VOCABULARY PROGRESSION -->
+        <div class="menu-section-header" style="margin-top: 40px;">
+          <span class="section-badge teal-badge">Part 2</span>
+          <h2 class="section-title">HSK Vocabulary Levels</h2>
+          <p class="section-subtitle">Study standardized HSK vocabulary levels step-by-step.</p>
+        </div>
+
+        <div class="stacked-tracks-list">
+
+          <!-- STEP 3: HSK 1 -->
+          <div class="stacked-track-card teal-track-card" data-track="hsk1">
+            <div class="step-indicator teal-indicator">STEP 3</div>
+            <div class="stacked-symbol">爱 喝 水</div>
+            <div class="stacked-info">
+              <div class="stacked-header">
+                <h3 class="stacked-title">HSK 1 Characters</h3>
+                <span class="track-badge teal-badge">Beginner</span>
+              </div>
+              <p class="stacked-desc">150 unique beginner characters split into 10 study levels (15 words each).</p>
+            </div>
+            <div class="stacked-action-btn teal-action-btn">Study Level →</div>
+          </div>
+
+          <!-- STEP 4: HSK 2 -->
+          <div class="stacked-track-card teal-track-card" data-track="hsk2">
+            <div class="step-indicator teal-indicator">STEP 4</div>
+            <div class="stacked-symbol">帮助 报纸</div>
+            <div class="stacked-info">
+              <div class="stacked-header">
+                <h3 class="stacked-title">HSK 2 Characters</h3>
+                <span class="track-badge teal-badge">Elementary</span>
+              </div>
+              <p class="stacked-desc">147 new elementary characters split into 10 study levels (15 words each).</p>
+            </div>
+            <div class="stacked-action-btn teal-action-btn">Study Level →</div>
+          </div>
+
+          <!-- STEP 5: HSK 3 -->
+          <div class="stacked-track-card teal-track-card" data-track="hsk3">
+            <div class="step-indicator teal-indicator">STEP 5</div>
+            <div class="stacked-symbol">阿姨 爱好</div>
+            <div class="stacked-info">
+              <div class="stacked-header">
+                <h3 class="stacked-title">HSK 3 Characters</h3>
+                <span class="track-badge teal-badge">Intermediate</span>
+              </div>
+              <p class="stacked-desc">298 intermediate characters split into 20 study levels (15 words each).</p>
+            </div>
+            <div class="stacked-action-btn teal-action-btn">Study Level →</div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- VIEW 3: STUDY VIEW -->
+    <section id="study-view" class="view-section">
+      <div class="quiz-banner study-banner">
+        <div class="quiz-banner-header">
+          <div class="quiz-banner-title-group">
+            <h2 class="quiz-title" id="study-header-title">HSK 1 Characters (Level 1)</h2>
+            <span class="quiz-badge teal-badge" id="study-header-count">15 Words</span>
+          </div>
+        </div>
+
+        <!-- STUDY MODE PILL TOGGLE -->
+        <div class="study-mode-toggle-wrapper">
+          <div class="options-pill-group">
+            <button class="btn-pill active" id="btn-study-list-mode">Simple List</button>
+            <button class="btn-pill" id="btn-study-flashcard-mode">Flashcards</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODE 1: SIMPLE LIST VIEW -->
+      <div id="study-list-view" class="study-container">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- MODE 2: FLASHCARD VIEW -->
+      <div id="study-flashcard-view" class="study-container" style="display: none;">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- STUDY BOTTOM ACTION BAR -->
+      <div class="quiz-action-bar study-action-bar">
+        <button class="btn-secondary" id="btn-back-to-learning-hub">← Back to Learning Hub</button>
+        <button class="btn-primary teal-btn" id="btn-start-quiz-from-study">Start Quiz →</button>
+      </div>
+    </section>
+
+    <!-- VIEW 4: QUIZ PAGE -->
     <section id="quiz-view" class="view-section">
       
       <!-- INSTRUCTION BANNER -->

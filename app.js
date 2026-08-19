@@ -10,15 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
     currentCards: [],
     missedCards: [],
     submitted: false,
-    filledCount: 0
+    filledCount: 0,
+    currentStudyData: null,
+    pendingNavTarget: 'hub'
   };
 
   // DOM ELEMENTS
   const navbar = document.getElementById('navbar');
   const navbarPeekHandle = document.querySelector('.navbar-peek-handle');
   const hubView = document.getElementById('hub-view');
+  const learningHubView = document.getElementById('learning-hub-view');
+  const studyView = document.getElementById('study-view');
   const quizView = document.getElementById('quiz-view');
   const btnHome = document.getElementById('btn-home');
+  const btnLearningHubNav = document.getElementById('btn-learning-hub');
   const brandLink = document.getElementById('brand-link');
 
   // MOBILE NAVBAR TAP TOGGLE
@@ -68,6 +73,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnRestartQuiz = document.getElementById('btn-restart-quiz');
   const btnResultsHub = document.getElementById('btn-results-hub');
 
+  // STUDY VIEW ELEMENTS
+  const studyHeaderTitle = document.getElementById('study-header-title');
+  const studyHeaderCount = document.getElementById('study-header-count');
+  const btnStudyListMode = document.getElementById('btn-study-list-mode');
+  const btnStudyFlashcardMode = document.getElementById('btn-study-flashcard-mode');
+  const studyListView = document.getElementById('study-list-view');
+  const studyFlashcardView = document.getElementById('study-flashcard-view');
+  const btnStartQuizFromStudy = document.getElementById('btn-start-quiz-from-study');
+  const btnBackToLearningHub = document.getElementById('btn-back-to-learning-hub');
+
   // BANNER COLLAPSE TOGGLE
   const btnToggleInstructions = document.getElementById('btn-toggle-instructions');
   const instructionsList = document.getElementById('instructions-list');
@@ -96,17 +111,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!userInput || !Array.isArray(cardPinyinArray) || cardPinyinArray.length === 0) {
       return false;
     }
-
     const cleanedInput = userInput.trim().toLowerCase();
-
+    const hasTone = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ1-5]/.test(cleanedInput);
+    if (!hasTone) {
+      return false; // Reject plain pinyin without tones
+    }
     return cardPinyinArray.some(pinyinVariant => {
       const variantStr = String(pinyinVariant).trim().toLowerCase();
-      if (variantStr !== cleanedInput) return false;
-
-      const inputHasTone = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ1-5]/.test(cleanedInput);
-      const isNeutralToneVariant = !/[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ1-4]/.test(variantStr);
-
-      return inputHasTone || isNeutralToneVariant;
+      const variantHasTone = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ1-5]/.test(variantStr);
+      return variantHasTone && variantStr === cleanedInput;
     });
   }
 
@@ -209,23 +222,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // NAVIGATION ROUTER
   function showView(viewName) {
+    hubView.classList.remove('active');
+    if (learningHubView) learningHubView.classList.remove('active');
+    if (studyView) studyView.classList.remove('active');
+    quizView.classList.remove('active');
+
     if (viewName === 'hub') {
       hubView.classList.add('active');
-      quizView.classList.remove('active');
       btnHome.style.display = 'none';
+      if (btnLearningHubNav) btnLearningHubNav.style.display = 'flex';
       resultsBanner.style.display = 'none';
       stageModal.classList.remove('show');
       quitModal.classList.remove('show');
+      state.currentCards = [];
+      state.submitted = false;
+    } else if (viewName === 'learning-hub') {
+      if (learningHubView) learningHubView.classList.add('active');
+      btnHome.style.display = 'flex';
+      if (btnLearningHubNav) btnLearningHubNav.style.display = 'none';
+      resultsBanner.style.display = 'none';
+      stageModal.classList.remove('show');
+      quitModal.classList.remove('show');
+      state.currentCards = [];
+      state.submitted = false;
+    } else if (viewName === 'study') {
+      if (studyView) studyView.classList.add('active');
+      btnHome.style.display = 'flex';
+      if (btnLearningHubNav) btnLearningHubNav.style.display = 'flex';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (viewName === 'quiz') {
-      hubView.classList.remove('active');
       quizView.classList.add('active');
       btnHome.style.display = 'flex';
+      if (btnLearningHubNav) btnLearningHubNav.style.display = 'flex';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
-  // START QUIZ / STAGE SELECTION FROM HUB
-  trackCards.forEach(card => {
+  // TRACK SELECTION FROM PRACTICE HUB
+  const practiceTrackCards = document.querySelectorAll('#hub-view .stacked-track-card, #hub-view .track-card');
+  practiceTrackCards.forEach(card => {
     card.addEventListener('click', async () => {
       const track = card.dataset.track;
       const fullData = await loadDataset(track);
@@ -233,12 +268,27 @@ document.addEventListener('DOMContentLoaded', () => {
       if (stages.length === 1) {
         startQuiz(track, stages[0].data, getTrackTitle(track));
       } else {
-        openStageModal(track, stages);
+        openStageModal(track, stages, (stage) => startQuiz(track, stage.data, `${getTrackTitle(track)} (${stage.title})`));
       }
     });
   });
 
-  function openStageModal(trackName, stages) {
+  // TRACK SELECTION FROM LEARNING HUB
+  const learningTrackCards = document.querySelectorAll('#learning-hub-view .stacked-track-card');
+  learningTrackCards.forEach(card => {
+    card.addEventListener('click', async () => {
+      const track = card.dataset.track;
+      const fullData = await loadDataset(track);
+      const stages = getDatasetStagesFromData(fullData, track, 15);
+      if (stages.length === 1) {
+        openStudyView(track, stages[0].data, getTrackTitle(track));
+      } else {
+        openStageModal(track, stages, (stage) => openStudyView(track, stage.data, `${getTrackTitle(track)} (${stage.title})`));
+      }
+    });
+  });
+
+  function openStageModal(trackName, stages, onSelectStage) {
     stageModalTitle.textContent = `${getTrackTitle(trackName)} - Select Level`;
     stageGrid.innerHTML = '';
 
@@ -251,7 +301,11 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       btn.addEventListener('click', () => {
         stageModal.classList.remove('show');
-        startQuiz(trackName, stage.data, `${getTrackTitle(trackName)} (${stage.title})`);
+        if (typeof onSelectStage === 'function') {
+          onSelectStage(stage);
+        } else {
+          startQuiz(trackName, stage.data, `${getTrackTitle(trackName)} (${stage.title})`);
+        }
       });
       stageGrid.appendChild(btn);
     });
@@ -263,11 +317,128 @@ document.addEventListener('DOMContentLoaded', () => {
     stageModal.classList.remove('show');
   });
 
-  btnHome.addEventListener('click', () => showView('hub'));
-  brandLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    showView('hub');
-  });
+  function handleHomeNavigation(targetView = 'hub', e = null) {
+    if (e) e.preventDefault();
+    const isQuizActive = quizView.classList.contains('active') && state.currentCards.length > 0 && !state.submitted;
+    if (isQuizActive) {
+      state.pendingNavTarget = targetView;
+      quitModal.classList.add('show');
+    } else {
+      showView(targetView);
+    }
+  }
+
+  btnHome.addEventListener('click', () => handleHomeNavigation('hub'));
+  if (btnLearningHubNav) btnLearningHubNav.addEventListener('click', () => handleHomeNavigation('learning-hub'));
+  brandLink.addEventListener('click', (e) => handleHomeNavigation('hub', e));
+
+  // STUDY VIEW RENDERERS & HANDLERS
+  function openStudyView(trackName, data, title) {
+    state.currentStudyData = { trackName, data, title };
+    if (studyHeaderTitle) studyHeaderTitle.textContent = title;
+    if (studyHeaderCount) studyHeaderCount.textContent = `${data.length} Words`;
+
+    renderStudyListView(data);
+    renderStudyFlashcardView(data);
+
+    if (btnStudyListMode && btnStudyFlashcardMode) {
+      btnStudyListMode.classList.add('active');
+      btnStudyFlashcardMode.classList.remove('active');
+    }
+    if (studyListView && studyFlashcardView) {
+      studyListView.style.display = 'block';
+      studyFlashcardView.style.display = 'none';
+    }
+
+    showView('study');
+  }
+
+  function renderStudyListView(data) {
+    if (!studyListView) return;
+    studyListView.innerHTML = '';
+    const listGroup = document.createElement('div');
+    listGroup.className = 'study-list-group';
+
+    data.forEach(item => {
+      const displayPinyin = item.displayPinyin || (Array.isArray(item.pinyin) ? item.pinyin[0] : item.pinyin);
+      const rowEl = document.createElement('div');
+      rowEl.className = 'study-list-row';
+      rowEl.innerHTML = `
+        <div class="study-row-left">
+          <div class="study-row-hanzi">${item.character}</div>
+          <div class="study-row-pinyin">${displayPinyin || ''}</div>
+        </div>
+        <div class="study-row-meaning">${item.meaning || ''}</div>
+      `;
+      listGroup.appendChild(rowEl);
+    });
+
+    studyListView.appendChild(listGroup);
+  }
+
+  function renderStudyFlashcardView(data) {
+    if (!studyFlashcardView) return;
+    studyFlashcardView.innerHTML = '';
+    const gridEl = document.createElement('div');
+    gridEl.className = 'study-flashcard-grid';
+
+    data.forEach(item => {
+      const displayPinyin = item.displayPinyin || (Array.isArray(item.pinyin) ? item.pinyin[0] : item.pinyin);
+      const cardEl = document.createElement('div');
+      cardEl.className = 'study-card';
+      cardEl.innerHTML = `
+        <div class="card-hanzi">${item.character}</div>
+        <div class="study-card-reveal-box">
+          <div class="study-reveal-pinyin">${displayPinyin || ''}</div>
+          <div class="study-reveal-meaning">${item.meaning || ''}</div>
+        </div>
+        <button class="btn-study-reveal">Reveal Answer</button>
+      `;
+
+      const revealBtn = cardEl.querySelector('.btn-study-reveal');
+      const revealBox = cardEl.querySelector('.study-card-reveal-box');
+
+      revealBtn.addEventListener('click', () => {
+        revealBox.classList.toggle('show');
+        const isRevealed = revealBox.classList.contains('show');
+        revealBtn.textContent = isRevealed ? 'Hide Answer' : 'Reveal Answer';
+      });
+
+      gridEl.appendChild(cardEl);
+    });
+
+    studyFlashcardView.appendChild(gridEl);
+  }
+
+  if (btnStudyListMode && btnStudyFlashcardMode) {
+    btnStudyListMode.addEventListener('click', () => {
+      btnStudyListMode.classList.add('active');
+      btnStudyFlashcardMode.classList.remove('active');
+      studyListView.style.display = 'block';
+      studyFlashcardView.style.display = 'none';
+    });
+
+    btnStudyFlashcardMode.addEventListener('click', () => {
+      btnStudyFlashcardMode.classList.add('active');
+      btnStudyListMode.classList.remove('active');
+      studyListView.style.display = 'none';
+      studyFlashcardView.style.display = 'block';
+    });
+  }
+
+  if (btnStartQuizFromStudy) {
+    btnStartQuizFromStudy.addEventListener('click', () => {
+      if (state.currentStudyData) {
+        startQuiz(state.currentStudyData.trackName, state.currentStudyData.data, state.currentStudyData.title);
+      }
+    });
+  }
+
+  if (btnBackToLearningHub) {
+    btnBackToLearningHub.addEventListener('click', () => {
+      showView('learning-hub');
+    });
+  }
 
   // START QUIZ LOGIC
   async function startQuiz(trackName, customDataSet = null, customTitle = null) {
@@ -389,23 +560,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const isCorrect = checkPinyinMatch(userInput, item);
 
+      const displayPinyin = item.displayPinyin || (Array.isArray(item.pinyin) ? item.pinyin[0] : item.pinyin);
+      const feedbackEl = document.createElement('div');
+      feedbackEl.className = 'card-feedback';
+
       if (isCorrect) {
         correctCount++;
         cardEl.classList.add('correct');
+        feedbackEl.classList.add('correct-feedback');
+        feedbackEl.innerHTML = `
+          <div class="feedback-pinyin">✓ ${displayPinyin || ''}</div>
+          <div class="feedback-meaning">${item.meaning || ''}</div>
+        `;
       } else {
         cardEl.classList.add('incorrect');
         state.missedCards.push(item);
-
-        // Add correct answer feedback box
-        const displayPinyin = item.displayPinyin || (Array.isArray(item.pinyin) ? item.pinyin[0] : item.pinyin);
-        const feedbackEl = document.createElement('div');
-        feedbackEl.className = 'card-feedback';
         feedbackEl.innerHTML = `
           <div class="feedback-pinyin">${displayPinyin || ''}</div>
           <div class="feedback-meaning">${item.meaning || ''}</div>
         `;
-        cardEl.appendChild(feedbackEl);
       }
+      cardEl.appendChild(feedbackEl);
     });
 
     // Calculate score percentage
@@ -464,7 +639,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   btnQuit.addEventListener('click', () => {
-    quitModal.classList.add('show');
+    handleHomeNavigation('hub');
   });
 
   btnCancelQuit.addEventListener('click', () => {
@@ -473,7 +648,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   btnConfirmQuit.addEventListener('click', () => {
     quitModal.classList.remove('show');
-    showView('hub');
+    showView(state.pendingNavTarget || 'hub');
   });
 
 });

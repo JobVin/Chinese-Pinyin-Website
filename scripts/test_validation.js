@@ -5,17 +5,15 @@ function validateUserAnswer(userInput, cardPinyinArray) {
   if (!userInput || !Array.isArray(cardPinyinArray) || cardPinyinArray.length === 0) {
     return false;
   }
-
   const cleanedInput = userInput.trim().toLowerCase();
-
+  const hasTone = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ1-5]/.test(cleanedInput);
+  if (!hasTone) {
+    return false; // Reject plain pinyin without tones
+  }
   return cardPinyinArray.some(pinyinVariant => {
     const variantStr = String(pinyinVariant).trim().toLowerCase();
-    if (variantStr !== cleanedInput) return false;
-
-    const inputHasTone = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ1-5]/.test(cleanedInput);
-    const isNeutralToneVariant = !/[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ1-4]/.test(variantStr);
-
-    return inputHasTone || isNeutralToneVariant;
+    const variantHasTone = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ1-5]/.test(variantStr);
+    return variantHasTone && variantStr === cleanedInput;
   });
 }
 

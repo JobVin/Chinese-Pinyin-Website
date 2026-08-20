@@ -246,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // NAVIGATION ROUTER
-  function showView(viewName) {
+  function showView(viewName, pushState = true) {
     hubView.classList.remove('active');
     if (learningHubView) learningHubView.classList.remove('active');
     if (studyView) studyView.classList.remove('active');
@@ -280,6 +280,10 @@ document.addEventListener('DOMContentLoaded', () => {
       btnHome.style.display = 'flex';
       if (btnBackLearningHubNav) btnBackLearningHubNav.style.display = 'none';
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    if (pushState && history.pushState) {
+      history.pushState({ view: viewName }, '', `#${viewName}`);
     }
   }
 
@@ -493,6 +497,14 @@ document.addEventListener('DOMContentLoaded', () => {
     studyListView.appendChild(listGroup);
   }
 
+  function getCharLenClass(char) {
+    if (!char) return 'char-len-1';
+    const len = String(char).length;
+    if (len >= 3) return 'char-len-3';
+    if (len === 2) return 'char-len-2';
+    return 'char-len-1';
+  }
+
   function renderStudyFlashcardView(data) {
     if (!studyFlashcardView) return;
     studyFlashcardView.innerHTML = '';
@@ -503,8 +515,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const displayPinyin = item.displayPinyin || (Array.isArray(item.pinyin) ? item.pinyin[0] : item.pinyin);
       const cardEl = document.createElement('div');
       cardEl.className = 'study-card';
+      const lenClass = getCharLenClass(item.character);
       cardEl.innerHTML = `
-        <div class="card-hanzi">${item.character}</div>
+        <div class="card-hanzi ${lenClass}">${item.character}</div>
         <div class="study-card-reveal-box">
           <div class="study-reveal-pinyin">${displayPinyin || ''}</div>
           <div class="study-reveal-meaning">${item.meaning || ''}</div>
@@ -615,8 +628,10 @@ document.addEventListener('DOMContentLoaded', () => {
       cardEl.className = 'tofugu-card';
       cardEl.dataset.index = index;
 
+      const lenClass = getCharLenClass(item.character);
+
       cardEl.innerHTML = `
-        <div class="card-hanzi">${item.character}</div>
+        <div class="card-hanzi ${lenClass}">${item.character}</div>
         <div class="card-input-wrapper">
           <input type="text" class="card-input" data-index="${index}" placeholder="" autocomplete="off" spellcheck="false">
         </div>
@@ -788,5 +803,33 @@ document.addEventListener('DOMContentLoaded', () => {
     quitModal.classList.remove('show');
     showView(state.pendingNavTarget || 'hub');
   });
+
+  // BROWSER & MOBILE PHONE BACK BUTTON ROUTING (POPSTATE HANDLER)
+  window.addEventListener('popstate', (e) => {
+    const isQuizActive = quizView.classList.contains('active') && state.currentCards.length > 0 && !state.submitted;
+
+    if (isQuizActive) {
+      // Re-push quiz state so mobile back button doesn't exit browser window, and show quit confirmation
+      history.pushState({ view: 'quiz' }, '', '#quiz');
+      state.pendingNavTarget = e.state?.view || 'hub';
+      quitModal.classList.add('show');
+      return;
+    }
+
+    const targetView = e.state?.view || (location.hash ? location.hash.replace('#', '') : 'hub');
+    if (['hub', 'learning-hub', 'study', 'quiz'].includes(targetView)) {
+      showView(targetView, false);
+    } else {
+      showView('hub', false);
+    }
+  });
+
+  // INITIAL ROUTE SETUP ON PAGE LOAD
+  const initialHash = location.hash ? location.hash.replace('#', '') : 'hub';
+  const initialView = ['hub', 'learning-hub', 'study', 'quiz'].includes(initialHash) ? initialHash : 'hub';
+  if (history.replaceState) {
+    history.replaceState({ view: initialView }, '', `#${initialView}`);
+  }
+  showView(initialView, false);
 
 });

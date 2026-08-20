@@ -563,7 +563,7 @@ body {
 
 .card-hanzi {
   font-family: 'Noto Sans SC', sans-serif;
-  font-size: clamp(52px, 10vw, 84px);
+  font-size: 62px;
   font-weight: 800;
   color: #ffffff;
   margin: auto 0;
@@ -571,6 +571,18 @@ body {
   line-height: 1.1;
   user-select: none;
   text-shadow: 0 3px 8px rgba(0,0,0,0.22);
+}
+
+.card-hanzi.char-len-1 {
+  font-size: 62px;
+}
+
+.card-hanzi.char-len-2 {
+  font-size: 46px;
+}
+
+.card-hanzi.char-len-3 {
+  font-size: 36px;
 }
 
 .card-input-wrapper {
@@ -807,19 +819,25 @@ body {
     max-width: 1440px;
   }
   .card-grid {
-    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-    gap: 28px;
+    grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+    gap: 24px;
   }
   .tofugu-card, .study-card {
-    min-height: 260px;
-    padding: 24px 18px;
+    min-height: 240px;
+    padding: 22px 16px;
   }
-  .card-hanzi {
-    font-size: clamp(84px, 5vw, 106px);
+  .card-hanzi.char-len-1 {
+    font-size: 68px;
+  }
+  .card-hanzi.char-len-2 {
+    font-size: 50px;
+  }
+  .card-hanzi.char-len-3 {
+    font-size: 40px;
   }
   .card-input {
-    height: 52px;
-    font-size: 20px;
+    height: 48px;
+    font-size: 18px;
   }
 }
 
@@ -875,8 +893,16 @@ body {
     padding: 14px 10px;
   }
 
-  .card-hanzi {
-    font-size: clamp(48px, 13vw, 72px);
+  .card-hanzi.char-len-1 {
+    font-size: clamp(48px, 13vw, 68px);
+  }
+
+  .card-hanzi.char-len-2 {
+    font-size: clamp(38px, 10vw, 52px);
+  }
+
+  .card-hanzi.char-len-3 {
+    font-size: clamp(30px, 8vw, 42px);
   }
 
   .card-input {
@@ -938,8 +964,16 @@ body {
     padding: 10px 8px;
   }
 
-  .card-hanzi {
+  .card-hanzi.char-len-1 {
     font-size: clamp(40px, 12vw, 56px);
+  }
+
+  .card-hanzi.char-len-2 {
+    font-size: clamp(32px, 9vw, 44px);
+  }
+
+  .card-hanzi.char-len-3 {
+    font-size: clamp(26px, 7vw, 36px);
   }
 
   .card-input {

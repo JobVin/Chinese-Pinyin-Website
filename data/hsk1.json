@@ -3,7 +3,6 @@
     "character": "爱",
     "pinyin": [
       "ài",
-      "ai",
       "ai4"
     ],
     "displayPinyin": "ài",
@@ -13,7 +12,6 @@
     "character": "八",
     "pinyin": [
       "bā",
-      "ba",
       "ba1"
     ],
     "displayPinyin": "bā",
@@ -24,8 +22,6 @@
     "pinyin": [
       "bà ba",
       "bàba",
-      "ba ba",
-      "baba",
       "ba4 ba5",
       "ba4ba5",
       "ba4 ba",
@@ -39,8 +35,6 @@
     "pinyin": [
       "bēi zi",
       "bēizi",
-      "bei zi",
-      "beizi",
       "bei1 zi5",
       "bei1zi5",
       "bei1 zi",
@@ -54,8 +48,6 @@
     "pinyin": [
       "běi jīng",
       "běijīng",
-      "bei jing",
-      "beijing",
       "bei3 jing1",
       "bei3jing1"
     ],
@@ -66,7 +58,6 @@
     "character": "本",
     "pinyin": [
       "běn",
-      "ben",
       "ben3"
     ],
     "displayPinyin": "běn",
@@ -76,7 +67,6 @@
     "character": "不",
     "pinyin": [
       "bù",
-      "bu",
       "bu4"
     ],
     "displayPinyin": "bù",
@@ -87,8 +77,6 @@
     "pinyin": [
       "bù kè qi",
       "bùkèqi",
-      "bu ke qi",
-      "bukeqi",
       "bu4 ke4 qi5",
       "bu4ke4qi5",
       "bu4 ke4 qi",
@@ -101,7 +89,6 @@
     "character": "菜",
     "pinyin": [
       "cài",
-      "cai",
       "cai4"
     ],
     "displayPinyin": "cài",
@@ -111,7 +98,6 @@
     "character": "茶",
     "pinyin": [
       "chá",
-      "cha",
       "cha2"
     ],
     "displayPinyin": "chá",
@@ -121,7 +107,6 @@
     "character": "吃",
     "pinyin": [
       "chī",
-      "chi",
       "chi1"
     ],
     "displayPinyin": "chī",
@@ -132,8 +117,6 @@
     "pinyin": [
       "chū zū chē",
       "chūzūchē",
-      "chu zu che",
-      "chuzuche",
       "chu1 zu1 che1",
       "chu1zu1che1"
     ],
@@ -145,8 +128,6 @@
     "pinyin": [
       "dǎ diàn huà",
       "dǎdiànhuà",
-      "da dian hua",
-      "dadianhua",
       "da3 dian4 hua4",
       "da3dian4hua4"
     ],
@@ -157,10 +138,8 @@
     "character": "大",
     "pinyin": [
       "dà",
-      "da",
       "da4",
       "dài",
-      "dai",
       "dai4"
     ],
     "displayPinyin": "dà",
@@ -172,21 +151,19 @@
       "de",
       "de5",
       "dī",
-      "di",
       "di1",
       "dí",
       "di2",
       "dì",
       "di4"
     ],
-    "displayPinyin": "de5",
+    "displayPinyin": "de",
     "meaning": "of; ~'s (possessive particle) / (used after an attribute) / (used to form a nominal expression)"
   },
   {
     "character": "点",
     "pinyin": [
       "diǎn",
-      "dian",
       "dian3"
     ],
     "displayPinyin": "diǎn",
@@ -197,8 +174,6 @@
     "pinyin": [
       "diàn nǎo",
       "diànnǎo",
-      "dian nao",
-      "diannao",
       "dian4 nao3",
       "dian4nao3"
     ],
@@ -210,8 +185,6 @@
     "pinyin": [
       "diàn shì",
       "diànshì",
-      "dian shi",
-      "dianshi",
       "dian4 shi4",
       "dian4shi4"
     ],
@@ -223,8 +196,6 @@
     "pinyin": [
       "diàn yǐng",
       "diànyǐng",
-      "dian ying",
-      "dianying",
       "dian4 ying3",
       "dian4ying3"
     ],
@@ -236,8 +207,6 @@
     "pinyin": [
       "dōng xī",
       "dōngxī",
-      "dong xi",
-      "dongxi",
       "dong1 xi1",
       "dong1xi1",
       "dōng xi",
@@ -254,10 +223,8 @@
     "character": "都",
     "pinyin": [
       "dū",
-      "du",
       "du1",
       "dōu",
-      "dou",
       "dou1"
     ],
     "displayPinyin": "dū",
@@ -266,23 +233,20 @@
   {
     "character": "读",
     "pinyin": [
-      "dòu",
-      "dou",
-      "dou4",
       "dú",
       "du",
-      "du2"
+      "du2",
+      "dòu",
+      "dou4"
     ],
-    "displayPinyin": "dòu",
-    "meaning": "comma / phrase marked by pause"
+    "displayPinyin": "dú",
+    "meaning": "to read / to study / to attend school"
   },
   {
     "character": "对不起",
     "pinyin": [
       "duì bu qǐ",
       "duìbuqǐ",
-      "dui bu qi",
-      "duibuqi",
       "dui4 bu5 qi3",
       "dui4bu5qi3",
       "dui4 bu qi3",
@@ -295,7 +259,6 @@
     "character": "多",
     "pinyin": [
       "duō",
-      "duo",
       "duo1"
     ],
     "displayPinyin": "duō",
@@ -306,8 +269,6 @@
     "pinyin": [
       "duō shǎo",
       "duōshǎo",
-      "duo shao",
-      "duoshao",
       "duo1 shao3",
       "duo1shao3",
       "duō shao",
@@ -325,8 +286,6 @@
     "pinyin": [
       "ér zi",
       "érzi",
-      "er zi",
-      "erzi",
       "er2 zi5",
       "er2zi5",
       "er2 zi",
@@ -339,32 +298,16 @@
     "character": "二",
     "pinyin": [
       "èr",
-      "er",
       "er4"
     ],
     "displayPinyin": "èr",
     "meaning": "two / 2 / (Beijing dialect) stupid"
   },
   {
-    "character": "饭馆",
-    "pinyin": [
-      "fàn guǎn",
-      "fànguǎn",
-      "fan guan",
-      "fanguan",
-      "fan4 guan3",
-      "fan4guan3"
-    ],
-    "displayPinyin": "fàn guǎn",
-    "meaning": "restaurant"
-  },
-  {
     "character": "飞机",
     "pinyin": [
       "fēi jī",
       "fēijī",
-      "fei ji",
-      "feiji",
       "fei1 ji1",
       "fei1ji1"
     ],
@@ -376,8 +319,6 @@
     "pinyin": [
       "fēn zhōng",
       "fēnzhōng",
-      "fen zhong",
-      "fenzhong",
       "fen1 zhong1",
       "fen1zhong1"
     ],
@@ -389,8 +330,6 @@
     "pinyin": [
       "gāo xìng",
       "gāoxìng",
-      "gao xing",
-      "gaoxing",
       "gao1 xing4",
       "gao1xing4"
     ],
@@ -401,7 +340,6 @@
     "character": "个",
     "pinyin": [
       "gě",
-      "ge",
       "ge3",
       "gè",
       "ge4"
@@ -414,8 +352,6 @@
     "pinyin": [
       "gōng zuò",
       "gōngzuò",
-      "gong zuo",
-      "gongzuo",
       "gong1 zuo4",
       "gong1zuo4"
     ],
@@ -426,7 +362,6 @@
     "character": "狗",
     "pinyin": [
       "gǒu",
-      "gou",
       "gou3"
     ],
     "displayPinyin": "gǒu",
@@ -437,8 +372,6 @@
     "pinyin": [
       "hàn yǔ",
       "hànyǔ",
-      "han yu",
-      "hanyu",
       "han4 yu3",
       "han4yu3"
     ],
@@ -449,7 +382,6 @@
     "character": "好",
     "pinyin": [
       "hǎo",
-      "hao",
       "hao3",
       "hào",
       "hao4"
@@ -461,7 +393,6 @@
     "character": "喝",
     "pinyin": [
       "hē",
-      "he",
       "he1",
       "hè",
       "he4"
@@ -473,15 +404,12 @@
     "character": "和",
     "pinyin": [
       "hé",
-      "he",
       "he2",
       "hè",
       "he4",
       "hú",
-      "hu",
       "hu2",
       "huó",
-      "huo",
       "huo2",
       "huò",
       "huo4"
@@ -493,7 +421,6 @@
     "character": "很",
     "pinyin": [
       "hěn",
-      "hen",
       "hen3"
     ],
     "displayPinyin": "hěn",
@@ -504,8 +431,6 @@
     "pinyin": [
       "hòu mian",
       "hòumian",
-      "hou mian",
-      "houmian",
       "hou4 mian5",
       "hou4mian5",
       "hou4 mian",
@@ -518,7 +443,6 @@
     "character": "回",
     "pinyin": [
       "huí",
-      "hui",
       "hui2"
     ],
     "displayPinyin": "huí",
@@ -528,33 +452,17 @@
     "character": "会",
     "pinyin": [
       "huì",
-      "hui",
       "hui4",
       "kuài",
-      "kuai",
       "kuai4"
     ],
     "displayPinyin": "huì",
     "meaning": "can; to have the skill; to know how to / to be likely to; to be sure to / to meet; to get together"
   },
   {
-    "character": "火车站",
-    "pinyin": [
-      "huǒ chē zhàn",
-      "huǒchēzhàn",
-      "huo che zhan",
-      "huochezhan",
-      "huo3 che1 zhan4",
-      "huo3che1zhan4"
-    ],
-    "displayPinyin": "huǒ chē zhàn",
-    "meaning": "train station"
-  },
-  {
     "character": "几",
     "pinyin": [
       "jī",
-      "ji",
       "ji1",
       "jǐ",
       "ji3"
@@ -566,7 +474,6 @@
     "character": "家",
     "pinyin": [
       "jiā",
-      "jia",
       "jia1"
     ],
     "displayPinyin": "jiā",
@@ -576,7 +483,6 @@
     "character": "叫",
     "pinyin": [
       "jiào",
-      "jiao",
       "jiao4"
     ],
     "displayPinyin": "jiào",
@@ -587,8 +493,6 @@
     "pinyin": [
       "jīn tiān",
       "jīntiān",
-      "jin tian",
-      "jintian",
       "jin1 tian1",
       "jin1tian1"
     ],
@@ -599,7 +503,6 @@
     "character": "九",
     "pinyin": [
       "jiǔ",
-      "jiu",
       "jiu3"
     ],
     "displayPinyin": "jiǔ",
@@ -609,7 +512,6 @@
     "character": "开",
     "pinyin": [
       "kāi",
-      "kai",
       "kai1"
     ],
     "displayPinyin": "kāi",
@@ -618,22 +520,20 @@
   {
     "character": "看",
     "pinyin": [
-      "kān",
-      "kan",
-      "kan1",
       "kàn",
-      "kan4"
+      "kan",
+      "kan4",
+      "kān",
+      "kan1"
     ],
-    "displayPinyin": "kān",
-    "meaning": "to look after / to take care of / to watch"
+    "displayPinyin": "kàn",
+    "meaning": "to see / to look at / to read / to watch"
   },
   {
     "character": "看见",
     "pinyin": [
       "kàn jiàn",
       "kànjiàn",
-      "kan jian",
-      "kanjian",
       "kan4 jian4",
       "kan4jian4"
     ],
@@ -644,7 +544,6 @@
     "character": "块",
     "pinyin": [
       "kuài",
-      "kuai",
       "kuai4"
     ],
     "displayPinyin": "kuài",
@@ -654,7 +553,6 @@
     "character": "来",
     "pinyin": [
       "lái",
-      "lai",
       "lai2"
     ],
     "displayPinyin": "lái",
@@ -665,8 +563,6 @@
     "pinyin": [
       "lǎo shī",
       "lǎoshī",
-      "lao shi",
-      "laoshi",
       "lao3 shi1",
       "lao3shi1"
     ],
@@ -679,19 +575,17 @@
       "le",
       "le5",
       "liǎo",
-      "liao",
       "liao3",
       "liào",
       "liao4"
     ],
-    "displayPinyin": "le5",
+    "displayPinyin": "le",
     "meaning": "(completed action marker) / (modal particle indicating change of state, situation now) / (modal particle intensifying preceding clause)"
   },
   {
     "character": "冷",
     "pinyin": [
       "lěng",
-      "leng",
       "leng3"
     ],
     "displayPinyin": "lěng",
@@ -701,7 +595,6 @@
     "character": "里",
     "pinyin": [
       "lǐ",
-      "li",
       "li3"
     ],
     "displayPinyin": "lǐ",
@@ -711,7 +604,6 @@
     "character": "零",
     "pinyin": [
       "líng",
-      "ling",
       "ling2"
     ],
     "displayPinyin": "líng",
@@ -721,7 +613,6 @@
     "character": "六",
     "pinyin": [
       "liù",
-      "liu",
       "liu4"
     ],
     "displayPinyin": "liù",
@@ -732,8 +623,6 @@
     "pinyin": [
       "mā ma",
       "māma",
-      "ma ma",
-      "mama",
       "ma1 ma5",
       "ma1ma5",
       "ma1 ma",
@@ -746,20 +635,19 @@
     "character": "吗",
     "pinyin": [
       "má",
-      "ma",
       "ma2",
       "mǎ",
       "ma3",
+      "ma",
       "ma5"
     ],
-    "displayPinyin": "ma5",
+    "displayPinyin": "ma",
     "meaning": "(question particle for \"yes-no\" questions)"
   },
   {
     "character": "买",
     "pinyin": [
       "mǎi",
-      "mai",
       "mai3"
     ],
     "displayPinyin": "mǎi",
@@ -769,7 +657,6 @@
     "character": "猫",
     "pinyin": [
       "māo",
-      "mao",
       "mao1"
     ],
     "displayPinyin": "māo",
@@ -779,10 +666,8 @@
     "character": "没",
     "pinyin": [
       "méi",
-      "mei",
       "mei2",
       "mò",
-      "mo",
       "mo4"
     ],
     "displayPinyin": "méi",
@@ -793,8 +678,6 @@
     "pinyin": [
       "méi guān xi",
       "méiguānxi",
-      "mei guan xi",
-      "meiguanxi",
       "mei2 guan1 xi5",
       "mei2guan1xi5",
       "mei2 guan1 xi",
@@ -808,8 +691,6 @@
     "pinyin": [
       "mǐ fàn",
       "mǐfàn",
-      "mi fan",
-      "mifan",
       "mi3 fan4",
       "mi3fan4"
     ],
@@ -821,8 +702,6 @@
     "pinyin": [
       "míng zi",
       "míngzi",
-      "ming zi",
-      "mingzi",
       "ming2 zi5",
       "ming2zi5",
       "ming2 zi",
@@ -836,8 +715,6 @@
     "pinyin": [
       "míng tiān",
       "míngtiān",
-      "ming tian",
-      "mingtian",
       "ming2 tian1",
       "ming2tian1"
     ],
@@ -848,14 +725,12 @@
     "character": "哪",
     "pinyin": [
       "nǎ",
-      "na",
       "na3",
+      "na",
       "na5",
       "né",
-      "ne",
       "ne2",
       "něi",
-      "nei",
       "nei3"
     ],
     "displayPinyin": "nǎ",
@@ -865,10 +740,8 @@
     "character": "那",
     "pinyin": [
       "nā",
-      "na",
       "na1",
       "nuó",
-      "nuo",
       "nuo2",
       "nǎ",
       "na3",
@@ -884,17 +757,15 @@
       "ne",
       "ne5",
       "ní",
-      "ni",
       "ni2"
     ],
-    "displayPinyin": "ne5",
+    "displayPinyin": "ne",
     "meaning": "particle indicating that a previously asked question is to be applied to the preceding word (\"What about ...?\", \"And ...?\") / particle for inquiring about location (\"Where is ...?\") / particle signaling a pause, to emphasize the preceding words and allow the listener time to take them on board (\"ok?\", \"are you with me?\")"
   },
   {
     "character": "能",
     "pinyin": [
       "néng",
-      "neng",
       "neng2"
     ],
     "displayPinyin": "néng",
@@ -904,7 +775,6 @@
     "character": "你",
     "pinyin": [
       "nǐ",
-      "ni",
       "ni3"
     ],
     "displayPinyin": "nǐ",
@@ -914,7 +784,6 @@
     "character": "年",
     "pinyin": [
       "nián",
-      "nian",
       "nian2"
     ],
     "displayPinyin": "nián",
@@ -925,8 +794,6 @@
     "pinyin": [
       "nǚ ér",
       "nǚér",
-      "nu er",
-      "nuer",
       "nü3 er2",
       "nü3er2"
     ],
@@ -938,8 +805,6 @@
     "pinyin": [
       "péng you",
       "péngyou",
-      "peng you",
-      "pengyou",
       "peng2 you5",
       "peng2you5",
       "peng2 you",
@@ -953,8 +818,6 @@
     "pinyin": [
       "piào liang",
       "piàoliang",
-      "piao liang",
-      "piaoliang",
       "piao4 liang5",
       "piao4liang5",
       "piao4 liang",
@@ -968,8 +831,6 @@
     "pinyin": [
       "píng guǒ",
       "píngguǒ",
-      "ping guo",
-      "pingguo",
       "ping2 guo3",
       "ping2guo3"
     ],
@@ -980,7 +841,6 @@
     "character": "七",
     "pinyin": [
       "qī",
-      "qi",
       "qi1"
     ],
     "displayPinyin": "qī",
@@ -991,8 +851,6 @@
     "pinyin": [
       "qián miàn",
       "qiánmiàn",
-      "qian mian",
-      "qianmian",
       "qian2 mian4",
       "qian2mian4"
     ],
@@ -1003,7 +861,6 @@
     "character": "钱",
     "pinyin": [
       "qián",
-      "qian",
       "qian2"
     ],
     "displayPinyin": "qián",
@@ -1013,7 +870,6 @@
     "character": "请",
     "pinyin": [
       "qǐng",
-      "qing",
       "qing3"
     ],
     "displayPinyin": "qǐng",
@@ -1023,7 +879,6 @@
     "character": "去",
     "pinyin": [
       "qù",
-      "qu",
       "qu4"
     ],
     "displayPinyin": "qù",
@@ -1033,7 +888,6 @@
     "character": "热",
     "pinyin": [
       "rè",
-      "re",
       "re4"
     ],
     "displayPinyin": "rè",
@@ -1043,7 +897,6 @@
     "character": "人",
     "pinyin": [
       "rén",
-      "ren",
       "ren2"
     ],
     "displayPinyin": "rén",
@@ -1054,8 +907,6 @@
     "pinyin": [
       "rèn shi",
       "rènshi",
-      "ren shi",
-      "renshi",
       "ren4 shi5",
       "ren4shi5",
       "ren4 shi",
@@ -1065,20 +916,9 @@
     "meaning": "to know / to recognize / to be familiar with"
   },
   {
-    "character": "日",
-    "pinyin": [
-      "rì",
-      "ri",
-      "ri4"
-    ],
-    "displayPinyin": "rì",
-    "meaning": "abbr. for 本, Japan"
-  },
-  {
     "character": "三",
     "pinyin": [
       "sān",
-      "san",
       "san1"
     ],
     "displayPinyin": "sān",
@@ -1089,8 +929,6 @@
     "pinyin": [
       "shāng diàn",
       "shāngdiàn",
-      "shang dian",
-      "shangdian",
       "shang1 dian4",
       "shang1dian4"
     ],
@@ -1101,7 +939,6 @@
     "character": "上",
     "pinyin": [
       "shǎng",
-      "shang",
       "shang3",
       "shàng",
       "shang4"
@@ -1114,8 +951,6 @@
     "pinyin": [
       "shàng wǔ",
       "shàngwǔ",
-      "shang wu",
-      "shangwu",
       "shang4 wu3",
       "shang4wu3"
     ],
@@ -1126,7 +961,6 @@
     "character": "少",
     "pinyin": [
       "shǎo",
-      "shao",
       "shao3",
       "shào",
       "shao4"
@@ -1139,8 +973,6 @@
     "pinyin": [
       "shén me",
       "shénme",
-      "shen me",
-      "shenme",
       "shen2 me5",
       "shen2me5",
       "shen2 me",
@@ -1153,7 +985,6 @@
     "character": "十",
     "pinyin": [
       "shí",
-      "shi",
       "shi2"
     ],
     "displayPinyin": "shí",
@@ -1164,8 +995,6 @@
     "pinyin": [
       "shí hou",
       "shíhou",
-      "shi hou",
-      "shihou",
       "shi2 hou5",
       "shi2hou5",
       "shi2 hou",
@@ -1178,7 +1007,6 @@
     "character": "是",
     "pinyin": [
       "shì",
-      "shi",
       "shi4"
     ],
     "displayPinyin": "shì",
@@ -1188,7 +1016,6 @@
     "character": "书",
     "pinyin": [
       "shū",
-      "shu",
       "shu1"
     ],
     "displayPinyin": "shū",
@@ -1198,7 +1025,6 @@
     "character": "谁",
     "pinyin": [
       "shéi",
-      "shei",
       "shei2"
     ],
     "displayPinyin": "shéi",
@@ -1208,7 +1034,6 @@
     "character": "水",
     "pinyin": [
       "shuǐ",
-      "shui",
       "shui3"
     ],
     "displayPinyin": "shuǐ",
@@ -1219,8 +1044,6 @@
     "pinyin": [
       "shuǐ guǒ",
       "shuǐguǒ",
-      "shui guo",
-      "shuiguo",
       "shui3 guo3",
       "shui3guo3"
     ],
@@ -1232,8 +1055,6 @@
     "pinyin": [
       "shuì jiào",
       "shuìjiào",
-      "shui jiao",
-      "shuijiao",
       "shui4 jiao4",
       "shui4jiao4"
     ],
@@ -1241,23 +1062,9 @@
     "meaning": "to go to bed / to sleep"
   },
   {
-    "character": "说话",
-    "pinyin": [
-      "shuō huà",
-      "shuōhuà",
-      "shuo hua",
-      "shuohua",
-      "shuo1 hua4",
-      "shuo1hua4"
-    ],
-    "displayPinyin": "shuō huà",
-    "meaning": "to speak / to say / to talk"
-  },
-  {
     "character": "四",
     "pinyin": [
       "sì",
-      "si",
       "si4"
     ],
     "displayPinyin": "sì",
@@ -1267,7 +1074,6 @@
     "character": "岁",
     "pinyin": [
       "suì",
-      "sui",
       "sui4"
     ],
     "displayPinyin": "suì",
@@ -1277,7 +1083,6 @@
     "character": "他",
     "pinyin": [
       "tā",
-      "ta",
       "ta1"
     ],
     "displayPinyin": "tā",
@@ -1287,7 +1092,6 @@
     "character": "她",
     "pinyin": [
       "tā",
-      "ta",
       "ta1"
     ],
     "displayPinyin": "tā",
@@ -1297,7 +1101,6 @@
     "character": "太",
     "pinyin": [
       "tài",
-      "tai",
       "tai4"
     ],
     "displayPinyin": "tài",
@@ -1308,8 +1111,6 @@
     "pinyin": [
       "tiān qì",
       "tiānqì",
-      "tian qi",
-      "tianqi",
       "tian1 qi4",
       "tian1qi4"
     ],
@@ -1319,23 +1120,20 @@
   {
     "character": "听",
     "pinyin": [
-      "yǐn",
-      "yin",
-      "yin3",
       "tīng",
       "ting",
-      "ting1"
+      "ting1",
+      "yǐn",
+      "yin3"
     ],
-    "displayPinyin": "yǐn",
-    "meaning": "smile (archaic)"
+    "displayPinyin": "tīng",
+    "meaning": "to listen / to hear / to obey"
   },
   {
     "character": "同学",
     "pinyin": [
       "tóng xué",
       "tóngxué",
-      "tong xue",
-      "tongxue",
       "tong2 xue2",
       "tong2xue2"
     ],
@@ -1346,7 +1144,6 @@
     "character": "喂",
     "pinyin": [
       "wéi",
-      "wei",
       "wei2",
       "wèi",
       "wei4"
@@ -1358,7 +1155,6 @@
     "character": "我",
     "pinyin": [
       "wǒ",
-      "wo",
       "wo3"
     ],
     "displayPinyin": "wǒ",
@@ -1369,8 +1165,6 @@
     "pinyin": [
       "wǒ men",
       "wǒmen",
-      "wo men",
-      "women",
       "wo3 men5",
       "wo3men5",
       "wo3 men",
@@ -1383,7 +1177,6 @@
     "character": "五",
     "pinyin": [
       "wǔ",
-      "wu",
       "wu3"
     ],
     "displayPinyin": "wǔ",
@@ -1394,8 +1187,6 @@
     "pinyin": [
       "xǐ huan",
       "xǐhuan",
-      "xi huan",
-      "xihuan",
       "xi3 huan5",
       "xi3huan5",
       "xi3 huan",
@@ -1408,7 +1199,6 @@
     "character": "下",
     "pinyin": [
       "xià",
-      "xia",
       "xia4"
     ],
     "displayPinyin": "xià",
@@ -1419,8 +1209,6 @@
     "pinyin": [
       "xià wǔ",
       "xiàwǔ",
-      "xia wu",
-      "xiawu",
       "xia4 wu3",
       "xia4wu3"
     ],
@@ -1432,8 +1220,6 @@
     "pinyin": [
       "xià yǔ",
       "xiàyǔ",
-      "xia yu",
-      "xiayu",
       "xia4 yu3",
       "xia4yu3"
     ],
@@ -1445,8 +1231,6 @@
     "pinyin": [
       "xiān sheng",
       "xiānsheng",
-      "xian sheng",
-      "xiansheng",
       "xian1 sheng5",
       "xian1sheng5",
       "xian1 sheng",
@@ -1460,8 +1244,6 @@
     "pinyin": [
       "xiàn zài",
       "xiànzài",
-      "xian zai",
-      "xianzai",
       "xian4 zai4",
       "xian4zai4"
     ],
@@ -1472,7 +1254,6 @@
     "character": "想",
     "pinyin": [
       "xiǎng",
-      "xiang",
       "xiang3"
     ],
     "displayPinyin": "xiǎng",
@@ -1482,7 +1263,6 @@
     "character": "小",
     "pinyin": [
       "xiǎo",
-      "xiao",
       "xiao3"
     ],
     "displayPinyin": "xiǎo",
@@ -1493,8 +1273,6 @@
     "pinyin": [
       "xiǎo jie",
       "xiǎojie",
-      "xiao jie",
-      "xiaojie",
       "xiao3 jie5",
       "xiao3jie5",
       "xiao3 jie",
@@ -1507,7 +1285,6 @@
     "character": "些",
     "pinyin": [
       "xiē",
-      "xie",
       "xie1"
     ],
     "displayPinyin": "xiē",
@@ -1517,7 +1294,6 @@
     "character": "写",
     "pinyin": [
       "xiě",
-      "xie",
       "xie3"
     ],
     "displayPinyin": "xiě",
@@ -1528,8 +1304,6 @@
     "pinyin": [
       "xiè xie",
       "xièxie",
-      "xie xie",
-      "xiexie",
       "xie4 xie5",
       "xie4xie5",
       "xie4 xie",
@@ -1543,8 +1317,6 @@
     "pinyin": [
       "xīng qī",
       "xīngqī",
-      "xing qi",
-      "xingqi",
       "xing1 qi1",
       "xing1qi1"
     ],
@@ -1556,8 +1328,6 @@
     "pinyin": [
       "xué sheng",
       "xuésheng",
-      "xue sheng",
-      "xuesheng",
       "xue2 sheng5",
       "xue2sheng5",
       "xue2 sheng",
@@ -1571,8 +1341,6 @@
     "pinyin": [
       "xué xí",
       "xuéxí",
-      "xue xi",
-      "xuexi",
       "xue2 xi2",
       "xue2xi2"
     ],
@@ -1584,8 +1352,6 @@
     "pinyin": [
       "xué xiào",
       "xuéxiào",
-      "xue xiao",
-      "xuexiao",
       "xue2 xiao4",
       "xue2xiao4"
     ],
@@ -1596,7 +1362,6 @@
     "character": "一",
     "pinyin": [
       "yī",
-      "yi",
       "yi1"
     ],
     "displayPinyin": "yī",
@@ -1607,8 +1372,6 @@
     "pinyin": [
       "yī fu",
       "yīfu",
-      "yi fu",
-      "yifu",
       "yi1 fu5",
       "yi1fu5",
       "yi1 fu",
@@ -1622,8 +1385,6 @@
     "pinyin": [
       "yī shēng",
       "yīshēng",
-      "yi sheng",
-      "yisheng",
       "yi1 sheng1",
       "yi1sheng1"
     ],
@@ -1635,8 +1396,6 @@
     "pinyin": [
       "yī yuàn",
       "yīyuàn",
-      "yi yuan",
-      "yiyuan",
       "yi1 yuan4",
       "yi1yuan4"
     ],
@@ -1648,8 +1407,6 @@
     "pinyin": [
       "yǐ zi",
       "yǐzi",
-      "yi zi",
-      "yizi",
       "yi3 zi5",
       "yi3zi5",
       "yi3 zi",
@@ -1662,7 +1419,6 @@
     "character": "有",
     "pinyin": [
       "yǒu",
-      "you",
       "you3"
     ],
     "displayPinyin": "yǒu",
@@ -1672,7 +1428,6 @@
     "character": "月",
     "pinyin": [
       "yuè",
-      "yue",
       "yue4"
     ],
     "displayPinyin": "yuè",
@@ -1683,8 +1438,6 @@
     "pinyin": [
       "zài jiàn",
       "zàijiàn",
-      "zai jian",
-      "zaijian",
       "zai4 jian4",
       "zai4jian4"
     ],
@@ -1695,7 +1448,6 @@
     "character": "在",
     "pinyin": [
       "zài",
-      "zai",
       "zai4"
     ],
     "displayPinyin": "zài",
@@ -1706,8 +1458,6 @@
     "pinyin": [
       "zěn me",
       "zěnme",
-      "zen me",
-      "zenme",
       "zen3 me5",
       "zen3me5",
       "zen3 me",
@@ -1721,8 +1471,6 @@
     "pinyin": [
       "zěn me yàng",
       "zěnmeyàng",
-      "zen me yang",
-      "zenmeyang",
       "zen3 me5 yang4",
       "zen3me5yang4",
       "zen3 me yang4",
@@ -1735,7 +1483,6 @@
     "character": "这",
     "pinyin": [
       "zhè",
-      "zhe",
       "zhe4"
     ],
     "displayPinyin": "zhè",
@@ -1746,8 +1493,6 @@
     "pinyin": [
       "zhōng guó",
       "zhōngguó",
-      "zhong guo",
-      "zhongguo",
       "zhong1 guo2",
       "zhong1guo2"
     ],
@@ -1759,8 +1504,6 @@
     "pinyin": [
       "zhōng wǔ",
       "zhōngwǔ",
-      "zhong wu",
-      "zhongwu",
       "zhong1 wu3",
       "zhong1wu3"
     ],
@@ -1771,7 +1514,6 @@
     "character": "住",
     "pinyin": [
       "zhù",
-      "zhu",
       "zhu4"
     ],
     "displayPinyin": "zhù",
@@ -1782,8 +1524,6 @@
     "pinyin": [
       "zhuō zi",
       "zhuōzi",
-      "zhuo zi",
-      "zhuozi",
       "zhuo1 zi5",
       "zhuo1zi5",
       "zhuo1 zi",
@@ -1796,7 +1536,6 @@
     "character": "字",
     "pinyin": [
       "zì",
-      "zi",
       "zi4"
     ],
     "displayPinyin": "zì",
@@ -1807,8 +1546,6 @@
     "pinyin": [
       "zuó tiān",
       "zuótiān",
-      "zuo tian",
-      "zuotian",
       "zuo2 tian1",
       "zuo2tian1"
     ],
@@ -1819,7 +1556,6 @@
     "character": "坐",
     "pinyin": [
       "zuò",
-      "zuo",
       "zuo4"
     ],
     "displayPinyin": "zuò",
@@ -1829,10 +1565,60 @@
     "character": "做",
     "pinyin": [
       "zuò",
-      "zuo",
       "zuo4"
     ],
     "displayPinyin": "zuò",
     "meaning": "to make; to produce / to write; to compose / to do; to engage in; to hold (a party etc)"
+  },
+  {
+    "character": "哪儿",
+    "pinyin": [
+      "nǎr",
+      "nar",
+      "nar3"
+    ],
+    "displayPinyin": "nǎr",
+    "meaning": "where / wherever"
+  },
+  {
+    "character": "一点儿",
+    "pinyin": [
+      "yīdiǎnr",
+      "yidianr",
+      "yidianr1"
+    ],
+    "displayPinyin": "yīdiǎnr",
+    "meaning": "a little bit / a bit"
+  },
+  {
+    "character": "饭店",
+    "pinyin": [
+      "fàndiàn",
+      "fandian",
+      "fandian4"
+    ],
+    "displayPinyin": "fàndiàn",
+    "meaning": "restaurant / hotel"
+  },
+  {
+    "character": "说",
+    "pinyin": [
+      "shuō",
+      "shuo",
+      "shuo1"
+    ],
+    "displayPinyin": "shuō",
+    "meaning": "to speak / to say / to talk"
+  },
+  {
+    "character": "号",
+    "pinyin": [
+      "háo",
+      "hao2",
+      "hào",
+      "hao4"
+    ],
+    "displayPinyin": "hào",
+    "meaning": "ordinal number / day of a month / mark"
   }
 ]

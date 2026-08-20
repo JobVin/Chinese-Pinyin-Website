@@ -23,8 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const studyView = document.getElementById('study-view');
   const quizView = document.getElementById('quiz-view');
   const btnHome = document.getElementById('btn-home');
-  const btnLearningHubNav = document.getElementById('btn-learning-hub');
+  const btnBackLearningHubNav = document.getElementById('btn-back-learning-hub-nav');
   const brandLink = document.getElementById('brand-link');
+
+  // HUB SWITCHER TABS
+  const tabPracticeHub1 = document.getElementById('tab-practice-hub-1');
+  const tabLearningHub1 = document.getElementById('tab-learning-hub-1');
+  const tabPracticeHub2 = document.getElementById('tab-practice-hub-2');
+  const tabLearningHub2 = document.getElementById('tab-learning-hub-2');
 
   // MOBILE NAVBAR TAP TOGGLE
   if (navbarPeekHandle && navbar) {
@@ -82,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const studyFlashcardView = document.getElementById('study-flashcard-view');
   const btnStartQuizFromStudy = document.getElementById('btn-start-quiz-from-study');
   const btnBackToLearningHub = document.getElementById('btn-back-to-learning-hub');
+  const btnNextStudyLevel = document.getElementById('btn-next-study-level');
 
   // BANNER COLLAPSE TOGGLE
   const btnToggleInstructions = document.getElementById('btn-toggle-instructions');
@@ -112,14 +119,12 @@ document.addEventListener('DOMContentLoaded', () => {
       return false;
     }
     const cleanedInput = userInput.trim().toLowerCase();
-    const hasTone = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ1-5]/.test(cleanedInput);
-    if (!hasTone) {
-      return false; // Reject plain pinyin without tones
-    }
+    const cleanedNoSpaces = cleanedInput.replace(/\s+/g, '');
+
     return cardPinyinArray.some(pinyinVariant => {
       const variantStr = String(pinyinVariant).trim().toLowerCase();
-      const variantHasTone = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ1-5]/.test(variantStr);
-      return variantHasTone && variantStr === cleanedInput;
+      const variantNoSpaces = variantStr.replace(/\s+/g, '');
+      return variantStr === cleanedInput || variantNoSpaces === cleanedNoSpaces;
     });
   }
 
@@ -230,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (viewName === 'hub') {
       hubView.classList.add('active');
       btnHome.style.display = 'none';
-      if (btnLearningHubNav) btnLearningHubNav.style.display = 'flex';
+      if (btnBackLearningHubNav) btnBackLearningHubNav.style.display = 'none';
       resultsBanner.style.display = 'none';
       stageModal.classList.remove('show');
       quitModal.classList.remove('show');
@@ -238,8 +243,8 @@ document.addEventListener('DOMContentLoaded', () => {
       state.submitted = false;
     } else if (viewName === 'learning-hub') {
       if (learningHubView) learningHubView.classList.add('active');
-      btnHome.style.display = 'flex';
-      if (btnLearningHubNav) btnLearningHubNav.style.display = 'none';
+      btnHome.style.display = 'none';
+      if (btnBackLearningHubNav) btnBackLearningHubNav.style.display = 'none';
       resultsBanner.style.display = 'none';
       stageModal.classList.remove('show');
       quitModal.classList.remove('show');
@@ -247,15 +252,74 @@ document.addEventListener('DOMContentLoaded', () => {
       state.submitted = false;
     } else if (viewName === 'study') {
       if (studyView) studyView.classList.add('active');
-      btnHome.style.display = 'flex';
-      if (btnLearningHubNav) btnLearningHubNav.style.display = 'flex';
+      btnHome.style.display = 'none';
+      if (btnBackLearningHubNav) btnBackLearningHubNav.style.display = 'flex';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (viewName === 'quiz') {
       quizView.classList.add('active');
       btnHome.style.display = 'flex';
-      if (btnLearningHubNav) btnLearningHubNav.style.display = 'flex';
+      if (btnBackLearningHubNav) btnBackLearningHubNav.style.display = 'none';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+  }
+
+  async function loadHsk1Categories() {
+    try {
+      const res = await fetch('data/hsk1-categories.json');
+      return await res.json();
+    } catch (e) {
+      console.error('Failed to load HSK 1 categories:', e);
+      return null;
+    }
+  }
+
+  function getHsk1StagesByCategory(fullData, categoryMap) {
+    if (!categoryMap) {
+      return getDatasetStagesFromData(fullData, 'hsk1', 15);
+    }
+
+    const stages = [];
+    const matchedChars = new Set();
+    const dataMap = new Map();
+    fullData.forEach(item => dataMap.set(item.character, item));
+
+    Object.entries(categoryMap).forEach(([catName, charList]) => {
+      const filteredItems = [];
+      charList.forEach(char => {
+        if (dataMap.has(char)) {
+          filteredItems.push(dataMap.get(char));
+          matchedChars.add(char);
+        }
+      });
+
+      if (filteredItems.length > 0) {
+        stages.push({
+          id: catName.toLowerCase().replace(/\s+/g, '_'),
+          title: catName,
+          subTitle: `${filteredItems.length} Words`,
+          data: filteredItems
+        });
+      }
+    });
+
+    const leftoverItems = fullData.filter(item => !matchedChars.has(item.character));
+    if (leftoverItems.length > 0) {
+      stages.push({
+        id: 'uncategorized',
+        title: 'Uncategorized',
+        subTitle: `${leftoverItems.length} Words`,
+        data: leftoverItems
+      });
+    }
+
+    stages.push({
+      id: 'all',
+      title: 'Full Level',
+      subTitle: `All ${fullData.length} Words`,
+      data: fullData
+    });
+
+    return stages;
   }
 
   // TRACK SELECTION FROM PRACTICE HUB
@@ -268,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (stages.length === 1) {
         startQuiz(track, stages[0].data, getTrackTitle(track));
       } else {
-        openStageModal(track, stages, (stage) => startQuiz(track, stage.data, `${getTrackTitle(track)} (${stage.title})`));
+        openStageModal(track, stages, (stage) => startQuiz(track, stage.data, `${getTrackTitle(track)} (${stage.title})`), false);
       }
     });
   });
@@ -279,20 +343,34 @@ document.addEventListener('DOMContentLoaded', () => {
     card.addEventListener('click', async () => {
       const track = card.dataset.track;
       const fullData = await loadDataset(track);
-      const stages = getDatasetStagesFromData(fullData, track, 15);
-      if (stages.length === 1) {
-        openStudyView(track, stages[0].data, getTrackTitle(track));
+      let stages = [];
+
+      if (track === 'hsk1') {
+        const catMap = await loadHsk1Categories();
+        stages = getHsk1StagesByCategory(fullData, catMap);
       } else {
-        openStageModal(track, stages, (stage) => openStudyView(track, stage.data, `${getTrackTitle(track)} (${stage.title})`));
+        stages = getDatasetStagesFromData(fullData, track, 15);
+      }
+
+      if (stages.length === 1) {
+        openStudyView(track, stages[0].data, getTrackTitle(track), stages, 0);
+      } else {
+        openStageModal(track, stages, (stage, idx) => openStudyView(track, stage.data, `${getTrackTitle(track)} (${stage.title})`, stages, idx), true);
       }
     });
   });
 
-  function openStageModal(trackName, stages, onSelectStage) {
+  function openStageModal(trackName, stages, onSelectStage, isTealTheme = false) {
+    if (isTealTheme) {
+      stageModal.classList.add('teal-modal');
+    } else {
+      stageModal.classList.remove('teal-modal');
+    }
+
     stageModalTitle.textContent = `${getTrackTitle(trackName)} - Select Level`;
     stageGrid.innerHTML = '';
 
-    stages.forEach(stage => {
+    stages.forEach((stage, idx) => {
       const btn = document.createElement('button');
       btn.className = 'stage-card-btn';
       btn.innerHTML = `
@@ -302,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.addEventListener('click', () => {
         stageModal.classList.remove('show');
         if (typeof onSelectStage === 'function') {
-          onSelectStage(stage);
+          onSelectStage(stage, idx);
         } else {
           startQuiz(trackName, stage.data, `${getTrackTitle(trackName)} (${stage.title})`);
         }
@@ -329,12 +407,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   btnHome.addEventListener('click', () => handleHomeNavigation('hub'));
-  if (btnLearningHubNav) btnLearningHubNav.addEventListener('click', () => handleHomeNavigation('learning-hub'));
+  if (btnBackLearningHubNav) btnBackLearningHubNav.addEventListener('click', () => handleHomeNavigation('learning-hub'));
   brandLink.addEventListener('click', (e) => handleHomeNavigation('hub', e));
 
+  // HUB SWITCHER TABS LISTENERS
+  if (tabPracticeHub1) tabPracticeHub1.addEventListener('click', () => handleHomeNavigation('hub'));
+  if (tabLearningHub1) tabLearningHub1.addEventListener('click', () => handleHomeNavigation('learning-hub'));
+  if (tabPracticeHub2) tabPracticeHub2.addEventListener('click', () => handleHomeNavigation('hub'));
+  if (tabLearningHub2) tabLearningHub2.addEventListener('click', () => handleHomeNavigation('learning-hub'));
+
   // STUDY VIEW RENDERERS & HANDLERS
-  function openStudyView(trackName, data, title) {
+  function openStudyView(trackName, data, title, stages = [], stageIndex = -1) {
     state.currentStudyData = { trackName, data, title };
+    state.currentStudyStages = stages;
+    state.currentStudyStageIndex = stageIndex;
+
     if (studyHeaderTitle) studyHeaderTitle.textContent = title;
     if (studyHeaderCount) studyHeaderCount.textContent = `${data.length} Words`;
 
@@ -348,6 +435,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (studyListView && studyFlashcardView) {
       studyListView.style.display = 'block';
       studyFlashcardView.style.display = 'none';
+    }
+
+    // Configure "Next Level ->" Button
+    if (btnNextStudyLevel) {
+      if (stages && stages.length > 1 && stageIndex >= 0 && stageIndex < stages.length - 1) {
+        btnNextStudyLevel.style.display = 'inline-flex';
+      } else {
+        btnNextStudyLevel.style.display = 'none';
+      }
     }
 
     showView('study');
@@ -437,6 +533,24 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnBackToLearningHub) {
     btnBackToLearningHub.addEventListener('click', () => {
       showView('learning-hub');
+    });
+  }
+
+  if (btnNextStudyLevel) {
+    btnNextStudyLevel.addEventListener('click', () => {
+      const stages = state.currentStudyStages;
+      const nextIndex = state.currentStudyStageIndex + 1;
+      if (stages && nextIndex >= 0 && nextIndex < stages.length) {
+        const nextStage = stages[nextIndex];
+        const trackTitle = getTrackTitle(state.currentStudyData.trackName);
+        openStudyView(
+          state.currentStudyData.trackName,
+          nextStage.data,
+          `${trackTitle} (${nextStage.title})`,
+          stages,
+          nextIndex
+        );
+      }
     });
   }
 

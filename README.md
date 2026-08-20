@@ -23,11 +23,22 @@ An interactive, web application designed for active recall practice of Mandarin 
 | :--- | :--- | :--- |
 | **Character Strokes** | [`data/strokes.json`](data/strokes.json) | 29 Standard Stroke Symbols |
 | **Essential Radicals** | [`data/radicals.json`](data/radicals.json) | 16 Building Block Radicals |
-| **HSK Level 1** | [`data/hsk1.json`](data/hsk1.json) | 150 Vocabulary Words (10 Levels) |
-| **HSK Level 2** | [`data/hsk2.json`](data/hsk2.json) | 147 Vocabulary Words (10 Levels) |
-| **HSK Level 3** | [`data/hsk3.json`](data/hsk3.json) | 298 Vocabulary Words (20 Levels) |
+| **HSK Level 1** | [`data/hsk1.json`](data/hsk1.json) | 151 Vocabulary Words (11 Levels / 13 Categories) |
+| **HSK Level 2** | [`data/hsk2.json`](data/hsk2.json) | 144 Vocabulary Words (10 Levels) |
+| **HSK Level 3** | [`data/hsk3.json`](data/hsk3.json) | 330 Vocabulary Words (22 Levels) |
 
-> *HSK vocabulary data is sourced from [drkameleon/complete-hsk-vocabulary](https://github.com/drkameleon/complete-hsk-vocabulary) (MIT Licensed), using the Old HSK 2.0 level split.*
+> *HSK vocabulary data is sourced from MandarinBean official HSK wordlists (Old HSK 2.0 level split) and CC-CEDICT.*
+
+---
+
+## Known Grammar Pattern Gaps (Future Feature)
+
+The following multi-part grammatical structure rows from official MandarinBean lists are excluded from single-word vocabulary datasets and documented here for a potential future "Grammar Patterns" practice module:
+
+- **HSK 2 #24**: `因为……所以……` (`yīnwèi...suǒyǐ…` - because…so…)
+- **HSK 2 #25**: `虽然……但是……` (`suīrán…dànshì…` - although…but…)
+- **HSK 3 #61**: `不但……而且……` (`búdàn...érqiě…` - not only…but also…)
+- **HSK 3 #285**: `只有……才……` (`zhǐyǒu…cái…` - only if)
 
 ---
 

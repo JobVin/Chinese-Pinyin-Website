@@ -6,14 +6,12 @@ function validateUserAnswer(userInput, cardPinyinArray) {
     return false;
   }
   const cleanedInput = userInput.trim().toLowerCase();
-  const hasTone = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ1-5]/.test(cleanedInput);
-  if (!hasTone) {
-    return false; // Reject plain pinyin without tones
-  }
+  const cleanedNoSpaces = cleanedInput.replace(/\s+/g, '');
+
   return cardPinyinArray.some(pinyinVariant => {
     const variantStr = String(pinyinVariant).trim().toLowerCase();
-    const variantHasTone = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ1-5]/.test(variantStr);
-    return variantHasTone && variantStr === cleanedInput;
+    const variantNoSpaces = variantStr.replace(/\s+/g, '');
+    return variantStr === cleanedInput || variantNoSpaces === cleanedNoSpaces;
   });
 }
 

@@ -73,8 +73,19 @@ body {
   left: 0;
   right: 0;
   z-index: 1000;
-  transform: translateY(-84%);
+  transform: translateY(-100%);
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.navbar::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background: transparent;
+  cursor: pointer;
 }
 
 .navbar:hover,
@@ -931,7 +942,34 @@ body {
   padding: 32px;
   box-shadow: var(--shadow-lg);
   text-align: center;
+  position: relative;
   animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #edf2f7;
+  border: 1px solid #cbd5e0;
+  color: #4a5568;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.modal-close-btn:hover {
+  background: #e2e8f0;
+  color: #1a202c;
+  transform: scale(1.08);
 }
 
 @keyframes modalPop {
@@ -939,16 +977,73 @@ body {
   to { opacity: 1; transform: scale(1); }
 }
 
+/* PRACTICE HUB BLUE THEME STYLING */
+#hub-view .hub-title {
+  color: var(--primary-dark) !important;
+}
+
+#hub-view .hub-subtitle {
+  color: var(--primary-blue);
+}
+
+#hub-view .section-title {
+  color: var(--primary-dark) !important;
+}
+
+#hub-view .section-subtitle {
+  color: var(--primary-blue);
+}
+
+#hub-view .section-badge {
+  background: var(--primary-light) !important;
+  color: var(--primary-blue) !important;
+  border: 1px solid #bbdefb !important;
+}
+
+#hub-view .step-indicator {
+  background: var(--primary-light) !important;
+  color: var(--primary-dark) !important;
+  border: 1px solid #bbdefb !important;
+  font-weight: 800 !important;
+}
+
+#hub-view .stacked-symbol {
+  color: var(--primary-dark) !important;
+}
+
+#hub-view .stacked-track-card {
+  border-color: #bbdefb;
+}
+
+#hub-view .stacked-track-card:hover {
+  border-color: var(--primary-blue) !important;
+  box-shadow: 0 8px 24px rgba(25, 118, 210, 0.18) !important;
+}
+
+#hub-view .stacked-title {
+  color: var(--primary-dark) !important;
+}
+
+#hub-view .track-badge {
+  background: var(--primary-light) !important;
+  color: var(--primary-blue) !important;
+}
+
+#hub-view .stacked-action-btn {
+  color: var(--primary-blue) !important;
+}
+
+/* STAGE SELECTION MODAL (DEFAULT PRACTICE BLUE THEME) */
 .modal-title {
   font-size: 24px;
   font-weight: 800;
-  color: #1a202c;
+  color: var(--primary-dark);
   margin-bottom: 6px;
 }
 
 .stage-modal-subtitle {
   font-size: 14px;
-  color: #718096;
+  color: var(--primary-blue);
   margin-bottom: 24px;
 }
 
@@ -962,8 +1057,8 @@ body {
 }
 
 .stage-card-btn {
-  background: #f7fafc;
-  border: 2px solid #e2e8f0;
+  background: #f4f8fc;
+  border: 2px solid #bbdefb;
   border-radius: var(--radius-sm);
   padding: 16px 12px;
   cursor: pointer;
@@ -977,7 +1072,86 @@ body {
 .stage-card-btn:hover {
   background: var(--primary-light);
   border-color: var(--primary-blue);
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.2);
   transform: translateY(-2px);
+}
+
+.stage-card-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--primary-dark);
+}
+
+.stage-card-sub {
+  font-size: 12px;
+  color: var(--primary-blue);
+  font-weight: 600;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--primary-light);
+  border: 1px solid #bbdefb;
+  color: var(--primary-dark);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.modal-close-btn:hover {
+  background: #bbdefb;
+  color: var(--primary-dark);
+  transform: scale(1.08);
+}
+
+/* TEAL MODAL THEME FOR LEARNING HUB STAGE PICKER */
+.teal-modal .modal-title {
+  color: var(--teal-dark) !important;
+}
+
+.teal-modal .stage-modal-subtitle {
+  color: #004d40;
+}
+
+.teal-modal .stage-card-btn {
+  background: #f0fdf4;
+  border-color: #b2dfdb;
+}
+
+.teal-modal .stage-card-btn:hover {
+  background: var(--teal-light);
+  border-color: var(--teal-accent);
+  box-shadow: 0 4px 12px rgba(0, 137, 123, 0.2);
+}
+
+.teal-modal .stage-card-title {
+  color: var(--teal-dark) !important;
+}
+
+.teal-modal .stage-card-sub {
+  color: #004d40;
+}
+
+.teal-modal .modal-close-btn {
+  background: var(--teal-light);
+  border-color: #b2dfdb;
+  color: var(--teal-dark);
+}
+
+.teal-modal .modal-close-btn:hover {
+  background: #b2dfdb;
+  color: var(--teal-dark);
+}  transform: translateY(-2px);
   box-shadow: var(--shadow-sm);
 }
 
@@ -1023,7 +1197,111 @@ body {
   transform: translateY(-1px);
 }
 
-/* LEARNING HUB THEME */
+/* HUB MODE SWITCHER TABS */
+.hub-switcher-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.hub-switcher-tabs {
+  display: inline-flex;
+  background: #edf2f7;
+  padding: 5px;
+  border-radius: 30px;
+  gap: 6px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid #e2e8f0;
+}
+
+.hub-tab-btn {
+  border: none;
+  background: transparent;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #718096;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hub-tab-btn:hover {
+  color: #2d3748;
+}
+
+.hub-tab-btn.active {
+  background: var(--primary-blue);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.35);
+}
+
+.hub-tab-btn.teal-tab.active {
+  background: var(--teal-accent);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 137, 123, 0.35);
+}
+
+/* COMPREHENSIVE LEARNING HUB TEAL THEME */
+.learning-hub-theme .hub-title {
+  color: var(--teal-dark) !important;
+}
+
+.learning-hub-theme .hub-subtitle {
+  color: #004d40;
+}
+
+.learning-hub-theme .section-title {
+  color: var(--teal-dark) !important;
+}
+
+.learning-hub-theme .section-subtitle {
+  color: #004d40;
+}
+
+.learning-hub-theme .section-badge {
+  background: var(--teal-light) !important;
+  color: var(--teal-accent) !important;
+  border: 1px solid #b2dfdb;
+}
+
+.learning-hub-theme .step-indicator,
+.teal-indicator {
+  background: var(--teal-light) !important;
+  color: var(--teal-dark) !important;
+  border: 1px solid #b2dfdb !important;
+  font-weight: 800 !important;
+}
+
+.learning-hub-theme .stacked-symbol {
+  color: var(--teal-dark) !important;
+}
+
+.learning-hub-theme .stacked-track-card {
+  border-color: #b2dfdb;
+}
+
+.learning-hub-theme .stacked-track-card:hover {
+  border-color: var(--teal-accent) !important;
+  box-shadow: 0 8px 24px rgba(0, 137, 123, 0.18) !important;
+}
+
+.learning-hub-theme .stacked-title {
+  color: var(--teal-dark) !important;
+}
+
+.learning-hub-theme .track-badge {
+  background: var(--teal-light) !important;
+  color: var(--teal-accent) !important;
+}
+
+.learning-hub-theme .stacked-action-btn {
+  color: var(--teal-accent) !important;
+}
+
 .teal-title {
   color: var(--teal-dark) !important;
 }
@@ -1031,10 +1309,6 @@ body {
 .teal-badge {
   background: var(--teal-light) !important;
   color: var(--teal-accent) !important;
-}
-
-.teal-indicator {
-  background: var(--teal-accent) !important;
 }
 
 .teal-track-card:hover {
@@ -1062,6 +1336,18 @@ body {
 
 .teal-btn:hover {
   background: var(--teal-dark) !important;
+}
+
+.teal-outline-btn {
+  background: var(--teal-light) !important;
+  color: var(--teal-dark) !important;
+  border: 1px solid #b2dfdb !important;
+  font-weight: 700 !important;
+}
+
+.teal-outline-btn:hover {
+  background: #b2dfdb !important;
+  color: var(--teal-dark) !important;
 }
 
 /* STUDY VIEW STYLING */

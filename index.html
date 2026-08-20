@@ -19,8 +19,8 @@
       <button class="btn-nav-home" id="btn-home" style="display: none;">
         ← Back to Practice Hub
       </button>
-      <button class="btn-nav-home btn-nav-learning" id="btn-learning-hub">
-        📖 Learning Hub
+      <button class="btn-nav-home btn-nav-learning" id="btn-back-learning-hub-nav" style="display: none;">
+        ← Back to Learning Hub
       </button>
     </div>
     <div class="navbar-peek-handle">
@@ -32,6 +32,14 @@
 
     <!-- VIEW 1: HOME PAGE / PRACTICE HUB -->
     <section id="hub-view" class="view-section active">
+      <!-- HUB MODE SWITCHER TABS -->
+      <div class="hub-switcher-wrapper">
+        <div class="hub-switcher-tabs">
+          <button class="hub-tab-btn active" id="tab-practice-hub-1">🎯 Practice Hub</button>
+          <button class="hub-tab-btn teal-tab" id="tab-learning-hub-1">📖 Learning Hub</button>
+        </div>
+      </div>
+
       <div class="hub-header">
         <h1 class="hub-title">Select Your Practice Track</h1>
         <p class="hub-subtitle">Master Mandarin Chinese characters, radicals, and strokes step-by-step.</p>
@@ -97,7 +105,7 @@
                 <h3 class="stacked-title">HSK 1 Characters</h3>
                 <span class="track-badge">Beginner</span>
               </div>
-              <p class="stacked-desc">150 unique beginner characters split into 10 stress-free levels (15 words each).</p>
+              <p class="stacked-desc">151 unique beginner characters split into 11 stress-free levels (15 words each).</p>
             </div>
             <div class="stacked-action-btn">Select Level →</div>
           </div>
@@ -111,7 +119,7 @@
                 <h3 class="stacked-title">HSK 2 Characters</h3>
                 <span class="track-badge">Elementary</span>
               </div>
-              <p class="stacked-desc">147 new unique elementary characters split into 10 stress-free levels (15 words each).</p>
+              <p class="stacked-desc">144 new unique elementary characters split into 10 stress-free levels (15 words each).</p>
             </div>
             <div class="stacked-action-btn">Select Level →</div>
           </div>
@@ -125,7 +133,7 @@
                 <h3 class="stacked-title">HSK 3 Characters</h3>
                 <span class="track-badge">Intermediate</span>
               </div>
-              <p class="stacked-desc">298 new unique intermediate characters split into 20 stress-free levels (15 words each).</p>
+              <p class="stacked-desc">330 new unique intermediate characters split into 22 stress-free levels (15 words each).</p>
             </div>
             <div class="stacked-action-btn">Select Level →</div>
           </div>
@@ -137,6 +145,14 @@
 
     <!-- VIEW 2: LEARNING HUB -->
     <section id="learning-hub-view" class="view-section learning-hub-theme">
+      <!-- HUB MODE SWITCHER TABS -->
+      <div class="hub-switcher-wrapper">
+        <div class="hub-switcher-tabs">
+          <button class="hub-tab-btn" id="tab-practice-hub-2">🎯 Practice Hub</button>
+          <button class="hub-tab-btn teal-tab active" id="tab-learning-hub-2">📖 Learning Hub</button>
+        </div>
+      </div>
+
       <div class="hub-header">
         <h1 class="hub-title teal-title">Learning Hub</h1>
         <p class="hub-subtitle">Study Chinese character foundations and vocabulary at your own pace before taking quizzes.</p>
@@ -202,7 +218,7 @@
                 <h3 class="stacked-title">HSK 1 Characters</h3>
                 <span class="track-badge teal-badge">Beginner</span>
               </div>
-              <p class="stacked-desc">150 unique beginner characters split into 10 study levels (15 words each).</p>
+              <p class="stacked-desc">151 unique beginner characters split into 13 grammar categories (or 11 sequential levels).</p>
             </div>
             <div class="stacked-action-btn teal-action-btn">Study Level →</div>
           </div>
@@ -216,7 +232,7 @@
                 <h3 class="stacked-title">HSK 2 Characters</h3>
                 <span class="track-badge teal-badge">Elementary</span>
               </div>
-              <p class="stacked-desc">147 new elementary characters split into 10 study levels (15 words each).</p>
+              <p class="stacked-desc">144 new elementary characters split into 10 study levels (15 words each).</p>
             </div>
             <div class="stacked-action-btn teal-action-btn">Study Level →</div>
           </div>
@@ -230,7 +246,7 @@
                 <h3 class="stacked-title">HSK 3 Characters</h3>
                 <span class="track-badge teal-badge">Intermediate</span>
               </div>
-              <p class="stacked-desc">298 intermediate characters split into 20 study levels (15 words each).</p>
+              <p class="stacked-desc">321 intermediate characters split into 22 study levels (15 words each).</p>
             </div>
             <div class="stacked-action-btn teal-action-btn">Study Level →</div>
           </div>
@@ -271,8 +287,9 @@
 
       <!-- STUDY BOTTOM ACTION BAR -->
       <div class="quiz-action-bar study-action-bar">
-        <button class="btn-secondary" id="btn-back-to-learning-hub">← Back to Learning Hub</button>
+        <button class="btn-secondary teal-outline-btn" id="btn-back-to-learning-hub">← Back to Learning Hub</button>
         <button class="btn-primary teal-btn" id="btn-start-quiz-from-study">Start Quiz →</button>
+        <button class="btn-secondary teal-outline-btn" id="btn-next-study-level">Next Level →</button>
       </div>
     </section>
 
@@ -342,15 +359,12 @@
   <!-- HSK SUB-LEVEL STAGE PICKER MODAL -->
   <div class="modal-overlay" id="stage-modal">
     <div class="modal-card stage-modal-card">
+      <button class="modal-close-btn" id="btn-close-stage-modal" aria-label="Close modal">✕</button>
       <h2 class="modal-title" id="stage-modal-title">HSK 1 - Select Level</h2>
       <p class="stage-modal-subtitle">Choose a 15-character chunk to practice without overload.</p>
       
       <div class="stage-grid" id="stage-grid">
         <!-- Rendered dynamically by app.js -->
-      </div>
-
-      <div class="modal-actions" style="margin-top: 20px;">
-        <button class="btn-secondary" id="btn-close-stage-modal">Cancel</button>
       </div>
     </div>
   </div>

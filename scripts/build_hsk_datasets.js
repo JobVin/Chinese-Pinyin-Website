@@ -72,14 +72,6 @@ async function buildHskDatasets() {
         // Use primary form pinyin for displayPinyin
         displayPinyin = primaryForm.transcriptions && primaryForm.transcriptions.pinyin ? primaryForm.transcriptions.pinyin.toLowerCase() : '';
 
-        // If primary pinyin is untoned (neutral tone e.g. "de", "le", "ma", "ba", "zhe"), fallback to numeric tone (e.g. "de5", "le5")
-        if (!/[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ1-5]/.test(displayPinyin)) {
-          const numPinyin = primaryForm.transcriptions && primaryForm.transcriptions.numeric ? primaryForm.transcriptions.numeric.toLowerCase() : '';
-          if (/[1-5]/.test(numPinyin)) {
-            displayPinyin = numPinyin;
-          }
-        }
-
         // Meaning is sourced ONLY from the preferred primaryForm's own meanings
         if (primaryForm.meanings && Array.isArray(primaryForm.meanings)) {
           meanings.push(...primaryForm.meanings);
@@ -91,25 +83,22 @@ async function buildHskDatasets() {
           const num = form.transcriptions && form.transcriptions.numeric ? form.transcriptions.numeric.toLowerCase() : '';
 
           if (p) {
-            // Tone-marked form
+            // Tone-marked form (e.g. "ài" or neutral "de")
             pinyinVariants.add(p);
             pinyinVariants.add(p.replace(/\s+/g, ''));
-
-            // Plain form (strip diacritics)
-            const plain = p.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ü/g, 'u').replace(/v/g, 'u');
-            pinyinVariants.add(plain);
-            pinyinVariants.add(plain.replace(/\s+/g, ''));
           }
 
           if (num) {
-            // Numeric form
+            // Numeric form (e.g. "ai4" or neutral "de5" -> "de")
             pinyinVariants.add(num);
             pinyinVariants.add(num.replace(/\s+/g, ''));
 
-            // Optional neutral tone (tone 5 -> tone removed)
-            const numWithout5 = num.replace(/5/g, '');
-            pinyinVariants.add(numWithout5);
-            pinyinVariants.add(numWithout5.replace(/\s+/g, ''));
+            // If numeric form has tone 5 (e.g. "de5"), also add untoned "de"
+            if (num.includes('5')) {
+              const numWithout5 = num.replace(/5/g, '');
+              pinyinVariants.add(numWithout5);
+              pinyinVariants.add(numWithout5.replace(/\s+/g, ''));
+            }
           }
         });
 

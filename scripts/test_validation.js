@@ -1,17 +1,43 @@
 const fs = require('fs');
 const path = require('path');
 
+const toneCharMap = {
+  'ā': ['a', '1'], 'á': ['a', '2'], 'ǎ': ['a', '3'], 'à': ['a', '4'],
+  'ē': ['e', '1'], 'é': ['e', '2'], 'ě': ['e', '3'], 'è': ['e', '4'],
+  'ī': ['i', '1'], 'í': ['i', '2'], 'ǐ': ['i', '3'], 'ì': ['i', '4'],
+  'ō': ['o', '1'], 'ó': ['o', '2'], 'ǒ': ['o', '3'], 'ò': ['o', '4'],
+  'ū': ['u', '1'], 'ú': ['u', '2'], 'ǔ': ['u', '3'], 'ù': ['u', '4'],
+  'ǖ': ['v', '1'], 'ǘ': ['v', '2'], 'ǚ': ['v', '3'], 'ǜ': ['v', '4'], 'ü': ['v', '5']
+};
+
+function getCanonicalPinyinToken(str) {
+  if (!str || typeof str !== 'string') return '';
+  const trimmed = str.trim().toLowerCase();
+  
+  let result = '';
+  for (let char of trimmed) {
+    if (toneCharMap[char]) {
+      result += toneCharMap[char][0] + toneCharMap[char][1];
+    } else if (/[a-zv0-9]/i.test(char)) {
+      const norm = char.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ü/g, 'v');
+      result += norm;
+    }
+  }
+  return result;
+}
+
 function validateUserAnswer(userInput, cardPinyinArray) {
   if (!userInput || !Array.isArray(cardPinyinArray) || cardPinyinArray.length === 0) {
     return false;
   }
   const cleanedInput = userInput.trim().toLowerCase();
-  const cleanedNoSpaces = cleanedInput.replace(/\s+/g, '');
+  const userToken = getCanonicalPinyinToken(cleanedInput);
+  if (!userToken) return false;
 
   return cardPinyinArray.some(pinyinVariant => {
     const variantStr = String(pinyinVariant).trim().toLowerCase();
-    const variantNoSpaces = variantStr.replace(/\s+/g, '');
-    return variantStr === cleanedInput || variantNoSpaces === cleanedNoSpaces;
+    const variantToken = getCanonicalPinyinToken(variantStr);
+    return variantToken === userToken;
   });
 }
 

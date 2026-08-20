@@ -3,7 +3,8 @@
     "character": "亻",
     "pinyin": [
       "rén",
-      "ren"
+      "ren",
+      "ren2"
     ],
     "displayPinyin": "rén",
     "meaning": "Person radical"
@@ -12,7 +13,8 @@
     "character": "氵",
     "pinyin": [
       "shuǐ",
-      "shui"
+      "shui",
+      "shui3"
     ],
     "displayPinyin": "shuǐ",
     "meaning": "Water radical"
@@ -21,7 +23,8 @@
     "character": "口",
     "pinyin": [
       "kǒu",
-      "kou"
+      "kou",
+      "kou3"
     ],
     "displayPinyin": "kǒu",
     "meaning": "Mouth radical"
@@ -30,7 +33,8 @@
     "character": "木",
     "pinyin": [
       "mù",
-      "mu"
+      "mu",
+      "mu4"
     ],
     "displayPinyin": "mù",
     "meaning": "Tree / Wood radical"
@@ -39,6 +43,8 @@
     "character": "女",
     "pinyin": [
       "nǚ",
+      "nu",
+      "nu3",
       "nv",
       "nv3"
     ],
@@ -49,7 +55,8 @@
     "character": "日",
     "pinyin": [
       "rì",
-      "ri"
+      "ri",
+      "ri4"
     ],
     "displayPinyin": "rì",
     "meaning": "Sun / Day radical"
@@ -58,7 +65,8 @@
     "character": "月",
     "pinyin": [
       "yuè",
-      "yue"
+      "yue",
+      "yue4"
     ],
     "displayPinyin": "yuè",
     "meaning": "Moon / Month radical"
@@ -67,7 +75,8 @@
     "character": "心",
     "pinyin": [
       "xīn",
-      "xin"
+      "xin",
+      "xin1"
     ],
     "displayPinyin": "xīn",
     "meaning": "Heart radical"
@@ -76,7 +85,8 @@
     "character": "手",
     "pinyin": [
       "shǒu",
-      "shou"
+      "shou",
+      "shou3"
     ],
     "displayPinyin": "shǒu",
     "meaning": "Hand radical"
@@ -85,7 +95,8 @@
     "character": "火",
     "pinyin": [
       "huǒ",
-      "huo"
+      "huo",
+      "huo3"
     ],
     "displayPinyin": "huǒ",
     "meaning": "Fire radical"
@@ -94,7 +105,8 @@
     "character": "土",
     "pinyin": [
       "tǔ",
-      "tu"
+      "tu",
+      "tu3"
     ],
     "displayPinyin": "tǔ",
     "meaning": "Earth / Soil radical"
@@ -103,7 +115,8 @@
     "character": "艹",
     "pinyin": [
       "cǎo",
-      "cao"
+      "cao",
+      "cao3"
     ],
     "displayPinyin": "cǎo",
     "meaning": "Grass radical"
@@ -112,7 +125,8 @@
     "character": "讠",
     "pinyin": [
       "yán",
-      "yan"
+      "yan",
+      "yan2"
     ],
     "displayPinyin": "yán",
     "meaning": "Speech / Word radical"
@@ -121,7 +135,8 @@
     "character": "辶",
     "pinyin": [
       "chuò",
-      "chuo"
+      "chuo",
+      "chuo4"
     ],
     "displayPinyin": "chuò",
     "meaning": "Movement / Walking radical"
@@ -130,7 +145,8 @@
     "character": "饣",
     "pinyin": [
       "shí",
-      "shi"
+      "shi",
+      "shi2"
     ],
     "displayPinyin": "shí",
     "meaning": "Food / Eat radical"
@@ -139,7 +155,8 @@
     "character": "宀",
     "pinyin": [
       "mián",
-      "mian"
+      "mian",
+      "mian2"
     ],
     "displayPinyin": "mián",
     "meaning": "Roof radical"

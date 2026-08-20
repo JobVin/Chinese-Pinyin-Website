@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     currentTrack: 'hsk1',
     batchSize: '50',
     currentCards: [],
+    currentQuizDataSet: null,
+    currentQuizTitle: null,
     missedCards: [],
     submitted: false,
     filledCount: 0,
@@ -114,17 +116,34 @@ document.addEventListener('DOMContentLoaded', () => {
    * @param {string[]} cardPinyinArray - Array of valid pinyin variants for the card.
    * @returns {boolean} True if user input contains tones and matches a valid variant.
    */
+  function normalizePinyinString(str) {
+    if (!str || typeof str !== 'string') return '';
+    return str
+      .trim()
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/ü/g, 'v')
+      .replace(/u:/g, 'v')
+      .replace(/[^a-z0-9]/g, '');
+  }
+
   function validateUserAnswer(userInput, cardPinyinArray) {
     if (!userInput || !Array.isArray(cardPinyinArray) || cardPinyinArray.length === 0) {
       return false;
     }
     const cleanedInput = userInput.trim().toLowerCase();
     const cleanedNoSpaces = cleanedInput.replace(/\s+/g, '');
+    const normalizedInput = normalizePinyinString(cleanedInput);
 
     return cardPinyinArray.some(pinyinVariant => {
       const variantStr = String(pinyinVariant).trim().toLowerCase();
       const variantNoSpaces = variantStr.replace(/\s+/g, '');
-      return variantStr === cleanedInput || variantNoSpaces === cleanedNoSpaces;
+      const normalizedVariant = normalizePinyinString(variantStr);
+
+      return variantStr === cleanedInput || 
+             variantNoSpaces === cleanedNoSpaces || 
+             normalizedVariant === normalizedInput;
     });
   }
 
@@ -214,14 +233,15 @@ document.addEventListener('DOMContentLoaded', () => {
     return stages;
   }
 
-  function getTrackTitle(trackName) {
+  function getTrackTitle(trackName, isStudyMode = false) {
+    const quizSuffix = isStudyMode ? '' : ' Quiz';
     switch (trackName) {
-      case 'strokes': return 'Character Strokes Quiz';
-      case 'radicals': return 'Essential Radicals Quiz';
-      case 'hsk1': return 'HSK 1 Character Quiz';
-      case 'hsk2': return 'HSK 2 Character Quiz';
-      case 'hsk3': return 'HSK 3 Character Quiz';
-      default: return 'Character Quiz';
+      case 'strokes': return isStudyMode ? 'Character Strokes' : 'Character Strokes Quiz';
+      case 'radicals': return isStudyMode ? 'Essential Radicals' : 'Essential Radicals Quiz';
+      case 'hsk1': return `HSK 1 Characters${quizSuffix}`;
+      case 'hsk2': return `HSK 2 Characters${quizSuffix}`;
+      case 'hsk3': return `HSK 3 Characters${quizSuffix}`;
+      default: return `Character${quizSuffix}`;
     }
   }
 
@@ -330,9 +350,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const fullData = await loadDataset(track);
       const stages = getDatasetStagesFromData(fullData, track, 15);
       if (stages.length === 1) {
-        startQuiz(track, stages[0].data, getTrackTitle(track));
+        startQuiz(track, stages[0].data, getTrackTitle(track, false));
       } else {
-        openStageModal(track, stages, (stage) => startQuiz(track, stage.data, `${getTrackTitle(track)} (${stage.title})`), false);
+        openStageModal(track, stages, (stage) => startQuiz(track, stage.data, `${getTrackTitle(track, false)} (${stage.title})`), false);
       }
     });
   });
@@ -353,9 +373,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (stages.length === 1) {
-        openStudyView(track, stages[0].data, getTrackTitle(track), stages, 0);
+        openStudyView(track, stages[0].data, getTrackTitle(track, true), stages, 0);
       } else {
-        openStageModal(track, stages, (stage, idx) => openStudyView(track, stage.data, `${getTrackTitle(track)} (${stage.title})`, stages, idx), true);
+        openStageModal(track, stages, (stage, idx) => openStudyView(track, stage.data, `${getTrackTitle(track, true)} (${stage.title})`, stages, idx), true);
       }
     });
   });
@@ -367,7 +387,8 @@ document.addEventListener('DOMContentLoaded', () => {
       stageModal.classList.remove('teal-modal');
     }
 
-    stageModalTitle.textContent = `${getTrackTitle(trackName)} - Select Level`;
+    const titlePrefix = getTrackTitle(trackName, isTealTheme);
+    stageModalTitle.textContent = `${titlePrefix} - Select Level`;
     stageGrid.innerHTML = '';
 
     stages.forEach((stage, idx) => {
@@ -382,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof onSelectStage === 'function') {
           onSelectStage(stage, idx);
         } else {
-          startQuiz(trackName, stage.data, `${getTrackTitle(trackName)} (${stage.title})`);
+          startQuiz(trackName, stage.data, `${getTrackTitle(trackName, false)} (${stage.title})`);
         }
       });
       stageGrid.appendChild(btn);
@@ -542,7 +563,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const nextIndex = state.currentStudyStageIndex + 1;
       if (stages && nextIndex >= 0 && nextIndex < stages.length) {
         const nextStage = stages[nextIndex];
-        const trackTitle = getTrackTitle(state.currentStudyData.trackName);
+        const trackTitle = getTrackTitle(state.currentStudyData.trackName, true);
         openStudyView(
           state.currentStudyData.trackName,
           nextStage.data,
@@ -566,9 +587,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let cardData = customDataSet ? customDataSet : await loadDataset(trackName);
 
     state.currentCards = cardData;
+    state.currentQuizDataSet = cardData;
+    state.currentQuizTitle = customTitle || getTrackTitle(trackName, false);
 
     // Update Banner Titles
-    quizHeaderTitle.textContent = customTitle ? customTitle : getTrackTitle(trackName);
+    quizHeaderTitle.textContent = state.currentQuizTitle;
     quizHeaderCount.textContent = `0 / ${state.currentCards.length} Cards`;
     quizProgressSummary.textContent = `Filled: 0 / ${state.currentCards.length}`;
 
@@ -738,13 +761,14 @@ document.addEventListener('DOMContentLoaded', () => {
   btnRetryMissed.addEventListener('click', () => {
     resultsBanner.style.display = 'none';
     if (state.missedCards.length > 0) {
-      startQuiz(state.currentTrack, state.missedCards);
+      const retryTitle = `${state.currentQuizTitle || getTrackTitle(state.currentTrack, false)} (Retry Missed)`;
+      startQuiz(state.currentTrack, state.missedCards, retryTitle);
     }
   });
 
   btnRestartQuiz.addEventListener('click', () => {
     resultsBanner.style.display = 'none';
-    startQuiz(state.currentTrack);
+    startQuiz(state.currentTrack, state.currentQuizDataSet, state.currentQuizTitle);
   });
 
   btnResultsHub.addEventListener('click', () => {

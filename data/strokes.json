@@ -4,6 +4,7 @@
     "pinyin": [
       "héng",
       "heng",
+      "heng2",
       "heng1"
     ],
     "displayPinyin": "héng",
@@ -63,8 +64,11 @@
     "character": "㇇",
     "pinyin": [
       "héng piě",
+      "héngpiě",
       "heng pie",
       "hengpie",
+      "heng2 pie3",
+      "heng2pie3",
       "heng1pie3"
     ],
     "displayPinyin": "héng piě",
@@ -74,8 +78,11 @@
     "character": "𠃍",
     "pinyin": [
       "héng zhé",
+      "héngzhé",
       "heng zhe",
       "hengzhe",
+      "heng2 zhe2",
+      "heng2zhe2",
       "heng1zhe2"
     ],
     "displayPinyin": "héng zhé",
@@ -85,8 +92,11 @@
     "character": "㇍",
     "pinyin": [
       "héng zhé wān",
+      "héngzhéwān",
       "heng zhe wan",
       "hengzhewan",
+      "heng2 zhe2 wan1",
+      "heng2zhe2wan1",
       "heng1zhe2wan1"
     ],
     "displayPinyin": "héng zhé wān",
@@ -96,8 +106,11 @@
     "character": "𠃌",
     "pinyin": [
       "héng zhé gōu",
+      "héngzhégōu",
       "heng zhe gou",
       "hengzhegou",
+      "heng2 zhe2 gou1",
+      "heng2zhe2gou1",
       "heng1zhe2gou1"
     ],
     "displayPinyin": "héng zhé gōu",
@@ -107,8 +120,11 @@
     "character": "乛",
     "pinyin": [
       "héng gōu",
+      "hénggōu",
       "heng gou",
       "henggou",
+      "heng2 gou1",
+      "heng2gou1",
       "heng1gou1"
     ],
     "displayPinyin": "héng gōu",
@@ -118,8 +134,11 @@
     "character": "㇈",
     "pinyin": [
       "héng zhé wān gōu",
+      "héngzhéwāngōu",
       "heng zhe wan gou",
       "hengzhewangou",
+      "heng2 zhe2 wan1 gou1",
+      "heng2zhe2wan1gou1",
       "heng1zhe2wan1gou1"
     ],
     "displayPinyin": "héng zhé wān gōu",
@@ -129,8 +148,11 @@
     "character": "⺄",
     "pinyin": [
       "héng xié gōu",
+      "héngxiégōu",
       "heng xie gou",
       "hengxiegou",
+      "heng2 xie2 gou1",
+      "heng2xie2gou1",
       "heng1xie2gou1"
     ],
     "displayPinyin": "héng xié gōu",
@@ -140,8 +162,11 @@
     "character": "㇡",
     "pinyin": [
       "héng zhé zhé zhé gōu",
+      "héngzhézhézhégōu",
       "heng zhe zhe zhe gou",
       "hengzhezhezhegou",
+      "heng2 zhe2 zhe2 zhe2 gou1",
+      "heng2zhe2zhe2zhe2gou1",
       "heng1zhe2zhe2zhe2gou1"
     ],
     "displayPinyin": "héng zhé zhé zhé gōu",
@@ -151,8 +176,11 @@
     "character": "𠄎",
     "pinyin": [
       "héng zhé zhé piě",
+      "héngzhézhépiě",
       "heng zhe zhe pie",
       "hengzhezhepie",
+      "heng2 zhe2 zhe2 pie3",
+      "heng2zhe2zhe2pie3",
       "heng1zhe2zhe2pie3"
     ],
     "displayPinyin": "héng zhé zhé piě",
@@ -162,8 +190,11 @@
     "character": "㇊",
     "pinyin": [
       "héng zhé tí",
+      "héngzhétí",
       "heng zhe ti",
       "hengzheti",
+      "heng2 zhe2 ti2",
+      "heng2zhe2ti2",
       "heng1zhe2ti2"
     ],
     "displayPinyin": "héng zhé tí",
@@ -173,8 +204,11 @@
     "character": "㇋",
     "pinyin": [
       "héng piě wān gōu",
+      "héngpiěwāngōu",
       "heng pie wan gou",
       "hengpiewangou",
+      "heng2 pie3 wan1 gou1",
+      "heng2pie3wan1gou1",
       "heng1pie3wan1gou1"
     ],
     "displayPinyin": "héng piě wān gōu",
@@ -184,8 +218,10 @@
     "character": "亅",
     "pinyin": [
       "shù gōu",
+      "shùgōu",
       "shu gou",
       "shugou",
+      "shu4 gou1",
       "shu4gou1"
     ],
     "displayPinyin": "shù gōu",
@@ -195,8 +231,10 @@
     "character": "㇑",
     "pinyin": [
       "shù tí",
+      "shùtí",
       "shu ti",
       "shuti",
+      "shu4 ti2",
       "shu4ti2"
     ],
     "displayPinyin": "shù tí",
@@ -206,8 +244,10 @@
     "character": "𠃊",
     "pinyin": [
       "shù zhé",
+      "shùzhé",
       "shu zhe",
       "shuzhe",
+      "shu4 zhe2",
       "shu4zhe2"
     ],
     "displayPinyin": "shù zhé",
@@ -217,8 +257,10 @@
     "character": "乚",
     "pinyin": [
       "shù wān",
+      "shùwān",
       "shu wan",
       "shuwan",
+      "shu4 wan1",
       "shu4wan1"
     ],
     "displayPinyin": "shù wān",
@@ -228,8 +270,10 @@
     "character": "㇟",
     "pinyin": [
       "shù wān gōu",
+      "shùwāngōu",
       "shu wan gou",
       "shuwangou",
+      "shu4 wan1 gou1",
       "shu4wan1gou1"
     ],
     "displayPinyin": "shù wān gōu",
@@ -239,8 +283,10 @@
     "character": "㇉",
     "pinyin": [
       "shù zhé zhé gōu",
+      "shùzhézhégōu",
       "shu zhe zhe gou",
       "shuzhezhegou",
+      "shu4 zhe2 zhe2 gou1",
       "shu4zhe2zhe2gou1"
     ],
     "displayPinyin": "shù zhé zhé gōu",
@@ -250,8 +296,10 @@
     "character": "ㄣ",
     "pinyin": [
       "shù zhé piě",
+      "shùzhépiě",
       "shu zhe pie",
       "shuzhepie",
+      "shu4 zhe2 pie3",
       "shu4zhe2pie3"
     ],
     "displayPinyin": "shù zhé piě",
@@ -261,8 +309,10 @@
     "character": "㇁",
     "pinyin": [
       "wān gōu",
+      "wāngōu",
       "wan gou",
       "wangou",
+      "wan1 gou1",
       "wan1gou1"
     ],
     "displayPinyin": "wān gōu",
@@ -272,8 +322,10 @@
     "character": "㇂",
     "pinyin": [
       "xié gōu",
+      "xiégōu",
       "xie gou",
       "xiegou",
+      "xie2 gou1",
       "xie2gou1"
     ],
     "displayPinyin": "xié gōu",
@@ -283,8 +335,10 @@
     "character": "㇃",
     "pinyin": [
       "wò gōu",
+      "wògōu",
       "wo gou",
       "wogou",
+      "wo4 gou1",
       "wo4gou1"
     ],
     "displayPinyin": "wò gōu",
@@ -294,8 +348,10 @@
     "character": "㇜",
     "pinyin": [
       "piě zhé",
+      "piězhé",
       "pie zhe",
       "piezhe",
+      "pie3 zhe2",
       "pie3zhe2"
     ],
     "displayPinyin": "piě zhé",
@@ -305,8 +361,10 @@
     "character": "𡿨",
     "pinyin": [
       "piě diǎn",
+      "piědiǎn",
       "pie dian",
       "piedian",
+      "pie3 dian3",
       "pie3dian3"
     ],
     "displayPinyin": "piě diǎn",

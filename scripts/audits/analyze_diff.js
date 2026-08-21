@@ -9,28 +9,42 @@ console.log('====================================================\n');
 // --- 1. INVESTIGATE QUESTION 3: ARITHMETIC & CHARACTER DIFF FOR HSK3 ---
 console.log('--- 1. HSK 3 ARITHMETIC & EXACT CHARACTER DIFF ---');
 const hsk3Head = JSON.parse(execSync('git show HEAD:data/hsk3.json', { encoding: 'utf8' }));
-const hsk3Current = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/hsk3.json'), 'utf8'));
+const hsk3Current = JSON.parse(fs.readFileSync(path.join(__dirname, '../../data/hsk3.json'), 'utf8'));
+const headHsk3 = JSON.parse(execSync('git show HEAD:data/hsk3.json', { encoding: 'utf8' }));
 
-const head3Chars = hsk3Head.map(e => e.character);
-const current3Chars = hsk3Current.map(e => e.character);
+const hsk3CurrentMap = new Map(hsk3Current.map(i => [i.character, i]));
+const headHsk3Map = new Map(headHsk3.map(i => [i.character, i]));
 
-const head3Set = new Set(head3Chars);
-const current3Set = new Set(current3Chars);
+console.log('=== ANALYZING HSK3 MODIFICATIONS & REMOVALS ===\n');
 
-const added3 = current3Chars.filter(c => !head3Set.has(c));
-const removed3 = head3Chars.filter(c => !current3Set.has(c));
+const removedFromHsk3 = [];
+const modifiedInHsk3 = [];
 
-console.log(`Original HEAD count: ${hsk3Head.length}`);
-console.log(`Current count:       ${hsk3Current.length}`);
-console.log(`Net Added:           ${hsk3Current.length - hsk3Head.length}`);
-console.log(`Characters Added (${added3.length}):`, added3);
-console.log(`Characters Removed (${removed3.length}):`, removed3);
-console.log('');
+headHsk3.forEach(item => {
+  const char = item.character;
+  if (!hsk3CurrentMap.has(char)) {
+    removedFromHsk3.push(item);
+  } else {
+    const currentItem = hsk3CurrentMap.get(char);
+    if (JSON.stringify(currentItem) !== JSON.stringify(item)) {
+      modifiedInHsk3.push({ before: item, after: currentItem });
+    }
+  }
+});
 
-// --- 2. INVESTIGATE QUESTION 2: STATUS OF "过" IN HSK2 VS HSK3 ---
-console.log('--- 2. STATUS OF "过" IN HSK 1, 2, 3 ---');
-const hsk1Current = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/hsk1.json'), 'utf8'));
-const hsk2Current = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/hsk2.json'), 'utf8'));
+console.log(`Removed from HSK3 (${removedFromHsk3.length} items):`);
+removedFromHsk3.forEach(i => console.log(`  - [${i.character}] ${i.displayPinyin} (${i.meaning})`));
+
+console.log(`\nModified in HSK3 (${modifiedInHsk3.length} items):`);
+modifiedInHsk3.forEach(m => {
+  console.log(`  - [${m.before.character}]:`);
+  console.log(`      BEFORE: pinyin=[${m.before.pinyin.join(', ')}], displayPinyin="${m.before.displayPinyin}", meaning="${m.before.meaning}"`);
+  console.log(`      AFTER:  pinyin=[${m.after.pinyin.join(', ')}], displayPinyin="${m.after.displayPinyin}", meaning="${m.after.meaning}"`);
+});
+
+// Check where removed HSK3 items went
+const hsk1Current = JSON.parse(fs.readFileSync(path.join(__dirname, '../../data/hsk1.json'), 'utf8'));
+const hsk2Current = JSON.parse(fs.readFileSync(path.join(__dirname, '../../data/hsk2.json'), 'utf8'));
 
 const guo1 = hsk1Current.filter(e => e.character.includes('过'));
 const guo2 = hsk2Current.filter(e => e.character.includes('过'));

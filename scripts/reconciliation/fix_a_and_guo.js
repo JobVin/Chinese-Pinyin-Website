@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const hsk3Path = path.join(__dirname, '../data/hsk3.json');
+const hsk3Path = path.join(__dirname, '../../data/hsk3.json');
 let hsk3 = JSON.parse(fs.readFileSync(hsk3Path, 'utf8'));
 
 // 1. Update 啊 in hsk3.json to match MandarinBean PDF (displayPinyin: "a", meaning: "ah")

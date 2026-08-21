@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { MANDARIN_BEAN_HSK1, MANDARIN_BEAN_HSK2, MANDARIN_BEAN_HSK3 } = require('./diff_hsk_sources');
 
-const hsk2 = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/hsk2.json'), 'utf8'));
+const hsk2 = JSON.parse(fs.readFileSync(path.join(__dirname, '../../data/hsk2.json'), 'utf8'));
 
 // Build sets of characters in MandarinBean PDFs
 const mbHsk1Set = new Set(MANDARIN_BEAN_HSK1.map(i => i.char.replace(/（[^）]+）|\([^\)]+\)/g, '').trim()));

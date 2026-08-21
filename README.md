@@ -53,11 +53,15 @@ The following multi-part grammatical structure rows from official MandarinBean l
 │   ├── hsk1.json
 │   ├── hsk2.json
 │   └── hsk3.json
-├── scripts/               # Maintenance, auditing, and builder scripts
+├── docs/                  # Reference documents & vocabulary PDFs
+│   └── pdf/               # HSK vocabulary PDFs (HSK 1, 2, and 3)
+├── scripts/               # Core maintenance, auditing, and builder scripts
 │   ├── audit_characters.js       # Character field cleanliness auditor
 │   ├── build_hsk_datasets.js     # Dataset builder for HSK 1, 2 & 3
 │   ├── fix_datasets_and_variants.js # Pinyin polyphone variant generator
-│   └── test_validation.js        # Validation test runner for all datasets
+│   ├── test_validation.js        # Validation test runner for all datasets
+│   ├── audits/                   # Source auditing & diff report scripts
+│   └── reconciliation/           # One-off data reconciliation & patch scripts
 ├── app.js                 # Application router, study renderers & Pinyin matching engine
 ├── index.html             # Main application template & modal UI
 ├── package.json           # NPM package manifest & script runners

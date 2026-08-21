@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const dataDir = path.join(__dirname, '../data');
+const dataDir = path.join(__dirname, '../../data');
 const hsk1Path = path.join(dataDir, 'hsk1.json');
 const hsk2Path = path.join(dataDir, 'hsk2.json');
 const hsk3Path = path.join(dataDir, 'hsk3.json');

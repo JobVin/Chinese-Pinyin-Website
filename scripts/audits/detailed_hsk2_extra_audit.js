@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { MANDARIN_BEAN_HSK2 } = require('./diff_hsk_sources');
 
-const hsk2 = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/hsk2.json'), 'utf8'));
+const hsk2 = JSON.parse(fs.readFileSync(path.join(__dirname, '../../data/hsk2.json'), 'utf8'));
 
 // MandarinBean HSK2 raw 150 entries
 const mbHsk2Raw = MANDARIN_BEAN_HSK2.map(i => ({

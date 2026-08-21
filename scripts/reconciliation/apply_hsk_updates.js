@@ -7,7 +7,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const dataDir = path.join(__dirname, '../data');
+const dataDir = path.join(__dirname, '../../data');
 
 // Helper to convert tone-marked pinyin into pinyin array [toned, plain, numeric]
 function buildPinyinArray(tonedPinyin) {

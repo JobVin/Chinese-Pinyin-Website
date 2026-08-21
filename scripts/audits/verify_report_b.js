@@ -2,9 +2,9 @@ const { MANDARIN_BEAN_HSK1, MANDARIN_BEAN_HSK2, MANDARIN_BEAN_HSK3 } = require('
 const fs = require('fs');
 const path = require('path');
 
-const hsk1 = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/hsk1.json')));
-const hsk2 = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/hsk2.json')));
-const hsk3 = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/hsk3.json')));
+const hsk1 = JSON.parse(fs.readFileSync(path.join(__dirname, '../../data/hsk1.json')));
+const hsk2 = JSON.parse(fs.readFileSync(path.join(__dirname, '../../data/hsk2.json')));
+const hsk3 = JSON.parse(fs.readFileSync(path.join(__dirname, '../../data/hsk3.json')));
 
 const map = new Map();
 [...hsk1, ...hsk2, ...hsk3].forEach(e => map.set(e.character, e));

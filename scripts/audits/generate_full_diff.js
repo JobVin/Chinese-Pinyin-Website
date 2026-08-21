@@ -4,7 +4,7 @@ const { execSync } = require('child_process');
 
 ['hsk1.json', 'hsk2.json', 'hsk3.json'].forEach(file => {
   const head = JSON.parse(execSync(`git show HEAD:data/${file}`, { encoding: 'utf8' }));
-  const curr = JSON.parse(fs.readFileSync(path.join(__dirname, `../data/${file}`), 'utf8'));
+  const curr = JSON.parse(fs.readFileSync(path.join(__dirname, `../../data/${file}`), 'utf8'));
 
   const headMap = new Map(head.map(e => [e.character, e]));
   const currMap = new Map(curr.map(e => [e.character, e]));

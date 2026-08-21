@@ -1,9 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const hsk1 = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/hsk1.json'), 'utf8'));
-const hsk2 = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/hsk2.json'), 'utf8'));
-const hsk3 = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/hsk3.json'), 'utf8'));
+const hsk1 = JSON.parse(fs.readFileSync(path.join(__dirname, '../../data/hsk1.json'), 'utf8'));
+const hsk2 = JSON.parse(fs.readFileSync(path.join(__dirname, '../../data/hsk2.json'), 'utf8'));
+const hsk3 = JSON.parse(fs.readFileSync(path.join(__dirname, '../../data/hsk3.json'), 'utf8'));
 
 console.log('=== "为" ENTRIES ACROSS DATASETS ===\n');
 

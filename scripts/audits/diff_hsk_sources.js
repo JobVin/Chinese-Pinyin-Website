@@ -638,7 +638,7 @@ function normalizePinyin(str) {
 }
 
 function runDiff() {
-  const dataDir = path.join(__dirname, '../data');
+  const dataDir = path.join(__dirname, '../../data');
   const hsk1Data = JSON.parse(fs.readFileSync(path.join(dataDir, 'hsk1.json'), 'utf8'));
   const hsk2Data = JSON.parse(fs.readFileSync(path.join(dataDir, 'hsk2.json'), 'utf8'));
   const hsk3Data = JSON.parse(fs.readFileSync(path.join(dataDir, 'hsk3.json'), 'utf8'));

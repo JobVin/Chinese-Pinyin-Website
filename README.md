@@ -47,6 +47,15 @@ The following multi-part grammatical structure rows from official MandarinBean l
 
 ```
 .
+├── assets/                # Application media & image assets
+│   └── icons/             # Favicons, PWA icons, and source artwork
+│       ├── apple-touch-icon.png   # iOS home screen icon (180x180)
+│       ├── favicon.ico            # Multi-size legacy ICO (16x16, 32x32)
+│       ├── favicon.svg            # Scalable SVG favicon
+│       ├── icon-192.png           # PWA icon (192x192)
+│       ├── icon-512.png           # PWA icon (512x512)
+│       ├── icon-512-maskable.png  # PWA Android adaptive maskable icon (512x512 with safe-zone)
+│       └── logo.png               # High-resolution source icon artwork (1024x1024)
 ├── data/                  # Asynchronously loaded dataset assets
 │   ├── strokes.json
 │   ├── radicals.json
@@ -64,6 +73,7 @@ The following multi-part grammatical structure rows from official MandarinBean l
 │   └── reconciliation/           # One-off data reconciliation & patch scripts
 ├── app.js                 # Application router, study renderers & Pinyin matching engine
 ├── index.html             # Main application template & modal UI
+├── manifest.json          # PWA Web Application Manifest
 ├── package.json           # NPM package manifest & script runners
 ├── styles.css             # Glassmorphism design system & dynamic layout styles
 └── README.md              # Project documentation

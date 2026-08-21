@@ -109,74 +109,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /**
    * Strict validation of user input against a card's pinyin array.
-   * Requires tone marks (e.g. pǔtōnghuà) or tone numbers (e.g. pu3tong1hua4).
-   * Plain pinyin without tones is rejected.
-   * 
-   * @param {string} userInput - Text entered by the user.
-   * @param {string[]} cardPinyinArray - Array of valid pinyin variants for the card.
-   * @returns {boolean} True if user input contains tones and matches a valid variant.
+   * Requires Pinyin typed with tone marks (e.g. héng, shù, nǐhǎo) using a Pinyin keyboard/IME.
+   * Tone numbers (e.g. heng1, shu4, ni3hao3) and plain untoned text (for non-neutral tones) are rejected.
+   * Neutral tone words (e.g. de, le) accept untoned letters as neutral tones have no tone mark.
    */
-  const toneCharMap = {
-    'ā': ['a', '1'], 'á': ['a', '2'], 'ǎ': ['a', '3'], 'à': ['a', '4'],
-    'ē': ['e', '1'], 'é': ['e', '2'], 'ě': ['e', '3'], 'è': ['e', '4'],
-    'ī': ['i', '1'], 'í': ['i', '2'], 'ǐ': ['i', '3'], 'ì': ['i', '4'],
-    'ō': ['o', '1'], 'ó': ['o', '2'], 'ǒ': ['o', '3'], 'ò': ['o', '4'],
-    'ū': ['u', '1'], 'ú': ['u', '2'], 'ǔ': ['u', '3'], 'ù': ['u', '4'],
-    'ǖ': ['v', '1'], 'ǘ': ['v', '2'], 'ǚ': ['v', '3'], 'ǜ': ['v', '4'], 'ü': ['v', '5']
-  };
-
-  function getCanonicalPinyinToken(str) {
+  function normalizePinyinToken(str) {
     if (!str || typeof str !== 'string') return '';
-    const trimmed = str.trim().toLowerCase();
-    
-    let result = '';
-    for (let char of trimmed) {
-      if (toneCharMap[char]) {
-        result += toneCharMap[char][0] + toneCharMap[char][1];
-      } else if (/[a-zv0-9]/i.test(char)) {
-        const norm = char.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ü/g, 'v');
-        result += norm;
-      }
-    }
-    return result;
+    return str.trim().toLowerCase().replace(/['’\s]/g, '');
   }
 
   function validateUserAnswer(userInput, cardPinyinArray) {
-    if (!userInput || !Array.isArray(cardPinyinArray) || cardPinyinArray.length === 0) {
+    if (!userInput || typeof userInput !== 'string' || !Array.isArray(cardPinyinArray) || cardPinyinArray.length === 0) {
       return false;
     }
-    const cleanedInput = userInput.trim().toLowerCase();
-    const userToken = getCanonicalPinyinToken(cleanedInput);
+    const trimmedInput = userInput.trim();
+    if (!trimmedInput) return false;
+
+    // Reject inputs containing digits (e.g. heng1, shu4, ni3hao3)
+    if (/\d/.test(trimmedInput)) {
+      return false;
+    }
+
+    const userToken = normalizePinyinToken(trimmedInput);
     if (!userToken) return false;
 
     return cardPinyinArray.some(pinyinVariant => {
-      const variantStr = String(pinyinVariant).trim().toLowerCase();
-      const variantToken = getCanonicalPinyinToken(variantStr);
+      const variantToken = normalizePinyinToken(String(pinyinVariant));
       return variantToken === userToken;
     });
   }
 
-  // Expose globally for module/component access and terminal testing
+  // Expose globally for module/component access and testing
   window.validateUserAnswer = validateUserAnswer;
 
   function checkPinyinMatch(userInput, cardData) {
     if (!userInput || !cardData) return false;
 
-    // Handle array pinyin (from new JSON structure)
     if (Array.isArray(cardData.pinyin)) {
       return validateUserAnswer(userInput, cardData.pinyin);
     }
 
-    // Fallback for legacy items where cardData.pinyin is a single string
     const pinyinList = [
       cardData.pinyin,
-      cardData.pinyinPlain,
-      cardData.pinyinNumbered
+      cardData.displayPinyin
     ].filter(Boolean);
-
-    if (cardData.pinyinAlternates && Array.isArray(cardData.pinyinAlternates)) {
-      pinyinList.push(...cardData.pinyinAlternates);
-    }
 
     return validateUserAnswer(userInput, pinyinList);
   }

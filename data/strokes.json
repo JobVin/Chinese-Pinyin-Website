@@ -2,10 +2,7 @@
   {
     "character": "一",
     "pinyin": [
-      "héng",
-      "heng",
-      "heng2",
-      "heng1"
+      "héng"
     ],
     "displayPinyin": "héng",
     "meaning": "Horizontal (横)"
@@ -13,9 +10,7 @@
   {
     "character": "丨",
     "pinyin": [
-      "shù",
-      "shu",
-      "shu4"
+      "shù"
     ],
     "displayPinyin": "shù",
     "meaning": "Vertical (竖)"
@@ -23,9 +18,7 @@
   {
     "character": "丿",
     "pinyin": [
-      "piě",
-      "pie",
-      "pie3"
+      "piě"
     ],
     "displayPinyin": "piě",
     "meaning": "Left-falling (撇)"
@@ -33,9 +26,7 @@
   {
     "character": "乀",
     "pinyin": [
-      "nà",
-      "na",
-      "na4"
+      "nà"
     ],
     "displayPinyin": "nà",
     "meaning": "Right-falling (捺)"
@@ -43,9 +34,7 @@
   {
     "character": "丶",
     "pinyin": [
-      "diǎn",
-      "dian",
-      "dian3"
+      "diǎn"
     ],
     "displayPinyin": "diǎn",
     "meaning": "Dot (点)"
@@ -53,9 +42,7 @@
   {
     "character": "㇀",
     "pinyin": [
-      "tí",
-      "ti",
-      "ti2"
+      "tí"
     ],
     "displayPinyin": "tí",
     "meaning": "Rising (提)"
@@ -64,13 +51,7 @@
     "character": "㇇",
     "pinyin": [
       "héng piě",
-      "héngpiě",
-      "heng pie",
-      "hengpie",
-      "heng2 pie3",
-      "heng2pie3",
-      "hengpie2",
-      "heng1pie3"
+      "héngpiě"
     ],
     "displayPinyin": "héng piě",
     "meaning": "Horizontal Left-falling (横撇)"
@@ -79,13 +60,7 @@
     "character": "𠃍",
     "pinyin": [
       "héng zhé",
-      "héngzhé",
-      "heng zhe",
-      "hengzhe",
-      "heng2 zhe2",
-      "heng2zhe2",
-      "hengzhe2",
-      "heng1zhe2"
+      "héngzhé"
     ],
     "displayPinyin": "héng zhé",
     "meaning": "Horizontal Turn (横折)"
@@ -94,13 +69,7 @@
     "character": "㇍",
     "pinyin": [
       "héng zhé wān",
-      "héngzhéwān",
-      "heng zhe wan",
-      "hengzhewan",
-      "heng2 zhe2 wan1",
-      "heng2zhe2wan1",
-      "hengzhewan2",
-      "heng1zhe2wan1"
+      "héngzhéwān"
     ],
     "displayPinyin": "héng zhé wān",
     "meaning": "Horizontal Turn Curve (横折弯)"
@@ -109,13 +78,7 @@
     "character": "𠃌",
     "pinyin": [
       "héng zhé gōu",
-      "héngzhégōu",
-      "heng zhe gou",
-      "hengzhegou",
-      "heng2 zhe2 gou1",
-      "heng2zhe2gou1",
-      "hengzhegou2",
-      "heng1zhe2gou1"
+      "héngzhégōu"
     ],
     "displayPinyin": "héng zhé gōu",
     "meaning": "Horizontal Turn Hook (横折钩)"
@@ -124,13 +87,7 @@
     "character": "乛",
     "pinyin": [
       "héng gōu",
-      "hénggōu",
-      "heng gou",
-      "henggou",
-      "heng2 gou1",
-      "heng2gou1",
-      "henggou2",
-      "heng1gou1"
+      "hénggōu"
     ],
     "displayPinyin": "héng gōu",
     "meaning": "Horizontal Hook (横钩)"
@@ -139,13 +96,7 @@
     "character": "㇈",
     "pinyin": [
       "héng zhé wān gōu",
-      "héngzhéwāngōu",
-      "heng zhe wan gou",
-      "hengzhewangou",
-      "heng2 zhe2 wan1 gou1",
-      "heng2zhe2wan1gou1",
-      "hengzhewangou2",
-      "heng1zhe2wan1gou1"
+      "héngzhéwāngōu"
     ],
     "displayPinyin": "héng zhé wān gōu",
     "meaning": "Horizontal Turn Curve Hook (横折弯钩)"
@@ -154,13 +105,7 @@
     "character": "⺄",
     "pinyin": [
       "héng xié gōu",
-      "héngxiégōu",
-      "heng xie gou",
-      "hengxiegou",
-      "heng2 xie2 gou1",
-      "heng2xie2gou1",
-      "hengxiegou2",
-      "heng1xie2gou1"
+      "héngxiégōu"
     ],
     "displayPinyin": "héng xié gōu",
     "meaning": "Horizontal Slant Hook (横斜钩)"
@@ -169,13 +114,7 @@
     "character": "㇡",
     "pinyin": [
       "héng zhé zhé zhé gōu",
-      "héngzhézhézhégōu",
-      "heng zhe zhe zhe gou",
-      "hengzhezhezhegou",
-      "heng2 zhe2 zhe2 zhe2 gou1",
-      "heng2zhe2zhe2zhe2gou1",
-      "hengzhezhezhegou2",
-      "heng1zhe2zhe2zhe2gou1"
+      "héngzhézhézhégōu"
     ],
     "displayPinyin": "héng zhé zhé zhé gōu",
     "meaning": "Horizontal Triple-Turn Hook (横折折折钩)"
@@ -184,13 +123,7 @@
     "character": "𠄎",
     "pinyin": [
       "héng zhé zhé piě",
-      "héngzhézhépiě",
-      "heng zhe zhe pie",
-      "hengzhezhepie",
-      "heng2 zhe2 zhe2 pie3",
-      "heng2zhe2zhe2pie3",
-      "hengzhezhepie2",
-      "heng1zhe2zhe2pie3"
+      "héngzhézhépiě"
     ],
     "displayPinyin": "héng zhé zhé piě",
     "meaning": "Horizontal Double-Turn Left-falling (横折折撇)"
@@ -199,13 +132,7 @@
     "character": "㇊",
     "pinyin": [
       "héng zhé tí",
-      "héngzhétí",
-      "heng zhe ti",
-      "hengzheti",
-      "heng2 zhe2 ti2",
-      "heng2zhe2ti2",
-      "hengzheti2",
-      "heng1zhe2ti2"
+      "héngzhétí"
     ],
     "displayPinyin": "héng zhé tí",
     "meaning": "Horizontal Turn Rising (横折提)"
@@ -214,13 +141,7 @@
     "character": "㇋",
     "pinyin": [
       "héng piě wān gōu",
-      "héngpiěwāngōu",
-      "heng pie wan gou",
-      "hengpiewangou",
-      "heng2 pie3 wan1 gou1",
-      "heng2pie3wan1gou1",
-      "hengpiewangou2",
-      "heng1pie3wan1gou1"
+      "héngpiěwāngōu"
     ],
     "displayPinyin": "héng piě wān gōu",
     "meaning": "Horizontal Left-falling Curve Hook (横撇弯钩)"
@@ -229,12 +150,7 @@
     "character": "亅",
     "pinyin": [
       "shù gōu",
-      "shùgōu",
-      "shu gou",
-      "shugou",
-      "shu4 gou1",
-      "shu4gou1",
-      "shugou4"
+      "shùgōu"
     ],
     "displayPinyin": "shù gōu",
     "meaning": "Vertical Hook (竖钩)"
@@ -243,12 +159,7 @@
     "character": "㇑",
     "pinyin": [
       "shù tí",
-      "shùtí",
-      "shu ti",
-      "shuti",
-      "shu4 ti2",
-      "shu4ti2",
-      "shuti4"
+      "shùtí"
     ],
     "displayPinyin": "shù tí",
     "meaning": "Vertical Rising (竖提)"
@@ -257,12 +168,7 @@
     "character": "𠃊",
     "pinyin": [
       "shù zhé",
-      "shùzhé",
-      "shu zhe",
-      "shuzhe",
-      "shu4 zhe2",
-      "shu4zhe2",
-      "shuzhe4"
+      "shùzhé"
     ],
     "displayPinyin": "shù zhé",
     "meaning": "Vertical Turn (竖折)"
@@ -271,12 +177,7 @@
     "character": "乚",
     "pinyin": [
       "shù wān",
-      "shùwān",
-      "shu wan",
-      "shuwan",
-      "shu4 wan1",
-      "shu4wan1",
-      "shuwan4"
+      "shùwān"
     ],
     "displayPinyin": "shù wān",
     "meaning": "Vertical Curve (竖弯)"
@@ -285,12 +186,7 @@
     "character": "㇟",
     "pinyin": [
       "shù wān gōu",
-      "shùwāngōu",
-      "shu wan gou",
-      "shuwangou",
-      "shu4 wan1 gou1",
-      "shu4wan1gou1",
-      "shuwangou4"
+      "shùwāngōu"
     ],
     "displayPinyin": "shù wān gōu",
     "meaning": "Vertical Curve Hook (竖弯钩)"
@@ -299,12 +195,7 @@
     "character": "㇉",
     "pinyin": [
       "shù zhé zhé gōu",
-      "shùzhézhégōu",
-      "shu zhe zhe gou",
-      "shuzhezhegou",
-      "shu4 zhe2 zhe2 gou1",
-      "shu4zhe2zhe2gou1",
-      "shuzhezhegou4"
+      "shùzhézhégōu"
     ],
     "displayPinyin": "shù zhé zhé gōu",
     "meaning": "Vertical Double-Turn Hook (竖折折钩)"
@@ -313,12 +204,7 @@
     "character": "ㄣ",
     "pinyin": [
       "shù zhé piě",
-      "shùzhépiě",
-      "shu zhe pie",
-      "shuzhepie",
-      "shu4 zhe2 pie3",
-      "shu4zhe2pie3",
-      "shuzhepie4"
+      "shùzhépiě"
     ],
     "displayPinyin": "shù zhé piě",
     "meaning": "Vertical Turn Left-falling (竖折撇)"
@@ -327,12 +213,7 @@
     "character": "㇁",
     "pinyin": [
       "wān gōu",
-      "wāngōu",
-      "wan gou",
-      "wangou",
-      "wan1 gou1",
-      "wan1gou1",
-      "wangou1"
+      "wāngōu"
     ],
     "displayPinyin": "wān gōu",
     "meaning": "Curved Hook (弯钩)"
@@ -341,12 +222,7 @@
     "character": "㇂",
     "pinyin": [
       "xié gōu",
-      "xiégōu",
-      "xie gou",
-      "xiegou",
-      "xie2 gou1",
-      "xie2gou1",
-      "xiegou2"
+      "xiégōu"
     ],
     "displayPinyin": "xié gōu",
     "meaning": "Slanting Hook (斜钩)"
@@ -355,12 +231,7 @@
     "character": "㇃",
     "pinyin": [
       "wò gōu",
-      "wògōu",
-      "wo gou",
-      "wogou",
-      "wo4 gou1",
-      "wo4gou1",
-      "wogou4"
+      "wògōu"
     ],
     "displayPinyin": "wò gōu",
     "meaning": "Lying Hook (卧钩)"
@@ -369,12 +240,7 @@
     "character": "㇜",
     "pinyin": [
       "piě zhé",
-      "piězhé",
-      "pie zhe",
-      "piezhe",
-      "pie3 zhe2",
-      "pie3zhe2",
-      "piezhe3"
+      "piězhé"
     ],
     "displayPinyin": "piě zhé",
     "meaning": "Left-falling Turn (撇折)"
@@ -383,12 +249,7 @@
     "character": "𡿨",
     "pinyin": [
       "piě diǎn",
-      "piědiǎn",
-      "pie dian",
-      "piedian",
-      "pie3 dian3",
-      "pie3dian3",
-      "piedian3"
+      "piědiǎn"
     ],
     "displayPinyin": "piě diǎn",
     "meaning": "Left-falling Dot (撇点)"

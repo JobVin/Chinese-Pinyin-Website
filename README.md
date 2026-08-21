@@ -7,11 +7,11 @@ An interactive web application designed for active recall practice of Mandarin C
 ## Key Features
 
 - **Decoupled JSON Assets**: All practice datasets (`strokes`, `radicals`, `hsk1`, `hsk2`, `hsk3`) are stored in structured `.json` assets and loaded asynchronously on demand.
-- **Strict Active Recall Pinyin Input**:
-  - **Tone Marks**: `pǔtōnghuà`
-  - **Numbered Tones**: `pu3tong1hua4`
-  - **Neutral Tones**: Syllables with a neutral tone require no tone mark or number (e.g. `de`, `le`).
-- **Chinese Polyphone Matching**: Correctly matches characters with multiple pronunciations (e.g. 长 accepts `cháng`, `chang2`, `zhǎng`, `zhang3`).
+- **Strict Tone-Marked Pinyin Keyboard Input**:
+  - **Tone Marks**: `pǔtōnghuà`, `héng`, `nǐhǎo` (typed via Pinyin tone keyboard or IME).
+  - **Neutral Tones**: Syllables with a neutral tone require no tone mark (e.g. `de`, `le`).
+  - **Strict Active Recall**: Tone numbers (e.g. `heng1`, `shu4`, `ni3hao3`) and untoned letters for non-neutral words are rejected.
+- **Chinese Polyphone Matching**: Correctly matches characters with multiple pronunciations (e.g. 长 accepts `cháng` and `zhǎng`).
 - **Level Chunking**: HSK vocabulary datasets are divided into bite-sized 15-word chunks for focused practice without overload.
 - **Learning Hub & Practice Hub**: Study mode (List & Flashcards with answer reveals) and Practice mode (active recall quizzes with instant scoring & retry for missed cards).
 - **Instant Visual Feedback**: Card input highlighting, correct answer displays, IME input detection alerts, and score summaries.

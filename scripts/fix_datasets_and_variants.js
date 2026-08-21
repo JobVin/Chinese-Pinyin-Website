@@ -3,56 +3,52 @@ const path = require('path');
 
 const dataDir = path.join(__dirname, '../data');
 
-// Tone mark mapping
-const toneMap = {
-  'ā': ['a', '1'], 'á': ['a', '2'], 'ǎ': ['a', '3'], 'à': ['a', '4'],
-  'ē': ['e', '1'], 'é': ['e', '2'], 'ě': ['e', '3'], 'è': ['e', '4'],
-  'ī': ['i', '1'], 'í': ['i', '2'], 'ǐ': ['i', '3'], 'ì': ['i', '4'],
-  'ō': ['o', '1'], 'ó': ['o', '2'], 'ǒ': ['o', '3'], 'ò': ['o', '4'],
-  'ū': ['u', '1'], 'ú': ['u', '2'], 'ǔ': ['u', '3'], 'ù': ['u', '4'],
-  'ǖ': ['v', '1'], 'ǘ': ['v', '2'], 'ǚ': ['v', '3'], 'ǜ': ['v', '4'], 'ü': ['v', '0']
-};
+const toneCharsRegex = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]/i;
 
-function generatePinyinVariants(inputStr) {
-  if (!inputStr || typeof inputStr !== 'string') return [];
-  const results = new Set();
-  const trimmed = inputStr.trim().toLowerCase();
-  if (!trimmed) return [];
+function hasToneMark(str) {
+  return toneCharsRegex.test(str);
+}
 
-  // 1. Original trimmed
-  results.add(trimmed);
-  results.add(trimmed.replace(/\s+/g, ''));
+function cleanPinyinVariants(rawVariants, displayPinyin) {
+  const result = new Set();
 
-  // 2. Strip tones for plain representation
-  const plain = trimmed
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/ü/g, 'v')
-    .replace(/u:/g, 'v');
-
-  results.add(plain);
-  results.add(plain.replace(/\s+/g, ''));
-
-  // 3. Convert toned to numbered pinyin
-  const syllables = trimmed.split(/\s+/);
-  const numSyllables = syllables.map(s => {
-    let toneNum = '';
-    let cleanS = s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ü/g, 'v');
-
-    for (let char of s) {
-      if (toneMap[char]) {
-        toneNum = toneMap[char][1];
-        break;
-      }
+  if (displayPinyin && typeof displayPinyin === 'string' && displayPinyin.trim()) {
+    const disp = displayPinyin.trim();
+    result.add(disp);
+    if (disp.includes(' ')) {
+      result.add(disp.replace(/\s+/g, ''));
     }
-    return toneNum ? `${cleanS}${toneNum}` : cleanS;
+  }
+
+  // First pass: collect all non-numeric variants
+  const validStrings = [];
+  rawVariants.forEach(v => {
+    if (!v || typeof v !== 'string') return;
+    const trimmed = v.trim();
+    if (!trimmed) return;
+
+    // Reject numeric tone variants (e.g. heng1, shu4, ni3hao3)
+    if (/\d/.test(trimmed)) return;
+
+    validStrings.push(trimmed);
   });
 
-  const numWithSpaces = numSyllables.join(' ');
-  results.add(numWithSpaces);
-  results.add(numWithSpaces.replace(/\s+/g, ''));
+  // Check if any variant has a tone mark
+  const anyToned = validStrings.some(s => hasToneMark(s));
 
-  return Array.from(results);
+  validStrings.forEach(s => {
+    if (anyToned && !hasToneMark(s) && s !== displayPinyin) {
+      // If there are tone-marked variants available, filter out un-toned plain strings (e.g. "heng" when "héng" exists)
+      return;
+    }
+
+    result.add(s);
+    if (s.includes(' ')) {
+      result.add(s.replace(/\s+/g, ''));
+    }
+  });
+
+  return Array.from(result);
 }
 
 function processDataset(filename, polyphoneFixes = {}) {
@@ -69,28 +65,24 @@ function processDataset(filename, polyphoneFixes = {}) {
       if (fix.meaning) entry.meaning = fix.meaning;
     }
 
-    const allVariants = new Set();
+    const rawVariants = new Set();
 
-    // Process existing pinyin array elements
     if (Array.isArray(entry.pinyin)) {
-      entry.pinyin.forEach(p => {
-        generatePinyinVariants(p).forEach(v => allVariants.add(v));
-      });
+      entry.pinyin.forEach(p => rawVariants.add(p));
     }
 
-    // Process displayPinyin
     if (entry.displayPinyin) {
-      generatePinyinVariants(entry.displayPinyin).forEach(v => allVariants.add(v));
+      rawVariants.add(entry.displayPinyin);
     }
 
-    entry.pinyin = Array.from(allVariants);
+    entry.pinyin = cleanPinyinVariants(Array.from(rawVariants), entry.displayPinyin);
   });
 
   fs.writeFileSync(filePath, JSON.stringify(dataset, null, 2), 'utf8');
   console.log(`Updated ${filename} successfully (${dataset.length} items).`);
 }
 
-// 1. Polyphone Corrections
+// Polyphone Corrections
 const HSK1_FIXES = {
   "那": { displayPinyin: "nà", meaning: "that / those" },
   "几": { displayPinyin: "jǐ", meaning: "how many / a few / several" },
@@ -110,11 +102,11 @@ const HSK3_FIXES = {
   "只": { displayPinyin: "zhǐ", meaning: "only" }
 };
 
-console.log('=== FIXING POLYPHONES & GENERATING FULL PINYIN VARIANTS ===\n');
+console.log('=== CLEANING DATASETS TO SOLELY TONE-MARKED PINYIN VARIANTS ===\n');
 processDataset('hsk1.json', HSK1_FIXES);
 processDataset('hsk2.json', HSK2_FIXES);
 processDataset('hsk3.json', HSK3_FIXES);
 processDataset('strokes.json', {});
 processDataset('radicals.json', {});
 
-console.log('\nAll datasets processed successfully.');
+console.log('\nAll datasets cleaned successfully.');

@@ -1,14 +1,53 @@
 # Dependencies
 node_modules/
+.pnpm-store/
 
 # Operating System files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+desktop.ini
 
 # Logs and temporary files
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.tmp
+*.temp
+scratch/
 
-# IDE and Editor settings
+# Build and cache outputs
+dist/
+build/
+.cache/
+.tmp/
+coverage/
+.nyc_output/
+
+# IDE, Editor, and Tooling settings
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+*.sublime-workspace
+
+# Agent & AI metadata
+.gemini/
+.agents/
+.antigravity/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

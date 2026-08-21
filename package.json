@@ -1,0 +1,32 @@
+{
+  "name": "chinese-pinyin-website",
+  "version": "1.0.0",
+  "description": "Mandarin Hanzi & Pinyin Practice Hub - Active recall practice for Chinese characters, radicals, strokes, and HSK vocabulary levels.",
+  "main": "app.js",
+  "scripts": {
+    "test": "node scripts/test_validation.js",
+    "audit": "node scripts/audit_characters.js",
+    "build:datasets": "node scripts/build_hsk_datasets.js",
+    "fix:variants": "node scripts/fix_datasets_and_variants.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JobVin/Chinese-Pinyin-Website.git"
+  },
+  "keywords": [
+    "chinese",
+    "mandarin",
+    "pinyin",
+    "hsk",
+    "hanzi",
+    "flashcards",
+    "quiz",
+    "learning"
+  ],
+  "author": "JobVin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JobVin/Chinese-Pinyin-Website/issues"
+  },
+  "homepage": "https://github.com/JobVin/Chinese-Pinyin-Website#readme"
+}

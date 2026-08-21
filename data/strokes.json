@@ -69,6 +69,7 @@
       "hengpie",
       "heng2 pie3",
       "heng2pie3",
+      "hengpie2",
       "heng1pie3"
     ],
     "displayPinyin": "héng piě",
@@ -83,6 +84,7 @@
       "hengzhe",
       "heng2 zhe2",
       "heng2zhe2",
+      "hengzhe2",
       "heng1zhe2"
     ],
     "displayPinyin": "héng zhé",
@@ -97,6 +99,7 @@
       "hengzhewan",
       "heng2 zhe2 wan1",
       "heng2zhe2wan1",
+      "hengzhewan2",
       "heng1zhe2wan1"
     ],
     "displayPinyin": "héng zhé wān",
@@ -111,6 +114,7 @@
       "hengzhegou",
       "heng2 zhe2 gou1",
       "heng2zhe2gou1",
+      "hengzhegou2",
       "heng1zhe2gou1"
     ],
     "displayPinyin": "héng zhé gōu",
@@ -125,6 +129,7 @@
       "henggou",
       "heng2 gou1",
       "heng2gou1",
+      "henggou2",
       "heng1gou1"
     ],
     "displayPinyin": "héng gōu",
@@ -139,6 +144,7 @@
       "hengzhewangou",
       "heng2 zhe2 wan1 gou1",
       "heng2zhe2wan1gou1",
+      "hengzhewangou2",
       "heng1zhe2wan1gou1"
     ],
     "displayPinyin": "héng zhé wān gōu",
@@ -153,6 +159,7 @@
       "hengxiegou",
       "heng2 xie2 gou1",
       "heng2xie2gou1",
+      "hengxiegou2",
       "heng1xie2gou1"
     ],
     "displayPinyin": "héng xié gōu",
@@ -167,6 +174,7 @@
       "hengzhezhezhegou",
       "heng2 zhe2 zhe2 zhe2 gou1",
       "heng2zhe2zhe2zhe2gou1",
+      "hengzhezhezhegou2",
       "heng1zhe2zhe2zhe2gou1"
     ],
     "displayPinyin": "héng zhé zhé zhé gōu",
@@ -181,6 +189,7 @@
       "hengzhezhepie",
       "heng2 zhe2 zhe2 pie3",
       "heng2zhe2zhe2pie3",
+      "hengzhezhepie2",
       "heng1zhe2zhe2pie3"
     ],
     "displayPinyin": "héng zhé zhé piě",
@@ -195,6 +204,7 @@
       "hengzheti",
       "heng2 zhe2 ti2",
       "heng2zhe2ti2",
+      "hengzheti2",
       "heng1zhe2ti2"
     ],
     "displayPinyin": "héng zhé tí",
@@ -209,6 +219,7 @@
       "hengpiewangou",
       "heng2 pie3 wan1 gou1",
       "heng2pie3wan1gou1",
+      "hengpiewangou2",
       "heng1pie3wan1gou1"
     ],
     "displayPinyin": "héng piě wān gōu",
@@ -222,7 +233,8 @@
       "shu gou",
       "shugou",
       "shu4 gou1",
-      "shu4gou1"
+      "shu4gou1",
+      "shugou4"
     ],
     "displayPinyin": "shù gōu",
     "meaning": "Vertical Hook (竖钩)"
@@ -235,7 +247,8 @@
       "shu ti",
       "shuti",
       "shu4 ti2",
-      "shu4ti2"
+      "shu4ti2",
+      "shuti4"
     ],
     "displayPinyin": "shù tí",
     "meaning": "Vertical Rising (竖提)"
@@ -248,7 +261,8 @@
       "shu zhe",
       "shuzhe",
       "shu4 zhe2",
-      "shu4zhe2"
+      "shu4zhe2",
+      "shuzhe4"
     ],
     "displayPinyin": "shù zhé",
     "meaning": "Vertical Turn (竖折)"
@@ -261,7 +275,8 @@
       "shu wan",
       "shuwan",
       "shu4 wan1",
-      "shu4wan1"
+      "shu4wan1",
+      "shuwan4"
     ],
     "displayPinyin": "shù wān",
     "meaning": "Vertical Curve (竖弯)"
@@ -274,7 +289,8 @@
       "shu wan gou",
       "shuwangou",
       "shu4 wan1 gou1",
-      "shu4wan1gou1"
+      "shu4wan1gou1",
+      "shuwangou4"
     ],
     "displayPinyin": "shù wān gōu",
     "meaning": "Vertical Curve Hook (竖弯钩)"
@@ -287,7 +303,8 @@
       "shu zhe zhe gou",
       "shuzhezhegou",
       "shu4 zhe2 zhe2 gou1",
-      "shu4zhe2zhe2gou1"
+      "shu4zhe2zhe2gou1",
+      "shuzhezhegou4"
     ],
     "displayPinyin": "shù zhé zhé gōu",
     "meaning": "Vertical Double-Turn Hook (竖折折钩)"
@@ -300,7 +317,8 @@
       "shu zhe pie",
       "shuzhepie",
       "shu4 zhe2 pie3",
-      "shu4zhe2pie3"
+      "shu4zhe2pie3",
+      "shuzhepie4"
     ],
     "displayPinyin": "shù zhé piě",
     "meaning": "Vertical Turn Left-falling (竖折撇)"
@@ -313,7 +331,8 @@
       "wan gou",
       "wangou",
       "wan1 gou1",
-      "wan1gou1"
+      "wan1gou1",
+      "wangou1"
     ],
     "displayPinyin": "wān gōu",
     "meaning": "Curved Hook (弯钩)"
@@ -326,7 +345,8 @@
       "xie gou",
       "xiegou",
       "xie2 gou1",
-      "xie2gou1"
+      "xie2gou1",
+      "xiegou2"
     ],
     "displayPinyin": "xié gōu",
     "meaning": "Slanting Hook (斜钩)"
@@ -339,7 +359,8 @@
       "wo gou",
       "wogou",
       "wo4 gou1",
-      "wo4gou1"
+      "wo4gou1",
+      "wogou4"
     ],
     "displayPinyin": "wò gōu",
     "meaning": "Lying Hook (卧钩)"
@@ -352,7 +373,8 @@
       "pie zhe",
       "piezhe",
       "pie3 zhe2",
-      "pie3zhe2"
+      "pie3zhe2",
+      "piezhe3"
     ],
     "displayPinyin": "piě zhé",
     "meaning": "Left-falling Turn (撇折)"
@@ -365,7 +387,8 @@
       "pie dian",
       "piedian",
       "pie3 dian3",
-      "pie3dian3"
+      "pie3dian3",
+      "piedian3"
     ],
     "displayPinyin": "piě diǎn",
     "meaning": "Left-falling Dot (撇点)"

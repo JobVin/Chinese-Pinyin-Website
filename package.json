@@ -7,7 +7,8 @@
     "test": "node scripts/test_validation.js",
     "audit": "node scripts/audit_characters.js",
     "build:datasets": "node scripts/build_hsk_datasets.js",
-    "fix:variants": "node scripts/fix_datasets_and_variants.js"
+    "fix:variants": "node scripts/fix_datasets_and_variants.js",
+    "check:hanzi-coverage": "node scripts/audits/check_hanzi_writer_coverage.js"
   },
   "repository": {
     "type": "git",

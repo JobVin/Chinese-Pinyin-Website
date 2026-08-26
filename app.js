@@ -14,7 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
     submitted: false,
     filledCount: 0,
     currentStudyData: null,
-    pendingNavTarget: 'hub'
+    pendingNavTarget: 'hub',
+    quizType: 'pinyin', // 'pinyin' | 'drawing'
+    currentDrawingCards: [],
+    drawingCanvasInstances: new Map(),
+    drawingSubmitted: false
   };
 
   // DOM ELEMENTS
@@ -86,8 +90,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const studyHeaderCount = document.getElementById('study-header-count');
   const btnStudyListMode = document.getElementById('btn-study-list-mode');
   const btnStudyFlashcardMode = document.getElementById('btn-study-flashcard-mode');
+  const btnStudyDrawMode = document.getElementById('btn-study-draw-mode');
   const studyListView = document.getElementById('study-list-view');
   const studyFlashcardView = document.getElementById('study-flashcard-view');
+  const studyDrawView = document.getElementById('study-draw-view');
+  let drawViewRendered = false;
   const btnStartQuizFromStudy = document.getElementById('btn-start-quiz-from-study');
   const btnBackToLearningHub = document.getElementById('btn-back-to-learning-hub');
   const btnNextStudyLevel = document.getElementById('btn-next-study-level');
@@ -331,8 +338,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return stages;
   }
 
-  // TRACK SELECTION FROM PRACTICE HUB
-  const practiceTrackCards = document.querySelectorAll('#hub-view .stacked-track-card, #hub-view .track-card');
+  // TRACK SELECTION FROM PRACTICE HUB (PINYIN QUIZ)
+  const practiceTrackCards = document.querySelectorAll('#hub-view .stacked-track-card:not([data-mode="drawing"]), #hub-view .track-card');
   practiceTrackCards.forEach(card => {
     card.addEventListener('click', async () => {
       const track = card.dataset.track;
@@ -342,6 +349,24 @@ document.addEventListener('DOMContentLoaded', () => {
         startQuiz(track, stages[0].data, getTrackTitle(track, false));
       } else {
         openStageModal(track, stages, (stage) => startQuiz(track, stage.data, `${getTrackTitle(track, false)} (${stage.title})`), false);
+      }
+    });
+  });
+
+  // TRACK SELECTION FROM PRACTICE HUB (DRAWING QUIZ)
+  const drawingTrackCards = document.querySelectorAll('#hub-view .stacked-track-card[data-mode="drawing"]');
+  drawingTrackCards.forEach(card => {
+    card.addEventListener('click', async () => {
+      const track = card.dataset.track;
+      const fullData = await loadDataset(track);
+      const stages = getDatasetStagesFromData(fullData, track, 15);
+      const baseTitle = getTrackTitle(track, false) + ' Drawing';
+      if (stages.length === 1) {
+        startDrawingQuiz(track, stages[0].data, baseTitle);
+      } else {
+        openStageModal(track, stages, (stage) => {
+          startDrawingQuiz(track, stage.data, `${baseTitle} (${stage.title})`);
+        }, false);
       }
     });
   });
@@ -431,6 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
     state.currentStudyData = { trackName, data, title };
     state.currentStudyStages = stages;
     state.currentStudyStageIndex = stageIndex;
+    drawViewRendered = false;
 
     if (studyHeaderTitle) studyHeaderTitle.textContent = title;
     if (studyHeaderCount) studyHeaderCount.textContent = `${data.length} Words`;
@@ -438,13 +464,15 @@ document.addEventListener('DOMContentLoaded', () => {
     renderStudyListView(data);
     renderStudyFlashcardView(data);
 
-    if (btnStudyListMode && btnStudyFlashcardMode) {
+    if (btnStudyListMode && btnStudyFlashcardMode && btnStudyDrawMode) {
       btnStudyListMode.classList.add('active');
       btnStudyFlashcardMode.classList.remove('active');
+      btnStudyDrawMode.classList.remove('active');
     }
-    if (studyListView && studyFlashcardView) {
+    if (studyListView && studyFlashcardView && studyDrawView) {
       studyListView.style.display = 'block';
       studyFlashcardView.style.display = 'none';
+      studyDrawView.style.display = 'none';
     }
 
     // Configure "Next Level ->" Button
@@ -525,19 +553,253 @@ document.addEventListener('DOMContentLoaded', () => {
     studyFlashcardView.appendChild(gridEl);
   }
 
-  if (btnStudyListMode && btnStudyFlashcardMode) {
+  function renderStudyDrawView(data) {
+    if (!studyDrawView) return;
+    studyDrawView.innerHTML = '';
+    const gridEl = document.createElement('div');
+    gridEl.className = 'study-draw-grid';
+
+    data.forEach(item => {
+      const displayPinyin = item.displayPinyin || (Array.isArray(item.pinyin) ? item.pinyin[0] : item.pinyin);
+      const cardEl = document.createElement('div');
+      cardEl.className = 'study-card study-draw-card';
+
+      // Caption Header
+      const captionEl = document.createElement('div');
+      captionEl.className = 'study-draw-caption';
+      captionEl.innerHTML = `
+        <div class="study-reveal-pinyin">${item.character} — ${displayPinyin || ''}</div>
+        <div class="study-reveal-meaning">${item.meaning || ''}</div>
+      `;
+      cardEl.appendChild(captionEl);
+
+      // Dual Container
+      const dualContainer = document.createElement('div');
+      dualContainer.className = 'study-draw-dual-container';
+
+      const characters = [...(item.character || '')];
+
+      // --- SPACE 1: ANIMATION & GUIDE SPACE ---
+      const animBox = document.createElement('div');
+      animBox.className = 'study-draw-box animation-box';
+      animBox.innerHTML = `<div class="box-label">1. Animation Guide</div>`;
+
+      const animTargetsWrapper = document.createElement('div');
+      animTargetsWrapper.className = 'draw-targets-wrapper';
+
+      const writers = [];
+      const loadedWriterFlags = [];
+
+      characters.forEach((char, charIdx) => {
+        const targetDiv = document.createElement('div');
+        targetDiv.className = 'animation-target-div';
+        animTargetsWrapper.appendChild(targetDiv);
+
+        if (typeof HanziWriter !== 'undefined') {
+          const writerOptions = {
+            width: 130,
+            height: 130,
+            padding: 5,
+            showOutline: true,
+            showCharacter: false,
+            strokeColor: '#1e293b',
+            outlineColor: '#cbd5e1',
+            onLoadCharDataSuccess: () => {
+              loadedWriterFlags[charIdx] = true;
+            },
+            onLoadCharDataError: () => {
+              targetDiv.innerHTML = `<div class="fallback-stroke-char">${char}</div>`;
+              loadedWriterFlags[charIdx] = false;
+            }
+          };
+
+          if (typeof HanziDrawing !== 'undefined' && typeof HanziDrawing.defaultCharDataLoader === 'function') {
+            writerOptions.charDataLoader = HanziDrawing.defaultCharDataLoader;
+          }
+
+          const writer = HanziWriter.create(targetDiv, char, writerOptions);
+          writers.push(writer);
+        } else {
+          targetDiv.innerHTML = `<div class="fallback-stroke-char">${char}</div>`;
+        }
+      });
+
+      animBox.appendChild(animTargetsWrapper);
+
+      const animBtn = document.createElement('button');
+      animBtn.className = 'btn-hanzi-animate';
+      animBtn.style.marginTop = '10px';
+      animBtn.innerHTML = '<span>▶</span> Animate';
+      animBox.appendChild(animBtn);
+
+      let isAnimating = false;
+      animBtn.addEventListener('click', async () => {
+        if (isAnimating) return;
+        isAnimating = true;
+        animBtn.disabled = true;
+        animBtn.style.opacity = '0.7';
+
+        for (let i = 0; i < writers.length; i++) {
+          if (writers[i]) {
+            await new Promise((resolve) => writers[i].animateCharacter({ onComplete: resolve }));
+          }
+        }
+
+        isAnimating = false;
+        animBtn.disabled = false;
+        animBtn.style.opacity = '1';
+      });
+
+      dualContainer.appendChild(animBox);
+
+      // --- SPACE 2: FREEHAND PRACTICE & GRADING SPACE ---
+      const practiceBox = document.createElement('div');
+      practiceBox.className = 'study-draw-box practice-box';
+      practiceBox.innerHTML = `<div class="box-label">2. Freehand Practice</div>`;
+
+      const practiceTargetsWrapper = document.createElement('div');
+      practiceTargetsWrapper.className = 'draw-targets-wrapper';
+
+      const practiceCanvases = [];
+
+      characters.forEach((char) => {
+        const practiceCanvasContainer = document.createElement('div');
+        practiceCanvasContainer.className = 'practice-target-div';
+        practiceTargetsWrapper.appendChild(practiceCanvasContainer);
+
+        if (typeof HanziDrawing !== 'undefined' && typeof HanziDrawing.createDrawableCanvas === 'function') {
+          const pCanvas = HanziDrawing.createDrawableCanvas(practiceCanvasContainer, {
+            width: 130,
+            height: 130,
+            showClearButton: false, // Rendered in practice-controls below
+            strokeColor: '#1976d2'
+          });
+          practiceCanvases.push({ canvas: pCanvas, char, container: practiceCanvasContainer });
+        }
+      });
+
+      practiceBox.appendChild(practiceTargetsWrapper);
+
+      // Practice Controls: Clear & Grade Buttons
+      const practiceControls = document.createElement('div');
+      practiceControls.className = 'practice-controls';
+
+      const btnClear = document.createElement('button');
+      btnClear.className = 'btn-clear-practice';
+      btnClear.textContent = 'Clear';
+      practiceControls.appendChild(btnClear);
+
+      const btnGrade = document.createElement('button');
+      btnGrade.className = 'btn-grade-practice';
+      btnGrade.textContent = 'Grade Practice';
+      practiceControls.appendChild(btnGrade);
+
+      practiceBox.appendChild(practiceControls);
+
+      const resultBadge = document.createElement('div');
+      resultBadge.className = 'practice-result-badge';
+      resultBadge.style.display = 'none';
+      practiceBox.appendChild(resultBadge);
+
+      btnClear.addEventListener('click', () => {
+        practiceCanvases.forEach(itemObj => itemObj.canvas.clear());
+        resultBadge.style.display = 'none';
+      });
+
+      btnGrade.addEventListener('click', async () => {
+        const hasStrokes = practiceCanvases.some(itemObj => itemObj.canvas.getStrokes().length > 0);
+        if (!hasStrokes) {
+          resultBadge.style.display = 'block';
+          resultBadge.className = 'practice-result-badge info';
+          resultBadge.textContent = 'Draw on canvas before grading!';
+          return;
+        }
+
+        btnGrade.disabled = true;
+        btnGrade.textContent = 'Grading...';
+
+        try {
+          const charResults = [];
+          for (const itemObj of practiceCanvases) {
+            const strokes = itemObj.canvas.getStrokes();
+            const res = await HanziDrawing.gradeCharacterDrawing(strokes, itemObj.char, { width: 130, height: 130, container: itemObj.container });
+            charResults.push(res);
+          }
+
+          resultBadge.style.display = 'block';
+
+          let totalScore = 0;
+          let allCorrect = true;
+          let hasReason = false;
+
+          charResults.forEach(r => {
+            totalScore += r.score;
+            if (!r.correct) allCorrect = false;
+            if (r.reason) hasReason = true;
+          });
+
+          const avgScore = totalScore / charResults.length;
+          const pct = Math.round(avgScore * 100);
+
+          if (hasReason) {
+            resultBadge.className = 'practice-result-badge info';
+            resultBadge.textContent = 'Practice Recorded ✅\n(Stroke shape guided)';
+          } else if (allCorrect) {
+            resultBadge.className = 'practice-result-badge pass';
+            resultBadge.textContent = `Score: ${pct}% ✅ PASSED`;
+          } else {
+            resultBadge.className = 'practice-result-badge fail';
+            resultBadge.textContent = `Score: ${pct}% ❌ NEEDS PRACTICE`;
+          }
+        } catch (err) {
+          resultBadge.style.display = 'block';
+          resultBadge.className = 'practice-result-badge info';
+          resultBadge.textContent = 'Practice Recorded ✅';
+        } finally {
+          btnGrade.disabled = false;
+          btnGrade.textContent = 'Grade Practice';
+        }
+      });
+
+      dualContainer.appendChild(practiceBox);
+      cardEl.appendChild(dualContainer);
+      gridEl.appendChild(cardEl);
+    });
+
+    studyDrawView.appendChild(gridEl);
+  }
+
+  if (btnStudyListMode && btnStudyFlashcardMode && btnStudyDrawMode) {
     btnStudyListMode.addEventListener('click', () => {
       btnStudyListMode.classList.add('active');
       btnStudyFlashcardMode.classList.remove('active');
+      btnStudyDrawMode.classList.remove('active');
       studyListView.style.display = 'block';
       studyFlashcardView.style.display = 'none';
+      studyDrawView.style.display = 'none';
     });
 
     btnStudyFlashcardMode.addEventListener('click', () => {
       btnStudyFlashcardMode.classList.add('active');
       btnStudyListMode.classList.remove('active');
+      btnStudyDrawMode.classList.remove('active');
       studyListView.style.display = 'none';
       studyFlashcardView.style.display = 'block';
+      studyDrawView.style.display = 'none';
+    });
+
+    btnStudyDrawMode.addEventListener('click', () => {
+      btnStudyDrawMode.classList.add('active');
+      btnStudyListMode.classList.remove('active');
+      btnStudyFlashcardMode.classList.remove('active');
+      studyListView.style.display = 'none';
+      studyFlashcardView.style.display = 'none';
+      studyDrawView.style.display = 'block';
+
+      if (!drawViewRendered && state.currentStudyData) {
+        renderStudyDrawView(state.currentStudyData.data);
+        drawViewRendered = true;
+      }
     });
   }
 
@@ -573,14 +835,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // START QUIZ LOGIC
+  // START QUIZ LOGIC (PINYIN)
   async function startQuiz(trackName, customDataSet = null, customTitle = null) {
+    state.quizType = 'pinyin';
     state.currentTrack = trackName;
     state.submitted = false;
+    state.drawingSubmitted = false;
     state.filledCount = 0;
     imeAlert.classList.remove('show');
     resultsBanner.style.display = 'none';
     quizActionBar.style.display = 'flex';
+    btnSubmit.disabled = false;
+    btnSubmit.textContent = 'Submit Quiz';
 
     let cardData = customDataSet ? customDataSet : await loadDataset(trackName);
 
@@ -604,7 +870,106 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
   }
 
-  // RENDER CARD GRID (TOFUGU STYLE)
+  // START DRAWING QUIZ LOGIC
+  async function startDrawingQuiz(trackName, customDataSet = null, customTitle = null) {
+    state.quizType = 'drawing';
+    state.currentTrack = trackName;
+    state.drawingSubmitted = false;
+    state.submitted = false;
+    state.filledCount = 0;
+    state.missedCards = [];
+    state.drawingCanvasInstances = new Map();
+
+    imeAlert.classList.remove('show');
+    resultsBanner.style.display = 'none';
+    quizActionBar.style.display = 'flex';
+    btnSubmit.disabled = false;
+    btnSubmit.textContent = 'Submit Quiz';
+
+    const cardData = customDataSet ? customDataSet : await loadDataset(trackName);
+    state.currentCards = cardData;
+    state.currentDrawingCards = cardData;
+    state.currentQuizDataSet = cardData;
+    state.currentQuizTitle = customTitle || (getTrackTitle(trackName, false) + ' Drawing');
+
+    quizHeaderTitle.textContent = state.currentQuizTitle;
+    quizHeaderCount.textContent = `0 / ${state.currentCards.length} Words`;
+    quizProgressSummary.textContent = `Completed: 0 / ${state.currentCards.length} Cards`;
+
+    renderDrawingCardGrid(cardData);
+    showView('quiz');
+  }
+
+  // RENDER DRAWING CARD GRID
+  function renderDrawingCardGrid(data) {
+    cardGrid.innerHTML = '';
+    state.drawingCanvasInstances.clear();
+
+    data.forEach((item, index) => {
+      const cardEl = document.createElement('div');
+      cardEl.className = 'tofugu-card tofugu-drawing-card';
+      cardEl.dataset.index = index;
+
+      const displayPinyin = item.displayPinyin || (Array.isArray(item.pinyin) ? item.pinyin[0] : item.pinyin);
+
+      const promptHeader = document.createElement('div');
+      promptHeader.className = 'drawing-prompt-header';
+      promptHeader.innerHTML = `
+        <div class="drawing-prompt-pinyin">${displayPinyin || ''}</div>
+        <div class="drawing-prompt-meaning">${item.meaning || ''}</div>
+      `;
+      cardEl.appendChild(promptHeader);
+
+      const canvasesRow = document.createElement('div');
+      canvasesRow.className = 'drawing-canvases-row';
+
+      const characters = [...(item.character || '')];
+
+      characters.forEach((char, charIdx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'drawing-canvas-wrapper';
+
+        const canvasBox = document.createElement('div');
+        canvasBox.className = 'drawing-canvas-box';
+        wrapper.appendChild(canvasBox);
+
+        let canvasInst = null;
+        if (typeof HanziDrawing !== 'undefined' && typeof HanziDrawing.createDrawableCanvas === 'function') {
+          canvasInst = HanziDrawing.createDrawableCanvas(canvasBox, {
+            width: 130,
+            height: 130,
+            showClearButton: false, // Dedicated Clear button rendered below in wrapper
+            strokeColor: '#1976d2'
+          });
+
+          const key = `${index}-${charIdx}`;
+          state.drawingCanvasInstances.set(key, {
+            canvasInstance: canvasInst,
+            character: char,
+            cardIndex: index,
+            charIndex: charIdx,
+            container: canvasBox,
+            canvasSize: 130
+          });
+        }
+
+        const clearBtn = document.createElement('button');
+        clearBtn.className = 'btn-clear-single-canvas';
+        clearBtn.textContent = 'Clear';
+        clearBtn.addEventListener('click', () => {
+          if (canvasInst) canvasInst.clear();
+        });
+        wrapper.appendChild(clearBtn);
+
+        canvasesRow.appendChild(wrapper);
+      });
+
+      cardEl.appendChild(canvasesRow);
+      cardGrid.appendChild(cardEl);
+    });
+  }
+
+  // RENDER CARD GRID (TOFUGU STYLE - PINYIN)
   function renderCardGrid() {
     cardGrid.innerHTML = '';
 
@@ -676,9 +1041,115 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // QUIZ SUBMISSION & GRADING
   btnSubmit.addEventListener('click', () => {
-    if (state.submitted) return;
-    gradeQuiz();
+    if (state.submitted || state.drawingSubmitted) return;
+    if (state.quizType === 'drawing') {
+      gradeDrawingQuiz();
+    } else {
+      gradeQuiz();
+    }
   });
+
+  // GRADE DRAWING QUIZ ON SUBMIT
+  async function gradeDrawingQuiz() {
+    state.drawingSubmitted = true;
+    state.submitted = true;
+    btnSubmit.disabled = true;
+    btnSubmit.textContent = 'Grading...';
+
+    // Note: HanziDrawing.loadCharData caches character stroke data (checking CUSTOM_STROKE_DATABASE first,
+    // then caching Promises/objects) so repeated characters across the batch don't re-fetch over the network.
+
+    let totalCharsCount = 0;
+    let totalCorrectCharsCount = 0;
+    state.missedCards = [];
+
+    for (let index = 0; index < state.currentCards.length; index++) {
+      const item = state.currentCards[index];
+      const characters = [...(item.character || '')];
+      let isWordCorrect = true;
+
+      for (let charIdx = 0; charIdx < characters.length; charIdx++) {
+        const char = characters[charIdx];
+        totalCharsCount++;
+
+        const key = `${index}-${charIdx}`;
+        const entry = state.drawingCanvasInstances.get(key);
+        const strokes = entry ? entry.canvasInstance.getStrokes() : [];
+
+        let res = { correct: false, score: 0 };
+        const canvasSize = (entry && entry.canvasSize) ? entry.canvasSize : 130;
+        try {
+          res = await HanziDrawing.gradeCharacterDrawing(strokes, char, {
+            width: canvasSize,
+            height: canvasSize,
+            container: entry ? entry.container : null
+          });
+        } catch (err) {
+          console.error(`Grading error for char '${char}':`, err);
+        }
+
+        if (entry && entry.container) {
+          const badge = document.createElement('div');
+          badge.className = 'drawing-char-feedback';
+
+          if (res.correct) {
+            entry.container.classList.add('correct-drawing-canvas');
+            badge.classList.add('correct');
+            badge.textContent = `✓ ${Math.round(res.score * 100)}%`;
+            totalCorrectCharsCount++;
+          } else {
+            entry.container.classList.add('incorrect-drawing-canvas');
+            badge.classList.add('incorrect');
+            badge.textContent = `✗ ${Math.round(res.score * 100)}%`;
+            isWordCorrect = false;
+          }
+          entry.container.appendChild(badge);
+        } else {
+          if (res.correct) totalCorrectCharsCount++;
+          else isWordCorrect = false;
+        }
+      }
+
+      if (!isWordCorrect) {
+        state.missedCards.push(item);
+      }
+    }
+
+    const percentage = totalCharsCount > 0 ? Math.round((totalCorrectCharsCount / totalCharsCount) * 100) : 0;
+
+    btnSubmit.disabled = false;
+    btnSubmit.textContent = 'Submit Quiz';
+    quizActionBar.style.display = 'none';
+
+    showDrawingResultsBanner(totalCorrectCharsCount, totalCharsCount, percentage);
+  }
+
+  function showDrawingResultsBanner(correctChars, totalChars, percentage) {
+    resultsScore.textContent = `${percentage}%`;
+    resultsDetails.textContent = `${correctChars} of ${totalChars} characters drawn correctly across ${state.currentCards.length} words!`;
+
+    if (percentage === 100) {
+      resultsHeading.textContent = 'Perfect Score!';
+    } else if (percentage >= 80) {
+      resultsHeading.textContent = 'Great Job!';
+    } else if (percentage >= 50) {
+      resultsHeading.textContent = 'Good Effort!';
+    } else {
+      resultsHeading.textContent = 'Keep Practicing!';
+    }
+
+    if (state.missedCards.length > 0) {
+      btnRetryMissed.style.display = 'inline-flex';
+    } else {
+      btnRetryMissed.style.display = 'none';
+    }
+
+    resultsBanner.style.display = 'block';
+
+    setTimeout(() => {
+      resultsBanner.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }, 100);
+  }
 
   function gradeQuiz() {
     state.submitted = true;
@@ -762,13 +1233,21 @@ document.addEventListener('DOMContentLoaded', () => {
     resultsBanner.style.display = 'none';
     if (state.missedCards.length > 0) {
       const retryTitle = `${state.currentQuizTitle || getTrackTitle(state.currentTrack, false)} (Retry Missed)`;
-      startQuiz(state.currentTrack, state.missedCards, retryTitle);
+      if (state.quizType === 'drawing') {
+        startDrawingQuiz(state.currentTrack, state.missedCards, retryTitle);
+      } else {
+        startQuiz(state.currentTrack, state.missedCards, retryTitle);
+      }
     }
   });
 
   btnRestartQuiz.addEventListener('click', () => {
     resultsBanner.style.display = 'none';
-    startQuiz(state.currentTrack, state.currentQuizDataSet, state.currentQuizTitle);
+    if (state.quizType === 'drawing') {
+      startDrawingQuiz(state.currentTrack, state.currentQuizDataSet, state.currentQuizTitle);
+    } else {
+      startQuiz(state.currentTrack, state.currentQuizDataSet, state.currentQuizTitle);
+    }
   });
 
   btnResultsHub.addEventListener('click', () => {

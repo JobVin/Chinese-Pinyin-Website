@@ -141,6 +141,71 @@
                 <span class="track-badge">Intermediate</span>
               </div>
               <p class="stacked-desc">330 new unique intermediate characters split into 22 stress-free levels (15 words each).</p>
+          </div>
+
+        </div>
+
+        <!-- SECTION 3: CHARACTER DRAWING PRACTICE -->
+        <div class="menu-section-header" style="margin-top: 40px;">
+          <span class="section-badge" style="background: #e0e7ff; color: #4338ca;">Part 3</span>
+          <h2 class="section-title">Character Drawing Practice</h2>
+          <p class="section-subtitle">Practice drawing radicals and vocabulary characters from memory with automated shape grading.</p>
+        </div>
+
+        <div class="stacked-tracks-list">
+
+          <!-- RADICALS DRAWING -->
+          <div class="stacked-track-card" data-track="radicals" data-mode="drawing">
+            <div class="step-indicator">DRAWING</div>
+            <div class="stacked-symbol">亻 氵 木</div>
+            <div class="stacked-info">
+              <div class="stacked-header">
+                <h3 class="stacked-title">Essential Radicals Drawing</h3>
+                <span class="track-badge">Building Blocks</span>
+              </div>
+              <p class="stacked-desc">Test your recall by drawing 16 essential radicals from memory.</p>
+            </div>
+            <div class="stacked-action-btn">Start Drawing Quiz →</div>
+          </div>
+
+          <!-- HSK 1 DRAWING -->
+          <div class="stacked-track-card" data-track="hsk1" data-mode="drawing">
+            <div class="step-indicator">DRAWING</div>
+            <div class="stacked-symbol">爱 喝 水</div>
+            <div class="stacked-info">
+              <div class="stacked-header">
+                <h3 class="stacked-title">HSK 1 Drawing Quiz</h3>
+                <span class="track-badge">Beginner</span>
+              </div>
+              <p class="stacked-desc">Draw 151 beginner characters from memory across 11 levels.</p>
+            </div>
+            <div class="stacked-action-btn">Select Level →</div>
+          </div>
+
+          <!-- HSK 2 DRAWING -->
+          <div class="stacked-track-card" data-track="hsk2" data-mode="drawing">
+            <div class="step-indicator">DRAWING</div>
+            <div class="stacked-symbol">帮助 报纸</div>
+            <div class="stacked-info">
+              <div class="stacked-header">
+                <h3 class="stacked-title">HSK 2 Drawing Quiz</h3>
+                <span class="track-badge">Elementary</span>
+              </div>
+              <p class="stacked-desc">Draw 144 elementary characters from memory across 10 levels.</p>
+            </div>
+            <div class="stacked-action-btn">Select Level →</div>
+          </div>
+
+          <!-- HSK 3 DRAWING -->
+          <div class="stacked-track-card" data-track="hsk3" data-mode="drawing">
+            <div class="step-indicator">DRAWING</div>
+            <div class="stacked-symbol">阿姨 爱好</div>
+            <div class="stacked-info">
+              <div class="stacked-header">
+                <h3 class="stacked-title">HSK 3 Drawing Quiz</h3>
+                <span class="track-badge">Intermediate</span>
+              </div>
+              <p class="stacked-desc">Draw 330 intermediate characters from memory across 22 levels.</p>
             </div>
             <div class="stacked-action-btn">Select Level →</div>
           </div>
@@ -278,6 +343,7 @@
           <div class="options-pill-group">
             <button class="btn-pill active" id="btn-study-list-mode">Simple List</button>
             <button class="btn-pill" id="btn-study-flashcard-mode">Flashcards</button>
+            <button class="btn-pill" id="btn-study-draw-mode">Draw</button>
           </div>
         </div>
       </div>
@@ -289,6 +355,11 @@
 
       <!-- MODE 2: FLASHCARD VIEW -->
       <div id="study-flashcard-view" class="study-container" style="display: none;">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- MODE 3: DRAW VIEW -->
+      <div id="study-draw-view" class="study-container" style="display: none;">
         <!-- Rendered dynamically by app.js -->
       </div>
 
@@ -390,6 +461,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@latest/dist/hanzi-writer.min.js"></script>
+  <script src="drawing.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

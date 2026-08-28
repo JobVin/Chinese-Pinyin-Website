@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let drawViewRendered = false;
   const btnStartQuizFromStudy = document.getElementById('btn-start-quiz-from-study');
   const btnBackToLearningHub = document.getElementById('btn-back-to-learning-hub');
+  const btnPrevStudyLevel = document.getElementById('btn-prev-study-level');
   const btnNextStudyLevel = document.getElementById('btn-next-study-level');
 
   // BANNER COLLAPSE TOGGLE
@@ -475,7 +476,15 @@ document.addEventListener('DOMContentLoaded', () => {
       studyDrawView.style.display = 'none';
     }
 
-    // Configure "Next Level ->" Button
+    // Configure "Previous Level" and "Next Level" Buttons
+    if (btnPrevStudyLevel) {
+      if (stages && stages.length > 1 && stageIndex > 0) {
+        btnPrevStudyLevel.style.display = 'inline-flex';
+      } else {
+        btnPrevStudyLevel.style.display = 'none';
+      }
+    }
+
     if (btnNextStudyLevel) {
       if (stages && stages.length > 1 && stageIndex >= 0 && stageIndex < stages.length - 1) {
         btnNextStudyLevel.style.display = 'inline-flex';
@@ -814,6 +823,24 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnBackToLearningHub) {
     btnBackToLearningHub.addEventListener('click', () => {
       showView('learning-hub');
+    });
+  }
+
+  if (btnPrevStudyLevel) {
+    btnPrevStudyLevel.addEventListener('click', () => {
+      const stages = state.currentStudyStages;
+      const prevIndex = state.currentStudyStageIndex - 1;
+      if (stages && prevIndex >= 0 && prevIndex < stages.length) {
+        const prevStage = stages[prevIndex];
+        const trackTitle = getTrackTitle(state.currentStudyData.trackName, true);
+        openStudyView(
+          state.currentStudyData.trackName,
+          prevStage.data,
+          `${trackTitle} (${prevStage.title})`,
+          stages,
+          prevIndex
+        );
+      }
     });
   }
 

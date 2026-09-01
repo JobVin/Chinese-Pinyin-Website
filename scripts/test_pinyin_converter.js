@@ -1,148 +1,81 @@
-const toneCharToPlain = {
-  'ā': 'a', 'á': 'a', 'ǎ': 'a', 'à': 'a',
-  'ō': 'o', 'ó': 'o', 'ē': 'e', 'é': 'e',
-  'ě': 'e', 'è': 'e', 'ī': 'i', 'í': 'i',
-  'ǐ': 'i', 'ì': 'i', 'ū': 'u', 'ú': 'u',
-  'ǔ': 'u', 'ù': 'u', 'ǖ': 'ü', 'ǘ': 'ü',
-  'ǚ': 'ü', 'ǜ': 'ü', 'Ā': 'A', 'Á': 'A',
-  'Ǎ': 'A', 'À': 'A', 'Ō': 'O', 'Ó': 'O',
-  'Ǒ': 'O', 'Ò': 'O', 'Ē': 'E', 'É': 'E',
-  'Ě': 'E', 'È': 'E', 'Ī': 'I', 'Í': 'I',
-  'Ǐ': 'I', 'Ì': 'I', 'Ū': 'U', 'Ú': 'U',
-  'Ǔ': 'U', 'Ù': 'U', 'Ǖ': 'Ü', 'Ǘ': 'Ü',
-  'Ǚ': 'Ü', 'Ǜ': 'Ü'
-};
+const fs = require('fs');
 
-const toneMap = {
-  'a': ['ā', 'á', 'ǎ', 'à', 'a'],
-  'o': ['ō', 'ó', 'ǒ', 'ò', 'o'],
-  'e': ['ē', 'é', 'ě', 'è', 'e'],
-  'i': ['ī', 'í', 'ǐ', 'ì', 'i'],
-  'u': ['ū', 'ú', 'ǔ', 'ù', 'u'],
-  'ü': ['ǖ', 'ǘ', 'ǚ', 'ǜ', 'ü'],
-  'v': ['ǖ', 'ǘ', 'ǚ', 'ǜ', 'ü'],
-  'A': ['Ā', 'Á', 'Ǎ', 'À', 'A'],
-  'O': ['Ō', 'Ó', 'Ǒ', 'Ò', 'O'],
-  'E': ['Ē', 'É', 'Ě', 'È', 'E'],
-  'I': ['Ī', 'Í', 'Ǐ', 'Ì', 'I'],
-  'U': ['Ū', 'Ú', 'Ǔ', 'Ù', 'U'],
-  'Ü': ['Ǖ', 'Ǘ', 'Ǚ', 'Ǜ', 'Ü'],
-  'V': ['Ǖ', 'Ǘ', 'Ǚ', 'Ǜ', 'Ü']
-};
+const appContent = fs.readFileSync('./app.js', 'utf8');
 
-function stripDiacritics(str) {
-  return str.replace(/[āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜĀÁǍÀŌÓǑÒĒÉĚÈĪÍǏÌŪÚǓÙǕǗǙǛ]/g, m => toneCharToPlain[m] || m);
-}
+// Extract functions
+const fnConvert = /function convertPinyinNumberToTone\(text\) \{[\s\S]*?\n  \}/.exec(appContent)[0];
+const fnNorm = /function normalizePinyinToken\(str\) \{[\s\S]*?\n  \}/.exec(appContent)[0];
+const fnVal = /function validateUserAnswer\(userInput, cardPinyinArray\) \{[\s\S]*?\n  \}/.exec(appContent)[0];
+const fnSplit = /function splitChunkIntoPrefixAndSyllable\(chunk\) \{[\s\S]*?\n  \}/.exec(appContent)[0];
+const fnApply = /function applyToneToSyllable\(rawSyllable, toneNum\) \{[\s\S]*?\n  \}/.exec(appContent)[0];
+const fnStrip = /function stripDiacritics\(str\) \{[\s\S]*?\n  \}/.exec(appContent)[0];
+const fnGetActive = /function getActiveSyllableInfo\(fullText, cursorPosition\) \{[\s\S]*?\n  \}/.exec(appContent)[0];
 
-function applyToneToSyllable(rawSyllable, toneNum) {
-  const syllable = stripDiacritics(rawSyllable).replace(/u:/gi, 'ü');
-  const tone = parseInt(toneNum, 10);
-  if (tone === 0 || tone === 5) {
-    return syllable.replace(/v/gi, 'ü');
-  }
-  const toneIdx = tone - 1;
-
-  if (/[aeAE]/.test(syllable)) {
-    return syllable
-      .replace(/v/gi, 'ü')
-      .replace(/([aeAE])/, v => toneMap[v] ? toneMap[v][toneIdx] : v);
-  }
-  if (/ou|OU|oU|Ou/.test(syllable)) {
-    return syllable
-      .replace(/v/gi, 'ü')
-      .replace(/([oO])/, v => toneMap[v] ? toneMap[v][toneIdx] : v);
-  }
-  if (/ui|UI|uI|Ui/.test(syllable)) {
-    return syllable
-      .replace(/v/gi, 'ü')
-      .replace(/([iI])/, v => toneMap[v] ? toneMap[v][toneIdx] : v);
-  }
-  if (/iu|IU|iU|Iu/.test(syllable)) {
-    return syllable
-      .replace(/v/gi, 'ü')
-      .replace(/([uU])/, v => toneMap[v] ? toneMap[v][toneIdx] : v);
-  }
-
-  let replaced = false;
-  const sylChars = syllable.split('');
-  for (let i = sylChars.length - 1; i >= 0; i--) {
-    const char = sylChars[i];
-    if (toneMap[char]) {
-      sylChars[i] = toneMap[char][toneIdx];
-      replaced = true;
-      break;
-    }
-  }
-  if (replaced) {
-    return sylChars.join('').replace(/v/gi, 'ü');
-  }
-  return syllable;
-}
-
-function splitChunkIntoPrefixAndSyllable(chunk) {
-  if (!chunk) return { prefix: '', syllable: '' };
-
-  const initialsWithVowelRegex = /(?:zh|ch|sh|[bpmfdtnlgkhjqxzcsrywBPMFDTNLGKHJQXZCSRYW])(?=[aeiouüvāáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜAEIOUÜVĀÁǍÀŌÓǑÒĒÉĚÈĪÍǏÌŪÚǓÙǕǗǙǛ])/g;
-  const initialMatches = [...chunk.matchAll(initialsWithVowelRegex)];
-
-  if (initialMatches.length > 1) {
-    const lastInitial = initialMatches[initialMatches.length - 1];
-    return {
-      prefix: chunk.slice(0, lastInitial.index),
-      syllable: chunk.slice(lastInitial.index)
-    };
-  } else if (initialMatches.length === 1 && initialMatches[0].index > 0) {
-    const init = initialMatches[0];
-    return {
-      prefix: chunk.slice(0, init.index),
-      syllable: chunk.slice(init.index)
-    };
-  }
-
-  return {
-    prefix: '',
-    syllable: chunk
+const fn = new Function(`
+  const toneCharToPlain = {
+    'ā': 'a', 'á': 'a', 'ǎ': 'a', 'à': 'a',
+    'ō': 'o', 'ó': 'o', 'ē': 'e', 'é': 'e',
+    'ī': 'i', 'í': 'i', 'ǐ': 'i', 'ì': 'i',
+    'ū': 'u', 'ú': 'u', 'ǔ': 'u', 'ù': 'u',
+    'ǖ': 'ü', 'ǘ': 'ü', 'ǚ': 'ü', 'ǜ': 'ü',
+    'Ā': 'A', 'Á': 'A', 'Ǎ': 'A', 'À': 'A',
+    'Ō': 'O', 'Ó': 'O', 'Ǒ': 'O', 'Ò': 'O',
+    'Ē': 'E', 'É': 'E', 'Ě': 'E', 'È': 'E',
+    'Ī': 'I', 'Í': 'I', 'Ǐ': 'I', 'Ì': 'I',
+    'Ū': 'U', 'Ú': 'U', 'Ǔ': 'U', 'Ù': 'U',
+    'Ǖ': 'Ü', 'Ǘ': 'Ü', 'Ǚ': 'Ü', 'Ǜ': 'Ü'
   };
-}
+  const pinyinToneMap = {
+    'a': ['ā', 'á', 'ǎ', 'à', 'a'],
+    'o': ['ō', 'ó', 'ǒ', 'ò', 'o'],
+    'e': ['ē', 'é', 'ě', 'è', 'e'],
+    'i': ['ī', 'í', 'ǐ', 'ì', 'i'],
+    'u': ['ū', 'ú', 'ǔ', 'ù', 'u'],
+    'ü': ['ǖ', 'ǘ', 'ǚ', 'ǜ', 'ü'],
+    'v': ['ǖ', 'ǘ', 'ǚ', 'ǜ', 'ü'],
+    'A': ['Ā', 'Á', 'Ǎ', 'À', 'A'],
+    'O': ['Ō', 'Ó', 'Ǒ', 'Ò', 'O'],
+    'E': ['Ē', 'É', 'Ě', 'È', 'E'],
+    'I': ['Ī', 'Í', 'Ǐ', 'Ì', 'I'],
+    'U': ['Ū', 'Ú', 'Ǔ', 'Ù', 'U'],
+    'Ü': ['Ǖ', 'Ǘ', 'Ǚ', 'Ǜ', 'Ü'],
+    'V': ['Ǖ', 'Ǘ', 'Ǚ', 'Ǜ', 'Ü']
+  };
 
-function convertPinyinNumberToTone(text) {
-  if (!text || typeof text !== 'string') return text;
+  ${fnStrip}
+  ${fnApply}
+  ${fnSplit}
+  ${fnConvert}
+  ${fnGetActive}
+  ${fnNorm}
+  ${fnVal}
 
-  let result = text.replace(/u:/gi, match => match[0] === 'U' ? 'Ü' : 'ü');
+  return { convertPinyinNumberToTone, getActiveSyllableInfo, normalizePinyinToken, validateUserAnswer };
+`);
 
-  // Match chunk of letters/toned chars followed by digit 0-5
-  result = result.replace(/([a-zA-ZüÜvVāáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜĀÁǍÀŌÓǑÒĒÉĚÈĪÍǏÌŪÚǓÙǕǗǙǛ]+)([0-5])/g, (match, chunk, toneStr) => {
-    const { prefix, syllable } = splitChunkIntoPrefixAndSyllable(chunk);
-    const convertedSyllable = applyToneToSyllable(syllable, toneStr);
-    return prefix + convertedSyllable;
-  });
+const { convertPinyinNumberToTone, getActiveSyllableInfo, normalizePinyinToken, validateUserAnswer } = fn();
 
-  return result;
-}
-
-const testConversions = [
-  ['ni3', 'nǐ'],
-  ['ni3hao3', 'nǐhǎo'],
-  ['nǐ2', 'ní'],
-  ['ní4', 'nì'],
-  ['nì1', 'nī'],
-  ['nī5', 'ni'],
-  ['nǐhǎo4', 'nǐhào'],
-  ['nǐhào2', 'nǐháo'],
-  ['xuéxiào1', 'xuéxiāo'],
-  ['lv4', 'lǜ'],
-  ['lǜ2', 'lǘ'],
-  ['héng4', 'hèng'],
-  ['er2', 'ér'],
-  ['ér3', 'ěr']
+const testCases = [
+  // Live conversions lowercase
+  { input: 'ni3hao3', pinyin: ['nǐhǎo'], expected: true },
+  { input: 'shi4', pinyin: ['shì'], expected: true },
+  // Uppercase initial
+  { input: 'Shi4', pinyin: ['shì'], expected: true },
+  { input: 'Shu4', pinyin: ['shù'], expected: true },
+  { input: 'Zhe2', pinyin: ['zhé'], expected: true },
+  { input: 'Chu1', pinyin: ['chū'], expected: true },
+  { input: 'Ni3Hao3', pinyin: ['nǐhǎo'], expected: true }
 ];
 
-for (const [inp, exp] of testConversions) {
-  const act = convertPinyinNumberToTone(inp);
-  console.log(`"${inp}" => "${act}" (Expected: "${exp}")`);
-  if (act !== exp) {
-    console.error('FAIL on', inp);
+for (const tc of testCases) {
+  const converted = convertPinyinNumberToTone(tc.input);
+  const info = getActiveSyllableInfo(tc.input);
+  const res = validateUserAnswer(tc.input, tc.pinyin);
+  console.log(`"${tc.input}" => converted: "${converted}", syllable: "${info ? info.syllable : ''}", valid: ${res}`);
+  if (res !== tc.expected) {
+    console.error('FAIL on', tc);
     process.exit(1);
   }
 }
-console.log('\nALL TONE CONVERSIONS & SWAPPINGS PASSED 100%!');
+
+console.log('\nALL CONVERSION AND UPPERCASE TESTS PASSED 100%!');

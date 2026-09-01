@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function splitChunkIntoPrefixAndSyllable(chunk) {
     if (!chunk) return { prefix: '', syllable: '' };
 
-    const initialsWithVowelRegex = /(?:zh|ch|sh|[bpmfdtnlgkhjqxzcsrywBPMFDTNLGKHJQXZCSRYW])(?=[aeiouüvāáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜAEIOUÜVĀÁǍÀŌÓǑÒĒÉĚÈĪÍǏÌŪÚǓÙǕǗǙǛ])/g;
+    const initialsWithVowelRegex = /(?:zh|ch|sh|[bpmfdtnlgkhjqxzcsryw])(?=[aeiouüvāáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜ])/gi;
     const initialMatches = [...chunk.matchAll(initialsWithVowelRegex)];
 
     if (initialMatches.length > 1) {
@@ -251,6 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const chunkStart = pos - rawChunk.length;
     const { prefix, syllable } = splitChunkIntoPrefixAndSyllable(rawChunk);
 
+    const isInitialUpper = syllable.length > 0 && syllable[0] === syllable[0].toUpperCase() && syllable[0] !== syllable[0].toLowerCase();
     const cleanSyllable = stripDiacritics(syllable).replace(/u:/gi, 'ü');
     if (!cleanSyllable || !/[aeiouüAEIOUÜvV]/.test(cleanSyllable)) {
       return null;
@@ -261,8 +262,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentTone = 5;
     const variants = [1, 2, 3, 4, 5].map(t => {
-      const text = applyToneToSyllable(cleanSyllable, t);
-      if (text === syllable) currentTone = t;
+      let text = applyToneToSyllable(cleanSyllable.toLowerCase(), t);
+      if (isInitialUpper && text.length > 0) {
+        text = text[0].toUpperCase() + text.slice(1);
+      }
+      if (text === syllable || text.toLowerCase() === syllable.toLowerCase()) {
+        currentTone = t;
+      }
       return { tone: t, text };
     });
 
@@ -1168,7 +1174,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cardEl.innerHTML = `
         <div class="card-hanzi ${lenClass}">${item.character}</div>
         <div class="card-input-wrapper">
-          <input type="text" class="card-input" data-index="${index}" placeholder="" autocomplete="off" spellcheck="false">
+          <input type="text" class="card-input" data-index="${index}" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false">
         </div>
       `;
 

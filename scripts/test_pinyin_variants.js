@@ -13,21 +13,14 @@ const toneCharToPlain = {
   'Ǚ': 'Ü', 'Ǜ': 'Ü'
 };
 
-const toneMap = {
+const pinyinToneMap = {
   'a': ['ā', 'á', 'ǎ', 'à', 'a'],
   'o': ['ō', 'ó', 'ǒ', 'ò', 'o'],
   'e': ['ē', 'é', 'ě', 'è', 'e'],
   'i': ['ī', 'í', 'ǐ', 'ì', 'i'],
   'u': ['ū', 'ú', 'ǔ', 'ù', 'u'],
   'ü': ['ǖ', 'ǘ', 'ǚ', 'ǜ', 'ü'],
-  'v': ['ǖ', 'ǘ', 'ǚ', 'ǜ', 'ü'],
-  'A': ['Ā', 'Á', 'Ǎ', 'À', 'A'],
-  'O': ['Ō', 'Ó', 'Ǒ', 'Ò', 'O'],
-  'E': ['Ē', 'É', 'Ě', 'È', 'E'],
-  'I': ['Ī', 'Í', 'Ǐ', 'Ì', 'I'],
-  'U': ['Ū', 'Ú', 'Ǔ', 'Ù', 'U'],
-  'Ü': ['Ǖ', 'Ǘ', 'Ǚ', 'Ǜ', 'Ü'],
-  'V': ['Ǖ', 'Ǘ', 'Ǚ', 'Ǜ', 'Ü']
+  'v': ['ǖ', 'ǘ', 'ǚ', 'ǜ', 'ü']
 };
 
 function stripDiacritics(str) {
@@ -35,40 +28,40 @@ function stripDiacritics(str) {
 }
 
 function applyToneToSyllable(rawSyllable, toneNum) {
-  const syllable = stripDiacritics(rawSyllable).replace(/u:/gi, 'ü');
+  const syllable = stripDiacritics(rawSyllable).toLowerCase().replace(/u:/gi, 'ü');
   const tone = parseInt(toneNum, 10);
   if (tone === 0 || tone === 5) {
     return syllable.replace(/v/gi, 'ü');
   }
   const toneIdx = tone - 1;
 
-  if (/[aeAE]/.test(syllable)) {
+  if (/[ae]/.test(syllable)) {
     return syllable
       .replace(/v/gi, 'ü')
-      .replace(/([aeAE])/, v => toneMap[v] ? toneMap[v][toneIdx] : v);
+      .replace(/([ae])/, v => pinyinToneMap[v] ? pinyinToneMap[v][toneIdx] : v);
   }
-  if (/ou|OU|oU|Ou/.test(syllable)) {
+  if (/ou/.test(syllable)) {
     return syllable
       .replace(/v/gi, 'ü')
-      .replace(/([oO])/, v => toneMap[v] ? toneMap[v][toneIdx] : v);
+      .replace(/([o])/, v => pinyinToneMap[v] ? pinyinToneMap[v][toneIdx] : v);
   }
-  if (/ui|UI|uI|Ui/.test(syllable)) {
+  if (/ui/.test(syllable)) {
     return syllable
       .replace(/v/gi, 'ü')
-      .replace(/([iI])/, v => toneMap[v] ? toneMap[v][toneIdx] : v);
+      .replace(/([i])/, v => pinyinToneMap[v] ? pinyinToneMap[v][toneIdx] : v);
   }
-  if (/iu|IU|iU|Iu/.test(syllable)) {
+  if (/iu/.test(syllable)) {
     return syllable
       .replace(/v/gi, 'ü')
-      .replace(/([uU])/, v => toneMap[v] ? toneMap[v][toneIdx] : v);
+      .replace(/([u])/, v => pinyinToneMap[v] ? pinyinToneMap[v][toneIdx] : v);
   }
 
   let replaced = false;
   const sylChars = syllable.split('');
   for (let i = sylChars.length - 1; i >= 0; i--) {
     const char = sylChars[i];
-    if (toneMap[char]) {
-      sylChars[i] = toneMap[char][toneIdx];
+    if (pinyinToneMap[char]) {
+      sylChars[i] = pinyinToneMap[char][toneIdx];
       replaced = true;
       break;
     }
@@ -82,7 +75,7 @@ function applyToneToSyllable(rawSyllable, toneNum) {
 function splitChunkIntoPrefixAndSyllable(chunk) {
   if (!chunk) return { prefix: '', syllable: '' };
 
-  const initialsWithVowelRegex = /(?:zh|ch|sh|[bpmfdtnlgkhjqxzcsrywBPMFDTNLGKHJQXZCSRYW])(?=[aeiouüvāáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜAEIOUÜVĀÁǍÀŌÓǑÒĒÉĚÈĪÍǏÌŪÚǓÙǕǗǙǛ])/g;
+  const initialsWithVowelRegex = /(?:zh|ch|sh|[bpmfdtnlgkhjqxzcsryw])(?=[aeiouüvāáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜ])/gi;
   const initialMatches = [...chunk.matchAll(initialsWithVowelRegex)];
 
   if (initialMatches.length > 1) {
@@ -116,6 +109,7 @@ function getActiveSyllableInfo(fullText, cursorPosition) {
   const chunkStart = pos - rawChunk.length;
   const { prefix, syllable } = splitChunkIntoPrefixAndSyllable(rawChunk);
 
+  const isInitialUpper = syllable.length > 0 && syllable[0] === syllable[0].toUpperCase() && syllable[0] !== syllable[0].toLowerCase();
   const cleanSyllable = stripDiacritics(syllable).replace(/u:/gi, 'ü');
   if (!cleanSyllable || !/[aeiouüAEIOUÜvV]/.test(cleanSyllable)) {
     return null;
@@ -124,11 +118,15 @@ function getActiveSyllableInfo(fullText, cursorPosition) {
   const syllableStart = chunkStart + prefix.length;
   const syllableEnd = pos;
 
-  // Determine current active tone if any
   let currentTone = 5;
   const variants = [1, 2, 3, 4, 5].map(t => {
-    const text = applyToneToSyllable(cleanSyllable, t);
-    if (text === syllable) currentTone = t;
+    let text = applyToneToSyllable(cleanSyllable.toLowerCase(), t);
+    if (isInitialUpper && text.length > 0) {
+      text = text[0].toUpperCase() + text.slice(1);
+    }
+    if (text === syllable || text.toLowerCase() === syllable.toLowerCase()) {
+      currentTone = t;
+    }
     return { tone: t, text };
   });
 
@@ -143,8 +141,8 @@ function getActiveSyllableInfo(fullText, cursorPosition) {
   };
 }
 
-console.log('Active info for "ni" at pos 2:', getActiveSyllableInfo('ni', 2));
-console.log('Active info for "nǐhǎo" at pos 5:', getActiveSyllableInfo('nǐhǎo', 5));
-console.log('Active info for "nǐhao" at pos 5:', getActiveSyllableInfo('nǐhao', 5));
-console.log('Active info for "héng" at pos 4:', getActiveSyllableInfo('héng', 4));
-console.log('Active info for "h" at pos 1:', getActiveSyllableInfo('h', 1));
+console.log('Active info for "Shi":', getActiveSyllableInfo('Shi'));
+console.log('Active info for "Shī":', getActiveSyllableInfo('Shī'));
+console.log('Active info for "shi":', getActiveSyllableInfo('shi'));
+console.log('Active info for "Shu":', getActiveSyllableInfo('Shu'));
+console.log('Active info for "Zhe":', getActiveSyllableInfo('Zhe'));

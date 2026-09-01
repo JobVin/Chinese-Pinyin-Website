@@ -1211,6 +1211,32 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProgressCount();
   }
 
+  function adjustToneBarPosition(input, bar) {
+    if (!bar || !input) return;
+    bar.style.left = '50%';
+    bar.style.transform = 'translateX(-50%)';
+
+    requestAnimationFrame(() => {
+      if (bar.style.display === 'none') return;
+      const rect = bar.getBoundingClientRect();
+      const screenWidth = window.innerWidth || document.documentElement.clientWidth;
+      const padding = 10; // Margin from screen boundaries
+
+      let shiftX = 0;
+      if (rect.left < padding) {
+        // Cut off on the left -> shift right towards center
+        shiftX = padding - rect.left;
+      } else if (rect.right > screenWidth - padding) {
+        // Cut off on the right -> shift left towards center
+        shiftX = (screenWidth - padding) - rect.right;
+      }
+
+      if (shiftX !== 0) {
+        bar.style.transform = `translateX(calc(-50% + ${Math.round(shiftX)}px))`;
+      }
+    });
+  }
+
   function renderToneCandidateBar(input) {
     const wrapper = input.closest('.card-input-wrapper');
     if (!wrapper) return;
@@ -1246,6 +1272,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
     bar.style.display = 'flex';
+    adjustToneBarPosition(input, bar);
 
     bar.querySelectorAll('.tone-pill').forEach(btn => {
       btn.addEventListener('pointerdown', (e) => {
@@ -1270,6 +1297,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const bar = wrapper.querySelector('.tone-candidate-bar');
     if (bar) bar.style.display = 'none';
   }
+
+  window.addEventListener('resize', () => {
+    const activeInput = document.querySelector('.card-input.composing');
+    if (activeInput) {
+      const wrapper = activeInput.closest('.card-input-wrapper');
+      const bar = wrapper ? wrapper.querySelector('.tone-candidate-bar') : null;
+      if (bar) adjustToneBarPosition(activeInput, bar);
+    }
+  });
 
   // INPUT LISTENERS & AUTO ADVANCE FOCUS
   function attachCardInputListeners() {

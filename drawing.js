@@ -1812,6 +1812,19 @@
       undo: () => {
         strokes.pop();
         redraw();
+      },
+      toWatermarkedDataURL: (watermarkText = '© Chinese Pinyin Hub • JobVin') => {
+        const exportCanvas = document.createElement('canvas');
+        exportCanvas.width = width;
+        exportCanvas.height = height;
+        const expCtx = exportCanvas.getContext('2d');
+        expCtx.drawImage(canvas, 0, 0);
+        expCtx.font = '10px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        expCtx.fillStyle = 'rgba(100, 116, 139, 0.45)';
+        expCtx.textAlign = 'right';
+        expCtx.textBaseline = 'bottom';
+        expCtx.fillText(watermarkText, width - 8, height - 6);
+        return exportCanvas.toDataURL('image/png');
       }
     };
 

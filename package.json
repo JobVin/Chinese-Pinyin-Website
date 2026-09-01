@@ -8,7 +8,8 @@
     "audit": "node scripts/audit_characters.js",
     "build:datasets": "node scripts/build_hsk_datasets.js",
     "fix:variants": "node scripts/fix_datasets_and_variants.js",
-    "check:hanzi-coverage": "node scripts/audits/check_hanzi_writer_coverage.js"
+    "check:hanzi-coverage": "node scripts/audits/check_hanzi_writer_coverage.js",
+    "build:bundle": "node scripts/build_protected_bundle.js"
   },
   "repository": {
     "type": "git",
@@ -25,7 +26,7 @@
     "learning"
   ],
   "author": "JobVin",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/JobVin/Chinese-Pinyin-Website/issues"
   },

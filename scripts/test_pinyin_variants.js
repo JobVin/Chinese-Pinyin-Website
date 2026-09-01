@@ -105,44 +105,46 @@ function splitChunkIntoPrefixAndSyllable(chunk) {
   };
 }
 
-function convertPinyinNumberToTone(text) {
-  if (!text || typeof text !== 'string') return text;
+function getActiveSyllableInfo(fullText, cursorPosition) {
+  if (!fullText) return null;
+  const pos = typeof cursorPosition === 'number' ? cursorPosition : fullText.length;
+  const beforeCursor = fullText.slice(0, pos);
+  const match = beforeCursor.match(/([a-zA-ZüÜvVāáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜĀÁǍÀŌÓǑÒĒÉĚÈĪÍǏÌŪÚǓÙǕǗǙǛ:]+)$/);
+  if (!match) return null;
 
-  let result = text.replace(/u:/gi, match => match[0] === 'U' ? 'Ü' : 'ü');
+  const rawChunk = match[1];
+  const chunkStart = pos - rawChunk.length;
+  const { prefix, syllable } = splitChunkIntoPrefixAndSyllable(rawChunk);
 
-  // Match chunk of letters/toned chars followed by digit 0-5
-  result = result.replace(/([a-zA-ZüÜvVāáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜĀÁǍÀŌÓǑÒĒÉĚÈĪÍǏÌŪÚǓÙǕǗǙǛ]+)([0-5])/g, (match, chunk, toneStr) => {
-    const { prefix, syllable } = splitChunkIntoPrefixAndSyllable(chunk);
-    const convertedSyllable = applyToneToSyllable(syllable, toneStr);
-    return prefix + convertedSyllable;
+  const cleanSyllable = stripDiacritics(syllable).replace(/u:/gi, 'ü');
+  if (!cleanSyllable || !/[aeiouüAEIOUÜvV]/.test(cleanSyllable)) {
+    return null;
+  }
+
+  const syllableStart = chunkStart + prefix.length;
+  const syllableEnd = pos;
+
+  // Determine current active tone if any
+  let currentTone = 5;
+  const variants = [1, 2, 3, 4, 5].map(t => {
+    const text = applyToneToSyllable(cleanSyllable, t);
+    if (text === syllable) currentTone = t;
+    return { tone: t, text };
   });
 
-  return result;
+  return {
+    prefix,
+    syllable,
+    cleanSyllable,
+    syllableStart,
+    syllableEnd,
+    currentTone,
+    variants
+  };
 }
 
-const testConversions = [
-  ['ni3', 'nǐ'],
-  ['ni3hao3', 'nǐhǎo'],
-  ['nǐ2', 'ní'],
-  ['ní4', 'nì'],
-  ['nì1', 'nī'],
-  ['nī5', 'ni'],
-  ['nǐhǎo4', 'nǐhào'],
-  ['nǐhào2', 'nǐháo'],
-  ['xuéxiào1', 'xuéxiāo'],
-  ['lv4', 'lǜ'],
-  ['lǜ2', 'lǘ'],
-  ['héng4', 'hèng'],
-  ['er2', 'ér'],
-  ['ér3', 'ěr']
-];
-
-for (const [inp, exp] of testConversions) {
-  const act = convertPinyinNumberToTone(inp);
-  console.log(`"${inp}" => "${act}" (Expected: "${exp}")`);
-  if (act !== exp) {
-    console.error('FAIL on', inp);
-    process.exit(1);
-  }
-}
-console.log('\nALL TONE CONVERSIONS & SWAPPINGS PASSED 100%!');
+console.log('Active info for "ni" at pos 2:', getActiveSyllableInfo('ni', 2));
+console.log('Active info for "nǐhǎo" at pos 5:', getActiveSyllableInfo('nǐhǎo', 5));
+console.log('Active info for "nǐhao" at pos 5:', getActiveSyllableInfo('nǐhao', 5));
+console.log('Active info for "héng" at pos 4:', getActiveSyllableInfo('héng', 4));
+console.log('Active info for "h" at pos 1:', getActiveSyllableInfo('h', 1));

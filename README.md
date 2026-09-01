@@ -8,7 +8,9 @@ An interactive web application designed for active recall practice of Mandarin C
 
 - **Decoupled JSON Assets**: All practice datasets (`strokes`, `radicals`, `hsk1`, `hsk2`, `hsk3`) are stored in structured `.json` assets and loaded asynchronously on demand.
 - **Real-Time Tone-Mark Auto-Conversion & Keyboard Input**:
-  - **Live Auto-Conversion**: Type numeric Pinyin (e.g. `ni3hao3`, `lv4`, `er2`, `de5`), and the input box instantly converts it into proper tone marks (`nǐhǎo`, `lǜ`, `ér`, `de`).
+  - **Live Auto-Conversion & Swapping**: Type numeric Pinyin (e.g. `ni3hao3`, `lv4`, `er2`, `de5`), and the input box instantly converts into proper tone marks (`nǐhǎo`, `lǜ`, `ér`, `de`). Typing a different number (e.g. `2`, `4`) immediately swaps the tone on that syllable without deleting!
+  - **Interactive Tone Candidate Pills**: Floating interactive tone pills display all 5 tone options for tap-to-select and `↑` / `↓` keyboard cycling.
+  - **Enter to Confirm**: Press `Enter` to lock the current tone and advance immediately to the next card.
   - **Tone Marks**: Direct input with tone marks via Pinyin keyboards or IMEs is also fully supported (`pǔtōnghuà`, `héng`, `nǐhǎo`).
   - **Neutral Tones**: Syllables with a neutral tone require no tone mark (e.g. `de`, `le`, `ma5` -> `ma`).
   - **Strict Active Recall**: Grading strictly verifies exact tone marks to ensure mastery.

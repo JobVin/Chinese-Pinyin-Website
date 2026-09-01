@@ -115,91 +115,171 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // PINYIN NORMALIZATION, CONVERSION & MATCHING UTILITIES
 
+  const toneCharToPlain = {
+    'ā': 'a', 'á': 'a', 'ǎ': 'a', 'à': 'a',
+    'ō': 'o', 'ó': 'o', 'ē': 'e', 'é': 'e',
+    'ě': 'e', 'è': 'e', 'ī': 'i', 'í': 'i',
+    'ǐ': 'i', 'ì': 'i', 'ū': 'u', 'ú': 'u',
+    'ǔ': 'u', 'ù': 'u', 'ǖ': 'ü', 'ǘ': 'ü',
+    'ǚ': 'ü', 'ǜ': 'ü', 'Ā': 'A', 'Á': 'A',
+    'Ǎ': 'A', 'À': 'A', 'Ō': 'O', 'Ó': 'O',
+    'Ǒ': 'O', 'Ò': 'O', 'Ē': 'E', 'É': 'E',
+    'Ě': 'E', 'È': 'E', 'Ī': 'I', 'Í': 'I',
+    'Ǐ': 'I', 'Ì': 'I', 'Ū': 'U', 'Ú': 'U',
+    'Ǔ': 'U', 'Ù': 'U', 'Ǖ': 'Ü', 'Ǘ': 'Ü',
+    'Ǚ': 'Ü', 'Ǜ': 'Ü'
+  };
+
+  const pinyinToneMap = {
+    'a': ['ā', 'á', 'ǎ', 'à', 'a'],
+    'o': ['ō', 'ó', 'ǒ', 'ò', 'o'],
+    'e': ['ē', 'é', 'ě', 'è', 'e'],
+    'i': ['ī', 'í', 'ǐ', 'ì', 'i'],
+    'u': ['ū', 'ú', 'ǔ', 'ù', 'u'],
+    'ü': ['ǖ', 'ǘ', 'ǚ', 'ǜ', 'ü'],
+    'v': ['ǖ', 'ǘ', 'ǚ', 'ǜ', 'ü'],
+    'A': ['Ā', 'Á', 'Ǎ', 'À', 'A'],
+    'O': ['Ō', 'Ó', 'Ǒ', 'Ò', 'O'],
+    'E': ['Ē', 'É', 'Ě', 'È', 'E'],
+    'I': ['Ī', 'Í', 'Ǐ', 'Ì', 'I'],
+    'U': ['Ū', 'Ú', 'Ǔ', 'Ù', 'U'],
+    'Ü': ['Ǖ', 'Ǘ', 'Ǚ', 'Ǜ', 'Ü'],
+    'V': ['Ǖ', 'Ǘ', 'Ǚ', 'Ǜ', 'Ü']
+  };
+
+  function stripDiacritics(str) {
+    return str.replace(/[āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜĀÁǍÀŌÓǑÒĒÉĚÈĪÍǏÌŪÚǓÙǕǗǙǛ]/g, m => toneCharToPlain[m] || m);
+  }
+
+  function applyToneToSyllable(rawSyllable, toneNum) {
+    const syllable = stripDiacritics(rawSyllable).replace(/u:/gi, 'ü');
+    const tone = parseInt(toneNum, 10);
+    if (tone === 0 || tone === 5) {
+      return syllable.replace(/v/gi, 'ü');
+    }
+    const toneIdx = tone - 1;
+
+    if (/[aeAE]/.test(syllable)) {
+      return syllable
+        .replace(/v/gi, 'ü')
+        .replace(/([aeAE])/, v => pinyinToneMap[v] ? pinyinToneMap[v][toneIdx] : v);
+    }
+    if (/ou|OU|oU|Ou/.test(syllable)) {
+      return syllable
+        .replace(/v/gi, 'ü')
+        .replace(/([oO])/, v => pinyinToneMap[v] ? pinyinToneMap[v][toneIdx] : v);
+    }
+    if (/ui|UI|uI|Ui/.test(syllable)) {
+      return syllable
+        .replace(/v/gi, 'ü')
+        .replace(/([iI])/, v => pinyinToneMap[v] ? pinyinToneMap[v][toneIdx] : v);
+    }
+    if (/iu|IU|iU|Iu/.test(syllable)) {
+      return syllable
+        .replace(/v/gi, 'ü')
+        .replace(/([uU])/, v => pinyinToneMap[v] ? pinyinToneMap[v][toneIdx] : v);
+    }
+
+    let replaced = false;
+    const sylChars = syllable.split('');
+    for (let i = sylChars.length - 1; i >= 0; i--) {
+      const char = sylChars[i];
+      if (pinyinToneMap[char]) {
+        sylChars[i] = pinyinToneMap[char][toneIdx];
+        replaced = true;
+        break;
+      }
+    }
+    if (replaced) {
+      return sylChars.join('').replace(/v/gi, 'ü');
+    }
+    return syllable;
+  }
+
+  function splitChunkIntoPrefixAndSyllable(chunk) {
+    if (!chunk) return { prefix: '', syllable: '' };
+
+    const initialsWithVowelRegex = /(?:zh|ch|sh|[bpmfdtnlgkhjqxzcsrywBPMFDTNLGKHJQXZCSRYW])(?=[aeiouüvāáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜAEIOUÜVĀÁǍÀŌÓǑÒĒÉĚÈĪÍǏÌŪÚǓÙǕǗǙǛ])/g;
+    const initialMatches = [...chunk.matchAll(initialsWithVowelRegex)];
+
+    if (initialMatches.length > 1) {
+      const lastInitial = initialMatches[initialMatches.length - 1];
+      return {
+        prefix: chunk.slice(0, lastInitial.index),
+        syllable: chunk.slice(lastInitial.index)
+      };
+    } else if (initialMatches.length === 1 && initialMatches[0].index > 0) {
+      const init = initialMatches[0];
+      return {
+        prefix: chunk.slice(0, init.index),
+        syllable: chunk.slice(init.index)
+      };
+    }
+
+    return {
+      prefix: '',
+      syllable: chunk
+    };
+  }
+
   /**
    * Converts numeric Pinyin input (e.g. ni3hao3, lv4, de5) into tone-marked Pinyin (e.g. nǐhǎo, lǜ, de).
-   * Supports digits 0-5, v/u: for ü, and handles tone placement rules for diphthongs and triphthongs.
+   * Also supports live tone swapping on already toned syllables (e.g. nǐ2 -> ní, nǐhǎo4 -> nǐhào).
    */
   function convertPinyinNumberToTone(text) {
     if (!text || typeof text !== 'string') return text;
 
-    const toneMap = {
-      'a': ['ā', 'á', 'ǎ', 'à', 'a'],
-      'o': ['ō', 'ó', 'ǒ', 'ò', 'o'],
-      'e': ['ē', 'é', 'ě', 'è', 'e'],
-      'i': ['ī', 'í', 'ǐ', 'ì', 'i'],
-      'u': ['ū', 'ú', 'ǔ', 'ù', 'u'],
-      'ü': ['ǖ', 'ǘ', 'ǚ', 'ǜ', 'ü'],
-      'v': ['ǖ', 'ǘ', 'ǚ', 'ǜ', 'ü'],
-      'A': ['Ā', 'Á', 'Ǎ', 'À', 'A'],
-      'O': ['Ō', 'Ó', 'Ǒ', 'Ò', 'O'],
-      'E': ['Ē', 'É', 'Ě', 'È', 'E'],
-      'I': ['Ī', 'Í', 'Ǐ', 'Ì', 'I'],
-      'U': ['Ū', 'Ú', 'Ǔ', 'Ù', 'U'],
-      'Ü': ['Ǖ', 'Ǘ', 'Ǚ', 'Ǜ', 'Ü'],
-      'V': ['Ǖ', 'Ǘ', 'Ǚ', 'Ǜ', 'Ü']
-    };
-
-    // Replace u: or U: with ü / Ü
     let result = text.replace(/u:/gi, match => match[0] === 'U' ? 'Ü' : 'ü');
 
-    // Match syllables followed by tone numbers 0-5
-    result = result.replace(/([a-zA-ZüÜvV]+)([0-5])/g, (match, syllable, toneStr) => {
-      const tone = parseInt(toneStr, 10);
-      if (tone === 0 || tone === 5) {
-        return syllable.replace(/v/gi, m => m === 'V' ? 'Ü' : 'ü');
-      }
-      const toneIdx = tone - 1;
-
-      // Rule 1: 'a' or 'e' always gets the tone mark
-      if (/[aeAE]/.test(syllable)) {
-        return syllable
-          .replace(/v/gi, m => m === 'V' ? 'Ü' : 'ü')
-          .replace(/([aeAE])/, v => toneMap[v] ? toneMap[v][toneIdx] : v);
-      }
-
-      // Rule 2: 'ou' -> 'o' gets the tone mark
-      if (/ou|OU|oU|Ou/.test(syllable)) {
-        return syllable
-          .replace(/v/gi, m => m === 'V' ? 'Ü' : 'ü')
-          .replace(/([oO])/, v => toneMap[v] ? toneMap[v][toneIdx] : v);
-      }
-
-      // Rule 3: 'ui' -> 'i' gets tone; 'iu' -> 'u' gets tone
-      if (/ui|UI|uI|Ui/.test(syllable)) {
-        return syllable
-          .replace(/v/gi, m => m === 'V' ? 'Ü' : 'ü')
-          .replace(/([iI])/, v => toneMap[v] ? toneMap[v][toneIdx] : v);
-      }
-      if (/iu|IU|iU|Iu/.test(syllable)) {
-        return syllable
-          .replace(/v/gi, m => m === 'V' ? 'Ü' : 'ü')
-          .replace(/([uU])/, v => toneMap[v] ? toneMap[v][toneIdx] : v);
-      }
-
-      // Rule 4: Otherwise, the last vowel gets the tone mark
-      let replaced = false;
-      const sylChars = syllable.split('');
-      for (let i = sylChars.length - 1; i >= 0; i--) {
-        const char = sylChars[i];
-        if (toneMap[char]) {
-          sylChars[i] = toneMap[char][toneIdx];
-          replaced = true;
-          break;
-        }
-      }
-
-      if (replaced) {
-        return sylChars.join('').replace(/v/gi, m => m === 'V' ? 'Ü' : 'ü');
-      }
-
-      return syllable;
+    result = result.replace(/([a-zA-ZüÜvVāáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜĀÁǍÀŌÓǑÒĒÉĚÈĪÍǏÌŪÚǓÙǕǗǙǛ]+)([0-5])/g, (match, chunk, toneStr) => {
+      const { prefix, syllable } = splitChunkIntoPrefixAndSyllable(chunk);
+      const convertedSyllable = applyToneToSyllable(syllable, toneStr);
+      return prefix + convertedSyllable;
     });
 
     return result;
   }
 
+  function getActiveSyllableInfo(fullText, cursorPosition) {
+    if (!fullText) return null;
+    const pos = typeof cursorPosition === 'number' ? cursorPosition : fullText.length;
+    const beforeCursor = fullText.slice(0, pos);
+    const match = beforeCursor.match(/([a-zA-ZüÜvVāáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜĀÁǍÀŌÓǑÒĒÉĚÈĪÍǏÌŪÚǓÙǕǗǙǛ:]+)$/);
+    if (!match) return null;
+
+    const rawChunk = match[1];
+    const chunkStart = pos - rawChunk.length;
+    const { prefix, syllable } = splitChunkIntoPrefixAndSyllable(rawChunk);
+
+    const cleanSyllable = stripDiacritics(syllable).replace(/u:/gi, 'ü');
+    if (!cleanSyllable || !/[aeiouüAEIOUÜvV]/.test(cleanSyllable)) {
+      return null;
+    }
+
+    const syllableStart = chunkStart + prefix.length;
+    const syllableEnd = pos;
+
+    let currentTone = 5;
+    const variants = [1, 2, 3, 4, 5].map(t => {
+      const text = applyToneToSyllable(cleanSyllable, t);
+      if (text === syllable) currentTone = t;
+      return { tone: t, text };
+    });
+
+    return {
+      prefix,
+      syllable,
+      cleanSyllable,
+      syllableStart,
+      syllableEnd,
+      currentTone,
+      variants
+    };
+  }
+
   // Expose globally for testing/modules
   window.convertPinyinNumberToTone = convertPinyinNumberToTone;
+  window.getActiveSyllableInfo = getActiveSyllableInfo;
 
   function normalizePinyinToken(str) {
     if (!str || typeof str !== 'string') return '';
@@ -1098,6 +1178,93 @@ document.addEventListener('DOMContentLoaded', () => {
     attachCardInputListeners();
   }
 
+  // TONE CANDIDATE BAR & INPUT HELPERS
+  function commitActiveTone(input) {
+    input.dataset.composing = 'false';
+    input.classList.remove('composing');
+    hideToneCandidateBar(input);
+  }
+
+  function applyToneToInput(input, targetTone) {
+    const cursorPos = input.selectionStart ?? input.value.length;
+    const info = getActiveSyllableInfo(input.value, cursorPos);
+    if (!info) return;
+
+    const targetVariant = info.variants.find(v => v.tone === targetTone);
+    if (!targetVariant) return;
+
+    const before = input.value.slice(0, info.syllableStart);
+    const after = input.value.slice(info.syllableEnd);
+    const newValue = before + targetVariant.text + after;
+    const newCursor = info.syllableStart + targetVariant.text.length;
+
+    input.value = newValue;
+    input.setSelectionRange(newCursor, newCursor);
+
+    renderToneCandidateBar(input);
+    updateProgressCount();
+  }
+
+  function renderToneCandidateBar(input) {
+    const wrapper = input.closest('.card-input-wrapper');
+    if (!wrapper) return;
+
+    let bar = wrapper.querySelector('.tone-candidate-bar');
+    const cursorPos = input.selectionStart ?? input.value.length;
+    const info = getActiveSyllableInfo(input.value, cursorPos);
+
+    if (!info || !info.variants || info.variants.length === 0) {
+      commitActiveTone(input);
+      return;
+    }
+
+    // Active composing state with visual underline
+    input.dataset.composing = 'true';
+    input.classList.add('composing');
+
+    if (!bar) {
+      bar = document.createElement('div');
+      bar.className = 'tone-candidate-bar';
+      wrapper.appendChild(bar);
+    }
+
+    bar.innerHTML = info.variants.map(v => `
+      <button type="button" class="tone-pill ${v.tone === info.currentTone ? 'active' : ''}" data-tone="${v.tone}">
+        <span class="tone-num">${v.tone}</span>
+        <span class="tone-char">${v.text}</span>
+      </button>
+    `).join('') + `
+      <button type="button" class="tone-pill tone-pill-confirm" data-action="confirm" title="Confirm tone">
+        <span>✓ Done</span>
+      </button>
+    `;
+
+    bar.style.display = 'flex';
+
+    bar.querySelectorAll('.tone-pill').forEach(btn => {
+      btn.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        const action = btn.getAttribute('data-action');
+        if (action === 'confirm') {
+          commitActiveTone(input);
+          input.focus();
+          return;
+        }
+
+        const toneNum = parseInt(btn.getAttribute('data-tone'), 10);
+        applyToneToInput(input, toneNum);
+        input.focus();
+      });
+    });
+  }
+
+  function hideToneCandidateBar(input) {
+    const wrapper = input.closest('.card-input-wrapper');
+    if (!wrapper) return;
+    const bar = wrapper.querySelector('.tone-candidate-bar');
+    if (bar) bar.style.display = 'none';
+  }
+
   // INPUT LISTENERS & AUTO ADVANCE FOCUS
   function attachCardInputListeners() {
     const inputs = cardGrid.querySelectorAll('.card-input');
@@ -1127,13 +1294,42 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!anyHanzi) imeAlert.classList.remove('show');
         }
 
+        renderToneCandidateBar(input);
         updateProgressCount();
       });
 
-      // Keydown Enter / Tab navigation
+      // Keydown Enter / Tab / Tone cycling navigation
       input.addEventListener('keydown', (e) => {
+        // ArrowUp / ArrowDown to cycle through candidate tones while in composing mode
+        if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+          const cursorPos = input.selectionStart ?? input.value.length;
+          const info = getActiveSyllableInfo(input.value, cursorPos);
+          if (info) {
+            e.preventDefault();
+            let nextTone;
+            if (e.key === 'ArrowUp') {
+              nextTone = info.currentTone > 1 ? info.currentTone - 1 : 5;
+            } else {
+              nextTone = info.currentTone < 5 ? info.currentTone + 1 : 1;
+            }
+            applyToneToInput(input, nextTone);
+            return;
+          }
+        }
+
+        // Enter key handling
         if (e.key === 'Enter') {
           e.preventDefault();
+
+          // If currently in composing mode: confirm and lock the current syllable tone!
+          if (input.dataset.composing === 'true') {
+            commitActiveTone(input);
+            // Remains on current card so user can type the next syllable!
+            return;
+          }
+
+          // If already confirmed (not composing): advance to next card
+          commitActiveTone(input);
           const nextInput = inputs[idx + 1];
           if (nextInput) {
             nextInput.focus();
@@ -1141,6 +1337,30 @@ document.addEventListener('DOMContentLoaded', () => {
             // Last card -> submit prompt or wrap focus
             btnSubmit.focus();
           }
+        }
+      });
+
+      input.addEventListener('focus', () => {
+        const card = input.closest('.tofugu-card');
+        if (card) card.classList.add('is-active-card');
+        renderToneCandidateBar(input);
+      });
+
+      input.addEventListener('blur', () => {
+        const card = input.closest('.tofugu-card');
+        if (card) card.classList.remove('is-active-card');
+        setTimeout(() => {
+          commitActiveTone(input);
+        }, 150);
+      });
+
+      input.addEventListener('click', () => {
+        renderToneCandidateBar(input);
+      });
+
+      input.addEventListener('keyup', (e) => {
+        if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) {
+          renderToneCandidateBar(input);
         }
       });
     });

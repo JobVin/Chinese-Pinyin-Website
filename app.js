@@ -113,17 +113,97 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // PINYIN NORMALIZATION & MATCHING UTILITIES
+  // PINYIN NORMALIZATION, CONVERSION & MATCHING UTILITIES
 
   /**
-   * Strict validation of user input against a card's pinyin array.
-   * Requires Pinyin typed with tone marks (e.g. héng, shù, nǐhǎo) using a Pinyin keyboard/IME.
-   * Tone numbers (e.g. heng1, shu4, ni3hao3) and plain untoned text (for non-neutral tones) are rejected.
-   * Neutral tone words (e.g. de, le) accept untoned letters as neutral tones have no tone mark.
+   * Converts numeric Pinyin input (e.g. ni3hao3, lv4, de5) into tone-marked Pinyin (e.g. nǐhǎo, lǜ, de).
+   * Supports digits 0-5, v/u: for ü, and handles tone placement rules for diphthongs and triphthongs.
    */
+  function convertPinyinNumberToTone(text) {
+    if (!text || typeof text !== 'string') return text;
+
+    const toneMap = {
+      'a': ['ā', 'á', 'ǎ', 'à', 'a'],
+      'o': ['ō', 'ó', 'ǒ', 'ò', 'o'],
+      'e': ['ē', 'é', 'ě', 'è', 'e'],
+      'i': ['ī', 'í', 'ǐ', 'ì', 'i'],
+      'u': ['ū', 'ú', 'ǔ', 'ù', 'u'],
+      'ü': ['ǖ', 'ǘ', 'ǚ', 'ǜ', 'ü'],
+      'v': ['ǖ', 'ǘ', 'ǚ', 'ǜ', 'ü'],
+      'A': ['Ā', 'Á', 'Ǎ', 'À', 'A'],
+      'O': ['Ō', 'Ó', 'Ǒ', 'Ò', 'O'],
+      'E': ['Ē', 'É', 'Ě', 'È', 'E'],
+      'I': ['Ī', 'Í', 'Ǐ', 'Ì', 'I'],
+      'U': ['Ū', 'Ú', 'Ǔ', 'Ù', 'U'],
+      'Ü': ['Ǖ', 'Ǘ', 'Ǚ', 'Ǜ', 'Ü'],
+      'V': ['Ǖ', 'Ǘ', 'Ǚ', 'Ǜ', 'Ü']
+    };
+
+    // Replace u: or U: with ü / Ü
+    let result = text.replace(/u:/gi, match => match[0] === 'U' ? 'Ü' : 'ü');
+
+    // Match syllables followed by tone numbers 0-5
+    result = result.replace(/([a-zA-ZüÜvV]+)([0-5])/g, (match, syllable, toneStr) => {
+      const tone = parseInt(toneStr, 10);
+      if (tone === 0 || tone === 5) {
+        return syllable.replace(/v/gi, m => m === 'V' ? 'Ü' : 'ü');
+      }
+      const toneIdx = tone - 1;
+
+      // Rule 1: 'a' or 'e' always gets the tone mark
+      if (/[aeAE]/.test(syllable)) {
+        return syllable
+          .replace(/v/gi, m => m === 'V' ? 'Ü' : 'ü')
+          .replace(/([aeAE])/, v => toneMap[v] ? toneMap[v][toneIdx] : v);
+      }
+
+      // Rule 2: 'ou' -> 'o' gets the tone mark
+      if (/ou|OU|oU|Ou/.test(syllable)) {
+        return syllable
+          .replace(/v/gi, m => m === 'V' ? 'Ü' : 'ü')
+          .replace(/([oO])/, v => toneMap[v] ? toneMap[v][toneIdx] : v);
+      }
+
+      // Rule 3: 'ui' -> 'i' gets tone; 'iu' -> 'u' gets tone
+      if (/ui|UI|uI|Ui/.test(syllable)) {
+        return syllable
+          .replace(/v/gi, m => m === 'V' ? 'Ü' : 'ü')
+          .replace(/([iI])/, v => toneMap[v] ? toneMap[v][toneIdx] : v);
+      }
+      if (/iu|IU|iU|Iu/.test(syllable)) {
+        return syllable
+          .replace(/v/gi, m => m === 'V' ? 'Ü' : 'ü')
+          .replace(/([uU])/, v => toneMap[v] ? toneMap[v][toneIdx] : v);
+      }
+
+      // Rule 4: Otherwise, the last vowel gets the tone mark
+      let replaced = false;
+      const sylChars = syllable.split('');
+      for (let i = sylChars.length - 1; i >= 0; i--) {
+        const char = sylChars[i];
+        if (toneMap[char]) {
+          sylChars[i] = toneMap[char][toneIdx];
+          replaced = true;
+          break;
+        }
+      }
+
+      if (replaced) {
+        return sylChars.join('').replace(/v/gi, m => m === 'V' ? 'Ü' : 'ü');
+      }
+
+      return syllable;
+    });
+
+    return result;
+  }
+
+  // Expose globally for testing/modules
+  window.convertPinyinNumberToTone = convertPinyinNumberToTone;
+
   function normalizePinyinToken(str) {
     if (!str || typeof str !== 'string') return '';
-    return str.trim().toLowerCase().replace(/['’\s]/g, '');
+    return str.trim().toLowerCase().replace(/['’\s]/g, '').replace(/u:/g, 'ü').replace(/v/g, 'ü');
   }
 
   function validateUserAnswer(userInput, cardPinyinArray) {
@@ -133,12 +213,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const trimmedInput = userInput.trim();
     if (!trimmedInput) return false;
 
-    // Reject inputs containing digits (e.g. heng1, shu4, ni3hao3)
-    if (/\d/.test(trimmedInput)) {
-      return false;
-    }
+    // Convert any remaining numeric tones (e.g. pasted values)
+    const convertedInput = convertPinyinNumberToTone(trimmedInput);
 
-    const userToken = normalizePinyinToken(trimmedInput);
+    const userToken = normalizePinyinToken(convertedInput);
     if (!userToken) return false;
 
     return cardPinyinArray.some(pinyinVariant => {
@@ -1025,9 +1103,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputs = cardGrid.querySelectorAll('.card-input');
 
     inputs.forEach((input, idx) => {
-      // Check for IME Hanzi input
+      // Live Pinyin tone number conversion & Hanzi detection
       input.addEventListener('input', (e) => {
-        const val = e.target.value;
+        const rawVal = e.target.value;
+        const converted = convertPinyinNumberToTone(rawVal);
+        if (converted !== rawVal) {
+          const start = input.selectionStart;
+          const end = input.selectionEnd;
+          const diff = converted.length - rawVal.length;
+          input.value = converted;
+          if (start !== null && end !== null) {
+            const newCursor = Math.max(0, start + diff);
+            input.setSelectionRange(newCursor, newCursor);
+          }
+        }
+
+        const val = input.value;
         if (hasHanziInput(val)) {
           imeAlert.classList.add('show');
         } else {

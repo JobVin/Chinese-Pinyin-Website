@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npx serve .",
     "serve": "npx serve .",
-    "test": "node scripts/test_validation.js && node scripts/test_mc_options.js && node scripts/test_tips_text.js",
+    "test": "node scripts/test_validation.js && node scripts/test_mc_options.js && node scripts/test_tips_text.js && node scripts/test_stage_chunking.js && node scripts/test_next_level.js",
     "test:mc": "node scripts/test_mc_options.js",
     "audit": "node scripts/audit_characters.js",
     "build:datasets": "node scripts/build_hsk_datasets.js",

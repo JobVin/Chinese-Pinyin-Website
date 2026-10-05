@@ -120,15 +120,79 @@ function buildMcOptions(item, fullTrackData) {
   return options;
 }
 
+// STAGE SPLITTING CONSTANTS & GENERATOR
+const STAGE_CHUNK_SIZE = 15;
+const MIN_FINAL_STAGE_CHUNK_SIZE = 5;
+
+function getDatasetStagesFromData(fullData, trackName, chunkSize = STAGE_CHUNK_SIZE, minFinalChunkSize = MIN_FINAL_STAGE_CHUNK_SIZE) {
+  if (trackName === 'strokes') {
+    return [{ id: 'all', title: 'Full Set', subTitle: '10 Basic Strokes', data: fullData }];
+  }
+  if (trackName === 'radicals') {
+    return [{ id: 'all', title: 'Full Set', subTitle: '16 Essential Radicals', data: fullData }];
+  }
+
+  const stages = [];
+  const total = (fullData || []).length;
+  if (total === 0) return stages;
+
+  for (let start = 0; start < total; start += chunkSize) {
+    const end = Math.min(start + chunkSize, total);
+    const remainingAfterThis = total - end;
+
+    // If remaining words after this chunk would be fewer than minFinalChunkSize,
+    // merge them into this chunk instead of creating a tiny final stage.
+    if (remainingAfterThis > 0 && remainingAfterThis < minFinalChunkSize) {
+      const chunk = fullData.slice(start, total);
+      const stageNum = stages.length + 1;
+      const wordLabel = chunk.length === 1 ? 'word' : 'words';
+      stages.push({
+        id: `level_${stageNum}`,
+        title: `Level ${stageNum}`,
+        subTitle: `Words ${start + 1} – ${total} (${chunk.length} ${wordLabel})`,
+        data: chunk
+      });
+      break;
+    } else {
+      const chunk = fullData.slice(start, end);
+      const stageNum = stages.length + 1;
+      const wordLabel = chunk.length === 1 ? 'word' : 'words';
+      stages.push({
+        id: `level_${stageNum}`,
+        title: `Level ${stageNum}`,
+        subTitle: `Words ${start + 1} – ${end} (${chunk.length} ${wordLabel})`,
+        data: chunk
+      });
+    }
+  }
+
+  if (total > chunkSize) {
+    stages.push({
+      id: 'all',
+      title: 'Full Level',
+      subTitle: `All ${total} ${total === 1 ? 'Word' : 'Words'}`,
+      data: fullData
+    });
+  }
+
+  return stages;
+}
+
 if (typeof window !== 'undefined') {
   window.normalizeMcPinyin = normalizeMcPinyin;
   window.buildMcOptions = buildMcOptions;
+  window.STAGE_CHUNK_SIZE = STAGE_CHUNK_SIZE;
+  window.MIN_FINAL_STAGE_CHUNK_SIZE = MIN_FINAL_STAGE_CHUNK_SIZE;
+  window.getDatasetStagesFromData = getDatasetStagesFromData;
 }
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     normalizeMcPinyin,
-    buildMcOptions
+    buildMcOptions,
+    STAGE_CHUNK_SIZE,
+    MIN_FINAL_STAGE_CHUNK_SIZE,
+    getDatasetStagesFromData
   };
 }
 
@@ -152,7 +216,9 @@ if (typeof document !== 'undefined') {
     mcCorrectCount: 0,
     currentDrawingCards: [],
     drawingCanvasInstances: new Map(),
-    drawingSubmitted: false
+    drawingSubmitted: false,
+    currentStageIndex: -1,
+    currentStages: []
   };
 
   // DOM ELEMENTS
@@ -272,6 +338,7 @@ if (typeof document !== 'undefined') {
   const resultsHeading = document.getElementById('results-heading');
   const resultsScore = document.getElementById('results-score');
   const resultsDetails = document.getElementById('results-details');
+  const btnNextQuizLevel = document.getElementById('btn-next-quiz-level');
   const btnRetryMissed = document.getElementById('btn-retry-missed');
   const btnRestartQuiz = document.getElementById('btn-restart-quiz');
   const btnResultsHub = document.getElementById('btn-results-hub');
@@ -560,42 +627,6 @@ if (typeof document !== 'undefined') {
     }
   }
 
-  function getDatasetStagesFromData(fullData, trackName, chunkSize = 15) {
-    if (trackName === 'strokes') {
-      return [{ id: 'all', title: 'Full Set', subTitle: '10 Basic Strokes', data: fullData }];
-    }
-    if (trackName === 'radicals') {
-      return [{ id: 'all', title: 'Full Set', subTitle: '16 Essential Radicals', data: fullData }];
-    }
-
-    const stages = [];
-    const total = fullData.length;
-    const numStages = Math.ceil(total / chunkSize);
-
-    for (let i = 0; i < numStages; i++) {
-      const start = i * chunkSize;
-      const end = Math.min(start + chunkSize, total);
-      const chunk = fullData.slice(start, end);
-      stages.push({
-        id: `level_${i + 1}`,
-        title: `Level ${i + 1}`,
-        subTitle: `Words ${start + 1} – ${end} (${chunk.length} words)`,
-        data: chunk
-      });
-    }
-
-    if (total > chunkSize) {
-      stages.push({
-        id: 'all',
-        title: 'Full Level',
-        subTitle: `All ${total} Words`,
-        data: fullData
-      });
-    }
-
-    return stages;
-  }
-
   function getTrackTitle(trackName, isStudyMode = false) {
     const quizSuffix = isStudyMode ? '' : ' Quiz';
     switch (trackName) {
@@ -662,7 +693,7 @@ if (typeof document !== 'undefined') {
 
   function getHsk1StagesByCategory(fullData, categoryMap) {
     if (!categoryMap) {
-      return getDatasetStagesFromData(fullData, 'hsk1', 15);
+      return getDatasetStagesFromData(fullData, 'hsk1', STAGE_CHUNK_SIZE);
     }
 
     const stages = [];
@@ -683,7 +714,7 @@ if (typeof document !== 'undefined') {
         stages.push({
           id: catName.toLowerCase().replace(/\s+/g, '_'),
           title: catName,
-          subTitle: `${filteredItems.length} Words`,
+          subTitle: `${filteredItems.length} ${filteredItems.length === 1 ? 'Word' : 'Words'}`,
           data: filteredItems
         });
       }
@@ -694,7 +725,7 @@ if (typeof document !== 'undefined') {
       stages.push({
         id: 'uncategorized',
         title: 'Uncategorized',
-        subTitle: `${leftoverItems.length} Words`,
+        subTitle: `${leftoverItems.length} ${leftoverItems.length === 1 ? 'Word' : 'Words'}`,
         data: leftoverItems
       });
     }
@@ -702,7 +733,7 @@ if (typeof document !== 'undefined') {
     stages.push({
       id: 'all',
       title: 'Full Level',
-      subTitle: `All ${fullData.length} Words`,
+      subTitle: `All ${fullData.length} ${fullData.length === 1 ? 'Word' : 'Words'}`,
       data: fullData
     });
 
@@ -715,11 +746,17 @@ if (typeof document !== 'undefined') {
     card.addEventListener('click', async () => {
       const track = card.dataset.track;
       const fullData = await loadDataset(track);
-      const stages = getDatasetStagesFromData(fullData, track, 15);
+      const stages = getDatasetStagesFromData(fullData, track, STAGE_CHUNK_SIZE);
       if (stages.length === 1) {
+        state.currentStages = stages;
+        state.currentStageIndex = 0;
         startQuiz(track, stages[0].data, getTrackTitle(track, false));
       } else {
-        openStageModal(track, stages, (stage) => startQuiz(track, stage.data, `${getTrackTitle(track, false)} (${stage.title})`), false);
+        openStageModal(track, stages, (stage, idx) => {
+          state.currentStages = stages;
+          state.currentStageIndex = idx;
+          startQuiz(track, stage.data, `${getTrackTitle(track, false)} (${stage.title})`);
+        }, false);
       }
     });
   });
@@ -730,12 +767,16 @@ if (typeof document !== 'undefined') {
     card.addEventListener('click', async () => {
       const track = card.dataset.track;
       const fullData = await loadDataset(track);
-      const stages = getDatasetStagesFromData(fullData, track, 15);
+      const stages = getDatasetStagesFromData(fullData, track, STAGE_CHUNK_SIZE);
       const baseTitle = getTrackTitle(track, false) + ' Drawing';
       if (stages.length === 1) {
+        state.currentStages = stages;
+        state.currentStageIndex = 0;
         startDrawingQuiz(track, stages[0].data, baseTitle);
       } else {
-        openStageModal(track, stages, (stage) => {
+        openStageModal(track, stages, (stage, idx) => {
+          state.currentStages = stages;
+          state.currentStageIndex = idx;
           startDrawingQuiz(track, stage.data, `${baseTitle} (${stage.title})`);
         }, false);
       }
@@ -754,7 +795,7 @@ if (typeof document !== 'undefined') {
         const catMap = await loadHsk1Categories();
         stages = getHsk1StagesByCategory(fullData, catMap);
       } else {
-        stages = getDatasetStagesFromData(fullData, track, 15);
+        stages = getDatasetStagesFromData(fullData, track, STAGE_CHUNK_SIZE);
       }
 
       if (stages.length === 1) {
@@ -1185,6 +1226,8 @@ if (typeof document !== 'undefined') {
   if (btnStartQuizFromStudy) {
     btnStartQuizFromStudy.addEventListener('click', () => {
       if (state.currentStudyData) {
+        state.currentStages = state.currentStudyStages || [];
+        state.currentStageIndex = state.currentStudyStageIndex ?? -1;
         startQuiz(state.currentStudyData.trackName, state.currentStudyData.data, state.currentStudyData.title);
       }
     });
@@ -1908,6 +1951,24 @@ if (typeof document !== 'undefined') {
       resultsHeading.textContent = 'Keep Practicing!';
     }
 
+    // Configure "Next Level" Button
+    const nextIndex = state.currentStageIndex + 1;
+    const hasNextLevel = Boolean(
+      state.currentStages &&
+      state.currentStageIndex >= 0 &&
+      nextIndex < state.currentStages.length &&
+      state.currentStages[nextIndex] &&
+      state.currentStages[nextIndex].id !== 'all'
+    );
+
+    if (hasNextLevel && btnNextQuizLevel) {
+      const nextStage = state.currentStages[nextIndex];
+      btnNextQuizLevel.textContent = `Next: ${nextStage.title}`;
+      btnNextQuizLevel.style.display = 'inline-flex';
+    } else if (btnNextQuizLevel) {
+      btnNextQuizLevel.style.display = 'none';
+    }
+
     if (state.missedCards.length > 0) {
       btnRetryMissed.style.display = 'inline-flex';
     } else {
@@ -1923,6 +1984,30 @@ if (typeof document !== 'undefined') {
   }
 
   // RESULTS BANNER ACTIONS
+  if (btnNextQuizLevel) {
+    btnNextQuizLevel.addEventListener('click', () => {
+      resultsBanner.style.display = 'none';
+      const nextIndex = state.currentStageIndex + 1;
+      if (!state.currentStages || nextIndex >= state.currentStages.length) return;
+      const nextStage = state.currentStages[nextIndex];
+      state.currentStageIndex = nextIndex;
+
+      if (state.quizType === 'drawing') {
+        const baseTitle = getTrackTitle(state.currentTrack, false) + ' Drawing';
+        const nextTitle = `${baseTitle} (${nextStage.title})`;
+        startDrawingQuiz(state.currentTrack, nextStage.data, nextTitle);
+      } else {
+        const nextTitle = `${getTrackTitle(state.currentTrack, false)} (${nextStage.title})`;
+        startQuiz(state.currentTrack, nextStage.data, nextTitle, true /* preserveMode */);
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (quizView) {
+        quizView.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+
   btnRetryMissed.addEventListener('click', () => {
     resultsBanner.style.display = 'none';
     if (state.missedCards.length > 0) {

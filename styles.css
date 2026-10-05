@@ -1570,6 +1570,104 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
+.pinyin-mode-toggle-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 28px;
+}
+
+.pinyin-mode-toggle-wrapper .btn-pill.active {
+  background: var(--primary-blue);
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+/* MULTIPLE CHOICE PRACTICE MODE CARDS & OPTIONS */
+.tofugu-card.tofugu-mc-card {
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mc-options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  width: 100%;
+  margin-top: 14px;
+}
+
+.mc-option-btn {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 10px 8px;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a202c;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  user-select: none;
+}
+
+.mc-option-btn:hover:not(:disabled) {
+  background: #ffffff;
+  border-color: #90cdf4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.mc-option-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.mc-option-btn:focus-visible {
+  outline: 3px solid #3182ce;
+  outline-offset: 2px;
+}
+
+.mc-option-btn:disabled {
+  cursor: default;
+  opacity: 0.8;
+}
+
+/* CORRECT OPTION SELECTED */
+.mc-option-btn.option-correct {
+  background: #ffffff !important;
+  color: var(--success-color) !important;
+  border-color: var(--success-color) !important;
+  font-weight: 800 !important;
+  box-shadow: 0 0 0 2px #a5d6a7, 0 4px 10px rgba(0, 0, 0, 0.15) !important;
+  opacity: 1 !important;
+}
+
+/* WRONG OPTION SELECTED */
+.mc-option-btn.option-wrong {
+  background: #ffebee !important;
+  color: var(--error-color) !important;
+  border-color: var(--error-color) !important;
+  text-decoration: line-through;
+  opacity: 1 !important;
+}
+
+/* REVEAL CORRECT OPTION ON WRONG ATTEMPT */
+.mc-option-btn.option-reveal-correct {
+  background: #ffffff !important;
+  color: var(--success-color) !important;
+  border: 2px dashed var(--success-color) !important;
+  font-weight: 800 !important;
+  box-shadow: 0 0 0 2px #ffffff, 0 4px 10px rgba(0, 0, 0, 0.15) !important;
+  opacity: 1 !important;
+}
+
 .study-container {
   max-width: 900px;
   margin: 0 auto 100px;

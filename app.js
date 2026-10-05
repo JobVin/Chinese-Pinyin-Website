@@ -2,7 +2,138 @@
  * Mandarin Practice Hub - Main Application Logic
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+// MULTIPLE CHOICE HELPERS & DISTRACTOR GENERATOR
+function normalizeMcPinyin(str) {
+  return (str || '').trim().toLowerCase().normalize('NFC');
+}
+
+function buildMcOptions(item, fullTrackData) {
+  const rawCorrect = item.displayPinyin || (Array.isArray(item.pinyin) ? item.pinyin[0] : item.pinyin) || '';
+  const normCorrect = normalizeMcPinyin(rawCorrect);
+  const targetLen = [...(item.character || '')].length;
+
+  const usedNorms = new Set([normCorrect]);
+  const chosenDistractors = [];
+
+  // Helper: Fisher-Yates shuffle
+  const shuffle = (arr) => {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+    }
+    return arr;
+  };
+
+  // Step 1: Collect candidates of exact same character length (distance 0)
+  const sameLenMap = new Map();
+  if (Array.isArray(fullTrackData)) {
+    for (const cand of fullTrackData) {
+      if (!cand || !cand.character) continue;
+      const candLen = [...cand.character].length;
+      if (candLen !== targetLen) continue;
+
+      const candPinyin = cand.displayPinyin || (Array.isArray(cand.pinyin) ? cand.pinyin[0] : cand.pinyin) || '';
+      const normCand = normalizeMcPinyin(candPinyin);
+      if (!normCand || usedNorms.has(normCand)) continue;
+
+      if (!sameLenMap.has(normCand)) {
+        sameLenMap.set(normCand, candPinyin);
+      }
+    }
+  }
+
+  const sameLenCandidates = shuffle(Array.from(sameLenMap.values()));
+  for (const pinyin of sameLenCandidates) {
+    const norm = normalizeMcPinyin(pinyin);
+    if (!usedNorms.has(norm)) {
+      usedNorms.add(norm);
+      chosenDistractors.push(pinyin);
+      if (chosenDistractors.length === 3) break;
+    }
+  }
+
+  // Step 2: Fallback if fewer than 3 same-length distractors exist
+  if (chosenDistractors.length < 3) {
+    console.warn(`[MC Warning] Item "${item.character || rawCorrect}" (length ${targetLen}) has only ${chosenDistractors.length} same-length distractors. Falling back to nearest lengths.`);
+
+    let maxDist = 1;
+    if (Array.isArray(fullTrackData)) {
+      for (const cand of fullTrackData) {
+        if (cand && cand.character) {
+          const d = Math.abs([...cand.character].length - targetLen);
+          if (d > maxDist) maxDist = d;
+        }
+      }
+    }
+
+    // Check nearest lengths: dist = 1 (length +/- 1), then dist = 2 (length +/- 2), etc.
+    for (let dist = 1; dist <= maxDist && chosenDistractors.length < 3; dist++) {
+      const distMap = new Map();
+      for (const cand of fullTrackData) {
+        if (!cand || !cand.character) continue;
+        const candLen = [...cand.character].length;
+        if (Math.abs(candLen - targetLen) === dist) {
+          const candPinyin = cand.displayPinyin || (Array.isArray(cand.pinyin) ? cand.pinyin[0] : cand.pinyin) || '';
+          const normCand = normalizeMcPinyin(candPinyin);
+          if (!normCand || usedNorms.has(normCand)) continue;
+
+          if (!distMap.has(normCand)) {
+            distMap.set(normCand, candPinyin);
+          }
+        }
+      }
+
+      const distCandidates = shuffle(Array.from(distMap.values()));
+      for (const pinyin of distCandidates) {
+        const norm = normalizeMcPinyin(pinyin);
+        if (!usedNorms.has(norm)) {
+          usedNorms.add(norm);
+          chosenDistractors.push(pinyin);
+          if (chosenDistractors.length === 3) break;
+        }
+      }
+    }
+  }
+
+  const options = [
+    {
+      pinyin: rawCorrect,
+      displayPinyin: rawCorrect,
+      text: rawCorrect,
+      isCorrect: true,
+      toString() { return this.pinyin; },
+      valueOf() { return this.pinyin; }
+    },
+    ...chosenDistractors.map(d => ({
+      pinyin: d,
+      displayPinyin: d,
+      text: d,
+      isCorrect: false,
+      toString() { return this.pinyin; },
+      valueOf() { return this.pinyin; }
+    }))
+  ];
+
+  shuffle(options);
+  return options;
+}
+
+if (typeof window !== 'undefined') {
+  window.normalizeMcPinyin = normalizeMcPinyin;
+  window.buildMcOptions = buildMcOptions;
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    normalizeMcPinyin,
+    buildMcOptions
+  };
+}
+
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
   // APP STATE
   const state = {
     currentTrack: 'hsk1',
@@ -16,6 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
     currentStudyData: null,
     pendingNavTarget: 'hub',
     quizType: 'pinyin', // 'pinyin' | 'drawing'
+    pinyinAnswerMode: 'mc', // 'mc' | 'typed'
+    mcAnsweredCount: 0,
+    mcCorrectCount: 0,
     currentDrawingCards: [],
     drawingCanvasInstances: new Map(),
     drawingSubmitted: false
@@ -64,6 +198,63 @@ document.addEventListener('DOMContentLoaded', () => {
   const quizActionBar = document.getElementById('quiz-action-bar');
   const btnSubmit = document.getElementById('btn-submit');
   const btnQuit = document.getElementById('btn-quit');
+
+  // PINYIN ANSWER MODE TOGGLE ELEMENTS & PERSISTENCE
+  const STORAGE_KEY_PINYIN_MODE = 'pinyinAnswerMode';
+  const btnModeMc = document.getElementById('btn-mode-mc');
+  const btnModeTyped = document.getElementById('btn-mode-typed');
+
+  function getStoredPinyinMode() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY_PINYIN_MODE);
+      if (saved === 'typed' || saved === 'mc') {
+        return saved;
+      }
+    } catch (e) {
+      console.warn('localStorage read error for pinyinAnswerMode:', e);
+    }
+    return 'mc';
+  }
+
+  function setStoredPinyinMode(mode) {
+    try {
+      localStorage.setItem(STORAGE_KEY_PINYIN_MODE, mode);
+    } catch (e) {
+      console.warn('localStorage write error for pinyinAnswerMode:', e);
+    }
+  }
+
+  function updatePinyinModeToggleUI(mode) {
+    if (!btnModeMc || !btnModeTyped) return;
+    if (mode === 'typed') {
+      btnModeTyped.classList.add('active');
+      btnModeTyped.setAttribute('aria-checked', 'true');
+      btnModeMc.classList.remove('active');
+      btnModeMc.setAttribute('aria-checked', 'false');
+    } else {
+      btnModeMc.classList.add('active');
+      btnModeMc.setAttribute('aria-checked', 'true');
+      btnModeTyped.classList.remove('active');
+      btnModeTyped.setAttribute('aria-checked', 'false');
+    }
+  }
+
+  // Initialize toggle UI from stored preference (default: Multiple Choice)
+  updatePinyinModeToggleUI(getStoredPinyinMode());
+
+  if (btnModeMc) {
+    btnModeMc.addEventListener('click', () => {
+      updatePinyinModeToggleUI('mc');
+      setStoredPinyinMode('mc');
+    });
+  }
+
+  if (btnModeTyped) {
+    btnModeTyped.addEventListener('click', () => {
+      updatePinyinModeToggleUI('typed');
+      setStoredPinyinMode('typed');
+    });
+  }
   
   // STAGE MODAL ELEMENTS
   const stageModal = document.getElementById('stage-modal');
@@ -111,6 +302,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const isCollapsed = instructionsList.classList.contains('collapsed');
       instructionToggleLabel.textContent = isCollapsed ? 'Show Tips ▼' : 'Hide Tips ▲';
     });
+  }
+
+  function updateQuizTips() {
+    if (!instructionsList) return;
+    if (state.quizType === 'drawing') {
+      instructionsList.innerHTML = `<li>Draw the Chinese character that matches each pinyin and meaning. Use Clear to redo a character. When you are finished, click Submit Quiz to see which characters you drew correctly.</li>`;
+    } else if (state.pinyinAnswerMode === 'mc') {
+      instructionsList.innerHTML = `<li>Pick the correct pinyin for each character. Each answer is checked instantly, and if you pick the wrong one, the correct pinyin is highlighted so you can learn it. Your score appears after you answer the last card.</li>`;
+    } else {
+      instructionsList.innerHTML = `
+        <li>Type <strong>tone numbers</strong> (<code>1-5</code>, e.g. <code>ni3hao3</code>, <code>lv4</code>) to auto-convert to tones. You can also tap the <strong>floating tone pills</strong> or press <strong>↑ / ↓</strong> to cycle through tones without deleting!</li>
+        <li>Press <strong>ENTER</strong> to confirm your tone and automatically advance to the next card.</li>
+        <li>When finished, click the <strong>"Submit Quiz"</strong> button at the bottom to evaluate your score!</li>
+      `;
+    }
   }
 
   // PINYIN NORMALIZATION, CONVERSION & MATCHING UTILITIES
@@ -1026,20 +1232,116 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
+
+  // RENDER MULTIPLE CHOICE CARD GRID
+  function renderMcCardGrid(data, fullTrackData) {
+    cardGrid.innerHTML = '';
+
+    data.forEach((item, index) => {
+      const cardEl = document.createElement('div');
+      cardEl.className = 'tofugu-card tofugu-mc-card';
+      cardEl.dataset.index = index;
+      cardEl.dataset.answered = 'false';
+
+      const lenClass = getCharLenClass(item.character);
+
+      const promptEl = document.createElement('div');
+      promptEl.className = `card-hanzi ${lenClass}`;
+      promptEl.textContent = item.character;
+      cardEl.appendChild(promptEl);
+
+      const optionsGrid = document.createElement('div');
+      optionsGrid.className = 'mc-options-grid';
+
+      const options = buildMcOptions(item, fullTrackData);
+
+      options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'mc-option-btn';
+        btn.textContent = opt.pinyin;
+        btn.dataset.correct = opt.isCorrect ? 'true' : 'false';
+
+        btn.addEventListener('click', () => {
+          if (cardEl.dataset.answered === 'true') return;
+          cardEl.dataset.answered = 'true';
+
+          // a. Lock that card immediately: disable all 4 buttons so the answer cannot be changed.
+          const allBtns = cardEl.querySelectorAll('.mc-option-btn');
+          allBtns.forEach(b => {
+            b.disabled = true;
+          });
+
+          // b. Mark the card green if correct, red if wrong
+          if (opt.isCorrect) {
+            state.mcCorrectCount++;
+            cardEl.classList.add('correct');
+            btn.classList.add('option-correct');
+          } else {
+            cardEl.classList.add('incorrect');
+            btn.classList.add('option-wrong');
+            // c. If wrong, highlight the chosen option as wrong AND highlight the correct option
+            allBtns.forEach(b => {
+              if (b.dataset.correct === 'true') {
+                b.classList.add('option-reveal-correct');
+              }
+            });
+            // d. Record the result in state; push wrong items to state.missedCards
+            state.missedCards.push(item);
+          }
+
+          if (item.meaning) {
+            const feedbackEl = document.createElement('div');
+            feedbackEl.className = `card-feedback ${opt.isCorrect ? 'correct-feedback' : ''}`;
+            feedbackEl.innerHTML = `<div class="feedback-meaning">${item.meaning}</div>`;
+            cardEl.appendChild(feedbackEl);
+          }
+
+          state.mcAnsweredCount++;
+
+          // Progress label update
+          quizProgressSummary.textContent = `${state.mcAnsweredCount} / ${state.currentCards.length} answered`;
+          quizHeaderCount.textContent = `${state.mcAnsweredCount} / ${state.currentCards.length} Answered`;
+
+          // When every card in the batch has been answered, automatically call showResultsBanner
+          if (state.mcAnsweredCount === state.currentCards.length) {
+            state.submitted = true;
+            quizActionBar.style.display = 'none';
+            const total = state.currentCards.length;
+            const percentage = Math.round((state.mcCorrectCount / total) * 100);
+            showResultsBanner(state.mcCorrectCount, total, percentage);
+          }
+        });
+
+        optionsGrid.appendChild(btn);
+      });
+
+      cardEl.appendChild(optionsGrid);
+      cardGrid.appendChild(cardEl);
+    });
+  }
+
   // START QUIZ LOGIC (PINYIN)
-  async function startQuiz(trackName, customDataSet = null, customTitle = null) {
+  async function startQuiz(trackName, customDataSet = null, customTitle = null, preserveMode = false) {
+    if (!preserveMode) {
+      state.pinyinAnswerMode = getStoredPinyinMode();
+    }
     state.quizType = 'pinyin';
     state.currentTrack = trackName;
+    updateQuizTips();
     state.submitted = false;
     state.drawingSubmitted = false;
     state.filledCount = 0;
+    state.mcAnsweredCount = 0;
+    state.mcCorrectCount = 0;
+    state.missedCards = [];
     imeAlert.classList.remove('show');
     resultsBanner.style.display = 'none';
     quizActionBar.style.display = 'flex';
-    btnSubmit.disabled = false;
-    btnSubmit.textContent = 'Submit Quiz';
 
-    let cardData = customDataSet ? customDataSet : await loadDataset(trackName);
+    const fullTrackData = await loadDataset(trackName);
+    let cardData = customDataSet ? customDataSet : fullTrackData;
 
     state.currentCards = cardData;
     state.currentQuizDataSet = cardData;
@@ -1047,24 +1349,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update Banner Titles
     quizHeaderTitle.textContent = state.currentQuizTitle;
-    quizHeaderCount.textContent = `0 / ${state.currentCards.length} Cards`;
-    quizProgressSummary.textContent = `Filled: 0 / ${state.currentCards.length}`;
 
-    // Render Cards
-    renderCardGrid();
+    if (state.pinyinAnswerMode === 'mc') {
+      btnSubmit.style.display = 'none';
+      quizHeaderCount.textContent = `0 / ${state.currentCards.length} Answered`;
+      quizProgressSummary.textContent = `0 / ${state.currentCards.length} answered`;
+      renderMcCardGrid(cardData, fullTrackData);
+    } else {
+      btnSubmit.style.display = '';
+      btnSubmit.disabled = false;
+      btnSubmit.textContent = 'Submit Quiz';
+      quizHeaderCount.textContent = `0 / ${state.currentCards.length} Cards`;
+      quizProgressSummary.textContent = `Filled: 0 / ${state.currentCards.length}`;
+      renderCardGrid();
+
+      // Auto Focus first card input
+      setTimeout(() => {
+        const firstInput = cardGrid.querySelector('.card-input');
+        if (firstInput) firstInput.focus();
+      }, 100);
+    }
+
     showView('quiz');
-
-    // Auto Focus first card input
-    setTimeout(() => {
-      const firstInput = cardGrid.querySelector('.card-input');
-      if (firstInput) firstInput.focus();
-    }, 100);
   }
 
   // START DRAWING QUIZ LOGIC
   async function startDrawingQuiz(trackName, customDataSet = null, customTitle = null) {
     state.quizType = 'drawing';
     state.currentTrack = trackName;
+    updateQuizTips();
     state.drawingSubmitted = false;
     state.submitted = false;
     state.filledCount = 0;
@@ -1074,6 +1387,7 @@ document.addEventListener('DOMContentLoaded', () => {
     imeAlert.classList.remove('show');
     resultsBanner.style.display = 'none';
     quizActionBar.style.display = 'flex';
+    btnSubmit.style.display = '';
     btnSubmit.disabled = false;
     btnSubmit.textContent = 'Submit Quiz';
 
@@ -1616,7 +1930,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (state.quizType === 'drawing') {
         startDrawingQuiz(state.currentTrack, state.missedCards, retryTitle);
       } else {
-        startQuiz(state.currentTrack, state.missedCards, retryTitle);
+        startQuiz(state.currentTrack, state.missedCards, retryTitle, true);
       }
     }
   });
@@ -1626,7 +1940,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (state.quizType === 'drawing') {
       startDrawingQuiz(state.currentTrack, state.currentQuizDataSet, state.currentQuizTitle);
     } else {
-      startQuiz(state.currentTrack, state.currentQuizDataSet, state.currentQuizTitle);
+      startQuiz(state.currentTrack, state.currentQuizDataSet, state.currentQuizTitle, true);
     }
   });
 
@@ -1676,4 +1990,5 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   showView(initialView, false);
 
-});
+  });
+}

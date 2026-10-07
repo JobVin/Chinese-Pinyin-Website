@@ -4,6 +4,7 @@
   "description": "Mandarin Hanzi & Pinyin Practice Hub - Active recall practice for Chinese characters, radicals, strokes, and HSK vocabulary levels.",
   "main": "app.js",
   "scripts": {
+    "dev": "npx serve .",
     "start": "npx serve .",
     "serve": "npx serve .",
     "test": "node scripts/test_validation.js && node scripts/test_mc_options.js && node scripts/test_tips_text.js && node scripts/test_stage_chunking.js && node scripts/test_next_level.js",

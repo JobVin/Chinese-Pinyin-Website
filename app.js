@@ -384,6 +384,21 @@ if (typeof document !== 'undefined') {
         <li>When finished, click the <strong>"Submit Quiz"</strong> button at the bottom to evaluate your score!</li>
       `;
     }
+
+    // Tips open automatically only the first time each quiz type is used;
+    // after that they stay collapsed behind the "Show Tips" button
+    const tipsKey = 'tipsSeen_' + (state.quizType === 'drawing' ? 'drawing' : (state.pinyinAnswerMode === 'mc' ? 'mc' : 'typed'));
+    let tipsSeen = false;
+    try {
+      tipsSeen = localStorage.getItem(tipsKey) === '1';
+      localStorage.setItem(tipsKey, '1');
+    } catch (e) {
+      tipsSeen = false;
+    }
+    instructionsList.classList.toggle('collapsed', tipsSeen);
+    if (instructionToggleLabel) {
+      instructionToggleLabel.textContent = tipsSeen ? 'Show Tips ▼' : 'Hide Tips ▲';
+    }
   }
 
   // PINYIN NORMALIZATION, CONVERSION & MATCHING UTILITIES
@@ -730,6 +745,23 @@ if (typeof document !== 'undefined') {
       });
     }
 
+    // Merge word groups of 3 words or fewer into one "Other Words" group,
+    // so no tile in the picker leads to a one-card page
+    const SMALL_GROUP_MAX = 3;
+    const smallGroups = stages.filter(st => st.data.length <= SMALL_GROUP_MAX);
+    if (smallGroups.length > 1) {
+      const mergedItems = smallGroups.flatMap(st => st.data);
+      const keptGroups = stages.filter(st => st.data.length > SMALL_GROUP_MAX);
+      stages.length = 0;
+      keptGroups.forEach(st => stages.push(st));
+      stages.push({
+        id: 'other_words',
+        title: 'Other Words',
+        subTitle: `${mergedItems.length} Words`,
+        data: mergedItems
+      });
+    }
+
     stages.push({
       id: 'all',
       title: 'Full Level',
@@ -741,7 +773,7 @@ if (typeof document !== 'undefined') {
   }
 
   // TRACK SELECTION FROM PRACTICE HUB (PINYIN QUIZ)
-  const practiceTrackCards = document.querySelectorAll('#hub-view .stacked-track-card:not([data-mode="drawing"]), #hub-view .track-card');
+  const practiceTrackCards = document.querySelectorAll('#hub-view .hub-action-btn[data-mode="pinyin"]');
   practiceTrackCards.forEach(card => {
     card.addEventListener('click', async () => {
       const track = card.dataset.track;
@@ -762,7 +794,7 @@ if (typeof document !== 'undefined') {
   });
 
   // TRACK SELECTION FROM PRACTICE HUB (DRAWING QUIZ)
-  const drawingTrackCards = document.querySelectorAll('#hub-view .stacked-track-card[data-mode="drawing"]');
+  const drawingTrackCards = document.querySelectorAll('#hub-view .hub-action-btn[data-mode="drawing"]');
   drawingTrackCards.forEach(card => {
     card.addEventListener('click', async () => {
       const track = card.dataset.track;
@@ -873,8 +905,9 @@ if (typeof document !== 'undefined') {
     if (studyHeaderTitle) studyHeaderTitle.textContent = title;
     if (studyHeaderCount) studyHeaderCount.textContent = `${data.length} Words`;
 
-    renderStudyListView(data);
-    renderStudyFlashcardView(data);
+    // Long groups are shown 15 words per page
+    state.studyPages = chunkStudyPages(data);
+    state.studyPageIndex = 0;
 
     if (btnStudyListMode && btnStudyFlashcardMode && btnStudyDrawMode) {
       btnStudyListMode.classList.add('active');
@@ -886,6 +919,8 @@ if (typeof document !== 'undefined') {
       studyFlashcardView.style.display = 'none';
       studyDrawView.style.display = 'none';
     }
+
+    renderStudyPage(false);
 
     // Configure "Previous Level" and "Next Level" Buttons
     if (btnPrevStudyLevel) {
@@ -906,6 +941,76 @@ if (typeof document !== 'undefined') {
 
     showView('study');
   }
+
+  // STUDY PAGINATION (15 words per page; a tiny last page merges into the one before)
+  function chunkStudyPages(data) {
+    const items = Array.isArray(data) ? data : [];
+    const pages = [];
+    for (let i = 0; i < items.length; i += STAGE_CHUNK_SIZE) {
+      const remaining = items.length - (i + STAGE_CHUNK_SIZE);
+      if (remaining > 0 && remaining < MIN_FINAL_STAGE_CHUNK_SIZE) {
+        pages.push(items.slice(i));
+        break;
+      }
+      pages.push(items.slice(i, i + STAGE_CHUNK_SIZE));
+    }
+    return pages.length > 0 ? pages : [[]];
+  }
+
+  function getCurrentStudyPageData() {
+    const pages = state.studyPages || [];
+    return pages[state.studyPageIndex] || [];
+  }
+
+  function updateStudyPagers() {
+    const pages = state.studyPages || [];
+    const idx = state.studyPageIndex || 0;
+    let start = 1;
+    for (let i = 0; i < idx; i++) start += pages[i].length;
+    const end = start + (pages[idx] ? pages[idx].length : 0) - 1;
+
+    document.querySelectorAll('.study-pager').forEach(pager => {
+      pager.style.display = pages.length > 1 ? 'flex' : 'none';
+      const label = pager.querySelector('.study-pager-label');
+      if (label) label.innerHTML = `<span>Page ${idx + 1} of ${pages.length}</span><span class="study-pager-range">words ${start}–${end}</span>`;
+      const prev = pager.querySelector('.study-pager-prev');
+      const next = pager.querySelector('.study-pager-next');
+      if (prev) prev.disabled = idx <= 0;
+      if (next) next.disabled = idx >= pages.length - 1;
+    });
+  }
+
+  function renderStudyPage(scrollToTop) {
+    const pageData = getCurrentStudyPageData();
+    renderStudyListView(pageData);
+    renderStudyFlashcardView(pageData);
+    drawViewRendered = false;
+    if (studyDrawView && studyDrawView.style.display !== 'none') {
+      renderStudyDrawView(pageData);
+      drawViewRendered = true;
+    }
+    updateStudyPagers();
+    if (scrollToTop && studyView) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  document.querySelectorAll('.study-pager').forEach(pager => {
+    const prev = pager.querySelector('.study-pager-prev');
+    const next = pager.querySelector('.study-pager-next');
+    if (prev) prev.addEventListener('click', () => {
+      if (state.studyPageIndex > 0) {
+        state.studyPageIndex--;
+        renderStudyPage(true);
+      }
+    });
+    if (next) next.addEventListener('click', () => {
+      if (state.studyPageIndex < (state.studyPages || []).length - 1) {
+        state.studyPageIndex++;
+        renderStudyPage(true);
+      }
+    });
+  });
 
   function renderStudyListView(data) {
     if (!studyListView) return;
@@ -998,6 +1103,10 @@ if (typeof document !== 'undefined') {
       dualContainer.className = 'study-draw-dual-container';
 
       const characters = [...(item.character || '')];
+      // Multi-character words span several grid columns so their characters sit side by side
+      if (characters.length > 1) {
+        cardEl.classList.add('draw-span-' + Math.min(characters.length, 4));
+      }
 
       // --- SPACE 1: ANIMATION & GUIDE SPACE ---
       const animBox = document.createElement('div');
@@ -1217,7 +1326,7 @@ if (typeof document !== 'undefined') {
       studyDrawView.style.display = 'block';
 
       if (!drawViewRendered && state.currentStudyData) {
-        renderStudyDrawView(state.currentStudyData.data);
+        renderStudyDrawView(getCurrentStudyPageData());
         drawViewRendered = true;
       }
     });
@@ -1298,6 +1407,15 @@ if (typeof document !== 'undefined') {
       optionsGrid.className = 'mc-options-grid';
 
       const options = buildMcOptions(item, fullTrackData);
+
+      // Long pinyin options would wrap in a narrow card, so that card spans two columns.
+      // Options hold about 5 characters on phones and about 11 on larger screens
+      // (multiple-choice columns are at least 240px wide there).
+      const longestOption = Math.max(0, ...options.map(o => String(o.pinyin || '').length));
+      const isPhoneWidth = typeof window.matchMedia === 'function' && window.matchMedia('(max-width: 640px)').matches;
+      if (longestOption >= (isPhoneWidth ? 6 : 12)) {
+        cardEl.classList.add('mc-wide');
+      }
 
       options.forEach(opt => {
         const btn = document.createElement('button');
@@ -1472,6 +1590,10 @@ if (typeof document !== 'undefined') {
       canvasesRow.className = 'drawing-canvases-row';
 
       const characters = [...(item.character || '')];
+      // Multi-character words span several grid columns so their canvases sit side by side
+      if (characters.length > 1) {
+        cardEl.classList.add('draw-span-' + Math.min(characters.length, 4));
+      }
 
       characters.forEach((char, charIdx) => {
         const wrapper = document.createElement('div');
@@ -1501,13 +1623,28 @@ if (typeof document !== 'undefined') {
           });
         }
 
+        const canvasControls = document.createElement('div');
+        canvasControls.className = 'drawing-canvas-controls';
+
+        const undoBtn = document.createElement('button');
+        undoBtn.className = 'btn-clear-single-canvas btn-undo-single-canvas';
+        undoBtn.textContent = 'Undo';
+        undoBtn.setAttribute('aria-label', `Undo last stroke for character ${charIdx + 1}`);
+        undoBtn.addEventListener('click', () => {
+          if (canvasInst) canvasInst.undo();
+        });
+        canvasControls.appendChild(undoBtn);
+
         const clearBtn = document.createElement('button');
         clearBtn.className = 'btn-clear-single-canvas';
         clearBtn.textContent = 'Clear';
+        clearBtn.setAttribute('aria-label', `Clear character ${charIdx + 1}`);
         clearBtn.addEventListener('click', () => {
           if (canvasInst) canvasInst.clear();
         });
-        wrapper.appendChild(clearBtn);
+        canvasControls.appendChild(clearBtn);
+
+        wrapper.appendChild(canvasControls);
 
         canvasesRow.appendChild(wrapper);
       });
@@ -1875,6 +2012,22 @@ if (typeof document !== 'undefined') {
       resultsHeading.textContent = 'Keep Practicing!';
     }
 
+    // Configure "Next Level" Button (same rules as the pinyin quiz results)
+    const nextIndex = state.currentStageIndex + 1;
+    const hasNextLevel = Boolean(
+      state.currentStages &&
+      state.currentStageIndex >= 0 &&
+      nextIndex < state.currentStages.length &&
+      state.currentStages[nextIndex] &&
+      state.currentStages[nextIndex].id !== 'all'
+    );
+    if (hasNextLevel && btnNextQuizLevel) {
+      btnNextQuizLevel.textContent = `Next: ${state.currentStages[nextIndex].title}`;
+      btnNextQuizLevel.style.display = 'inline-flex';
+    } else if (btnNextQuizLevel) {
+      btnNextQuizLevel.style.display = 'none';
+    }
+
     if (state.missedCards.length > 0) {
       btnRetryMissed.style.display = 'inline-flex';
     } else {
@@ -1883,8 +2036,12 @@ if (typeof document !== 'undefined') {
 
     resultsBanner.style.display = 'block';
 
+    // Smoothly scroll so the results sit just below the sticky quiz header
     setTimeout(() => {
-      resultsBanner.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      const stickyHeader = document.getElementById('quiz-banner');
+      const headerHeight = stickyHeader ? stickyHeader.offsetHeight : 0;
+      const bannerTop = resultsBanner.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: Math.max(0, bannerTop - headerHeight - 12), behavior: 'smooth' });
     }, 100);
   }
 
@@ -1977,11 +2134,20 @@ if (typeof document !== 'undefined') {
 
     resultsBanner.style.display = 'block';
     
-    // Smoothly scroll down to results banner
+    // Smoothly scroll so the results sit just below the sticky quiz header
     setTimeout(() => {
-      resultsBanner.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      const stickyHeader = document.getElementById('quiz-banner');
+      const headerHeight = stickyHeader ? stickyHeader.offsetHeight : 0;
+      const bannerTop = resultsBanner.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: Math.max(0, bannerTop - headerHeight - 12), behavior: 'smooth' });
     }, 100);
   }
+
+  // LONG MEANINGS: clamped to 2 lines in drawing cards; tap to show the full text
+  document.addEventListener('click', (e) => {
+    const meaningEl = e.target.closest('.drawing-prompt-meaning, .study-draw-caption .study-reveal-meaning');
+    if (meaningEl) meaningEl.classList.toggle('expanded');
+  });
 
   // RESULTS BANNER ACTIONS
   if (btnNextQuizLevel) {

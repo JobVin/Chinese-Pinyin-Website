@@ -1049,7 +1049,7 @@ body {
     flex: 1;
     text-align: center;
     justify-content: center;
-    min-height: 42px;
+    min-height: 44px;
   }
 
   .results-summary-card {
@@ -2226,3 +2226,970 @@ body {
   color: rgba(226, 232, 240, 0.85);
 }
 
+
+/* =========================================================
+   UI FIX #1: SHARED BUTTON SIZE RULE
+   Every button is at least 36px tall with a mouse and 44px
+   tall on touch screens or narrow windows (Apple HIG /
+   Material 3 touch targets; WCAG 2.2 minimum is 24px).
+   ========================================================= */
+:root {
+  --tap-min: 36px;
+}
+
+@media (pointer: coarse), (max-width: 768px) {
+  :root {
+    --tap-min: 44px;
+  }
+}
+
+button,
+.btn-pill,
+.hub-tab-btn {
+  min-height: var(--tap-min);
+}
+
+/* Small text buttons: readable label and enough padding */
+.btn-banner-toggle,
+.btn-secondary,
+.btn-danger,
+.btn-study-reveal,
+.btn-clear-practice,
+.btn-grade-practice,
+.btn-clear-single-canvas,
+.btn-hanzi-animate {
+  font-size: 14px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* Square icon buttons grow in both directions */
+.modal-close-btn {
+  width: var(--tap-min);
+  height: var(--tap-min);
+  min-width: var(--tap-min);
+}
+
+/* Clear button drawn on top of the Learning Hub trace canvas
+   (styled with !important inside drawing.js, so this must be too) */
+.btn-hanzi-canvas-clear {
+  min-height: 32px !important;
+  min-width: 52px !important;
+  padding: 4px 12px !important;
+  font-size: 13px !important;
+}
+
+@media (pointer: coarse), (max-width: 768px) {
+  .btn-hanzi-canvas-clear {
+    min-height: 40px !important;
+  }
+}
+
+/* At least 8px between neighbouring buttons */
+.practice-controls,
+.hanzi-drawing-controls {
+  gap: 8px;
+}
+
+/* Animate button: styled here too, because the Learning Hub Draw view
+   builds it without loading drawing.js's injected styles */
+.btn-hanzi-animate {
+  background: linear-gradient(135deg, #1976d2 0%, #0d47a1 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 2px 6px rgba(25, 118, 210, 0.3);
+}
+
+.learning-hub-theme .btn-hanzi-animate,
+#study-draw-view .btn-hanzi-animate {
+  background: linear-gradient(135deg, var(--teal-accent) 0%, var(--teal-dark) 100%);
+  box-shadow: 0 2px 6px rgba(0, 137, 123, 0.3);
+}
+
+.btn-hanzi-animate:disabled {
+  cursor: default;
+}
+
+/* Tone pills (Type Pinyin mode): wide enough to tap on phones */
+@media (pointer: coarse), (max-width: 768px) {
+  .tone-pill {
+    min-width: 40px;
+    justify-content: center;
+    font-size: 13px;
+  }
+
+  .tone-pill-confirm {
+    min-width: 64px;
+  }
+}
+
+/* =========================================================
+   UI FIX #2: LEARNING HUB VIEWS USE THE FULL WIDTH
+   ========================================================= */
+
+/* Study views fill the page container (was capped at 900px) */
+.study-container {
+  max-width: none;
+  padding: 0;
+  margin-bottom: 48px;
+}
+
+/* Simple List: a grid of compact word tiles instead of one long column.
+   PC: 4 columns at 1440px wide. Phone: 1 column. */
+.study-list-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+.study-list-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "hanzi pinyin"
+    "hanzi meaning";
+  column-gap: 14px;
+  row-gap: 2px;
+  align-items: center;
+  padding: 10px 14px;
+}
+
+.study-row-left {
+  display: contents;
+}
+
+.study-row-hanzi {
+  grid-area: hanzi;
+  font-size: 30px;
+  min-width: 48px;
+}
+
+.study-row-pinyin {
+  grid-area: pinyin;
+  font-size: 16px;
+  align-self: end;
+}
+
+.study-row-meaning {
+  grid-area: meaning;
+  align-self: start;
+  text-align: left;
+  max-width: none;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+/* Flashcards: 6 columns at 1440px wide, 2 columns on a phone (was 1) */
+.study-flashcard-grid {
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+@media (max-width: 480px) {
+  .study-flashcard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .study-card {
+    min-height: 0;
+    padding: 12px 8px;
+  }
+}
+
+/* =========================================================
+   UI FIX #3: DRAWING LAYOUTS
+   Multi-character words sit side by side, cards no longer
+   stretch to the tallest card in their row, and the Drawing
+   Quiz canvas fills its card (was a fixed 130px).
+   ========================================================= */
+
+/* --- Drawing Quiz --- */
+.card-grid:has(> .tofugu-drawing-card) {
+  align-items: start;
+  grid-auto-flow: row dense;
+}
+
+/* Phones have 2 columns, so every multi-character word spans both */
+.tofugu-drawing-card.draw-span-2,
+.tofugu-drawing-card.draw-span-3,
+.tofugu-drawing-card.draw-span-4 {
+  grid-column: span 2;
+}
+
+@media (min-width: 641px) {
+  .tofugu-drawing-card.draw-span-3,
+  .tofugu-drawing-card.draw-span-4 {
+    grid-column: span 3;
+  }
+}
+
+@media (min-width: 820px) {
+  .tofugu-drawing-card.draw-span-4 {
+    grid-column: span 4;
+  }
+}
+
+.tofugu-drawing-card {
+  min-height: 0;
+}
+
+.drawing-canvases-row {
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Each canvas takes an equal share of the card, between 120px and 180px wide */
+.drawing-canvas-wrapper {
+  flex: 1 1 120px;
+  min-width: 0;
+  max-width: 180px;
+}
+
+.drawing-canvas-box {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
+/* The canvas keeps its 130px internal resolution (grading is calibrated to it)
+   and is scaled on screen; touch positions are mapped by on-screen size */
+.drawing-canvas-box canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.drawing-canvas-controls {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.drawing-canvas-controls .btn-clear-single-canvas {
+  flex: 1 1 0;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.btn-undo-single-canvas {
+  background: #ffffff;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.btn-undo-single-canvas:hover {
+  background: #f1f5f9;
+}
+
+/* --- Learning Hub Draw --- */
+.study-draw-grid {
+  align-items: start;
+  grid-auto-flow: row dense;
+}
+
+/* Single characters: guide and practice side by side (fits a 371px card) */
+.study-draw-box {
+  justify-content: flex-start;
+  gap: 8px;
+  min-width: 150px;
+}
+
+/* Multi-character words on PC and tablet: guide above practice, so each
+   box shows the characters in one row */
+@media (min-width: 641px) {
+  .study-draw-card.draw-span-2 .study-draw-box,
+  .study-draw-card.draw-span-3 .study-draw-box,
+  .study-draw-card.draw-span-4 .study-draw-box {
+    flex-basis: 100%;
+  }
+}
+
+/* 3- and 4-character words need two columns to fit their characters in a row */
+@media (min-width: 800px) {
+  .study-draw-card.draw-span-3,
+  .study-draw-card.draw-span-4 {
+    grid-column: span 2;
+  }
+}
+
+/* Phones: guide and practice side by side for single characters */
+@media (max-width: 640px) {
+  .study-draw-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .study-draw-card {
+    padding: 12px;
+  }
+
+  .study-draw-dual-container {
+    gap: 10px;
+  }
+
+  .study-draw-box {
+    flex: 1 1 140px;
+    min-width: 0;
+    padding: 8px;
+  }
+}
+
+/* Phones: let 3-character words fit in one row (about 103px per canvas) */
+@media (max-width: 640px) {
+  .drawing-canvas-wrapper {
+    flex-basis: 96px;
+  }
+}
+
+/* =========================================================
+   UI FIX #4: LEARNING HUB PAGES (15 words per page)
+   ========================================================= */
+.study-pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.study-pager-label {
+  flex: 1 1 auto;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--teal-dark);
+}
+
+.study-pager button {
+  flex: 0 0 auto;
+}
+
+.study-pager button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+@media (max-width: 480px) {
+  .study-pager-label {
+    font-size: 13px;
+  }
+
+  .study-pager button {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+.study-pager-label span {
+  display: block;
+  white-space: nowrap;
+}
+
+.study-pager-range {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+/* =========================================================
+   UI FIX #5: COMPACT STICKY QUIZ HEADER
+   Title, progress and Tips button stay pinned at the top.
+   The header only sticks while the tips are collapsed, so
+   open tips never cover the cards.
+   ========================================================= */
+#quiz-banner {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  padding: 10px 16px;
+  margin: 12px 0 14px;
+}
+
+#quiz-banner:has(.instructions-list:not(.collapsed)) {
+  position: static;
+}
+
+#quiz-banner .quiz-banner-header {
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+#quiz-banner .quiz-banner-title-group {
+  flex-wrap: nowrap;
+  min-width: 0;
+  gap: 10px;
+}
+
+#quiz-banner .quiz-title {
+  font-size: clamp(16px, 2vw, 20px);
+  text-align: left;
+  min-width: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+#quiz-banner .quiz-badge,
+#quiz-banner .btn-banner-toggle {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+#quiz-banner .instructions-list {
+  margin-top: 8px;
+}
+
+/* Phones: title on its own line, progress and Tips underneath */
+@media (max-width: 640px) {
+  #quiz-banner {
+    padding: 8px 12px;
+    margin: 8px 0 10px;
+  }
+
+  #quiz-banner .quiz-banner-header {
+    flex-wrap: wrap;
+    gap: 6px 10px;
+  }
+
+  #quiz-banner .quiz-banner-title-group {
+    display: contents;
+  }
+
+  #quiz-banner .quiz-title {
+    flex: 1 0 100%;
+    font-size: 16px;
+  }
+
+  #quiz-banner .btn-banner-toggle {
+    margin-left: auto;
+  }
+}
+
+/* Sticky fix: overflow-x: hidden on html, body and .container turned them
+   into scroll boxes, which stopped every position: sticky element working.
+   overflow-x: clip still blocks sideways scrolling without that side effect. */
+@supports (overflow-x: clip) {
+  html,
+  body,
+  .container {
+    overflow-x: clip;
+  }
+}
+
+/* =========================================================
+   UI FIX #7: STICKY BOTTOM BAR
+   The bar sticks again (see the sticky fix above). On phones it
+   becomes one compact row: progress on the left, buttons on the right.
+   ========================================================= */
+@media (max-width: 640px) {
+  #quiz-view .quiz-action-bar {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 12px max(8px, env(safe-area-inset-bottom));
+  }
+
+  #quiz-view .quiz-progress-text {
+    flex: 0 1 34%;
+    font-size: 13px;
+    line-height: 1.25;
+    text-align: left;
+  }
+
+  #quiz-view .quiz-btn-group {
+    flex: 1 1 auto;
+    width: auto;
+    justify-content: flex-end;
+  }
+
+  #quiz-view .quiz-btn-group button {
+    flex: 0 1 auto;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  #quiz-view .quiz-btn-group button {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  #quiz-view .quiz-progress-text {
+    min-width: 0;
+  }
+}
+
+/* =========================================================
+   UI FIX #6: MULTIPLE-CHOICE CARDS
+   Cards shrink to their content (no 250px minimum), and cards
+   with long pinyin options span two columns so options never wrap.
+   ========================================================= */
+.card-grid:has(> .tofugu-mc-card) {
+  grid-auto-flow: row dense;
+}
+
+.tofugu-card.tofugu-mc-card {
+  min-height: 0;
+  justify-content: center;
+  gap: 12px;
+}
+
+.tofugu-mc-card.mc-wide {
+  grid-column: span 2;
+}
+
+.mc-option-btn {
+  white-space: nowrap;
+}
+
+/* Larger screens: wider multiple-choice columns so pinyin options fit
+   without wrapping (4 columns at 1440px, 5 at 1920px) */
+@media (min-width: 641px) {
+  .card-grid:has(> .tofugu-mc-card) {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+/* =========================================================
+   UI FIX #9: LONG MEANINGS CLAMPED TO 2 LINES
+   Drawing Quiz and Learning Hub Draw captions. The ellipsis
+   shows there is more; tapping the text shows it in full.
+   ========================================================= */
+.drawing-prompt-meaning,
+.study-draw-caption .study-reveal-meaning {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.drawing-prompt-meaning.expanded,
+.study-draw-caption .study-reveal-meaning.expanded {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+/* =========================================================
+   UI FIX #10: PRACTICE HUB GRID
+   One card per track with Pinyin and Drawing quiz buttons.
+   PC: foundations in one row of 2, HSK 1 to 3 in one row of 3,
+   so the whole hub fits on one screen. Phone: 1 column.
+   ========================================================= */
+#hub-view .hub-header {
+  margin: 8px 0 14px;
+}
+
+#hub-view .hub-title {
+  font-size: clamp(22px, 3vw, 30px);
+  margin-bottom: 4px;
+}
+
+#hub-view .hub-subtitle {
+  font-size: 15px;
+}
+
+.hub-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin: 0 auto 16px;
+}
+
+.hub-toolbar-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.hub-toolbar .pinyin-mode-toggle-wrapper {
+  margin: 0;
+}
+
+.hub-track-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.hub-track-card {
+  grid-column: span 2;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hub-track-card:hover {
+  border-color: #bbdefb;
+  box-shadow: var(--shadow-md);
+}
+
+.hub-track-card.hub-track-foundation {
+  grid-column: span 3;
+}
+
+.hub-track-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.hub-track-symbol {
+  min-width: 0;
+  flex: 0 0 auto;
+  font-size: 30px;
+}
+
+.hub-track-info {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.hub-track-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.hub-track-title-row .stacked-title {
+  font-size: 18px;
+}
+
+.hub-track-title-row .step-indicator {
+  padding: 3px 8px;
+  font-size: 11px;
+}
+
+.hub-track-meta {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.hub-track-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.hub-action-btn {
+  flex: 1 1 0;
+  min-height: var(--tap-min);
+  border-radius: var(--radius-sm);
+  border: none;
+  background: var(--primary-blue);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.hub-action-btn:hover {
+  background: var(--primary-dark);
+}
+
+.hub-action-btn:active {
+  transform: scale(0.98);
+}
+
+.hub-action-btn.hub-action-drawing {
+  background: #ffffff;
+  color: #4338ca;
+  border: 2px solid #c7d2fe;
+}
+
+.hub-action-btn.hub-action-drawing:hover {
+  background: #eef2ff;
+}
+
+.hub-action-btn:focus-visible {
+  outline: 3px solid #90caf9;
+  outline-offset: 2px;
+}
+
+/* Tablet: 2 columns */
+@media (max-width: 960px) {
+  .hub-track-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hub-track-card,
+  .hub-track-card.hub-track-foundation {
+    grid-column: span 1;
+  }
+}
+
+/* Phone: 1 column of compact cards */
+@media (max-width: 560px) {
+  .hub-track-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .hub-track-card {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .hub-track-symbol {
+    font-size: 24px;
+  }
+
+  #hub-view .hub-subtitle {
+    font-size: 13px;
+  }
+}
+
+/* Footer stays at the bottom of the screen on short pages
+   (the Practice Hub now fits on one screen) */
+body {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0;
+}
+
+body > .container {
+  flex: 1 0 auto;
+}
+
+/* PC: slightly larger hub cards to use the freed space */
+@media (min-width: 961px) {
+  .hub-track-card {
+    padding: 20px;
+    gap: 18px;
+  }
+
+  .hub-track-symbol {
+    font-size: 36px;
+  }
+
+  .hub-track-title-row .stacked-title {
+    font-size: 20px;
+  }
+
+  .hub-track-meta {
+    font-size: 14px;
+  }
+
+  .hub-action-btn {
+    min-height: 44px;
+    font-size: 15px;
+  }
+}
+
+/* Learning Hub track list: same compact treatment as the Practice Hub.
+   Section headings shrink to one line and tracks sit in a grid. */
+#learning-hub-view .hub-header {
+  margin: 8px 0 14px;
+}
+
+#learning-hub-view .hub-title {
+  font-size: clamp(22px, 3vw, 30px);
+  margin-bottom: 4px;
+}
+
+#learning-hub-view .stacked-menu-container {
+  max-width: none;
+  margin-bottom: 24px;
+}
+
+#learning-hub-view .menu-section-header {
+  margin: 14px 0 10px !important;
+  text-align: left;
+}
+
+#learning-hub-view .menu-section-header .section-badge,
+#learning-hub-view .menu-section-header .section-subtitle {
+  display: none;
+}
+
+#learning-hub-view .menu-section-header .section-title {
+  font-size: 18px;
+}
+
+#learning-hub-view .stacked-tracks-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 12px;
+}
+
+#learning-hub-view .stacked-track-card {
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  padding: 16px;
+}
+
+#learning-hub-view .stacked-info {
+  flex: 1 1 160px;
+  min-width: 0;
+}
+
+#learning-hub-view .stacked-action-btn {
+  flex-basis: 100%;
+  text-align: right;
+}
+
+@media (max-width: 560px) {
+  #learning-hub-view .stacked-tracks-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #learning-hub-view .stacked-track-card {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #learning-hub-view .stacked-symbol {
+    min-width: 0;
+    font-size: 24px;
+  }
+}
+
+/* =========================================================
+   UI FIX #11: LEVEL PICKER
+   PC: a wider popup that shows every level without inner
+   scrolling (all 22 HSK 3 levels fit). Phone: a full-width
+   sheet from the bottom with 2 columns.
+   ========================================================= */
+#stage-modal .stage-modal-card {
+  max-width: 880px;
+  padding: 24px;
+}
+
+#stage-modal .modal-title {
+  font-size: 22px;
+  padding: 0 48px;
+}
+
+#stage-modal .stage-modal-subtitle {
+  margin-bottom: 14px;
+}
+
+#stage-modal .stage-grid {
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  max-height: calc(100vh - 200px);
+}
+
+#stage-modal .stage-card-btn {
+  padding: 10px 8px;
+  gap: 2px;
+}
+
+@keyframes stageSheetUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+@media (max-width: 640px) {
+  #stage-modal.modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  #stage-modal .stage-modal-card {
+    max-width: none;
+    width: 100%;
+    max-height: 92vh;
+    border-radius: 20px 20px 0 0;
+    padding: 16px 14px max(14px, env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    animation: stageSheetUp 0.25s ease;
+  }
+
+  #stage-modal .modal-title {
+    font-size: 18px;
+  }
+
+  #stage-modal .stage-modal-subtitle {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  #stage-modal .stage-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-height: none;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+}
+
+/* Level picker rows always fit their content (they were collapsing to 44px) */
+#stage-modal .stage-grid {
+  grid-auto-rows: max-content;
+}
+
+/* =========================================================
+   UI FIX #12: PHONE BOTTOM TAB BAR
+   On phones the Practice Hub / Learning Hub switch moves to a
+   fixed bar at the bottom, where the thumb reaches it.
+   PC keeps it at the top.
+   ========================================================= */
+@media (max-width: 640px) {
+  .view-section.active .hub-switcher-wrapper {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 950;
+    margin: 0;
+    padding: 8px 12px max(8px, env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.97);
+    border-top: 1px solid #e2e8f0;
+    box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.08);
+  }
+
+  .view-section.active .hub-switcher-tabs {
+    display: flex;
+    width: 100%;
+  }
+
+  .view-section.active .hub-tab-btn {
+    flex: 1 1 0;
+    justify-content: center;
+  }
+
+  /* Keep the footer clear of the bar */
+  body:has(#hub-view.active),
+  body:has(#learning-hub-view.active) {
+    padding-bottom: 72px;
+  }
+}
+
+/* Phones: fade views in without the slide, so the fixed tab bar
+   never jumps while a view animates in */
+@keyframes fadeInOpacity {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 640px) {
+  .view-section {
+    animation-name: fadeInOpacity;
+  }
+}

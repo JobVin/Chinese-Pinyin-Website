@@ -55,172 +55,107 @@
         <p class="hub-subtitle">Master Mandarin Chinese characters, radicals, and strokes step-by-step.</p>
       </div>
 
-      <!-- STACKED PROGRESSION MENU -->
-      <div class="stacked-menu-container">
-        
-        <!-- PINYIN ANSWER MODE TOGGLE -->
+      <!-- PINYIN ANSWER MODE TOGGLE (applies to Pinyin quizzes) -->
+      <div class="hub-toolbar">
+        <span class="hub-toolbar-label" id="pinyin-mode-label">Pinyin answers</span>
         <div class="study-mode-toggle-wrapper pinyin-mode-toggle-wrapper">
-          <div class="options-pill-group" role="radiogroup" aria-label="Pinyin Answer Mode">
+          <div class="options-pill-group" role="radiogroup" aria-labelledby="pinyin-mode-label">
             <button class="btn-pill active" id="btn-mode-mc" type="button" role="radio" aria-checked="true">Multiple Choice</button>
             <button class="btn-pill" id="btn-mode-typed" type="button" role="radio" aria-checked="false">Type Pinyin</button>
           </div>
         </div>
+      </div>
 
-        <!-- SECTION 1: FOUNDATIONS -->
-        <div class="menu-section-header">
-          <span class="section-badge">Part 1</span>
-          <h2 class="section-title">Character Foundations</h2>
-          <p class="section-subtitle">Master basic strokes and essential radicals before building full characters.</p>
-        </div>
+      <!-- PRACTICE TRACKS: one card per track, with Pinyin and Drawing quiz buttons -->
+      <div class="hub-track-grid">
 
-        <div class="stacked-tracks-list">
-          
-          <!-- STEP 1: STROKES -->
-          <div class="stacked-track-card" data-track="strokes">
-            <div class="step-indicator">STEP 1</div>
-            <div class="stacked-symbol">一 丨 丿</div>
-            <div class="stacked-info">
-              <div class="stacked-header">
+        <!-- STEP 1: STROKES -->
+        <div class="hub-track-card hub-track-foundation">
+          <div class="hub-track-top">
+            <div class="stacked-symbol hub-track-symbol">一 丨 丿</div>
+            <div class="hub-track-info">
+              <div class="hub-track-title-row">
                 <h3 class="stacked-title">Character Strokes</h3>
-                <span class="track-badge">Fundamentals</span>
+                <span class="step-indicator">STEP 1</span>
               </div>
-              <p class="stacked-desc">Learn and identify 29 standard Chinese stroke symbols (héng, shù, piě, nà, diǎn, tí, héngzhé, wān, etc.).</p>
+              <p class="hub-track-meta">29 stroke types · Fundamentals</p>
             </div>
-            <div class="stacked-action-btn">Start Strokes Quiz →</div>
           </div>
+          <div class="hub-track-actions">
+            <button class="hub-action-btn" type="button" data-track="strokes" data-mode="pinyin">Pinyin quiz</button>
+          </div>
+        </div>
 
-          <!-- STEP 2: RADICALS -->
-          <div class="stacked-track-card" data-track="radicals">
-            <div class="step-indicator">STEP 2</div>
-            <div class="stacked-symbol">亻 氵 木</div>
-            <div class="stacked-info">
-              <div class="stacked-header">
+        <!-- STEP 2: RADICALS -->
+        <div class="hub-track-card hub-track-foundation">
+          <div class="hub-track-top">
+            <div class="stacked-symbol hub-track-symbol">亻 氵 木</div>
+            <div class="hub-track-info">
+              <div class="hub-track-title-row">
                 <h3 class="stacked-title">Essential Radicals</h3>
-                <span class="track-badge">Building Blocks</span>
+                <span class="step-indicator">STEP 2</span>
               </div>
-              <p class="stacked-desc">Practice recognizing common radicals (person, water, tree, etc.).</p>
+              <p class="hub-track-meta">16 radicals · Building blocks</p>
             </div>
-            <div class="stacked-action-btn">Start Radicals Quiz →</div>
           </div>
-
+          <div class="hub-track-actions">
+            <button class="hub-action-btn" type="button" data-track="radicals" data-mode="pinyin">Pinyin quiz</button>
+            <button class="hub-action-btn hub-action-drawing" type="button" data-track="radicals" data-mode="drawing">Drawing quiz</button>
+          </div>
         </div>
 
-        <!-- SECTION 2: HSK VOCABULARY PROGRESSION -->
-        <div class="menu-section-header" style="margin-top: 40px;">
-          <span class="section-badge">Part 2</span>
-          <h2 class="section-title">HSK Vocabulary Levels</h2>
-          <p class="section-subtitle">Progress step-by-step through standardized HSK vocabulary levels.</p>
+        <!-- STEP 3: HSK 1 -->
+        <div class="hub-track-card">
+          <div class="hub-track-top">
+            <div class="stacked-symbol hub-track-symbol">爱 喝 水</div>
+            <div class="hub-track-info">
+              <div class="hub-track-title-row">
+                <h3 class="stacked-title">HSK 1</h3>
+                <span class="step-indicator">STEP 3</span>
+              </div>
+              <p class="hub-track-meta">151 words · 10 levels · Beginner</p>
+            </div>
+          </div>
+          <div class="hub-track-actions">
+            <button class="hub-action-btn" type="button" data-track="hsk1" data-mode="pinyin">Pinyin quiz</button>
+            <button class="hub-action-btn hub-action-drawing" type="button" data-track="hsk1" data-mode="drawing">Drawing quiz</button>
+          </div>
         </div>
 
-        <div class="stacked-tracks-list">
-
-          <!-- STEP 3: HSK 1 -->
-          <div class="stacked-track-card" data-track="hsk1">
-            <div class="step-indicator">STEP 3</div>
-            <div class="stacked-symbol">爱 喝 水</div>
-            <div class="stacked-info">
-              <div class="stacked-header">
-                <h3 class="stacked-title">HSK 1 Characters</h3>
-                <span class="track-badge">Beginner</span>
+        <!-- STEP 4: HSK 2 -->
+        <div class="hub-track-card">
+          <div class="hub-track-top">
+            <div class="stacked-symbol hub-track-symbol">帮助 报纸</div>
+            <div class="hub-track-info">
+              <div class="hub-track-title-row">
+                <h3 class="stacked-title">HSK 2</h3>
+                <span class="step-indicator">STEP 4</span>
               </div>
-              <p class="stacked-desc">151 unique beginner characters split into 11 stress-free levels (15 words each).</p>
+              <p class="hub-track-meta">144 words · 10 levels · Elementary</p>
             </div>
-            <div class="stacked-action-btn">Select Level →</div>
           </div>
-
-          <!-- STEP 4: HSK 2 -->
-          <div class="stacked-track-card" data-track="hsk2">
-            <div class="step-indicator">STEP 4</div>
-            <div class="stacked-symbol">帮助 报纸</div>
-            <div class="stacked-info">
-              <div class="stacked-header">
-                <h3 class="stacked-title">HSK 2 Characters</h3>
-                <span class="track-badge">Elementary</span>
-              </div>
-              <p class="stacked-desc">144 new unique elementary characters split into 10 stress-free levels (15 words each).</p>
-            </div>
-            <div class="stacked-action-btn">Select Level →</div>
+          <div class="hub-track-actions">
+            <button class="hub-action-btn" type="button" data-track="hsk2" data-mode="pinyin">Pinyin quiz</button>
+            <button class="hub-action-btn hub-action-drawing" type="button" data-track="hsk2" data-mode="drawing">Drawing quiz</button>
           </div>
-
-          <!-- STEP 5: HSK 3 -->
-          <div class="stacked-track-card" data-track="hsk3">
-            <div class="step-indicator">STEP 5</div>
-            <div class="stacked-symbol">阿姨 爱好</div>
-            <div class="stacked-info">
-              <div class="stacked-header">
-                <h3 class="stacked-title">HSK 3 Characters</h3>
-                <span class="track-badge">Intermediate</span>
-              </div>
-              <p class="stacked-desc">330 new unique intermediate characters split into 22 stress-free levels (15 words each).</p>
-          </div>
-
         </div>
 
-        <!-- SECTION 3: CHARACTER DRAWING PRACTICE -->
-        <div class="menu-section-header" style="margin-top: 40px;">
-          <span class="section-badge" style="background: #e0e7ff; color: #4338ca;">Part 3</span>
-          <h2 class="section-title">Character Drawing Practice</h2>
-          <p class="section-subtitle">Practice drawing radicals and vocabulary characters from memory with automated shape grading.</p>
-        </div>
-
-        <div class="stacked-tracks-list">
-
-          <!-- RADICALS DRAWING -->
-          <div class="stacked-track-card" data-track="radicals" data-mode="drawing">
-            <div class="step-indicator">DRAWING</div>
-            <div class="stacked-symbol">亻 氵 木</div>
-            <div class="stacked-info">
-              <div class="stacked-header">
-                <h3 class="stacked-title">Essential Radicals Drawing</h3>
-                <span class="track-badge">Building Blocks</span>
+        <!-- STEP 5: HSK 3 -->
+        <div class="hub-track-card">
+          <div class="hub-track-top">
+            <div class="stacked-symbol hub-track-symbol">阿姨 爱好</div>
+            <div class="hub-track-info">
+              <div class="hub-track-title-row">
+                <h3 class="stacked-title">HSK 3</h3>
+                <span class="step-indicator">STEP 5</span>
               </div>
-              <p class="stacked-desc">Test your recall by drawing 16 essential radicals from memory.</p>
+              <p class="hub-track-meta">330 words · 22 levels · Intermediate</p>
             </div>
-            <div class="stacked-action-btn">Start Drawing Quiz →</div>
           </div>
-
-          <!-- HSK 1 DRAWING -->
-          <div class="stacked-track-card" data-track="hsk1" data-mode="drawing">
-            <div class="step-indicator">DRAWING</div>
-            <div class="stacked-symbol">爱 喝 水</div>
-            <div class="stacked-info">
-              <div class="stacked-header">
-                <h3 class="stacked-title">HSK 1 Drawing Quiz</h3>
-                <span class="track-badge">Beginner</span>
-              </div>
-              <p class="stacked-desc">Draw 151 beginner characters from memory across 11 levels.</p>
-            </div>
-            <div class="stacked-action-btn">Select Level →</div>
+          <div class="hub-track-actions">
+            <button class="hub-action-btn" type="button" data-track="hsk3" data-mode="pinyin">Pinyin quiz</button>
+            <button class="hub-action-btn hub-action-drawing" type="button" data-track="hsk3" data-mode="drawing">Drawing quiz</button>
           </div>
-
-          <!-- HSK 2 DRAWING -->
-          <div class="stacked-track-card" data-track="hsk2" data-mode="drawing">
-            <div class="step-indicator">DRAWING</div>
-            <div class="stacked-symbol">帮助 报纸</div>
-            <div class="stacked-info">
-              <div class="stacked-header">
-                <h3 class="stacked-title">HSK 2 Drawing Quiz</h3>
-                <span class="track-badge">Elementary</span>
-              </div>
-              <p class="stacked-desc">Draw 144 elementary characters from memory across 10 levels.</p>
-            </div>
-            <div class="stacked-action-btn">Select Level →</div>
-          </div>
-
-          <!-- HSK 3 DRAWING -->
-          <div class="stacked-track-card" data-track="hsk3" data-mode="drawing">
-            <div class="step-indicator">DRAWING</div>
-            <div class="stacked-symbol">阿姨 爱好</div>
-            <div class="stacked-info">
-              <div class="stacked-header">
-                <h3 class="stacked-title">HSK 3 Drawing Quiz</h3>
-                <span class="track-badge">Intermediate</span>
-              </div>
-              <p class="stacked-desc">Draw 330 intermediate characters from memory across 22 levels.</p>
-            </div>
-            <div class="stacked-action-btn">Select Level →</div>
-          </div>
-
         </div>
 
       </div>
@@ -301,7 +236,7 @@
                 <h3 class="stacked-title">HSK 1 Characters</h3>
                 <span class="track-badge teal-badge">Beginner</span>
               </div>
-              <p class="stacked-desc">151 unique beginner characters split into 13 grammar categories (or 11 sequential levels).</p>
+              <p class="stacked-desc">151 beginner words grouped by word type (nouns, verbs, numbers and more), 15 per page.</p>
             </div>
             <div class="stacked-action-btn teal-action-btn">Study Level →</div>
           </div>
@@ -359,6 +294,13 @@
         </div>
       </div>
 
+      <!-- STUDY PAGER (top): 15 words per page -->
+      <div class="study-pager" id="study-pager-top" style="display: none;">
+        <button class="btn-secondary teal-outline-btn study-pager-prev">&larr; Previous</button>
+        <span class="study-pager-label" aria-live="polite"></span>
+        <button class="btn-secondary teal-outline-btn study-pager-next">Next &rarr;</button>
+      </div>
+
       <!-- MODE 1: SIMPLE LIST VIEW -->
       <div id="study-list-view" class="study-container">
         <!-- Rendered dynamically by app.js -->
@@ -372,6 +314,13 @@
       <!-- MODE 3: DRAW VIEW -->
       <div id="study-draw-view" class="study-container" style="display: none;">
         <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- STUDY PAGER (bottom): 15 words per page -->
+      <div class="study-pager" id="study-pager-bottom" style="display: none;">
+        <button class="btn-secondary teal-outline-btn study-pager-prev">&larr; Previous</button>
+        <span class="study-pager-label" aria-live="polite"></span>
+        <button class="btn-secondary teal-outline-btn study-pager-next">Next &rarr;</button>
       </div>
 
       <!-- STUDY BOTTOM ACTION BAR -->

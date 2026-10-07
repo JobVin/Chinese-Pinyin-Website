@@ -178,12 +178,100 @@ function getDatasetStagesFromData(fullData, trackName, chunkSize = STAGE_CHUNK_S
   return stages;
 }
 
+// WORD-GROUP STAGES (HSK tracks)
+// Learning Hub, Pinyin quiz and Drawing quiz all use these stages, so every quiz
+// level is exactly one Learning Hub page, in the same order.
+const SMALL_GROUP_MAX = 2; // groups this small merge into "Other Words"
+
+// Splits a group into even parts of at most STAGE_CHUNK_SIZE words
+// (22 words -> 11 + 11, not 15 + 7). A last part under MIN_FINAL_STAGE_CHUNK_SIZE
+// is avoided by using one part fewer (17 words stay one page).
+function splitIntoEvenParts(items, maxSize = STAGE_CHUNK_SIZE, minFinal = MIN_FINAL_STAGE_CHUNK_SIZE) {
+  const list = Array.isArray(items) ? items : [];
+  let parts = Math.max(1, Math.ceil(list.length / maxSize));
+  if (parts > 1 && list.length - maxSize * (parts - 1) < minFinal) parts -= 1;
+  const out = [];
+  let start = 0;
+  for (let p = 0; p < parts; p++) {
+    const size = Math.ceil((list.length - start) / (parts - p));
+    out.push(list.slice(start, start + size));
+    start += size;
+  }
+  return out;
+}
+
+function getCategoryStages(fullData, categoryMap, includeFullLevel = false) {
+  const data = Array.isArray(fullData) ? fullData : [];
+  const dataMap = new Map();
+  data.forEach(item => dataMap.set(item.character, item));
+
+  const used = new Set();
+  let groups = [];
+  Object.entries(categoryMap || {}).forEach(([name, chars]) => {
+    const items = [];
+    (chars || []).forEach(ch => {
+      if (dataMap.has(ch) && !used.has(ch)) {
+        items.push(dataMap.get(ch));
+        used.add(ch);
+      }
+    });
+    if (items.length > 0) groups.push({ name, items });
+  });
+
+  const leftovers = data.filter(item => !used.has(item.character));
+  if (leftovers.length > 0) groups.push({ name: 'Uncategorized', items: leftovers });
+
+  const smallGroups = groups.filter(g => g.items.length <= SMALL_GROUP_MAX);
+  if (smallGroups.length > 1) {
+    groups = groups.filter(g => g.items.length > SMALL_GROUP_MAX);
+    groups.push({ name: 'Other Words', items: smallGroups.flatMap(g => g.items) });
+  }
+
+  const stages = [];
+  groups.forEach(group => {
+    const slug = group.name.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
+    const parts = splitIntoEvenParts(group.items);
+    parts.forEach((part, i) => {
+      const suffix = parts.length > 1 ? ` · ${i + 1} of ${parts.length}` : '';
+      stages.push({
+        id: parts.length > 1 ? `${slug}_${i + 1}` : slug,
+        title: group.name + suffix,
+        subTitle: `${part.length} ${part.length === 1 ? 'word' : 'words'}`,
+        data: part
+      });
+    });
+  });
+
+  if (includeFullLevel && data.length > 0) {
+    stages.push({
+      id: 'all',
+      title: 'Full Level',
+      subTitle: `All ${data.length} words`,
+      data
+    });
+  }
+  return stages;
+}
+
+// Returns a shuffled copy (Fisher-Yates); the original order is left untouched
+function shuffleCopy(items) {
+  const copy = Array.isArray(items) ? items.slice() : [];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
 if (typeof window !== 'undefined') {
   window.normalizeMcPinyin = normalizeMcPinyin;
   window.buildMcOptions = buildMcOptions;
   window.STAGE_CHUNK_SIZE = STAGE_CHUNK_SIZE;
   window.MIN_FINAL_STAGE_CHUNK_SIZE = MIN_FINAL_STAGE_CHUNK_SIZE;
   window.getDatasetStagesFromData = getDatasetStagesFromData;
+  window.getCategoryStages = getCategoryStages;
+  window.splitIntoEvenParts = splitIntoEvenParts;
+  window.shuffleCopy = shuffleCopy;
 }
 
 if (typeof module !== 'undefined' && module.exports) {
@@ -192,7 +280,10 @@ if (typeof module !== 'undefined' && module.exports) {
     buildMcOptions,
     STAGE_CHUNK_SIZE,
     MIN_FINAL_STAGE_CHUNK_SIZE,
-    getDatasetStagesFromData
+    getDatasetStagesFromData,
+    getCategoryStages,
+    splitIntoEvenParts,
+    shuffleCopy
   };
 }
 
@@ -696,80 +787,30 @@ if (typeof document !== 'undefined') {
     }
   }
 
-  async function loadHsk1Categories() {
+  // WORD GROUPS: data/<track>-categories.json for HSK 1-3 (see getCategoryStages)
+  const CATEGORY_TRACKS = ['hsk1', 'hsk2', 'hsk3'];
+  const categoryCache = {};
+
+  async function loadTrackCategories(trackName) {
+    if (categoryCache[trackName] !== undefined) return categoryCache[trackName];
     try {
-      const res = await fetch('data/hsk1-categories.json');
-      return await res.json();
+      const res = await fetch(`data/${trackName}-categories.json`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      categoryCache[trackName] = await res.json();
     } catch (e) {
-      console.error('Failed to load HSK 1 categories:', e);
-      return null;
+      console.error(`Failed to load ${trackName} categories:`, e);
+      categoryCache[trackName] = null;
     }
+    return categoryCache[trackName];
   }
 
-  function getHsk1StagesByCategory(fullData, categoryMap) {
-    if (!categoryMap) {
-      return getDatasetStagesFromData(fullData, 'hsk1', STAGE_CHUNK_SIZE);
+  // Same stages for the Learning Hub and both quizzes; the Learning Hub also lists "Full Level"
+  async function getTrackStages(trackName, fullData, includeFullLevel = false) {
+    if (CATEGORY_TRACKS.includes(trackName)) {
+      const categoryMap = await loadTrackCategories(trackName);
+      if (categoryMap) return getCategoryStages(fullData, categoryMap, includeFullLevel);
     }
-
-    const stages = [];
-    const matchedChars = new Set();
-    const dataMap = new Map();
-    fullData.forEach(item => dataMap.set(item.character, item));
-
-    Object.entries(categoryMap).forEach(([catName, charList]) => {
-      const filteredItems = [];
-      charList.forEach(char => {
-        if (dataMap.has(char)) {
-          filteredItems.push(dataMap.get(char));
-          matchedChars.add(char);
-        }
-      });
-
-      if (filteredItems.length > 0) {
-        stages.push({
-          id: catName.toLowerCase().replace(/\s+/g, '_'),
-          title: catName,
-          subTitle: `${filteredItems.length} ${filteredItems.length === 1 ? 'Word' : 'Words'}`,
-          data: filteredItems
-        });
-      }
-    });
-
-    const leftoverItems = fullData.filter(item => !matchedChars.has(item.character));
-    if (leftoverItems.length > 0) {
-      stages.push({
-        id: 'uncategorized',
-        title: 'Uncategorized',
-        subTitle: `${leftoverItems.length} ${leftoverItems.length === 1 ? 'Word' : 'Words'}`,
-        data: leftoverItems
-      });
-    }
-
-    // Merge word groups of 3 words or fewer into one "Other Words" group,
-    // so no tile in the picker leads to a one-card page
-    const SMALL_GROUP_MAX = 3;
-    const smallGroups = stages.filter(st => st.data.length <= SMALL_GROUP_MAX);
-    if (smallGroups.length > 1) {
-      const mergedItems = smallGroups.flatMap(st => st.data);
-      const keptGroups = stages.filter(st => st.data.length > SMALL_GROUP_MAX);
-      stages.length = 0;
-      keptGroups.forEach(st => stages.push(st));
-      stages.push({
-        id: 'other_words',
-        title: 'Other Words',
-        subTitle: `${mergedItems.length} Words`,
-        data: mergedItems
-      });
-    }
-
-    stages.push({
-      id: 'all',
-      title: 'Full Level',
-      subTitle: `All ${fullData.length} ${fullData.length === 1 ? 'Word' : 'Words'}`,
-      data: fullData
-    });
-
-    return stages;
+    return getDatasetStagesFromData(fullData, trackName, STAGE_CHUNK_SIZE);
   }
 
   // TRACK SELECTION FROM PRACTICE HUB (PINYIN QUIZ)
@@ -778,7 +819,7 @@ if (typeof document !== 'undefined') {
     card.addEventListener('click', async () => {
       const track = card.dataset.track;
       const fullData = await loadDataset(track);
-      const stages = getDatasetStagesFromData(fullData, track, STAGE_CHUNK_SIZE);
+      const stages = await getTrackStages(track, fullData);
       if (stages.length === 1) {
         state.currentStages = stages;
         state.currentStageIndex = 0;
@@ -799,7 +840,7 @@ if (typeof document !== 'undefined') {
     card.addEventListener('click', async () => {
       const track = card.dataset.track;
       const fullData = await loadDataset(track);
-      const stages = getDatasetStagesFromData(fullData, track, STAGE_CHUNK_SIZE);
+      const stages = await getTrackStages(track, fullData);
       const baseTitle = getTrackTitle(track, false) + ' Drawing';
       if (stages.length === 1) {
         state.currentStages = stages;
@@ -821,14 +862,7 @@ if (typeof document !== 'undefined') {
     card.addEventListener('click', async () => {
       const track = card.dataset.track;
       const fullData = await loadDataset(track);
-      let stages = [];
-
-      if (track === 'hsk1') {
-        const catMap = await loadHsk1Categories();
-        stages = getHsk1StagesByCategory(fullData, catMap);
-      } else {
-        stages = getDatasetStagesFromData(fullData, track, STAGE_CHUNK_SIZE);
-      }
+      const stages = await getTrackStages(track, fullData, true);
 
       if (stages.length === 1) {
         openStudyView(track, stages[0].data, getTrackTitle(track, true), stages, 0);
@@ -1502,7 +1536,8 @@ if (typeof document !== 'undefined') {
     quizActionBar.style.display = 'flex';
 
     const fullTrackData = await loadDataset(trackName);
-    let cardData = customDataSet ? customDataSet : fullTrackData;
+    // Fresh random order on every start; only this level's cards are mixed
+    const cardData = shuffleCopy(customDataSet ? customDataSet : fullTrackData);
 
     state.currentCards = cardData;
     state.currentQuizDataSet = cardData;
@@ -1552,7 +1587,8 @@ if (typeof document !== 'undefined') {
     btnSubmit.disabled = false;
     btnSubmit.textContent = 'Submit Quiz';
 
-    const cardData = customDataSet ? customDataSet : await loadDataset(trackName);
+    // Fresh random order on every start; only this level's cards are mixed
+    const cardData = shuffleCopy(customDataSet ? customDataSet : await loadDataset(trackName));
     state.currentCards = cardData;
     state.currentDrawingCards = cardData;
     state.currentQuizDataSet = cardData;
